@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<title>DCAT-AP Validator Service</title>
+		<meta name="description" content="DCAT-AP Validator Service" />
+		<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
+		<style type="text/css">
+			body{font-family:sans-serif}
+			h1{color:#fff;background-color:#002060}
+			header#branding{background-color:#002060;min-height:70px;width:100%;display:table}
+			header#branding img{float:left}
+			header#branding h1{display:table-cell;vertical-align:middle;background:#002060}
+			.myform{margin:0 auto;width:200px;padding:14px}
+			#stylized{border:solid 2px #b7ddf2;background:#ebf4fb}
+			#stylized label{display:block;float:left;font-weight:700;text-align:right;width:250px}
+			#stylized .small{color:#666;display:block;font-size:11px;font-weight:400;text-align:right;width:250px}
+			#stylized input{margin:2px 0 20px 10px}
+			#stylized button{clear:both;margin-left:250px;width:125px;height:31px;text-align:center;font-size:12px;font-weight:700}
+			#container{min-height:100%;position:relative}
+			#body{height:100%;padding:10px;padding-bottom:110px}
+			#footer{position:absolute;bottom:0;width:100%;height:110px}
+		</style>
+	</head>
+	<body onload="setQuery();">
+		<div id="container">
+			<header id="branding">
+				<a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="DCAT application profile for data portals in Europe logo" /></a>
+				<h1>DCAT-AP Validator</h1>
+			</header>
+			<div id="body">
+				<p>This service checks one or more software description metadata files for integrity and consistency against the <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home">DCAT</a> specification and the Joinup DCAT Application Profile.</p>
+				<div id="stylized" class="form" style="width:800px;">
+					<form id="validator-form" action="/dcat_ap_validator/query" method="GET"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
+						<h2>DCAT-AP Validator</h2>
+						<label>RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
+						<input id="metadatafile" type="file" name="metadatafile" multiple="multiple">
+						<br/>
+						<!--Input syntax:<br/>
+						<input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL
+						<input type="hidden" name="languageSyntax" value="ARQ"/> -->
+						<label>SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>
+						<input id="endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator"/>
+						<br/>
+						<!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> -->
+						<input type="hidden" name="stylesheet" value="/xml-to-html-admssw.xsl" />
+						<label>SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label> 
+						<!--
+						SELECT *
+						{
+							{ ?s ?p ?o } UNION { GRAPH ?g { ?s ?p ?o } }
+						}
+						-->
+						<!--
+						-->
+						<textarea id="validationquery" name="query" cols="60" rows="6"></textarea>
+						<br/>
+						<label>Output:</label> 
+						<select name="output">
+							<option value="xml">XML</option>
+							<option value="json">JSON</option>
+							<option value="text">Text</option>
+							<option value="csv">CSV</option>
+							<option value="tsv">TSV</option>
+						</select>
+						<br/>
+						<br/>
+						<label>	</label> 
+						<button type="submit">Validate</button>
+						<br/>
+						<br/>
+					</form>
+				</div>
+				<h2>Installation instructions</h2>
+				<p>The validator is an HTML page, containing a single <a href="http://www.w3.org/TR/sparql11-query/">SPARQL</a> SELECT query to implement the validation logic and a few lines of JavaScript to call the triple store. To execute the SPARQL script it requires an instance of <a href="http://jena.apache.org/documentation/serving_data/index.html">Fuseki</a>. You can easily run Fuseki as a local instance.</p>
+				<ol>
+					<li>Download a Fuseki binary distribution (e.g. jena-fuseki1-1.1.2-distribution.zip) from an <a href="http://www.apache.org/dist/jena/">Apache mirror site</a>.</li>
+					<li>Unpack the binary distribution to your a <code>FUSEKI_HOME</code> folder of your choice.</li>
+					<li>Unpack the 'dcat_ap_validator.zip' distribution in the <code>FUSEKI_HOME</code> folder. Keep the folder structure in tact. Verify that the file 'admssw_validator.html' is in the <code>FUSEKI_HOME/pages</code> folder.</li>
+					<li>Fuseki requires a <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html">Java Runtime Environment</a> to be installed on your machine</li>
+				</ol>
+				<h2>User guide</h2>
+				<ol>
+					<li>Launch Fuseki using the command in 'dcat-ap_validator_launchfuseki.cmd':
+					<code>java -jar fuseki-server.jar --update --port=3030 --mem /dcat_ap_validator</code></li>
+					<li>Direct your browser to <a href="http://localhost:3030/dcat-ap_validator.html">http://localhost:3030/dcat-ap_validator.html</a></li>
+					<li>You get this page from Fuseki's internal web server.</li>
+					<li>Select one or more RDF files that contain the software metadata to validate. Optionally, also controlled vocabularies can be incldued to verify correct usage of them.</li>
+					<li>Optionally, you can set another SPARQL endpoint, output format, or even modify the SPARQL validation query. </li>
+					<li>Hit the 'Validate' button. Fuseki returns the validation results within seconds.</li>
+				</ol>
+			</div>
+			<footer>
+				
+				<p style="width:800px;float:left;margin:0 5px 0 0;">
+					<small>The DCAT-AP validator is an initiative by the <a href="http://ec.europa.eu/isa/actions/index_en.htm">ISA Programme</a><br />
+					Authors: Stijn Goedertier, Nikolaos Loutas, Débora Di Giacomo, Saky Kourtidis, Szabolcs Szekacs, João Rodrigues Frade, Phil Archer<br/>
+					DCAT-AP validator: Copyright ©  European Union 2012. This validator is published under the <a href="https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11">ISA Open Metadata Licence v1.1</a><br/>
+					Apache Fuseki is a copyright © 2011-12 of the Apache Software Foundation, licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.<br/>
+					CSS design by Antonio Lupetti made availabe on this <a href="http://woork.blogspot.be/2008/06/clean-and-pure-css-form-design.html">link</a>
+					</small>
+				</p>
+				<a href="http://ec.europa.eu/isa/"><img src="/images/logo_isa.png" width="307" height="74" alt="Interoperability Solutions for European Public Administrations (ISA) Programme" style="float:right;margin:0 5px 0 0;"/></a>
+			</footer>
+		</div>
+		<script type="text/javascript" src="dcat_ap_validator.js"></script>
+	</body>
+</html>

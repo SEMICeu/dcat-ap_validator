@@ -1,0 +1,36 @@
+# Rule_ID:7
+# @title [Catalog] dct:description should be a literal
+# @tag catalog
+# @endpoint http://localhost:3030/dcat_ap_validator/query
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://www.spdx.org/rdf/terms#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+WHERE
+{
+ {
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:description ?o.
+      FILTER(!isLiteral(?o)).
+      BIND(dct:description AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 7).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:description should be a literal" ).
+  LET (?Message := "The dct:description " + str(?o) + " is not literal").
+ }
+}
