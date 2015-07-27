@@ -3,7 +3,7 @@
 
 	<taskdef name="jslint"
 	classname="com.googlecode.jslint4java.ant.JSLintTask"
-	classpath="jslint4java-2.0.1.jar" />
+	classpath="jslint4java-2.0.5.jar" />
 
 	<target name="jslint">
 		<jslint haltOnFailure="false" options="sloppy">
