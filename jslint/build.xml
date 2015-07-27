@@ -1,0 +1,16 @@
+<project name="proj" default="main" basedir=".">
+	<target name="main" depends="jslint"/>
+
+	<taskdef name="jslint"
+	classname="com.googlecode.jslint4java.ant.JSLintTask"
+	classpath="jslint4java-2.0.1.jar" />
+
+	<target name="jslint">
+		<jslint haltOnFailure="false" options="sloppy">
+		<predef>selenium,Selenium,storedVars,LOG,Assert</predef>
+		<formatter type="xml" destfile="jslint.xml"/>
+		<fileset dir="../" includes="dcat-ap_validator.js"/>
+		</jslint>
+	</target>
+
+</project>
