@@ -152,7 +152,7 @@ function onFormSubmit(form) {
         runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        for (i = 0; i < fileInput.files.length; i=i+1) {
+        for (i = 0; i < fileInput.files.length; i = i + 1) {
             file = fileInput.files[i];
             uploadFile(file, graph); //uploads the metadata file
         }
