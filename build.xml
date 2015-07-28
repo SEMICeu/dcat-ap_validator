@@ -18,7 +18,7 @@
 	</target>
 
 	<target name="clean" depends="prepare">
-		<delete dir="${sparql-doc-folder}">
+		<delete dir="${sparql-doc-folder}"/>
 	</target>
 
 	<target name="create" depends="clean">
