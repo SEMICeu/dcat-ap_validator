@@ -32,7 +32,14 @@
 		</exec>
 	</target>
 	
-	<target name="copy">
+	<target name="copy" depends="killfuseki">
+		<exec executable="cmd.exe">
+			<arg value="/c"/>
+			<arg line="for /f \"tokens=5 delims= \" %F in ('netstat -a -o -n^| findstr \":3030\"') do taskkill /F /PID  %F"/>
+		</exec>
+	</target>
+	
+	<target name="copy" depends="killfuseki">
 		<copydir src="." dest="${fuseki-pages-folder}"/>
 	</target>
 

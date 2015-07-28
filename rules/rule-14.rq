@@ -31,6 +31,6 @@ WHERE
   LET (?Rule_ID := 14).
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "foaf:homepage is a recommended property for Catalog" ).
-  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have a foaf:homepage").
+  LET (?Message := "The Catalog " + str(?o) + " does not have a foaf:homepage").
  }
 }
