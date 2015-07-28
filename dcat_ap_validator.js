@@ -5,15 +5,15 @@
 
 // Global variables
 var endpoint;
-var graph='default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
+var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 
 /**
  * Uploads a file
  * @param {string} file - File to be added.
  * @param {string} graph - The graph of the RDF.
  */
-function uploadFile(file,graph) {
-	var xmlhttp;
+function uploadFile(file, graph) {
+     var xmlhttp;
 	if (window.XMLHttpRequest) {
 		xmlhttp=new XMLHttpRequest();
 	} else {
