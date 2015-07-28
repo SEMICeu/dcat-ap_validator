@@ -1,18 +1,19 @@
 <project name="proj" default="main" basedir=".">
 	<property name="rules-folder" value="rules"/>
 	<property name="sparql-doc-folder" value="doc"/>
+	<property name="jslint-folder" value="jslint"/>
 	
 	<target name="main" depends="jslint,sparql-doc"/>
 
 	<taskdef name="jslint"
 	classname="com.googlecode.jslint4java.ant.JSLintTask"
-	classpath="jslint4java-2.0.5.jar" />
+	classpath="${jslint-folder}/jslint4java-2.0.5.jar" />
 
 	<target name="jslint">
 		<jslint haltOnFailure="false" options="sloppy">
-		<predef>selenium,Selenium,storedVars,LOG,Assert</predef>
-		<formatter type="xml" destfile="jslint.xml"/>
-		<fileset dir="../" includes="dcat-ap_validator.js"/>
+		<predef>LOG,Assert</predef>
+		<formatter type="xml" destfile="${jslint-folder}/jslint.xml"/>
+		<fileset dir="." includes="dcat-ap_validator.js"/>
 		</jslint>
 	</target>
 
