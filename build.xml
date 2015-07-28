@@ -27,6 +27,7 @@
 	
 	<target name="sparql-doc" depends="create">
 		<exec executable="cmd.exe" failonerror="true">
+			<arg value="/c"/>
 			<arg line="sparql-doc ${rules-folder} ${sparql-doc-folder}"/>
 		</exec>
 	</target>
