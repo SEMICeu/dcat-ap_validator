@@ -17,9 +17,17 @@
 		</jslint>
 	</target>
 
-	<target name="sparql-doc">
+	<target name="clean" depends="prepare">
+		<delete dir="${sparql-doc-folder}">
+	</target>
+
+	<target name="create" depends="clean">
+		<mkdir dir="${sparql-doc-folder}"/>
+	</target
+	
+	<target name="sparql-doc" depends="create">
 		<exec executable="cmd.exe" failonerror="true">
-			<arg line="sparql-doc ${rules} ${doc}"/>
+			<arg line="sparql-doc ${rules-folder} ${sparql-doc-folder}"/>
 		</exec>
 	</target>
 </project>
