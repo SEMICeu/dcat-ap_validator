@@ -292,4 +292,23 @@ UNION
   LET (?Rule_Description := "foaf:homepage is a recommended property for Catalog" ).
   LET (?Message := "The dcat:Catalog " + str(?o) + " does not have a foaf:homepage").
 }
+
+UNION
+# Rule_ID:15
+{
+  #
+  {SELECT ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s foaf:homepage ?home.
+    } GROUP BY ?s
+      HAVING(COUNT(?s > 1))
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 15).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "foaf:homepage has maximum cardinality of 1 for Catalog" ).
+  LET (?Message := "The Catalog " + str(?o) + " as more than 1 foaf:homepage").
+ }
+ 
 }
