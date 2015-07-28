@@ -13,22 +13,22 @@ var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph'
  * @param {string} graph - The graph of the RDF.
  */
 function uploadFile(file, graph) {
-     var xmlhttp;
-	if (window.XMLHttpRequest) {
-		xmlhttp=new XMLHttpRequest();
-	} else {
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function()  {
-		if (xmlhttp.readyState==4 && xmlhttp.status != 200) {
-			alert(xmlhttp.status + ' ' + xmlhttp.statusText);
-		}
-	};
-	var formData = new FormData();
-	formData.append('file', file);
-	formData.append('graph', graph);
-	xmlhttp.open('POST', endpoint + "/upload", false);
-	xmlhttp.send(formData);
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status !== 200) {
+          alert(xmlhttp.status + ' ' + xmlhttp.statusText);
+        }
+    };
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('graph', graph);
+    xmlhttp.open('POST', endpoint + "/upload", false);
+    xmlhttp.send(formData);
 }
 
 /**
@@ -36,9 +36,9 @@ function uploadFile(file, graph) {
  * WARNING: does only work on Chrome with proper security settings. We need to await HTML5.
  * @param {string} fileURL - URL of the file to be loaded.
  */
-function getAndLoadFile(fileURL){
-	var xmlhttp;
-	if (window.XMLHttpRequest) {
+function getAndLoadFile(fileURL) {
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
 		xmlhttp=new XMLHttpRequest();
 	} else {
 		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
