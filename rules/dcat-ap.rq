@@ -254,4 +254,42 @@ UNION
   LET (?Rule_Description := "dct:title is a required property for Catalog" ).
   LET (?Message := "The Catalog " + str(?o) + " does not have a dct:title").
  }
+
+UNION
+# Rule_ID:13
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:title ?o.
+      FILTER(!isLiteral(?o).)
+      BIND(dct:title AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 13).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:title should be a literal" ).
+  LET (?Message := "The dct:title " + str(?o) + " shoulb be literal").
+ }
+ 
+UNION
+# Rule_ID:14
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s foaf:homepage ?homepage})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 14).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "foaf:homepage is a recommended property for Catalog" ).
+  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have a foaf:homepage").
+}
 }
