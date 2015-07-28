@@ -17,7 +17,7 @@
 		</jslint>
 	</target>
 
-	<target name="clean" depends="prepare">
+	<target name="clean">
 		<delete dir="${sparql-doc-folder}"/>
 	</target>
 
