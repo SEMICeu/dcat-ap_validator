@@ -1,5 +1,8 @@
 <project name="proj" default="main" basedir=".">
-	<target name="main" depends="jslint"/>
+	<property name="rules-folder" value="rules"/>
+	<property name="sparql-doc-folder" value="doc"/>
+	
+	<target name="main" depends="jslint,sparql-doc"/>
 
 	<taskdef name="jslint"
 	classname="com.googlecode.jslint4java.ant.JSLintTask"
@@ -13,4 +16,9 @@
 		</jslint>
 	</target>
 
+	<target name="sparql-doc">
+		<exec executable="cmd.exe" failonerror="true">
+			<arg line="sparql-doc ${rules} ${doc}"/>
+		</exec>
+	</target name="jslint">
 </project>
