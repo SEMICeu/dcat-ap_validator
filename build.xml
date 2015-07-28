@@ -32,7 +32,7 @@
 		</exec>
 	</target>
 	
-	<target name="copy" depends="killfuseki">
+	<target name="killfuseki">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
 			<arg value="for /f"/>
