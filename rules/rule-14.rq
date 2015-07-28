@@ -1,5 +1,5 @@
-# Rule_ID:12
-# @title [Catalog] dct:title is a required property for Catalog
+# Rule_ID:14
+# @title [Catalog] foaf:homepage is a recommended property for Catalog
 # @tag catalog
 # @endpoint http://localhost:3030/dcat_ap_validator/query
 PREFIX adms: <http://www.w3.org/ns/adms#>
@@ -22,15 +22,15 @@ WHERE
   {SELECT ?s ?p ?o 
     WHERE {
       ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s dct:title ?title})).
+      FILTER(!(EXISTS { ?s foaf:homepage ?homepage})).
       BIND(rdf:type AS ?p).
       BIND(dcat:Catalog AS ?o).
     }
   }
   LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 12).
+  LET (?Rule_ID := 14).
   LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:title is a required property for Catalog" ).
-  LET (?Message := "The Catalog " + str(?o) + " does not have a dct:title").
+  LET (?Rule_Description := "foaf:homepage is a recommended property for Catalog" ).
+  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have a foaf:homepage").
  }
 }
