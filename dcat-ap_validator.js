@@ -44,17 +44,17 @@ function getAndLoadFile(fileURL) {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status != 200) {
+        if (this.readyState == 4 && this.status !== 200) {
             alert(fileURL + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
-        } else if (this.readyState == 4 && this.status == 200) {
+        } else if (this.readyState === 4 && this.status === 200) {
             alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
             var blob = new Blob([this.responseText], { type: "text\/turtle"}); //text\/turtle   text\/xml
-            uploadFile(blob,graph);
+            uploadFile(blob, graph);
         }
     };
     xmlhttp.responseType = "text"; //text,document,arraybuffer
-    xmlhttp.open("GET",fileURL,true);  //must be asynchronous - third parameter true
+    xmlhttp.open("GET", fileURL, true);  //must be asynchronous - third parameter true
     xmlhttp.send();
 }
 
@@ -70,12 +70,12 @@ function runUpdateQuery(query) {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status != 200) {
-                alert(xmlhttp.status + ' ' + xmlhttp.statusText);
-            }
+        if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
+            alert(xmlhttp.status + ' ' + xmlhttp.statusText);
+        }
     };
-    xmlhttp.open("POST",endpoint + "/update",false);
-    xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded;charset=UTF-8;');
+    xmlhttp.open("POST", endpoint + "/update", false);
+    xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8;');
     xmlhttp.send('update=' + encodeURIComponent(query));
 }
 
@@ -85,21 +85,21 @@ function runUpdateQuery(query) {
  * @returns {string} The response of the query
  */
 function runQuery(query) {
-	var xmlhttp;
-	if (window.XMLHttpRequest) {
-		xmlhttp=new XMLHttpRequest();
-	} else {
-	 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function() {
-		if (xmlhttp.readyState==4 && xmlhttp.status != 200) {
-			alert(xmlhttp.status + ' ' + xmlhttp.statusText);
-		}
-	};
-	var url = endpoint + "/query?" + encodeURIComponent(query) ;
-	xmlhttp.open("GET",url,false);
-	xmlhttp.send();
-	return xmlhttp.responseText;
+    var xmlhttp,url;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
+            alert(xmlhttp.status + ' ' + xmlhttp.statusText);
+        }
+    };
+    url = endpoint + "/query?" + encodeURIComponent(query) ;
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();
+    return xmlhttp.responseText;
 }
 
 /**

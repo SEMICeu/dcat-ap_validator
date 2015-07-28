@@ -11,7 +11,7 @@
 
 	<target name="jslint">
 		<jslint haltOnFailure="false" options="sloppy">
-		<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob</predef>
+		<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert</predef>
 		<formatter type="xml" destfile="${jslint-folder}/jslint.xml"/>
 		<fileset dir="." includes="dcat-ap_validator.js"/>
 		</jslint>
