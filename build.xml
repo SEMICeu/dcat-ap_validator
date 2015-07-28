@@ -35,7 +35,7 @@
 	<target name="kill-fuseki">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
-			<arg value="for /f"/>
+			<arg value="for /f "/>
 			<arg value="tokens=5 delims= "/>
 			<arg value="%F in ('"/>
 			<arg value="netstat -a -o -n^| findstr "/>
