@@ -43,7 +43,7 @@
 			<arg value=":3030'"/>
 			<arg line=") do taskkill /F /PID  %F"/>
 		</exec>
-	<echoxml>
+	</echoxml>
 	</target>
 	
 	<target name="copy" depends="kill-fuseki">
