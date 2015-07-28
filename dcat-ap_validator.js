@@ -125,7 +125,7 @@ function getQuery(file) {
 }
 
 /**
- * Extracts a query from a file to be copied in the textarea with id validationquery
+ * Extracts a query from a file to be copied in the form with id validationquery
  */
 function setQuery() {
     var query, id;
