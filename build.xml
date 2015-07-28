@@ -35,7 +35,7 @@
 	<target name="copy">
 		<copydir src="." dest="${fuseki-pages-folder}"/>
 	</target>
-	
+
 	<target name="fuseki" depends="copy">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
