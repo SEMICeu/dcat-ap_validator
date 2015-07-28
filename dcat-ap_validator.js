@@ -13,18 +13,18 @@ var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph'
  * @param {string} graph - The graph of the RDF.
  */
 function uploadFile(file, graph) {
-    var xmlhttp;
+    var xmlhttp, formData;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status !== 200) {
-          alert(xmlhttp.status + ' ' + xmlhttp.statusText);
+        if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
+            alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
     };
-    var formData = new FormData();
+    formData = new FormData();
     formData.append('file', file);
     formData.append('graph', graph);
     xmlhttp.open('POST', endpoint + "/upload", false);
@@ -39,23 +39,23 @@ function uploadFile(file, graph) {
 function getAndLoadFile(fileURL) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
-		xmlhttp=new XMLHttpRequest();
-	} else {
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function() {
-		if (this.readyState==4 && this.status!=200) {
-			alert(fileURL + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
-		} else if (this.readyState==4 && this.status==200) {
-			alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
-			//var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
-			var blob = new Blob([this.responseText], { type: "text\/turtle"}); //text\/turtle   text\/xml
-			uploadFile(blob,graph);
-		}
-	};
-	xmlhttp.responseType="text"; //text,document,arraybuffer
-	xmlhttp.open("GET",fileURL,true);  //must be asynchronous - third parameter true
-	xmlhttp.send();
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status != 200) {
+            alert(fileURL + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
+        } else if (this.readyState == 4 && this.status == 200) {
+            alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
+            //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
+            var blob = new Blob([this.responseText], { type: "text\/turtle"}); //text\/turtle   text\/xml
+            uploadFile(blob,graph);
+        }
+    };
+    xmlhttp.responseType = "text"; //text,document,arraybuffer
+    xmlhttp.open("GET",fileURL,true);  //must be asynchronous - third parameter true
+    xmlhttp.send();
 }
 
 /**
@@ -63,20 +63,20 @@ function getAndLoadFile(fileURL) {
  * @param {string} query - Query to be executed on the datastore.
  */
 function runUpdateQuery(query) {
-	var xmlhttp;
-	if (window.XMLHttpRequest) {
-		xmlhttp=new XMLHttpRequest();
-	} else {
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function() {
-		if (xmlhttp.readyState==4 && xmlhttp.status != 200) {
-			alert(xmlhttp.status + ' ' + xmlhttp.statusText);
-		}
-	};
-	xmlhttp.open("POST",endpoint + "/update",false);
-	xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded;charset=UTF-8;');		
-	xmlhttp.send('update=' + encodeURIComponent(query));
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status != 200) {
+                alert(xmlhttp.status + ' ' + xmlhttp.statusText);
+            }
+    };
+    xmlhttp.open("POST",endpoint + "/update",false);
+    xmlhttp.setRequestHeader('Content-type','application/x-www-form-urlencoded;charset=UTF-8;');
+    xmlhttp.send('update=' + encodeURIComponent(query));
 }
 
 /**
