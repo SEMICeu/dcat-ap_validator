@@ -42,7 +42,8 @@
 			<arg value="(&apos;"/>
 			<arg line="netstat -a -o -n^| findstr "/>
 			<arg value=":3030"/>
-			<arg value="&apos;) do taskkill /F /PID  %F"/>
+			<arg value="&apos;)"/>
+			<arg line="do taskkill /F /PID  %F"/>
 		</exec>
 	</target>
 	
