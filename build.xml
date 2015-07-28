@@ -36,8 +36,7 @@
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
 			<arg value="for /f "/>
-			<arg value="tokens=5"/>
-			<arg value="delims= "/>
+			<arg line="tokens=5 delims= "/>
 			<arg value="%F"/>
 			<arg value="in"/>
 			<arg value="(&apos;"/>
