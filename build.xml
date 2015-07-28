@@ -37,7 +37,7 @@
 			<arg value="/c"/>
 			<arg value="for /f "/>
 			<arg line="tokens=5 delims= "/>
-			<arg value="%F in ('"/>
+			<arg line="%F in ('"/>
 			<arg value="netstat -a -o -n^| findstr "/>
 			<arg value=":3030'"/>
 			<arg value=") do taskkill /F /PID  %F"/>
