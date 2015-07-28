@@ -7,9 +7,7 @@
 	
 	<target name="main" depends="jslint,sparql-doc,fuseki"/>
 
-	<taskdef name="jslint"
-	classname="com.googlecode.jslint4java.ant.JSLintTask"
-	classpath="${jslint-folder}/jslint4java-2.0.5.jar" />
+	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint-folder}/jslint4java-2.0.5.jar" />
 
 	<target name="jslint">
 		<jslint haltOnFailure="false" options="sloppy">
@@ -39,7 +37,7 @@
 	</target>
 	
 	<target name="fuseki" depends="copy">
-		<exec executable="cmd.exe" failonerror="true" spawn="true">
+		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
 			<arg line="java -jar ${fuseki-folder}/fuseki-server.jar --update --port=3030 --pages ${fuseki-pages-folder} --mem /dcat-ap_validator"/>
 		</exec>
