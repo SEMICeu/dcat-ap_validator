@@ -44,7 +44,7 @@ function getAndLoadFile(fileURL) {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status !== 200) {
+        if (this.readyState === 4 && this.status !== 200) {
             alert(fileURL + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
             alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
@@ -85,7 +85,7 @@ function runUpdateQuery(query) {
  * @returns {string} The response of the query
  */
 function runQuery(query) {
-    var xmlhttp,url;
+    var xmlhttp, url;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -96,7 +96,7 @@ function runQuery(query) {
             alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
     };
-    url = endpoint + "/query?" + encodeURIComponent(query) ;
+    url = endpoint + "/query?" + encodeURIComponent(query);
     xmlhttp.open("GET", url, false);
     xmlhttp.send();
     return xmlhttp.responseText;
@@ -108,29 +108,30 @@ function runQuery(query) {
  * @returns {string} The query stored in the file
  */
 function getQuery(file) {
-	var xmlhttp;
-	if (window.XMLHttpRequest) {
-		xmlhttp=new XMLHttpRequest();
-	} else {
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function() {
-		if (xmlhttp.readyState==4 && xmlhttp.status != 200) {
-			alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
-		}
-	};
-	xmlhttp.open("GET",file,false);
-	xmlhttp.send();
-	return xmlhttp.responseText;
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState ===4 && xmlhttp.status !== 200) {
+            alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
+        }
+    };
+    xmlhttp.open("GET", file, false);
+    xmlhttp.send();
+    return xmlhttp.responseText;
 }
 
 /**
  * Extracts a query from a file to be copied in the form
  */
 function setQuery() {
-	var query = getQuery("dcat-ap.rq");
-	var id = "validationquery";
-	document.getElementById(id).innerHTML = query;
+    var query, id;
+    query = getQuery("dcat-ap.rq");
+    id = "validationquery";
+    document.getElementById(id).innerHTML = query;
 }
 
 /**
@@ -139,28 +140,27 @@ function setQuery() {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onFormSubmit(form) {
-	try{
-		endpoint = document.getElementById('endpoint').value;
-		var fileInput = document.getElementById('metadatafile');
-		if (fileInput.files.length === 0) { 
-			window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
-			return false;
-		}
-		else {
-			//runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
-			runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
-			//getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
-			//getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-			for (var i = 0; i < fileInput.files.length; i++) {
-				var file = fileInput.files[i];
-				uploadFile(file,graph); //uploads the metadata file
-			}
-			form.action = endpoint + '/query'; //The validation query will be called from the form
-			return true;
-		}
-	}
-	catch(e){
-		alert('Error: ' + e.message);
-		return false;
-	}
+    try{
+        endpoint = document.getElementById('endpoint').value;
+        var fileInput = document.getElementById('metadatafile');
+        if (fileInput.files.length === 0) { 
+            window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
+            return false;
+        }
+        else {
+            //runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
+            runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+            //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
+            //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
+            for (var i = 0; i < fileInput.files.length; i++) {
+                var file = fileInput.files[i];
+                uploadFile(file, graph); //uploads the metadata file
+            }
+            form.action = endpoint + '/query'; //The validation query will be called from the form
+            return true;
+        }
+    } catch(e){
+        alert('Error: ' + e.message);
+        return false;
+    }
 }
