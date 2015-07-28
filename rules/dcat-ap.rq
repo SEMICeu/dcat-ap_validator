@@ -1,0 +1,257 @@
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://www.spdx.org/rdf/terms#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+WHERE
+{
+# Rule_ID:0
+ {
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a foaf:Agent.
+      FILTER(!EXISTS {?s foaf:name ?name}).
+      BIND (rdf:type as ?p).
+      BIND (foaf:Agent as ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 0).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "Name is a required property for Agent." ).
+  LET (?Message := "The agent " + str(?o) + " doesn't have a foaf:name property").
+}
+
+UNION
+# Rule_ID:1
+ {
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a foaf:Agent.
+      ?s foaf:name ?o.
+      FILTER(!isLiteral(?o)).
+      BIND (foaf:name as ?p)
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 1).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "The foaf:name property should be a literal." ).
+  LET (?Message := "The property " + str(?p) + " is not a literal").
+}
+
+UNION
+# Rule_ID:2
+ {
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a foaf:Agent.
+      FILTER(!EXISTS {?s dct:type ?type}).
+      BIND (rdf:type as ?p).
+      BIND (foaf:Agent as ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 2).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "Type is a recommended property for Agent" ).
+  LET (?Message := "The agent " + str(?o) + " doesn't have a type property").
+}
+
+UNION
+# Rule_ID:3
+ {
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a foaf:Agent.
+      ?s dct:type ?o.
+      FILTER(!isUri(?o)).
+      BIND (dct:type as ?p)
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 3).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "Type should be a resource" ).
+  LET (?Message := "The foaf:Agent " + str(?s) + " should have a dct:type as rdf:resource").
+}
+
+UNION
+# Rule_ID:4
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s dcat:dataset ?ds})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 4).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dcat:dataset is a required property for Catalog" ).
+  LET (?Message := "The catalog " + str(?o) + " should have a dcat:dataset property").
+}
+
+UNION
+# Rule_ID:5
+{
+  #
+  {SELECT ?s (dcat:dataset as ?p) ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dcat:dataset ?o.
+      FILTER(!EXISTS {?o a dcat:Dataset}).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 5).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dcat:dataset should be a Dataset" ).
+  LET (?Message := "The dcat:dataset " + str(?o) + " does not exist").
+}
+
+UNION
+# Rule_ID:6
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s dct:description ?desc})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 6).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:description is a required property for Catalog" ).
+  LET (?Message := "The dcat:Catalog " + str(?s) + " does not have a dct:description").
+ }
+ 
+UNION
+# Rule_ID:7
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:description ?o.
+      FILTER(!isLiteral(?o)).
+      BIND(dct:description AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 7).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:description should be a literal" ).
+  LET (?Message := "The dct:description " + str(?o) + " is not literal").
+ }
+ 
+UNION
+# Rule_ID:8
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s dct:publisher ?pub})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 8).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:publisher is a required property for Catalog" ).
+  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have dct:publisher property").
+}
+
+UNION
+# Rule_ID:9
+{
+  #
+  {SELECT ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:publisher ?pub.
+    } GROUP BY ?s 
+	  HAVING (COUNT( ?s) > 1)
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 9).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:publisher has maximum cardinality of 1 for Catalog" ).
+  LET (?Message := "The dcat:Catalog " + str(?o) + " has more than 1 dct:publisher").
+ }
+
+UNION
+# Rule_ID:10
+ {
+  #
+  {SELECT ?s (dct:publisher as ?p) ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:publisher ?o.
+      FILTER(!isURI(?o)).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 10).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:publisher should be a resource" ).
+  LET (?Message := "The dct:publisher " + str(?o) + " is not a resource").
+ }
+
+UNION
+# Rule_ID:11
+{
+  #
+  {SELECT ?s (dct:publisher as ?p) ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:publisher ?o.
+      FILTER(!EXISTS {?o a foaf:Agent}).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 11).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:publisher should be a foaf:Agent" ).
+  LET (?Message := "The dct:publisher " + str(?o) + " is not a foaf:Agent").
+ }
+
+UNION
+# Rule_ID:12
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s dct:title ?title})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+}
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 12).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:title is a required property for Catalog" ).
+  LET (?Message := "The Catalog " + str(?o) + " does not have a dct:title").
+ }
+}
