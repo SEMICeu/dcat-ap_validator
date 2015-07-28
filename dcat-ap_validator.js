@@ -140,10 +140,10 @@ function setQuery() {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onFormSubmit(form) {
-	var i;
+    var fileInput, i, file;
     try {
         endpoint = document.getElementById('endpoint').value;
-        var fileInput = document.getElementById('metadatafile');
+        fileInput = document.getElementById('metadatafile');
         if (fileInput.files.length === 0) {
             window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
             return false;
@@ -152,14 +152,14 @@ function onFormSubmit(form) {
         runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        for (i = 0; i < fileInput.files.length; i++) {
-            var file = fileInput.files[i];
+        for (i = 0; i < fileInput.files.length; i=i+1) {
+            file = fileInput.files[i];
             uploadFile(file, graph); //uploads the metadata file
         }
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
         //}
-    } catch(e){
+    } catch (e) {
         alert('Error: ' + e.message);
         return false;
     }
