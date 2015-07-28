@@ -23,7 +23,7 @@
 
 	<target name="create" depends="clean">
 		<mkdir dir="${sparql-doc-folder}"/>
-	</target
+	</target>
 	
 	<target name="sparql-doc" depends="create">
 		<exec executable="cmd.exe" failonerror="true">
