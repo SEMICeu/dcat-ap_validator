@@ -35,7 +35,11 @@
 	<target name="copy" depends="killfuseki">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
-			<arg line="for /f \"tokens=5 delims= \" %F in ('netstat -a -o -n^| findstr \":3030\"') do taskkill /F /PID  %F"/>
+			<arg value="for /f"/>
+			<arg value="tokens=5 delims= "/>
+			<arg value="%F in ('netstat -a -o -n^| findstr "/>
+			<arg value=":3030"/>
+			<arg line="') do taskkill /F /PID  %F"/>
 		</exec>
 	</target>
 	
