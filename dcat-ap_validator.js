@@ -115,7 +115,7 @@ function getQuery(file) {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState ===4 && xmlhttp.status !== 200) {
+        if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         }
     };
@@ -140,14 +140,13 @@ function setQuery() {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onFormSubmit(form) {
-    try{
+    try {
         endpoint = document.getElementById('endpoint').value;
         var fileInput = document.getElementById('metadatafile');
-        if (fileInput.files.length === 0) { 
+        if (fileInput.files.length === 0) {
             window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
             return false;
-        }
-        else {
+        } else {
             //runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
             runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
