@@ -23,8 +23,8 @@ WHERE
     WHERE {
       ?s a dcat:Catalog.
       ?s foaf:homepage ?home.
-    } GROUP BY ?s
-      HAVING (COUNT( ?home > 1))
+    } GROUP BY ?s 
+      HAVING (COUNT( ?s) > 1)
   }
   LET (?Rule_Origin := "DCAT-AP").
   LET (?Rule_ID := 15).
