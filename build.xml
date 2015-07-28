@@ -2,8 +2,10 @@
 	<property name="rules-folder" value="rules"/>
 	<property name="sparql-doc-folder" value="doc"/>
 	<property name="jslint-folder" value="jslint"/>
+	<property name="fuseki-folder" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
+	<property name="fuseki-pages-folder" value="${fuseki-folder}/pages/"/>
 	
-	<target name="main" depends="jslint,sparql-doc"/>
+	<target name="main" depends="jslint,sparql-doc,fuseki"/>
 
 	<taskdef name="jslint"
 	classname="com.googlecode.jslint4java.ant.JSLintTask"
@@ -29,6 +31,17 @@
 		<exec executable="cmd.exe" failonerror="true">
 			<arg value="/c"/>
 			<arg line="sparql-doc ${rules-folder} ${sparql-doc-folder}"/>
+		</exec>
+	</target>
+	
+	<target name="copy">
+		<copydir src="." dest="${fuseki-pages-folder}"/>
+	</target>
+	
+	<target name="fuseki" depends="copy">
+		<exec executable="cmd.exe" failonerror="true">
+			<arg value="/c"/>
+			<arg line="java -jar ${fuseki-folder}/fuseki-server.jar --update --port=3030 --mem /dcat-ap_validator"/>
 		</exec>
 	</target>
 </project>
