@@ -124,22 +124,19 @@ UNION
  
 UNION
 # Rule_ID:7
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:description ?o.
-      FILTER(!isLiteral(?o)).
-      BIND(dct:description AS ?p).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:description ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:description AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (7 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:description ",str(?o)," is not literal." AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 7).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:description should be a literal" ).
-  LET (?Message := "The dct:description " + str(?o) + " is not literal").
- }
  
 UNION
 # Rule_ID:8
