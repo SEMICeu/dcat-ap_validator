@@ -7,7 +7,7 @@ PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ("DCAT-AP" AS ?Rule_Origin) (15 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("foaf:homepage has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The Catalog ", str(?o)," as more than 1 foaf:homepage.") AS ?Message) ?s ?p ?o
+SELECT ("DCAT-AP" AS ?Rule_Origin) (15 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("foaf:homepage has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?o)," as more than 1 foaf:homepage.") AS ?Message) ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   ?s foaf:homepage ?home.
