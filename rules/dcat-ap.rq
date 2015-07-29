@@ -13,54 +13,51 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE{
 # Rule_ID:0
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
-    WHERE {
-      ?s a foaf:Agent.
-      FILTER(!EXISTS {?s foaf:name ?name}).
-      BIND (rdf:type as ?p).
-      BIND (foaf:Agent as ?o).
-      BIND ("DCAT-AP" AS ?Rule_Origin).
-      BIND (0 AS ?Rule_ID).
-      BIND ("error" AS ?Rule_Severity).
-      BIND ("Name is a required property for Agent." AS ?Rule_Description).
-      BIND (concat("The agent  ",str(?o)," doesn't have a foaf:name property") AS ?Message).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     FILTER(!EXISTS {?s foaf:name ?name}).
+     BIND (rdf:type as ?p).
+     BIND (foaf:Agent as ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (0 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("Name is a required property for Agent." AS ?Rule_Description).
+     BIND (concat("The agent  ",str(?o)," doesn't have a foaf:name property") AS ?Message).
+   }
   }
 
 UNION
 # Rule_ID:1
- {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-    WHERE {
-      ?s a foaf:Agent.
-      ?s foaf:name ?o.
-      FILTER(!isLiteral(?o)).
-      BIND (foaf:name as ?p)
-      BIND ("DCAT-AP" AS ?Rule_Origin).
-      BIND (1 AS ?Rule_ID).
-      BIND ("error" AS ?Rule_Severity).
-      BIND ("The foaf:name property should be a literal." AS ?Rule_Description).
-      BIND (concat("The property ",str(?p)," is not a literal") AS ?Message).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     ?s foaf:name ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (foaf:name as ?p)
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (1 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("The foaf:name property should be a literal." AS ?Rule_Description).
+     BIND (concat("The property ",str(?p)," is not a literal") AS ?Message).
+   }
   }
 
 UNION
 # Rule_ID:2
- {
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a foaf:Agent.
-      FILTER(!EXISTS {?s dct:type ?type}).
-      BIND (rdf:type as ?p).
-      BIND (foaf:Agent as ?o).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     FILTER(!EXISTS {?s dct:type ?type}).
+     BIND (rdf:type AS ?p).
+     BIND (foaf:Agent AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (2 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("Type is a recommended property for Agent" AS ?Rule_Description).
+     BIND (concat("The agent ",str(?o)," doesn't have a type property") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 2).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "Type is a recommended property for Agent" ).
-  LET (?Message := "The agent " + str(?o) + " doesn't have a type property").
-}
 
 UNION
 # Rule_ID:3
