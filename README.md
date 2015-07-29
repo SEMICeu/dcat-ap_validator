@@ -27,7 +27,7 @@ The validator is an HTML page, containing a single <a href="http://www.w3.org/TR
 The development process is based on:
 <ol>
 <li><a href="http://ant.apache.org/">Ant</a>, which executes the build.xml</li>
-<li><a href=https://github.com/ldodds/sparql-doc">sparql-doc</a> 0.0.4 which generates HTML documentation based on rules (SPARQL queries). Sparql-doc is installed on Windows machine with <a href="http://railsinstaller.org/en">Railsinstaller</a> 2.2.5 for Ruby 1.9 (required by sparql-doc)</li>
+<li><a href="https://github.com/ldodds/sparql-doc">sparql-doc</a> 0.0.4 which generates HTML documentation based on rules (SPARQL queries). Sparql-doc is installed on Windows machine with <a href="http://railsinstaller.org/en">Railsinstaller</a> 2.2.5 for Ruby 1.9 (required by sparql-doc)</li>
 <li><a href="https://code.google.com/p/jslint4java/">jslint4java</a> 2.0.5 which validates the javascript used by the validator accordingly to JSLint rules.</li>
 <li><a href="https://jenkins-ci.org/">Jenkins</a> 1.6.2.1 to automate the launch of Ant, sparql-doc, Jslint and get the code from Github, Jenkins has been installed with the Violation plugin to monitor the JSLint error in the Javascript </li>
 </ol>
