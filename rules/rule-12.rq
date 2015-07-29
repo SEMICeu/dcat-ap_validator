@@ -14,7 +14,7 @@ WHERE {
    BIND (rdf:type AS ?p).
    BIND (dcat:Catalog AS ?o).
    BIND ("DCAT-AP" AS ?Rule_Origin).
-   BIND (12 ?Rule_ID).
+   BIND (12 AS ?Rule_ID).
    BIND ("error" AS ?Rule_Severity).
    BIND ("dct:title is a required property for Catalog." AS ?Rule_Description).
    BIND (concat("The Catalog ", str(?o)," does not have a dct:title") AS ?Message).
