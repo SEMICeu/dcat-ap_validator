@@ -365,4 +365,23 @@ UNION
   LET (?Rule_Description := "dct:language is a recommended property for Catalog" ).
   LET (?Message := "The dct:language " + str(?o) + " is not a property of Catalog.").
  }
+
+UNION
+# Rule_ID:18 
+ {
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:language ?o.
+      FILTER(!isURI(?o)).
+      BIND(dct:language AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 19).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:language should be a resource" ).
+  LET (?Message := "The dct:language " + str(?o) + " is not a resource.").
+ }
 }
