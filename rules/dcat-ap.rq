@@ -254,21 +254,18 @@ UNION
 
 UNION
 # Rule_ID:16
-{
-  #
-  {SELECT ?s (foaf:homepage as ?p) ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s foaf:homepage ?o.
-      FILTER(!isURI(?o)).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s foaf:homepage ?o.
+     FILTER(!isURI(?o)).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (16 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("foaf:homepage should be a resource." AS ?Rule_Description).
+     BIND (concat("The foaf:homepage ",str(?o)," is not a resource") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 16).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "foaf:homepage should be a resource" ).
-  LET (?Message := "The foaf:homeage " + str(?o) + " is not a resource").
- }
  
 UNION
 # Rule_ID:17
