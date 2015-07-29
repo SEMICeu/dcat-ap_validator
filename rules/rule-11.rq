@@ -11,6 +11,7 @@ SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   ?s dct:publisher ?o.
+  ?o ?pred ?val.
   FILTER(!EXISTS {?o a foaf:Agent}).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (11 AS ?Rule_ID).
