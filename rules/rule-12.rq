@@ -17,5 +17,5 @@ WHERE {
    BIND (12 AS ?Rule_ID).
    BIND ("error" AS ?Rule_Severity).
    BIND ("dct:title is a required property for Catalog." AS ?Rule_Description).
-   BIND (concat("The Catalog ", str(?o)," does not have a dct:title") AS ?Message).
+   BIND (concat("The Catalog ", str(?o)," does not have a dct:title.") AS ?Message).
 }

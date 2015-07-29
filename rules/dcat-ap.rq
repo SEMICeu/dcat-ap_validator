@@ -212,41 +212,35 @@ UNION
 
 UNION
 # Rule_ID:13
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:title ?o.
-      FILTER(!isLiteral(?o)).
-      BIND(dct:title AS ?p).
-    }
-  }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 13).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:title should be a literal" ).
-  LET (?Message := "The dct:title " + str(?o) + " shoulb be literal").
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:title ?o.
+     FILTER(!isLiteral(?o).)
+     BIND ( dct:title AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (13 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:title ",str(?o)," should be literal.") AS ?Message).
+   }
  }
  
 UNION
 # Rule_ID:14
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s foaf:homepage ?homepage})).
-      BIND(rdf:type AS ?p).
-      BIND(dcat:Catalog AS ?o).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s foaf:homepage ?homepage})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (14 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("foaf:homepage is a recommended property for Catalog." AS ?Rule_Description).
+     BIND ("The dcat:Catalog " + str(?o) + " does not have a foaf:homepage." AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 14).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "foaf:homepage is a recommended property for Catalog" ).
-  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have a foaf:homepage").
-}
 
 UNION
 # Rule_ID:15
