@@ -16,6 +16,6 @@ WHERE {
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (4 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dcat:dataset is a required property for Catalog" AS ?Rule_Description).
-  BIND (concat("The dact:Catalog ",str(?o)," should have a dcat:dataset property") AS ?Message).
+  BIND ("dcat:dataset is a required property for Catalog." AS ?Rule_Description).
+  BIND (concat("The dcat:Catalog ",str(?o)," should have a dcat:dataset property.") AS ?Message).
 }

@@ -108,22 +108,19 @@ UNION
 
 UNION
 # Rule_ID:6
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s dct:description ?desc})).
-      BIND(rdf:type AS ?p).
-      BIND(dcat:Catalog AS ?o).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:description ?desc})).
+     BIND(rdf:type AS ?p).
+     BIND(dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (6 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description is a required property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?s)," does not have a dct:description." AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 6).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:description is a required property for Catalog" ).
-  LET (?Message := "The dcat:Catalog " + str(?s) + " does not have a dct:description").
- }
  
 UNION
 # Rule_ID:7

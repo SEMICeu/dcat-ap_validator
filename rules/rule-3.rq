@@ -15,6 +15,6 @@ WHERE {
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (3 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("Type should be a resource" AS ?Rule_Description).
-  BIND (concat("The foaf:Agent ",str(?s)," should have a dct:type as rdf:resource") AS ?Message).
+  BIND ("Type should be a resource." AS ?Rule_Description).
+  BIND (concat("The foaf:Agent ",str(?s)," should have a dct:type as rdf:resource.") AS ?Message).
 }

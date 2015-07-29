@@ -16,5 +16,5 @@ WHERE {
   BIND (0 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("Name is a required property for Agent." AS ?Rule_Description).
-  BIND (concat("The foaf:Agent ",str(?o)," does not have a foaf:name property") AS ?Message).
+  BIND (concat("The foaf:Agent ",str(?o)," does not have a foaf:name property.") AS ?Message).
 }
