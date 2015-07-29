@@ -160,7 +160,7 @@ UNION
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:publisher ?pub.
-     BIND ("DCAT-AP" ?Rule_Origin).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (9 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:publisher has maximum cardinality of 1 for Catalog." AS ?Rule_Description).
