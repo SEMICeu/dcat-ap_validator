@@ -15,5 +15,5 @@ WHERE {
   BIND (16 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("foaf:homepage should be a resource." AS ?Rule_Description).
-  BIND (concat("The foaf:homepage ",str(?o)," is not a resource") AS ?Message).
+  BIND (concat("The foaf:homepage ",str(?o)," is not a resource.") AS ?Message).
 }

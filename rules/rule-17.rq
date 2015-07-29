@@ -2,35 +2,19 @@
 # @title [Catalog] foaf:homepage should be a foaf:Document
 # @tag catalog
 # @endpoint http://localhost:3030/dcat-ap_validator/query
-PREFIX adms: <http://www.w3.org/ns/adms#>
+
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
-PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
-PREFIX schema: <http://schema.org/>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX spdx: <http://www.spdx.org/rdf/terms#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-WHERE
-{
- {
-  #
-  {SELECT ?s (foaf:homepage as ?p) ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s foaf:homepage ?o.
-      ?o ?pred ?val.
-      FILTER(!EXISTS {?o a foaf:Document}).
-    }
-  }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 17).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "foaf:homepage should be a foaf:Document" ).
-  LET (?Message := "The foaf:homepage " + str(?o) + " is not a foaf:Document.").
- }
+WHERE {
+  ?s a dcat:Catalog.
+  ?s foaf:homepage ?o.
+  ?o ?pred ?val.
+  FILTER(!EXISTS {?o a foaf:Document}).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (17 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("foaf:homepage should be a foaf:Document." AS ?Rule_Description).
+  BIND (concat("The foaf:homepage ",str(?o)," is not a foaf:Document.") AS ?Message).
 }
