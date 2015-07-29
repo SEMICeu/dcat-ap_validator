@@ -28,6 +28,7 @@ WHERE
       BIND (concat("The agent ",str(?o)," doesn't have a foaf:name property") AS ?Message).
     }
   }
+}
 
 UNION
 # Rule_ID:1
