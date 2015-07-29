@@ -553,4 +553,23 @@ UNION
   LET (?Rule_Description := "dcat:themeTaxonomy should be a resource" ).
   LET (?Message := "The dcat:themeTaxonomy " + str(?o) + " is not a resource.").
  }
+
+UNION
+# Rule_ID:29
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dcat:record ?o.
+      FILTER(!isIRI(?o)).
+      BIND(dcat:themeTaxonomy AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 29).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dcat:catalogRecord should be a resource" ).
+  LET (?Message := "The dcat:catalogRecordy " + str(?o) + " is not a resource.").
+ }
 }
