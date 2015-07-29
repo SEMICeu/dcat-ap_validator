@@ -1,5 +1,5 @@
-# Rule_ID:16
-# @title [Catalog] foaf:homepage should be a resource
+# Rule_ID:17
+# @title [Catalog] foaf:homepage should be a foaf:Document
 # @tag catalog
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 PREFIX adms: <http://www.w3.org/ns/adms#>
@@ -22,14 +22,15 @@ WHERE
   {SELECT ?s (foaf:homepage as ?p) ?o 
     WHERE {
       ?s a dcat:Catalog.
-      ?s foaf:homepage ?o.
-      FILTER(!isURI(?o)).
+      ?s foaf:homepage ?o
+      ?o ?pred ?val.
+      FILTER(!EXISTS {?o a foaf:Document}).
     }
   }
   LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 16).
+  LET (?Rule_ID := 17).
   LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "foaf:homepage should be a resource" ).
-  LET (?Message := "The foaf:homepage " + str(?o) + " is not a resource").
+  LET (?Rule_Description := "foaf:homepage should be a foaf:Document" ).
+  LET (?Message := "The foaf:homepage " + str(?o) + " is not a foaf:Document").
  }
 }

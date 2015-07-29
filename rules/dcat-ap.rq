@@ -328,4 +328,23 @@ UNION
   LET (?Rule_Description := "foaf:homepage should be a resource" ).
   LET (?Message := "The foaf:homeage " + str(?o) + " is not a resource").
  }
+ 
+UNION
+# Rule_ID:17
+{
+  #
+  {SELECT ?s (foaf:homepage as ?p) ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s foaf:homepage ?o
+      ?o ?pred ?val.
+      FILTER(!EXISTS {?o a foaf:Document}).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 17).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "foaf:homepage should be a foaf:Document" ).
+  LET (?Message := "The foaf:homepage " + str(?o) + " is not a foaf:Document").
+ }
 }
