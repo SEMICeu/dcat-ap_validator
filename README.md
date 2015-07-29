@@ -10,7 +10,7 @@ The validator is an HTML page, containing a single <a href="http://www.w3.org/TR
 <ol>
 <li>Download a Fuseki binary distribution (e.g. jena-fuseki1-1.1.2-distribution.zip) from an <a href="http://www.apache.org/dist/jena/">Apache mirror site</a>.</li>
 <li>Unpack the binary distribution to your a <code>FUSEKI_HOME</code> folder of your choice.</li>
-<li>Unpack the 'dcat-ap_validator.zip' distribution in the <code>FUSEKI_HOME</code> folder. Keep the folder structure in tact. Verify that the file 'admssw_validator.html' is in the <code>FUSEKI_HOME/pages</code> folder.</li>
+<li>Unpack the 'dcat-ap_validator.zip' distribution in the <code>FUSEKI_HOME</code> folder. Keep the folder structure in tact. Verify that the file 'dcat-ap_validator_validator.html' is in the <code>FUSEKI_HOME/pages</code> folder.</li>
 <li>Fuseki requires a <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html">Java Runtime Environment</a> to be installed on your machine</li>
 </ol>
 <h2>User guide</h2>
