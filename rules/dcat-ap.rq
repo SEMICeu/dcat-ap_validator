@@ -367,7 +367,7 @@ UNION
  }
 
 UNION
-# Rule_ID:18 
+# Rule_ID:19
  {
   #
   {SELECT ?s ?p ?o 
@@ -383,5 +383,24 @@ UNION
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "dct:language should be a resource" ).
   LET (?Message := "The dct:language " + str(?o) + " is not a resource.").
+ }
+
+UNION
+# Rule_ID:20
+{
+  #
+  {SELECT ?s (dct:language as ?p) ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:language ?o
+      ?o ?pred ?val.
+      FILTER(!EXISTS {?o a dct:LinguisticSystem}).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 20).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:language should be a dct:LinguisticSystem" ).
+  LET (?Message := "The dct:language " + str(?o) + " is not a dct:LinguisticSystem.").
  }
 }
