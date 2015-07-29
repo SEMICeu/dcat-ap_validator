@@ -29,22 +29,19 @@ WHERE{
 
 UNION
 # Rule_ID:1
- {
-  #
-  {SELECT ?s ?p ?o 
+ {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
     WHERE {
       ?s a foaf:Agent.
       ?s foaf:name ?o.
       FILTER(!isLiteral(?o)).
       BIND (foaf:name as ?p)
+      BIND ("DCAT-AP" AS ?Rule_Origin).
+      BIND (1 AS ?Rule_ID).
+      BIND ("error" AS ?Rule_Severity).
+      BIND ("The foaf:name property should be a literal." AS ?Rule_Description).
+      BIND (concat("The property ",str(?p)," is not a literal") AS ?Message).
     }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 1).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "The foaf:name property should be a literal." ).
-  LET (?Message := "The property " + str(?p) + " is not a literal").
-}
 
 UNION
 # Rule_ID:2
