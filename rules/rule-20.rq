@@ -22,7 +22,7 @@ WHERE
   {SELECT ?s (dct:language as ?p) ?o 
     WHERE {
       ?s a dcat:Catalog.
-      ?s dct:language ?o
+      ?s dct:language ?o.
       ?o ?pred ?val.
       FILTER(!EXISTS {?o a dct:LinguisticSystem}).
     }
