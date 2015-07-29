@@ -21,7 +21,7 @@ WHERE
   #
   {SELECT ?s ?p ?o 
     WHERE {
-      ?s a dcat:Distribution.
+      ?s a dcat:Catalog.
       ?s dct:spatial ?o.
       FILTER(!isURI(?o)).
       BIND(dct:spatial AS ?p).
