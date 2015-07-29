@@ -459,4 +459,23 @@ UNION
   LET (?Rule_Description := "dct:license has a maximum cardinality of 1" ).
   LET (?Message := "The Catalog " + str(?o) + " has more than 1 dct:license").
  }
+
+UNION
+# Rule_ID:24
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s dct:issued ?desc})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 24).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:issued is a recommended property for Catalog" ).
+  LET (?Message := "The Catalog " + str(?o) + " does not have a dct:issued property").
+ }
 }
