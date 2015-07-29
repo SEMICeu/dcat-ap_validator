@@ -630,4 +630,22 @@ UNION
   LET (?Rule_Description := "dct:modified should be a literal" ).
   LET (?Message := "The dct:modified " + str(?o) + " is not a literal").
  }
+
+UNION
+# Rule_ID:33
+{
+  #
+  {SELECT ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:modified ?modified.
+    } GROUP BY ?s 
+	  HAVING (COUNT( ?s) > 1)
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 32).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:modified has maximum cardinality of 1 for Catalog" ).
+  LET (?Message := "The Catalog " + str(?o) + " has more than 1 dct:modified").
+ }
 }
