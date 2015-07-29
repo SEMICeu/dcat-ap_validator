@@ -31,6 +31,6 @@ WHERE
   LET (?Rule_ID := 22).
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "dct:license should be a resource" ).
-  LET (?Message := "The dct:license " + str(?o) + " is not a resource.").
+  LET (?Message := "The dct:license " + str(?o) + " is not a resource").
  }
 }
