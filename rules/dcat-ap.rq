@@ -181,21 +181,18 @@ UNION
 
 UNION
 # Rule_ID:11
-{
-  #
-  {SELECT ?s (dct:publisher as ?p) ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:publisher ?o.
-      FILTER(!EXISTS {?o a foaf:Agent}).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:publisher ?o.
+     FILTER(!EXISTS {?o a foaf:Agent}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (11 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
+     BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 11).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:publisher should be a foaf:Agent" ).
-  LET (?Message := "The dct:publisher " + str(?o) + " is not a foaf:Agent").
- }
 
 UNION
 # Rule_ID:12
