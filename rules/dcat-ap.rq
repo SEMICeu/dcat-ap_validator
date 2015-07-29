@@ -441,4 +441,22 @@ UNION
   LET (?Rule_Description := "dct:license should be a resource" ).
   LET (?Message := "The dct:license " + str(?o) + " is not a resource").
  }
+
+UNION
+# Rule_ID:23
+{
+  #
+  {SELECT ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:license ?lic.
+    } GROUP BY ?s 
+      HAVING (COUNT( ?s) > 1)
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 23).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:license has a maximum cardinality of 1" ).
+  LET (?Message := "The Catalog " + str(?o) + " has more than 1 dct:license").
+ }
 }
