@@ -431,7 +431,7 @@ UNION
       WHERE {
       ?s a dcat:Catalog.
       ?s dct:license ?o.
-      FILTER(!isURI(?o).)
+      FILTER(!isURI(?o)).
       BIND(dcat:accessURL AS ?p).
     }
   }
