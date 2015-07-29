@@ -19,6 +19,7 @@
     <dct:modified>2014-09-25</dct:modified>
 	<foaf:homepage>Nobel prize</foaf:homepage>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
+	<dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
