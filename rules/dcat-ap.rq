@@ -515,4 +515,24 @@ UNION
   LET (?Rule_Description := "dct:issued has maximum cardinality of 1 for Catalog" ).
   LET (?Message := "The Catalog " + str(?o) + " has more than 1 dct:issued").
  }
+
+UNION
+# Rule_ID:27
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s dcat:themeTaxonomy ?taxonomy})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 27).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dcat:themeTaxonomy is a recommended property for Catalog" ).
+  LET (?Message := "The Catalog " + str(?o) + " does not have a dcat:themeTaxonomy property").
+ }
+
 }
