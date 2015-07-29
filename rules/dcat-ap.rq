@@ -310,5 +310,22 @@ UNION
   LET (?Rule_Description := "foaf:homepage has maximum cardinality of 1 for Catalog" ).
   LET (?Message := "The Catalog " + str(?o) + " as more than 1 foaf:homepage").
  }
- 
+
+UNION
+# Rule_ID:16
+{
+  #
+  {SELECT ?s (foaf:homepage as ?p) ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s foaf:homepage ?o.
+      FILTER(!isURI(?o)).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 16).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "foaf:homepage should be a resource" ).
+  LET (?Message := "The foaf:homeage " + str(?o) + " is not a resource").
+ }
 }
