@@ -85,7 +85,7 @@
     <rdfs:label>Stockholm</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/publisher/n0">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agen"/>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <foaf:name>Nobel Media AB</foaf:name>
 	<dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
