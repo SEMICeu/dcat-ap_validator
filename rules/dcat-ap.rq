@@ -478,4 +478,23 @@ UNION
   LET (?Rule_Description := "dct:issued is a recommended property for Catalog" ).
   LET (?Message := "The Catalog " + str(?o) + " does not have a dct:issued property").
  }
+
+UNION
+# Rule_ID:25
+ {
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:issued ?o.
+      FILTER(!isLiteral(?o)).
+      BIND(dct:issued AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 25).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:issued should be literal" ).
+  LET (?Message := "The dct:issue " + str(?o) + " is not literal").
+ }
 }
