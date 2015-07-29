@@ -16,5 +16,5 @@ WHERE {
   BIND (11 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
-  BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") ?Message).
+  BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") AS ?Message).
 }
