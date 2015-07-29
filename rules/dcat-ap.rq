@@ -336,7 +336,7 @@ UNION
   {SELECT ?s (foaf:homepage as ?p) ?o 
     WHERE {
       ?s a dcat:Catalog.
-      ?s foaf:homepage ?o
+      ?s foaf:homepage ?o.
       ?o ?pred ?val.
       FILTER(!EXISTS {?o a foaf:Document}).
     }
