@@ -628,6 +628,6 @@ UNION
   LET (?Rule_ID := 32).
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "dct:modified should be a literal" ).
-  LET (?Message := "The dct:modified " + str(?o) + " is not a literal.").
+  LET (?Message := "The dct:modified " + str(?o) + " is not a literal").
  }
 }
