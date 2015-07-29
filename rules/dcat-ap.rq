@@ -216,7 +216,7 @@ UNION
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:title ?o.
-     FILTER(!isLiteral(?o).)
+     FILTER(!isLiteral(?o)).
      BIND ( dct:title AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (13 AS ?Rule_ID).
