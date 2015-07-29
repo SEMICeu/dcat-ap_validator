@@ -30,6 +30,6 @@ WHERE
   LET (?Rule_ID := 18).
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "dct:language is a recommended property for Catalog" ).
-  LET (?Message := "The dct:language " + str(?o) + " is not a property of Catalog").
+  LET (?Message := "The dct:language " + str(?o) + " is not a property of Catalog.").
  }
 }
