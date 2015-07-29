@@ -156,21 +156,18 @@ UNION
 
 UNION
 # Rule_ID:9
-{
-  #
-  {SELECT ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:publisher ?pub.
-    } GROUP BY ?s 
-	  HAVING (COUNT( ?s) > 1)
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:publisher ?pub.
+     BIND ("DCAT-AP" ?Rule_Origin).
+     BIND (9 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher has maximum cardinality of 1 for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," has more than 1 dct:publisher." AS ?Message).
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 9).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:publisher has maximum cardinality of 1 for Catalog" ).
-  LET (?Message := "The dcat:Catalog " + str(?o) + " has more than 1 dct:publisher").
- }
 
 UNION
 # Rule_ID:10
