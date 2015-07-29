@@ -10,7 +10,6 @@ SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   ?s foaf:homepage ?o.
-  ?o ?pred ?val.
   FILTER(!EXISTS {?o a foaf:Document}).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (17 AS ?Rule_ID).

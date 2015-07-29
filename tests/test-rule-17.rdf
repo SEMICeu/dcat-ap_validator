@@ -22,7 +22,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/homepage">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Documen"/>
-     <dct:title>Website homepage</dct:title>
+    <dct:title>Website homepage</dct:title>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
