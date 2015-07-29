@@ -535,4 +535,22 @@ UNION
   LET (?Message := "The Catalog " + str(?o) + " does not have a dcat:themeTaxonomy property").
  }
 
+UNION
+# Rule_ID:28
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dcat:themeTaxonomy ?o.
+      FILTER(!isIRI(?o)).
+      BIND(dcat:themeTaxonomy AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 28).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dcat:themeTaxonomy should be a resource" ).
+  LET (?Message := "The dcat:themeTaxonomy " + str(?o) + " is not a resource.").
+ }
 }
