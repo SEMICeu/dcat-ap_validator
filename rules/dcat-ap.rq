@@ -11,10 +11,8 @@ PREFIX spdx: <http://www.spdx.org/rdf/terms#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-WHERE
+WHERE{
 # Rule_ID:0
- {
-  #
   {SELECT ?s ?p ?o 
     WHERE {
       ?s a foaf:Agent.
@@ -28,7 +26,6 @@ WHERE
       BIND (concat("The agent  ",str(?o)," doesn't have a foaf:name property") AS ?Message).
     }
   }
-}
 
 UNION
 # Rule_ID:1
