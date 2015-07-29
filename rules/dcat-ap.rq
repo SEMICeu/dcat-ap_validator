@@ -592,4 +592,23 @@ UNION
   LET (?Rule_Description := "dcat:catalogRecord should be a CatalogRecord" ).
   LET (?Message := "The dcat:catalogRecord " + str(?o) + " is not a CatalogRecord.").
  }
+
+UNION
+# Rule_ID:31
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Catalog.
+      FILTER(!(EXISTS { ?s dct:modified ?desc})).
+      BIND(rdf:type AS ?p).
+      BIND(dcat:Catalog AS ?o).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 31).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:modified is a recommended property for Catalog" ).
+  LET (?Message := "The Catalog " + str(?o) + " does not have a dct:modified property.").
+ }
 }
