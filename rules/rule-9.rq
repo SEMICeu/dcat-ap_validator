@@ -7,14 +7,9 @@ PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-WHERE {
-  ?s a dcat:Catalog.
-  ?s dct:publisher ?pub.
-  BIND ("DCAT-AP" AS ?Rule_Origin).
-  BIND (9 AS ?Rule_ID).
-  BIND ("error" AS ?Rule_Severity).
-  BIND ("dct:publisher has maximum cardinality of 1 for Catalog." AS ?Rule_Description).
-  BIND (concat("The dcat:Catalog ",str(?o)," has more than 1 dct:publisher.") AS ?Message).
-} GROUP BY ?s 
-  HAVING (COUNT( ?s) > 1)
+SELECT ("DCAT-AP" AS ?Rule_Origin) (9 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ",str(?s)," has more than 1 dct:publisher.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:publisher ?pub.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
