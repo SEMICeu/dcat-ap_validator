@@ -21,7 +21,7 @@
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/homepage">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Documen"/>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
     <dct:title>Website homepage</dct:title>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
