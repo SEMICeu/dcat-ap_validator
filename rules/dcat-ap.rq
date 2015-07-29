@@ -13,7 +13,7 @@ PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE{
 # Rule_ID:0
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?s ?p ?o 
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
     WHERE {
       ?s a foaf:Agent.
       FILTER(!EXISTS {?s foaf:name ?name}).
