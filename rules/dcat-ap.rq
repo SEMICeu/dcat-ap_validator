@@ -497,4 +497,22 @@ UNION
   LET (?Rule_Description := "dct:issued should be literal" ).
   LET (?Message := "The dct:issue " + str(?o) + " is not literal").
  }
+
+UNION
+# Rule_ID:26
+{
+  #
+  {SELECT ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
+    WHERE {
+      ?s a dcat:Catalog.
+      ?s dct:issued ?issued.
+    } GROUP BY ?s 
+	  HAVING (COUNT( ?s) > 1)
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 26).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:issued has maximum cardinality of 1 for Catalog" ).
+  LET (?Message := "The Catalog " + str(?o) + " has more than 1 dct:issued").
+ }
 }
