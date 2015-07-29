@@ -11,7 +11,7 @@
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Catalog"/>
     <dct:title xml:lang="en">Nobel Media Dataset catalog</dct:title>
     <dct:description>A range of datasets maintained by Nobel Media AB </dct:description>
-	<dcat:themeTaxonomy>Media</dcat:themeTaxonomy>
+    <dcat:themeTaxonomy rdf:resource="http://eurovoc.europa.eu/"/>
     <dcat:dataset rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n0"/>
 	<dct:issued>2014-09-25</dct:issued>
@@ -19,7 +19,7 @@
     <dct:modified>2014-09-25</dct:modified>
 	<foaf:homepage rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
-	<dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
+	<dcat:record>Record 1</dcat:record>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
