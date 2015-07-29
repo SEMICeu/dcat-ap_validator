@@ -685,4 +685,23 @@ UNION
   LET (?Rule_Description := "dct:rights has maximum cardinality of 1 for Catalog" ).
   LET (?Message := "The dcat:Catalog " + str(?o) + " has more than 1 dct:rights").
  }
+
+UNION
+# Rule_ID:36
+{
+  #
+  {SELECT ?s ?p ?o 
+    WHERE {
+      ?s a dcat:Distribution.
+      ?s dct:spatial ?o.
+      FILTER(!isURI(?o)).
+      BIND(dct:spatial AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 36).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:spatial should be a resource" ).
+  LET (?Message := "The dct:spatial " + str(?o) + " is not a resource").
+ }
 }
