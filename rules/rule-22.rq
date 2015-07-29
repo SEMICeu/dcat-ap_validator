@@ -22,7 +22,7 @@ WHERE
   {SELECT ?s ?p ?o 
       WHERE {
       ?s a dcat:Catalog.
-      ?s dcterms:license ?o.
+      ?s dct:license ?o.
       FILTER(!isURI(?o).)
       BIND(dcat:accessURL AS ?p).
     }
