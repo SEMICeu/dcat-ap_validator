@@ -27,7 +27,7 @@ WHERE
 	  HAVING (COUNT( ?s) > 1)
   }
   LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 32).
+  LET (?Rule_ID := 33).
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "dct:modified has maximum cardinality of 1 for Catalog" ).
   LET (?Message := "The Catalog " + str(?o) + " has more than 1 dct:modified").

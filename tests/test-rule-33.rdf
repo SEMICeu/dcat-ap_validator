@@ -17,7 +17,7 @@
 	<dct:issued>2014-09-25</dct:issued>
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
     <dct:modified>2014-09-25</dct:modified>
-	<dct:modified>2014-09-26</dct:modified>
+	<dct:modified>2014-09-25</dct:modified>
 	<foaf:homepage rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
 	<dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
