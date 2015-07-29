@@ -12,7 +12,6 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE
-{
 # Rule_ID:0
  {
   #
@@ -22,14 +21,13 @@ WHERE
       FILTER(!EXISTS {?s foaf:name ?name}).
       BIND (rdf:type as ?p).
       BIND (foaf:Agent as ?o).
+      BIND ("DCAT-AP" AS ?Rule_Origin).
+      BIND (0 AS ?Rule_ID).
+      BIND ("error" AS ?Rule_Severity).
+      BIND ("Name is a required property for Agent." AS ?Rule_Description).
+      BIND (concat("The agent ",str(?o)," doesn't have a foaf:name property") AS ?Message).
     }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 0).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "Name is a required property for Agent." ).
-  LET (?Message := "The agent " + str(?o) + " doesn't have a foaf:name property").
-}
 
 UNION
 # Rule_ID:1
