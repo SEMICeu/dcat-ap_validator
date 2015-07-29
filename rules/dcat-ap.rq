@@ -420,6 +420,25 @@ UNION
   LET (?Rule_ID := 21).
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "dct:license is a recommended property for Catalog" ).
-  LET (?Message := "The dct:license " + str(?o) + " is not a property for Catalog.").
+  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have dct:license.").
+ }
+
+UNION
+# Rule_ID:22
+{
+  #
+  {SELECT ?s ?p ?o 
+      WHERE {
+      ?s a dcat:Catalog.
+      ?s dcterms:license ?o.
+      FILTER(!isURI(?o).)
+      BIND(dcat:accessURL AS ?p).
+    }
+  }
+  LET (?Rule_Origin := "DCAT-AP").
+  LET (?Rule_ID := 22).
+  LET (?Rule_Severity := "error").
+  LET (?Rule_Description := "dct:license should be a resource" ).
+  LET (?Message := "The dct:license " + str(?o) + " is not a resource.").
  }
 }

@@ -1,5 +1,5 @@
-# Rule_ID:21
-# @title [Catalog] dct:license is a recommended property for Catalog
+# Rule_ID:22
+# @title [Catalog] dct:license should be a resource
 # @tag catalog
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 PREFIX adms: <http://www.w3.org/ns/adms#>
@@ -20,17 +20,17 @@ WHERE
  {
   #
   {SELECT ?s ?p ?o 
-    WHERE {
+      WHERE {
       ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s dct:license ?desc})).
-      BIND(rdf:type AS ?p).
-      BIND(dcat:Catalog AS ?o).
+      ?s dcterms:license ?o.
+      FILTER(!isURI(?o).)
+      BIND(dcat:accessURL AS ?p).
     }
   }
   LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 21).
+  LET (?Rule_ID := 22).
   LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:license is a recommended property for Catalog" ).
-  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have dct:license.").
+  LET (?Rule_Description := "dct:license should be a resource" ).
+  LET (?Message := "The dct:license " + str(?o) + " is not a resource.").
  }
 }
