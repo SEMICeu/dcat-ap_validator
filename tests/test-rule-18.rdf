@@ -15,9 +15,8 @@
     <dcat:dataset rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
 	<dct:publisher rdf:resource="http://nobelprize.org/publisher/n0"/>
     <dct:issued>2014-09-25</dct:issued>
-    <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
     <dct:modified>2014-09-25</dct:modified>
-	<foaf:homepage>Nobel prize</foaf:homepage>
+	<foaf:homepage>http://data.nobelprize.org/</foaf:homepage>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
