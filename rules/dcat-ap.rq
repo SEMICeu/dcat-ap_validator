@@ -61,22 +61,19 @@ UNION
 
 UNION
 # Rule_ID:3
- {
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a foaf:Agent.
-      ?s dct:type ?o.
-      FILTER(!isUri(?o)).
-      BIND (dct:type as ?p)
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     ?s dct:type ?o.
+     FILTER(!isUri(?o)).
+     BIND (dct:type AS ?p)
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (3 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("Type should be a resource" AS ?Rule_Description).
+     BIND (concat("The foaf:Agent ",str(?s)," should have a dct:type as rdf:resource") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 3).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "Type should be a resource" ).
-  LET (?Message := "The foaf:Agent " + str(?s) + " should have a dct:type as rdf:resource").
-}
 
 UNION
 # Rule_ID:4
