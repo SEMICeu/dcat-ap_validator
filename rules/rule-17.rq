@@ -31,6 +31,6 @@ WHERE
   LET (?Rule_ID := 17).
   LET (?Rule_Severity := "error").
   LET (?Rule_Description := "foaf:homepage should be a foaf:Document" ).
-  LET (?Message := "The foaf:homepage " + str(?o) + " is not a foaf:Document").
+  LET (?Message := "The foaf:homepage " + str(?o) + " is not a foaf:Document.").
  }
 }
