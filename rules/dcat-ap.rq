@@ -77,22 +77,19 @@ UNION
 
 UNION
 # Rule_ID:4
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s dcat:dataset ?ds})).
-      BIND(rdf:type AS ?p).
-      BIND(dcat:Catalog AS ?o).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dcat:dataset ?ds})).
+     BIND(rdf:type AS ?p).
+     BIND(dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (4 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:dataset is a required property for Catalog" AS ?Rule_Description).
+     BIND (concat("The dact:Catalog ",str(?o)," should have a dcat:dataset property") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 4).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dcat:dataset is a required property for Catalog" ).
-  LET (?Message := "The catalog " + str(?o) + " should have a dcat:dataset property").
-}
 
 UNION
 # Rule_ID:5
