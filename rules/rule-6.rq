@@ -11,8 +11,8 @@ SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   FILTER(!(EXISTS { ?s dct:description ?desc})).
-  BIND(rdf:type AS ?p).
-  BIND(dcat:Catalog AS ?o).
+  BIND (rdf:type AS ?p).
+  BIND (dcat:Catalog AS ?o).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (6 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
