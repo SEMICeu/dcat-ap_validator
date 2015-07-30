@@ -514,21 +514,13 @@ UNION
 
 UNION
 # Rule_ID:33
-{
-  #
-  {SELECT ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:modified ?modified.
-    } GROUP BY ?s 
-	  HAVING (COUNT( ?s) > 1)
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (33 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:modified.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:modified ?modified.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 33).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:modified has maximum cardinality of 1 for Catalog" ).
-  LET (?Message := "The Catalog " + str(?o) + " has more than 1 dct:modified").
- }
 
 UNION
 # Rule_ID:34
