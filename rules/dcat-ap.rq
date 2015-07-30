@@ -307,9 +307,9 @@ UNION
      ?s dct:language ?o.
      FILTER(!isURI(?o)).
      BIND (dct:language AS ?p).
-     BIND (dct:language AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (19 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
      BIND ("dct:language should be a resource." AS ?Rule_Description).
      BIND (concat("The dct:language ",str(?o)," is not a resource.") AS ?Message).
    }
