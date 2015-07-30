@@ -600,6 +600,7 @@ UNION
 # Rule_ID:39
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
+     ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s dct:title ?title})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
