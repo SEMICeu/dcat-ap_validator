@@ -13,7 +13,7 @@ WHERE {
   FILTER(!isURI(?o)).
   BIND (dct:rights AS ?p).
   BIND ("DCAT-AP" AS ?Rule_Origin).
-  BIND (25 AS ?Rule_ID).
+  BIND (34 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:rights should be a resource." AS ?Rule_Description).
   BIND (concat("The dct:rights ",str(?o)," is not a resource.") AS ?Message).

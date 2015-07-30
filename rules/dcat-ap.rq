@@ -531,7 +531,7 @@ UNION
      FILTER(!isURI(?o)).
      BIND (dct:rights AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
-     BIND (25 AS ?Rule_ID).
+     BIND (34 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:rights should be a resource." AS ?Rule_Description).
      BIND (concat("The dct:rights ",str(?o)," is not a resource.") AS ?Message).
@@ -550,20 +550,18 @@ UNION
 
 UNION
 # Rule_ID:36
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:spatial ?o.
-      FILTER(!isURI(?o)).
-      BIND(dct:spatial AS ?p).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:spatial ?o.
+     FILTER(!isURI(?o)).
+     BIND (dct:spatial AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (36 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:spatial should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:spatial ",str(?o)," is not a resource."à AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 36).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:spatial should be a resource" ).
-  LET (?Message := "The dct:spatial " + str(?o) + " is not a resource").
- }
+
 }
