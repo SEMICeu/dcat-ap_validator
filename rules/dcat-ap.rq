@@ -301,22 +301,19 @@ UNION
 
 UNION
 # Rule_ID:19
- {
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:language ?o.
-      FILTER(!isURI(?o)).
-      BIND(dct:language AS ?p).
-    }
+ {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:language ?o.
+     FILTER(!isURI(?o)).
+     BIND (dct:language AS ?p).
+     BIND (dct:language AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (19 AS ?Rule_ID).
+     BIND ("dct:language should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:language ",str(?o)," is not a resource.") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 19).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:language should be a resource" ).
-  LET (?Message := "The dct:language " + str(?o) + " is not a resource.").
- }
 
 UNION
 # Rule_ID:20
