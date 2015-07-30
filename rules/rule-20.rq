@@ -15,6 +15,6 @@ WHERE {
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (20 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dct:language should be a dct:LinguisticSystem" AS ?Rule_Description).
+  BIND ("dct:language should be a dct:LinguisticSystem." AS ?Rule_Description).
   BIND (concat("The dct:language ",str(?o)," is not a dct:LinguisticSystem.") AS ?Message).
 }

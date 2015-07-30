@@ -207,7 +207,7 @@ UNION
      BIND (12 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title is a required property for Catalog." AS ?Rule_Description).
-     BIND (concat("The Catalog ", str(?o)," does not have a dct:title") AS ?Message).
+     BIND (concat("The Catalog ", str(?o)," does not have a dct:title.") AS ?Message).
    }
  }
 
@@ -264,7 +264,7 @@ UNION
      BIND (16 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("foaf:homepage should be a resource." AS ?Rule_Description).
-     BIND (concat("The foaf:homepage ",str(?o)," is not a resource") AS ?Message).
+     BIND (concat("The foaf:homepage ",str(?o)," is not a resource.") AS ?Message).
    }
   }
  
@@ -326,7 +326,7 @@ UNION
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (20 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:language should be a dct:LinguisticSystem" AS ?Rule_Description).
+     BIND ("dct:language should be a dct:LinguisticSystem." AS ?Rule_Description).
      BIND (concat("The dct:language ",str(?o)," is not a dct:LinguisticSystem.") AS ?Message).
    }
   }
@@ -359,7 +359,7 @@ UNION
      BIND (22 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:license should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:license ",str(?o)," is not a resource") AS ?Message).
+     BIND (concat("The dct:license ",str(?o)," is not a resource.") AS ?Message).
    }
   }
 
@@ -401,7 +401,7 @@ UNION
      BIND (25 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:issued should be literal." AS ?Rule_Description).
-     BIND (concat("The dct:issue ",str(?o)," is not literal") AS ?Message).
+     BIND (concat("The dct:issue ",str(?o)," is not literal.") AS ?Message).
    }
   }
 
@@ -475,29 +475,26 @@ UNION
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (30 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:catalogRecord should be a CatalogRecord" AS ?Rule_Description).
+     BIND ("dcat:catalogRecord should be a CatalogRecord." AS ?Rule_Description).
      BIND (concat("The dcat:catalogRecord ",str(?o)," is not a CatalogRecord.") AS ?Message).
    }
   }
 
 UNION
 # Rule_ID:31
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s dct:modified ?desc})).
-      BIND(rdf:type AS ?p).
-      BIND(dcat:Catalog AS ?o).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:modified ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (31 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:modified is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have a dct:modified property." AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 31).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:modified is a recommended property for Catalog" ).
-  LET (?Message := "The Catalog " + str(?o) + " does not have a dct:modified property.").
- }
 
 UNION
 # Rule_ID:32

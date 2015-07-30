@@ -16,5 +16,5 @@ WHERE {
   BIND (22 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:license should be a resource." AS ?Rule_Description).
-  BIND (concat("The dct:license ",str(?o)," is not a resource") AS ?Message).
+  BIND (concat("The dct:license ",str(?o)," is not a resource.") AS ?Message).
 }
