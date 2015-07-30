@@ -317,22 +317,19 @@ UNION
 
 UNION
 # Rule_ID:20
-{
-  #
-  {SELECT ?s (dct:language as ?p) ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:language ?o.
-      ?o ?pred ?val.
-      FILTER(!EXISTS {?o a dct:LinguisticSystem}).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:language ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dct:LinguisticSystem}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (20 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:language should be a dct:LinguisticSystem." AS ?Rule_Description).
+     BIND (concat("The dct:language ",str(?o)," is not a dct:LinguisticSystem.") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 20).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:language should be a dct:LinguisticSystem" ).
-  LET (?Message := "The dct:language " + str(?o) + " is not a dct:LinguisticSystem.").
- }
  
 UNION
 # Rule_ID:21
