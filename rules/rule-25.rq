@@ -16,5 +16,5 @@ WHERE {
   BIND (25 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:issued should be literal." AS ?Rule_Description).
-  BIND (concat("The dct:issue ",str(?o)," is not literal" AS ?Message).
+  BIND (concat("The dct:issue ",str(?o)," is not literal") AS ?Message).
 }
