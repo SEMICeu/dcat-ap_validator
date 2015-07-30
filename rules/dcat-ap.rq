@@ -449,22 +449,19 @@ UNION
 
 UNION
 # Rule_ID:29
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dcat:record ?o.
-      FILTER(!isIRI(?o)).
-      BIND(dcat:themeTaxonomy AS ?p).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dcat:record ?o.
+     FILTER(!isIRI(?o)).
+     BIND (dcat:themeTaxonomy AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (29 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:catalogRecord should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:catalogRecordy ",str(?o)," is not a resource.") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 29).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dcat:catalogRecord should be a resource" ).
-  LET (?Message := "The dcat:catalogRecordy " + str(?o) + " is not a resource.").
- }
 
 UNION
 # Rule_ID:30
