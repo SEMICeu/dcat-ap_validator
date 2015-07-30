@@ -1,5 +1,5 @@
-# Rule_ID:42
-# @title [Dataset] adms:contactPoint should be a resource
+# Rule_ID:43
+# @title [Dataset] adms:contactPoint should be a vCard
 # @tag dataset
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 
@@ -10,11 +10,12 @@ SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s adms:contactPoint ?o.
-  FILTER(!isUri(?o)).
+  ?o ?pred ?val.
+  FILTER(!EXISTS {?o a <http://www.w3.org/2006/vcard/ns#VCard>}).
   BIND (adms:contactPoint AS ?p).
   BIND ("DCAT-AP" AS ?Rule_Origin).
-  BIND (42 AS ?Rule_ID).
+  BIND (43 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("adms:contactPoint should be a resource." AS ?Rule_Description).
-  BIND (concat("The adms:contactPoint ",str(?p)," is not a resource.") AS ?Message).
+  BIND ("adms:contactPoint should be a vCard." AS ?Rule_Description).
+  BIND (concat("The adms:contactPoint ",str(?p)," is not a vCard.") AS ?Message).
 }
