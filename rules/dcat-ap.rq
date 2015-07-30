@@ -564,4 +564,19 @@ UNION
    }
   }
 
+UNION
+# Rule_ID:37
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dcterms:description ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (37 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description is a required property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:description.") AS ?Message).
+   }
+  }
 }
