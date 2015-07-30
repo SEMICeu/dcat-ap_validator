@@ -333,22 +333,19 @@ UNION
  
 UNION
 # Rule_ID:21
- {
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s dct:license ?desc})).
-      BIND(rdf:type AS ?p).
-      BIND(dcat:Catalog AS ?o).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:license ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (21 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:license is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have dct:license.") AS ?Message).  
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 21).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:license is a recommended property for Catalog" ).
-  LET (?Message := "The dcat:Catalog " + str(?o) + " does not have dct:license.").
- }
 
 UNION
 # Rule_ID:22
