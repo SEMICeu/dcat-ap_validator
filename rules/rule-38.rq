@@ -10,7 +10,7 @@ SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s dct:description ?o.
-  FILTER(!isLiteral(?o).)
+  FILTER(!isLiteral(?o)).
   BIND (dct:description AS ?p).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (38 AS ?Rule_ID).

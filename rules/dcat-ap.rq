@@ -586,7 +586,7 @@ UNION
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:description ?o.
-     FILTER(!isLiteral(?o).)
+     FILTER(!isLiteral(?o)).
      BIND (dct:description AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (38 AS ?Rule_ID).
