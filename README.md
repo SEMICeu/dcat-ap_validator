@@ -2,8 +2,11 @@
 
 This software performs the validation of DCAT-AP rdf files.
 Validation is performed through a SPARQL query loaded via Javascript.
-The SPARQL query contains several rules which are based on those listed here:
+The SPARQL query contains several rules which are based on those available here:
 https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
+
+Each rule has been documented with <a href="https://github.com/ldodds/sparql-doc">sparql-doc</a> annotations and validated with the <a href="http://www.sparql.org/query-validator.html">sparql validator</a>. All the rules are stored in the rules folder.
+For almost each rule a test has been created, all the tests are stored in the tests folder.
 
 <h2>Installation instructions</h2>
 The validator is an HTML page, containing a single <a href="http://www.w3.org/TR/sparql11-query/">SPARQL</a> SELECT query to implement the validation logic and a few lines of JavaScript to call the triple store. To execute the SPARQL script it requires an instance of <a href="http://jena.apache.org/documentation/serving_data/index.html">Fuseki</a>. You can easily run Fuseki as a local instance.</p>
