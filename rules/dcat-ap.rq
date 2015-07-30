@@ -643,4 +643,19 @@ UNION
      BIND (concat("The dcat:Dataset ",str(?p)," does not have the adms:contactPoint property.") AS ?Message).
    }
   }
+UNION
+# Rule_ID:42
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s adms:contactPoint ?o.
+     FILTER(!isUri(?o)).
+     BIND (adms:contactPoint AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (42 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("adms:contactPoint should be a resource." AS ?Rule_Description).
+     BIND (concat("The adms:contactPoint ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
 }
