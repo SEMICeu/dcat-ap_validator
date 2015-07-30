@@ -569,7 +569,7 @@ UNION
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
-     FILTER(!(EXISTS { ?s dcterms:description ?desc})).
+     FILTER(!(EXISTS { ?s dct:description ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
