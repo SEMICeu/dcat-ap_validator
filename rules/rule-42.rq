@@ -16,5 +16,5 @@ WHERE {
   BIND (42 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("adms:contactPoint should be a resource." AS ?Rule_Description).
-  BIND (concat("The adms:contactPoint ",str(?o)," is not a resource.") AS ?Message).
+  BIND (concat("The adms:contactPoint ",str(?p)," is not a resource.") AS ?Message).
 }
