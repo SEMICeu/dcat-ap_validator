@@ -417,22 +417,19 @@ UNION
 
 UNION
 # Rule_ID:27
-{
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      FILTER(!(EXISTS { ?s dcat:themeTaxonomy ?taxonomy})).
-      BIND(rdf:type AS ?p).
-      BIND(dcat:Catalog AS ?o).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dcat:themeTaxonomy ?taxonomy})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (27 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:themeTaxonomy is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have a dcat:themeTaxonomy property.") AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 27).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dcat:themeTaxonomy is a recommended property for Catalog" ).
-  LET (?Message := "The Catalog " + str(?o) + " does not have a dcat:themeTaxonomy property").
- }
 
 UNION
 # Rule_ID:28
