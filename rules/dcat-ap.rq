@@ -391,22 +391,19 @@ UNION
 
 UNION
 # Rule_ID:25
- {
-  #
-  {SELECT ?s ?p ?o 
-    WHERE {
-      ?s a dcat:Catalog.
-      ?s dct:issued ?o.
-      FILTER(!isLiteral(?o)).
-      BIND(dct:issued AS ?p).
-    }
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:issued ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:issued AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (25 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:issued should be literal." AS ?Rule_Description).
+     BIND (concat("The dct:issue ",str(?o)," is not literal" AS ?Message).
+   }
   }
-  LET (?Rule_Origin := "DCAT-AP").
-  LET (?Rule_ID := 25).
-  LET (?Rule_Severity := "error").
-  LET (?Rule_Description := "dct:issued should be literal" ).
-  LET (?Message := "The dct:issue " + str(?o) + " is not literal").
- }
 
 UNION
 # Rule_ID:26
