@@ -53,7 +53,7 @@ UNION
      BIND (foaf:Agent AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (2 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("Type is a recommended property for Agent" AS ?Rule_Description).
      BIND (concat("The agent ",str(?o)," doesn't have a type property") AS ?Message).
    }
@@ -237,7 +237,7 @@ UNION
      BIND (dcat:Catalog AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (14 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("foaf:homepage is a recommended property for Catalog." AS ?Rule_Description).
      BIND ("The dcat:Catalog " + str(?o) + " does not have a foaf:homepage." AS ?Message).
    }
@@ -293,7 +293,7 @@ UNION
      BIND (dct:language AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (18 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:language is a recommended property for Catalog." AS ?Rule_Description).
      BIND (concat("The dct:language ",str(?o)," is not a property of Catalog.") AS ?Message).
    }
@@ -341,7 +341,7 @@ UNION
      BIND (dcat:Catalog AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (21 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:license is a recommended property for Catalog." AS ?Rule_Description).
      BIND (concat("The dcat:Catalog ",str(?o)," does not have dct:license.") AS ?Message).  
    }
@@ -383,7 +383,7 @@ UNION
      BIND (dcat:Catalog AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (24 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:issued is a recommended property for Catalog." AS ?Rule_Description).
      BIND (concat("The dcat:Catalog ",str(?o)," does not have a dct:issued property.") AS ?Message).
    }
@@ -425,7 +425,7 @@ UNION
      BIND (dcat:Catalog AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (27 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:themeTaxonomy is a recommended property for Catalog." AS ?Rule_Description).
      BIND (concat("The dcat:Catalog ",str(?o)," does not have a dcat:themeTaxonomy property.") AS ?Message).
    }
@@ -490,7 +490,7 @@ UNION
      BIND (dcat:Catalog AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (31 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:modified is a recommended property for Catalog." AS ?Rule_Description).
      BIND (concat("The dcat:Catalog ",str(?o)," does not have a dct:modified property.") AS ?Message).
    }
@@ -595,4 +595,50 @@ UNION
      BIND (concat("The dcat:description ",str(?p)," is not a literal.") AS ?Message).
    }
   }
+
+UNION
+# Rule_ID:39
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     FILTER(!(EXISTS { ?s dct:title ?title})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (39 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title is a required property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have the dct:title property.") AS ?Message).
+   }
+  }
+  
+UNION
+# Rule_ID:40
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:title ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:title AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (40 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:title property ",str(?p)," is not literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:41
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s adms:contactPoint ?cPoint})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (41 AS ?Rule_ID).
+  BIND ("warning" AS ?Rule_Severity).
+  BIND ("adms:contactPoint is a recommended property for Dataset." AS ?Rule_Description).
+  BIND (concat("The dcat:Dataset ",str(?p)," does not have the adms:contactPoint property.") AS ?Message).
+}
 }

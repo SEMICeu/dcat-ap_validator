@@ -15,7 +15,7 @@ WHERE {
   BIND (foaf:Agent AS ?o).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (2 AS ?Rule_ID).
-  BIND ("error" AS ?Rule_Severity).
+  BIND ("warning" AS ?Rule_Severity).
   BIND ("Type is a recommended property for Agent." AS ?Rule_Description).
   BIND (concat("The foaf:Agent ",str(?o)," does not have a type property.") AS ?Message).
 }

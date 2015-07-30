@@ -15,7 +15,7 @@ WHERE {
   BIND (dcat:Catalog AS ?o).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (24 AS ?Rule_ID).
-  BIND ("error" AS ?Rule_Severity).
+  BIND ("warning" AS ?Rule_Severity).
   BIND ("dct:issued is a recommended property for Catalog." AS ?Rule_Description).
   BIND (concat("The dcat:Catalog ",str(?o)," does not have a dct:issued property.") AS ?Message).
 }

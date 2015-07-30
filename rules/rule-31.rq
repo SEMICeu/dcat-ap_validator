@@ -15,7 +15,7 @@ WHERE {
   BIND (dcat:Catalog AS ?o).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (31 AS ?Rule_ID).
-  BIND ("error" AS ?Rule_Severity).
+  BIND ("warning" AS ?Rule_Severity).
   BIND ("dct:modified is a recommended property for Catalog." AS ?Rule_Description).
   BIND (concat("The dcat:Catalog ",str(?o)," does not have a dct:modified property.") AS ?Message).
 }
