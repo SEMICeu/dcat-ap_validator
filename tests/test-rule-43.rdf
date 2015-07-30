@@ -36,7 +36,7 @@
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
     <dcat:keyword>science</dcat:keyword>
-    <dct:publisher rdf:nodeID="_n2"/>
+    <dct:publisher rdf:resource="http://nobelprize.org/contacts/n1"/>
     <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
@@ -48,7 +48,7 @@
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="_n1">
+  <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Organization"/>
     <vcard:fn>Nobel Media AB</vcard:fn>
     <vcard:hasTelephone rdf:nodeID="_n4"/>
