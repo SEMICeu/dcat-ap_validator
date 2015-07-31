@@ -685,10 +685,25 @@ UNION
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
-     BIND (43 AS ?Rule_ID).
+     BIND (44 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:distribution is a recommended property for Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:distribution property.") AS ?Message).
+   }
+  }
+UNION
+# Rule_ID:45
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:distribution ?o.
+     FILTER(!isURI(?o)).
+     BIND (dcat:distribution AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (45 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:distribution should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:distribution ",str(?o)," is not a resource.") AS ?Message).
    }
   }
 }

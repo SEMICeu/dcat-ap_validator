@@ -1,0 +1,19 @@
+# Rule_ID:45
+# @title [Dataset] dcat:distribution should be a resource
+# @tag dataset
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+WHERE {
+  ?s a dcat:Dataset.
+  ?s dcat:distribution ?o.
+  FILTER(!isURI(?o)).
+  BIND (dcat:distribution AS ?p).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (45 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("dcat:distribution should be a resource." AS ?Rule_Description).
+  BIND (concat("The dcat:distribution ",str(?o)," is not a resource.") AS ?Message).
+}
