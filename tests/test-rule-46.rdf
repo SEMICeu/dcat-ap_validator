@@ -68,7 +68,7 @@
     <vcard:country-name>Sweden</vcard:country-name>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#dist1">
-    <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Distributio"/>
     <dct:title xml:lang="en">Linked Data endpoint</dct:title>
     <dct:description xml:lang="en">Provides browsable linked data and a SPARQL endpoint.</dct:description>
     <dcat:accessURL rdf:resource="http://data.nobelprize.org/"/>
