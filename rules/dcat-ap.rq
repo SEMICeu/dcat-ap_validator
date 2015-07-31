@@ -767,4 +767,13 @@ UNION
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:publisher property.") AS ?Message).
    }
   }
+UNION
+# Rule_ID:50
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (50 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dcterms:publisher has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," does not have a dct:publisher property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:publisher ?pub.
+   } GROUP BY ?s
+     HAVING (COUNT( ?s) > 1)
+  }
 }
