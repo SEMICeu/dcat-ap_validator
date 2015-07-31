@@ -706,4 +706,20 @@ UNION
      BIND (concat("The dcat:distribution ",str(?o)," is not a resource.") AS ?Message).
    }
   }
+UNION
+# Rule_ID:46
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:distribution ?o
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dcat:Distribution}).
+     BIND (dcat:distribution AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (46 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:distribution should be a Distribution." AS ?Rule_Description).
+     BIND (concat("The dcat:distribution ",str(?o)," is not a distribution.") AS ?Message).
+   }
+  }
 }
