@@ -711,7 +711,7 @@ UNION
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
-     ?s dcat:distribution ?o
+     ?s dcat:distribution ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dcat:Distribution}).
      BIND (dcat:distribution AS ?p).
