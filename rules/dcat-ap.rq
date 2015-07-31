@@ -660,6 +660,7 @@ UNION
   }
 
 UNION
+# Rule_ID:43
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
@@ -672,6 +673,22 @@ UNION
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:contactPoint should be a vCard." AS ?Rule_Description).
      BIND (concat("The adms:contactPoint ",str(?p)," is not a vCard.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:44
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dcat:distribution ?dist})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (43 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:distribution is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:distribution property.") AS ?Message).
    }
   }
 }
