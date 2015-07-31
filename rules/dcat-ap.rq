@@ -752,4 +752,19 @@ UNION
      BIND (concat("The dcat:keyword ",str(?o)," is not a literal.") AS ?Message).
    }
   }
+UNION
+# Rule_ID:49
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dct:publisher ?pub})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (49 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:publisher property.") AS ?Message).
+   }
+  }
 }
