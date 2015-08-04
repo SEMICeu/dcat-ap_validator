@@ -48,6 +48,10 @@
 			<fileset dir="${pages.dir}"/>
 			<fileset dir="${sparql-doc.dir}/**"/>
 		</copy>
+		<copy todir="${fuseki-pages.dir}">
+			<fileset dir="."/>
+				<include name="${sparql-doc.dir}/**"/>
+		</copy>
 	</target>
 
 	<target name="start-fuseki" depends="deploy" description="It executes the Fuseki server.">
