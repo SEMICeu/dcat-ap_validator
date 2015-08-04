@@ -17,7 +17,7 @@
 		<jslint haltOnFailure="false" options="sloppy">
 		<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document</predef>
 		<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-		<fileset dir="." includes="${pages.dir}dcat-ap_validator.js"/>
+		<fileset dir="." includes="${pages.dir}/dcat-ap_validator.js"/>
 		</jslint>
 	</target>
 
@@ -44,7 +44,9 @@
 	</target>
 	
 	<target name="deploy" depends="kill-fuseki" description="It deploys (copy) the DCAT-AP validator on the Fuseki server.">
-		<copydir src="${pages.dir}/.*" dest="${fuseki-pages.dir}"/>
+		<copy todir="${fuseki-pages.dir}">
+			<fileset dir="${pages.dir}/**"/>
+		</copy>
 	</target>
 
 	<target name="start-fuseki" depends="deploy" description="It executes the Fuseki server.">
