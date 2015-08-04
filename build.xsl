@@ -4,7 +4,7 @@
 
 <xsl:template match="/">
   <html>
-    <xsl:comment>XSLT stylesheet used to transform this file:  ant2html.xsl</xsl:comment>
+    <xsl:comment>XSLT stylesheet used to transform this file:  build.xsl</xsl:comment>
     <xsl:apply-templates select="project"/>
   </html>
 </xsl:template>
@@ -12,7 +12,7 @@
 <xsl:template match="project">
   <head>
   	<title>Ant Project Source: <xsl:value-of select="@name"/></title>
-	<link rel="stylesheet" type="text/css" href="ant2html.css" title="Style"/>
+	<link rel="stylesheet" type="text/css" href="build.css" title="Style"/>
   </head>
   <body >
 	  <header id="branding">

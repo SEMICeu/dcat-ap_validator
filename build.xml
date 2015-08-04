@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="./ant2html.xsl"?>
+<?xml-stylesheet type="text/xsl" href="./build.xsl"?>
 
 <project name="DCAT-AP validator" default="main" basedir=".">
 
