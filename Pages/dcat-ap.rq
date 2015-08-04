@@ -798,4 +798,20 @@ UNION
      BIND (concat("The dct:publisher ",str(?o)," is not a resource.") AS ?Message).
    }
   }
+  
+UNION
+# Rule_ID:52
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:publisher ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a foaf:Agent}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (52 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
+     BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") AS ?Message).
+   }
+  }
 }

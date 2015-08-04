@@ -1,19 +1,21 @@
-# Rule_ID:51
-# @title [Dataset] dct:publisher should be a resource
+# Rule_ID:52
+# @title [Dataset] dct:publisher should be a foaf:Agent
 # @tag dataset
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
 WHERE {
   ?s a dcat:Dataset.
   ?s dct:publisher ?o.
-  FILTER(!isURI(?o)).
+  ?o ?pred ?val.
+  FILTER(!EXISTS {?o a foaf:Agent}).
   BIND ("DCAT-AP" AS ?Rule_Origin).
-  BIND (51 AS ?Rule_ID).
+  BIND (52 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dct:publisher should be a resource." AS ?Rule_Description).
-  BIND (concat("The dct:publisher ",str(?o)," is not a resource.") AS ?Message).
+  BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
+  BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") AS ?Message).
 }
