@@ -156,7 +156,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
       <head>
 	    <title>DCAT-AP Validator: SPARQL Query Result</title>
 		<!-- DataTables CSS -->
-		<!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css"> -->
+		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
 		  
 		<!-- jQuery -->
 		<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -168,7 +168,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 			$('#results').DataTable();
 		} );
 		</script>
-		
+		<!-- 
 		<style>
 	  <![CDATA[
 	  h1 { font-size: 150% ; }
@@ -186,6 +186,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		header#branding img {float:left;}
 		header#branding h1 {display:table-cell;vertical-align:middle;background: ##002060;} 
 		</style>
+	-->
       </head>
       <body>
 	  <header id="branding">
