@@ -179,7 +179,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
       </head>
       <body>
 	  <header id="branding">
-	  <a href="https://joinup.ec.europa.eu/asset/adms_foss/release/release100"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="Asset Description Metadata Schema for Software (ADMS.SW) logo" /></a>
+	  <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="Asset Description Metadata Schema for Software (ADMS.SW) logo" /></a>
 	  <h1>DCAT-AP Validator: SPARQL Query Result</h1>
 	  </header>
 	  <p>The table below displays all detected anomalies (if any).</p>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl" href="./ant2html.xsl"?> 
+<?xml-stylesheet type="text/xsl" href="./ant2html.xsl"?>
+
 <project name="DCAT-AP validator" default="main" basedir=".">
 
 	<property name="pages.dir" value="Pages"/>
@@ -15,9 +16,9 @@
 
 	<target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap_validator.js file.">
 		<jslint haltOnFailure="false" options="sloppy">
-		<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document</predef>
-		<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-		<fileset dir="." includes="${pages.dir}/dcat-ap_validator.js"/>
+			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document</predef>
+			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
+			<fileset dir="." includes="${pages.dir}/dcat-ap_validator.js"/>
 		</jslint>
 	</target>
 
@@ -28,21 +29,21 @@
 	<target name="create" depends="clean" description="It creates the sparq-doc directory.">
 		<mkdir dir="${sparql-doc.dir}"/>
 	</target>
-	
+
 	<target name="sparql-doc" depends="create" description="It executes the sparq-doc command.">
 		<exec executable="cmd.exe" failonerror="true">
 			<arg value="/c"/>
 			<arg line="sparql-doc ${rules.dir} ${sparql-doc.dir}"/>
 		</exec>
 	</target>
-	
+
 	<target name="kill-fuseki" description="It kills the Fuseki server.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
 			<arg value="kill-fuseki.bat"/>
 		</exec>
 	</target>
-	
+
 	<target name="deploy" depends="kill-fuseki" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
 		<copy todir="${fuseki-pages.dir}">
 			<fileset dir="${pages.dir}"/>
