@@ -814,4 +814,19 @@ UNION
      BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") AS ?Message).
    }
   }
+UNION
+# Rule_ID:53
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dcat:theme ?theme})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (53 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:theme is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:theme property.") AS ?Message).
+   }
+  }
 }
