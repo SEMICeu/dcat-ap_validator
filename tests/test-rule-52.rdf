@@ -90,7 +90,7 @@
 	<dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/publisher/n2">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agen"/>
 	<foaf:name>Nobel Media AB</foaf:name>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
