@@ -814,6 +814,7 @@ UNION
      BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") AS ?Message).
    }
   }
+
 UNION
 # Rule_ID:53
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
@@ -827,6 +828,22 @@ UNION
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:theme is a recommended property for Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:theme property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:54
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:theme ?o.
+     FILTER(!isURI(?o)).
+     BIND (dcat:theme AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (54 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:theme should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:theme ",str(?o)," is not a resource.") AS ?Message).
    }
   }
 }
