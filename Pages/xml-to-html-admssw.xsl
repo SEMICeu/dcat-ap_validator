@@ -98,8 +98,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
   <xsl:template match="res:bnode">
     <xsl:text>_:</xsl:text>
     <xsl:value-of select="text()"/>
-  </xsl:template>
 
+  </xsl:template>
   <xsl:template match="res:uri">
     <!-- Roughly: SELECT ($uri AS ?subject) ?predicate ?object { $uri ?predicate ?object } -->
     <!-- XSLT 2.0
@@ -124,7 +124,14 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 	<!-- datatyped literal value -->
     "<xsl:value-of select="."/>"<xsl:value-of select="@xml:lang"/>
   </xsl:template>
-  
+
+  <xsl:template match="res:binding[@name='Rule_ID']">
+	<!-- datatyped literal value -->
+	<xsl:variable name="x"><xsl:value-of select="."/></xsl:variable>
+	<xsl:variable name="rule_link">./doc/<xsl:value-of select="$x"/>.html</xsl:variable>
+	<a href="{$rule_link}"><xsl:value-of select="."/></a>
+  </xsl:template>
+
     <xsl:template match="res:literal">
 	<!-- non-datatyped literal value -->
 	<xsl:choose>
