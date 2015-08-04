@@ -61,18 +61,22 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
       <table id="results">
 	<xsl:text>
 	</xsl:text>
+	<thead>
 	<tr>
 	  <xsl:for-each select="res:head/res:variable">
 	    <th><xsl:value-of select="@name"/></th>
 	  </xsl:for-each>
 	</tr>
+	</thead>
 	<xsl:text>
 	</xsl:text>
+	<tbody>
 	<xsl:for-each select="res:results/res:result">
 	  <tr>
 	    <xsl:apply-templates select="."/>
 	  </tr>
 	</xsl:for-each>
+	</tbody>
       </table>
     </div>
   </xsl:template>
