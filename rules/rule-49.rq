@@ -1,5 +1,5 @@
 # Rule_ID:49
-# @title [Dataset] dcterms:publisher is a recommended property for Dataset
+# @title [Dataset] dct:publisher is a recommended property for Dataset
 # @tag dataset
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 

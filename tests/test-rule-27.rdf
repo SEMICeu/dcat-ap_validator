@@ -43,7 +43,7 @@
     <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/ENG"/>
     <dcat:landingPage rdf:resource="http://data.nobelprize.org/"/>
     <dct:conformsTo rdf:resource="http://www.nobelprize.org/nobel_organizations/nobelmedia/nobelprize_org/developer/manual-linkeddata/terms.html"/>
-    <dct:temporal rdf:nodeID="_n3"/>
+    <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
   </rdf:Description>
