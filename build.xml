@@ -1,52 +1,56 @@
-<project name="proj" default="main" basedir=".">
-	<property name="rules-folder" value="rules"/>
-	<property name="sparql-doc-folder" value="doc"/>
-	<property name="jslint-folder" value="jslint"/>
-	<property name="fuseki-folder" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
-	<property name="fuseki-pages-folder" value="${fuseki-folder}/pages/"/>
-	
-	<target name="main" depends="jslint,sparql-doc,fuseki"/>
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="./ant2html.xsl"?> 
+<project name="DCAT-AP validator" default="main" basedir=".">
 
-	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint-folder}/jslint4java-2.0.5.jar" />
+	<property name="pages.dir" value="Pages"/>
+	<property name="rules.dir" value="rules"/>
+	<property name="sparql-doc.dir" value="doc"/>
+	<property name="jslint.dir" value="jslint"/>
+	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
+	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
 
-	<target name="jslint">
+	<target name="main" depends="jslint,sparql-doc,start-fuseki"/>
+
+	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
+
+	<target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap_validator.js file.">
 		<jslint haltOnFailure="false" options="sloppy">
 		<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document</predef>
-		<formatter type="xml" destfile="${jslint-folder}/jslint.xml"/>
-		<fileset dir="." includes="dcat-ap_validator.js"/>
+		<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
+		<fileset dir="." includes="${pages.dir}dcat-ap_validator.js"/>
 		</jslint>
 	</target>
 
-	<target name="clean">
-		<delete dir="${sparql-doc-folder}"/>
+	<target name="clean" description="It deletes the sparql-doc directory in order to be updated with a new version.">
+		<delete dir="${sparql-doc.dir}"/>
 	</target>
 
-	<target name="create" depends="clean">
-		<mkdir dir="${sparql-doc-folder}"/>
+	<target name="create" depends="clean" description="It creates the sparq-doc directory.">
+		<mkdir dir="${sparql-doc.dir}"/>
 	</target>
 	
-	<target name="sparql-doc" depends="create">
+	<target name="sparql-doc" depends="create" description="It executes the sparq-doc command.">
 		<exec executable="cmd.exe" failonerror="true">
 			<arg value="/c"/>
-			<arg line="sparql-doc ${rules-folder} ${sparql-doc-folder}"/>
+			<arg line="sparql-doc ${rules.dir} ${sparql-doc.dir}"/>
 		</exec>
 	</target>
 	
-	<target name="kill-fuseki">
+	<target name="kill-fuseki" description="It kills the Fuseki server.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
 			<arg value="kill-fuseki.bat"/>
 		</exec>
 	</target>
 	
-	<target name="copy" depends="kill-fuseki">
-		<copydir src="." dest="${fuseki-pages-folder}"/>
+	<target name="deploy" depends="kill-fuseki" description="It deploys (copy) the DCAT-AP validator on the Fuseki server.">
+		<copydir src="${pages.dir}/.*" dest="${fuseki-pages.dir}"/>
 	</target>
 
-	<target name="fuseki" depends="copy">
+	<target name="start-fuseki" depends="deploy" description="It executes the Fuseki server.">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
-			<arg line="java -jar ${fuseki-folder}/fuseki-server.jar --update --port=3030 --pages ${fuseki-pages-folder} --mem /dcat-ap_validator"/>
+			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=3030 --pages ${fuseki-pages.dir} --mem /dcat-ap_validator"/>
 		</exec>
 	</target>
 </project>

@@ -129,7 +129,7 @@ function getQuery(file) {
  */
 function setQuery() {
     var query, id;
-    query = getQuery("/rules/dcat-ap.rq");
+    query = getQuery("dcat-ap.rq");
     id = "validationquery";
     document.getElementById(id).innerHTML = query;
 }
