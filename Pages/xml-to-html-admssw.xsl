@@ -158,21 +158,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
   <xsl:template match="res:sparql">
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
       <head>
-	    <title>DCAT-AP Validator: SPARQL Query Result</title>
-		<!-- DataTables CSS -->
-		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css" />
-		  
-		<!-- jQuery -->
-		<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-		  
-		<!-- DataTables -->
-		<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
-		<script>
-		$(document).ready( function () {
-			$('#results').DataTable();
-		} );
-		</script>
-		<!-- 
+	    <title>DCAT-AP Validator: SPARQL Query Result</title> 
 		<style>
 	  <![CDATA[
 	  h1 { font-size: 150% ; }
@@ -190,7 +176,6 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		header#branding img {float:left;}
 		header#branding h1 {display:table-cell;vertical-align:middle;background: ##002060;} 
 		</style>
-	-->
       </head>
       <body>
 	  <header id="branding">
