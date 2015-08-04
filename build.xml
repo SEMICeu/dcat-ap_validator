@@ -43,10 +43,9 @@
 		</exec>
 	</target>
 	
-	<target name="deploy" depends="kill-fuseki" description="It deploys (copy) the DCAT-AP validator on the Fuseki server.">
+	<target name="deploy" depends="kill-fuseki" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
 		<copy todir="${fuseki-pages.dir}">
 			<fileset dir="${pages.dir}"/>
-			<fileset dir="${sparql-doc.dir}/**"/>
 		</copy>
 		<copy todir="${fuseki-pages.dir}">
 			<fileset dir="."/>
