@@ -1,5 +1,5 @@
 # Rule_ID:50
-# @title [Dataset] dcterms:publisher has maximum cardinality of 1 for Dataset
+# @title [Dataset] dct:publisher has maximum cardinality of 1 for Dataset
 # @tag dataset
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 

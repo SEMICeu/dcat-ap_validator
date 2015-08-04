@@ -776,4 +776,18 @@ UNION
    } GROUP BY ?s
      HAVING (COUNT( ?s) > 1)
   }
+UNION
+# Rule_ID:51
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?s (dct:publisher as ?p) ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:publisher ?o.
+     FILTER(!isURI(?o)).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (51 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:publsher ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
 }
