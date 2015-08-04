@@ -48,8 +48,9 @@
 			<fileset dir="${pages.dir}"/>
 		</copy>
 		<copy todir="${fuseki-pages.dir}">
-			<fileset dir="."/>
+			<fileset dir=".">
 				<include name="${sparql-doc.dir}/**"/>
+			</fileset>
 		</copy>
 	</target>
 
