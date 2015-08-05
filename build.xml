@@ -68,9 +68,8 @@
 	</target>
 
 	<target name="test" description="It executes the selenium server.">
-		<exec executable="cmd.exe">
-			<arg value="/c"/>
-			<arg value="java -jar ${selenium.dir}/selenium-server-0.9.2-standalone.jar -htmlSuite \"${selenium.browser}\" ${selenium.url} ${selenium-tests.dir}/test-suite.html ${selenium.dir}/results.html"/>
-		</exec>
+		<java jar="'${selenium.dir}/selenium-server-0.9.2-standalone.jar'" failonerror="true">
+			<arg line="-htmlSuite ${selenium.browser} ${selenium.url} ${selenium-tests.dir}/test-suite.html ${selenium.dir}/results.html"/>
+		</java>
 	</target>
 </project>
