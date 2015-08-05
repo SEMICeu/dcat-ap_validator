@@ -15,8 +15,6 @@
 	<property name="browserFileNames" value="C:\Program Files (x86)\Mozilla Firefox\firefox.exe"/>
 	<property name="selenium.url" value="http://localhost:3030/dcat-ap_validator.html"/>
 	
-
-	<property name="selenium.browser" value="
 	<target name="main" depends="jslint,sparql-doc,start-fuseki,test"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
