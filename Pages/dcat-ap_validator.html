@@ -11,19 +11,18 @@
 		<!-- <meta http-equiv="Access-Control-Allow-Origin" content="*"> -->
 		<style type="text/css">
 			body{font-family:sans-serif}
+			#container{min-height:100%;position:relative}
 			h1{color:#fff;background-color:#002060}
 			header#branding{background-color:#002060;min-height:70px;width:100%;display:table}
 			header#branding img{float:left}
 			header#branding h1{display:table-cell;vertical-align:middle;background:#002060}
-			.myform{margin:0 auto;width:200px;padding:14px}
+			#body{height:100%;padding:10px;padding-bottom:110px}
 			#stylized{border:solid 2px #b7ddf2;background:#ebf4fb}
 			#stylized label{display:block;float:left;font-weight:700;text-align:right;width:250px}
 			#stylized .small{color:#666;display:block;font-size:11px;font-weight:400;text-align:right;width:250px}
 			#stylized input{margin:2px 0 20px 10px}
 			#stylized button{clear:both;margin-left:250px;width:125px;height:31px;text-align:center;font-size:12px;font-weight:700}
-			#container{min-height:100%;position:relative}
-			#body{height:100%;padding:10px;padding-bottom:110px}
-			#footer{position:absolute;bottom:0;width:100%;height:110px}
+			footer{position:absolute;bottom:0;width:100%;height:110px}
 		</style>
 	</head>
 	<body onload="setQuery();">
@@ -35,7 +34,7 @@
 			<div id="body">
 				<p>This service checks one or more software description metadata files for integrity and consistency against the <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home">DCAT</a> specification and the Joinup DCAT Application Profile.</p>
 				<div id="stylized" class="form" style="width:800px;">
-					<form id="validator-form" action="/dcat_ap_validator/query" method="GET"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
+					<form id="validator-form" action="/dcat-ap_validator/query" method="GET"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
 						<h2>DCAT-AP Validator</h2>
 						<label>RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
 						<input id="metadatafile" type="file" name="metadatafile" multiple="multiple">
@@ -80,7 +79,7 @@
 				<ol>
 					<li>Download a Fuseki binary distribution (e.g. jena-fuseki1-1.1.2-distribution.zip) from an <a href="http://www.apache.org/dist/jena/">Apache mirror site</a>.</li>
 					<li>Unpack the binary distribution to your a <code>FUSEKI_HOME</code> folder of your choice.</li>
-					<li>Unpack the 'dcat-ap_validator.zip' distribution in the <code>FUSEKI_HOME</code> folder. Keep the folder structure in tact. Verify that the file 'admssw_validator.html' is in the <code>FUSEKI_HOME/pages</code> folder.</li>
+					<li>Unpack the 'dcat-ap_validator.zip' distribution in the <code>FUSEKI_HOME</code> folder. Keep the folder structure in tact. Verify that the file 'dcat-ap_validator.html' is in the <code>FUSEKI_HOME/pages</code> folder.</li>
 					<li>Fuseki requires a <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jre-7-download-432155.html">Java Runtime Environment</a> to be installed on your machine</li>
 				</ol>
 				<h2>User guide</h2>
@@ -95,7 +94,6 @@
 				</ol>
 			</div>
 			<footer>
-				
 				<p style="width:800px;float:left;margin:0 5px 0 0;">
 					<small>The DCAT-AP validator is an initiative by the <a href="http://ec.europa.eu/isa/actions/index_en.htm">ISA Programme</a><br />
 					Authors: Stijn Goedertier, Nikolaos Loutas, Débora Di Giacomo, Saky Kourtidis, Szabolcs Szekacs, João Rodrigues Frade, Phil Archer<br/>
