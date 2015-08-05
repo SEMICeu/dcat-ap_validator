@@ -67,7 +67,7 @@
 	<target name="test" description="It executes the selenium server.">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
-				<arg line="java -jar ${selenium.dir}/selenium-server-0.9.2-standalone.jar -htmlSuite \"*firefox\" http://localhost:3030/dcat-ap_validator.htm \"${selenium-tests.dir}/test-suite.html\" \"${selenium.dir}/results.html\""/>
+			<arg line="java -jar ${selenium.dir}/selenium-server-0.9.2-standalone.jar -htmlSuite \"*firefox\" http://localhost:3030/dcat-ap_validator.html \"${selenium-tests.dir}\/test-suite.html\" \"${selenium.dir}/results.html\" "/>
 		</exec>
 	</target>
 </project>
