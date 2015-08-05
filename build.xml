@@ -9,13 +9,8 @@
 	<property name="jslint.dir" value="jslint"/>
 	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
-	<property name="selenium.dir" value="selenium"/>
-	<property name="selenium-tests.dir" value="selenium-tests"/>
-	<property name="selenium.browser" value="*firefox"/>
-	<property name="browserFileNames" value="C:\Program Files (x86)\Mozilla Firefox\firefox.exe"/>
-	<property name="selenium.url" value="http://localhost:3030/dcat-ap_validator.html"/>
 	
-	<target name="main" depends="jslint,sparql-doc,start-fuseki,test"/>
+	<target name="main" depends="jslint,sparql-doc,start-fuseki"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
@@ -67,10 +62,4 @@
 		</exec>
 	</target>
 
-	<target name="test" description="It executes the selenium server.">
-		<java jar="${selenium.dir}/selenium-server-0.9.2-standalone.jar" fork="true" failonerror="true">
-			<sysproperty key="browserFileNames" value="${browserFileNames}"/>
-			<arg line="-htmlSuite ${selenium.browser} ${browserFileNames} ${selenium.url} ${selenium-tests.dir}/test-suite.html ${selenium.dir}/results.html"/>
-		</java>
-	</target>
 </project>
