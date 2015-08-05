@@ -12,7 +12,7 @@
 	<property name="selenium.dir" value="selenium"/>
 	<property name="selenium-tests.dir" value="selenium-tests"/>
 
-	<target name="main" depends="jslint,sparql-doc,start-fuseki"/>
+	<target name="main" depends="jslint,sparql-doc,start-fuseki,test"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
@@ -64,17 +64,15 @@
 		</exec>
 	</target>
 	
-	<taskdef resource="selenium-ant.properties">
-    <classpath>
-        <pathelement location="${selenium.dir}/selenium-server-standalone-2.47.1"/>
-    </classpath>
-	</taskdef>
+	<taskdef name="test" classname="org.openqa.selenium.server" classpath="${selenium.dir}/selenium-server-standalone-2.47.1"/>
 
-	<selenese
-		suite="${selenium-tests.dir}/test-suite.html"
-		browser="*firefox"
-		results="${selenium.dir}/results.html"
-		multiWindow="true"
-		timeoutInSeconds="900"
-		startURL="http://localhost:3030/dcat-ap_validator.html" />
+	<target name="test" description="It executes the selenium server.">
+		<selenese
+			suite="${selenium-tests.dir}/test-suite.html"
+			browser="*firefox"
+			results="${selenium.dir}/results.html"
+			multiWindow="true"
+			timeoutInSeconds="900"
+			startURL="http://localhost:3030/dcat-ap_validator.html" />
+	</target>
 </project>
