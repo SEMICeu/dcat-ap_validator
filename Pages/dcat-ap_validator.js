@@ -5,7 +5,7 @@
 
 // Global variables
 var endpoint;
-var graph = 'http://joinup.ec.europa.eu/dcat-ap'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
+var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 
 /**
  * Uploads a file
@@ -150,6 +150,7 @@ function onFormSubmit(form) {
         }// else {
         //runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
         runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+		runUpdateQuery('CLEAR ALL'); //wipes the named graph in the triple store
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
         for (i = 0; i < fileInput.files.length; i = i + 1) {
