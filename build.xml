@@ -11,7 +11,7 @@
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
 	<property name="selenium.dir" value="selenium"/>
 	<property name="selenium-tests.dir" value="selenium-tests"/>
-	<property name="selenium.browser" value="*firefox C:\Program Files (x86)\Mozilla Firefox\firefox.exe"/>
+	<property name="selenium.browser" value="*firefox C:/Program Files (x86)/Mozilla Firefox/firefox.exe"/>
 	<property name="selenium.url" value="http://localhost:3030/dcat-ap_validator.html"/>
 	
 
