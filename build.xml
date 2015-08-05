@@ -64,7 +64,11 @@
 		</exec>
 	</target>
 	
-	<taskdef name="test" classname="org.openqa.selenium.server.SeleniumServer" classpath="${selenium.dir}/selenium-server-standalone-2.47.1"/>
+	<taskdef resource="selenium-ant.properties">
+    <classpath>
+        <pathelement location="${selenium.dir}/selenium-server-standalone-2.47.1"/>
+    </classpath>
+	</taskdef>
 
 	<target name="test" description="It executes the selenium server.">
 		<selenese
