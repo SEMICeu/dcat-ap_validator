@@ -56,7 +56,7 @@
 	</target>
 
 	<target name="start-fuseki" depends="deploy" description="It executes the Fuseki server.">
-		<exec executable="cmd.exe">
+		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
 			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=3030 --pages ${fuseki-pages.dir} --mem /dcat-ap_validator"/>
 		</exec>
