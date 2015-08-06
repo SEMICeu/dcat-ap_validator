@@ -56,7 +56,871 @@
 						-->
 						<!--
 						-->
-						<textarea id="validationquery" name="query" cols="60" rows="6"></textarea>
+						<textarea id="validationquery" name="query" cols="60" rows="6">PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://www.spdx.org/rdf/terms#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+WHERE{
+# Rule_ID:0
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     FILTER(!EXISTS {?s foaf:name ?name}).
+     BIND (rdf:type as ?p).
+     BIND (foaf:Agent as ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (0 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("Name is a required property for Agent." AS ?Rule_Description).
+     BIND (concat("The agent  ",str(?o)," doesn't have a foaf:name property") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:1
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     ?s foaf:name ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (foaf:name as ?p)
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (1 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("The foaf:name property should be a literal." AS ?Rule_Description).
+     BIND (concat("The property ",str(?p)," is not a literal") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:2
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     FILTER(!EXISTS {?s dct:type ?type}).
+     BIND (rdf:type AS ?p).
+     BIND (foaf:Agent AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (2 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("Type is a recommended property for Agent" AS ?Rule_Description).
+     BIND (concat("The agent ",str(?o)," doesn't have a type property") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:3
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a foaf:Agent.
+     ?s dct:type ?o.
+     FILTER(!isUri(?o)).
+     BIND (dct:type AS ?p)
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (3 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("Type should be a resource" AS ?Rule_Description).
+     BIND (concat("The foaf:Agent ",str(?s)," should have a dct:type as rdf:resource") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:4
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dcat:dataset ?ds})).
+     BIND(rdf:type AS ?p).
+     BIND(dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (4 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:dataset is a required property for Catalog" AS ?Rule_Description).
+     BIND (concat("The dact:Catalog ",str(?o)," should have a dcat:dataset property") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:5
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dcat:dataset ?o.
+     FILTER(!EXISTS {?o a dcat:Dataset}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (5 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:dataset should be a Dataset" AS ?Rule_Description).
+     BIND (concat("The dcat:dataset ",str(?o)," does not exist.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:6
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:description ?desc})).
+     BIND(rdf:type AS ?p).
+     BIND(dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (6 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description is a required property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?s)," does not have a dct:description.") AS ?Message).
+   }
+  }
+ 
+UNION
+# Rule_ID:7
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:description ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:description AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (7 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:description ",str(?o)," is not literal.") AS ?Message).
+   }
+  }
+ 
+UNION
+# Rule_ID:8
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:publisher ?pub})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (8 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher is a required property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have dct:publisher property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:9
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (9 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ",str(?s)," has more than 1 dct:publisher.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:publisher ?pub.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
+UNION
+# Rule_ID:10
+ {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:publisher ?o.
+     FILTER(!isURI(?o)).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (10 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:publisher ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:11
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:publisher ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a foaf:Agent}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (11 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
+     BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:12
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:title ?title})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (12 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title is a required property for Catalog." AS ?Rule_Description).
+     BIND (concat("The Catalog ", str(?o)," does not have a dct:title.") AS ?Message).
+   }
+ }
+
+UNION
+# Rule_ID:13
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:title ?o.
+     FILTER(!isLiteral(?o)).
+     BIND ( dct:title AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (13 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:title ",str(?o)," should be literal.") AS ?Message).
+   }
+ }
+ 
+UNION
+# Rule_ID:14
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s foaf:homepage ?homepage})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (14 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("foaf:homepage is a recommended property for Catalog." AS ?Rule_Description).
+     BIND ("The dcat:Catalog " + str(?o) + " does not have a foaf:homepage." AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:15
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (15 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("foaf:homepage has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 foaf:homepage.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s foaf:homepage ?home.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
+UNION
+# Rule_ID:16
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s foaf:homepage ?o.
+     FILTER(!isURI(?o)).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (16 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("foaf:homepage should be a resource." AS ?Rule_Description).
+     BIND (concat("The foaf:homepage ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+ 
+UNION
+# Rule_ID:17
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s foaf:homepage ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a foaf:Document}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (17 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("foaf:homepage should be a foaf:Document." AS ?Rule_Description).
+     BIND (concat("The foaf:homepage ",str(?o)," is not a foaf:Document.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:18
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!EXISTS {?s dct:language ?o.}).
+     BIND (dct:language AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (18 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dct:language is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dct:language ",str(?o)," is not a property of Catalog.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:19
+ {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:language ?o.
+     FILTER(!isURI(?o)).
+     BIND (dct:language AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (19 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:language should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:language ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:20
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:language ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dct:LinguisticSystem}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (20 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:language should be a dct:LinguisticSystem." AS ?Rule_Description).
+     BIND (concat("The dct:language ",str(?o)," is not a dct:LinguisticSystem.") AS ?Message).
+   }
+  }
+ 
+UNION
+# Rule_ID:21
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:license ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (21 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dct:license is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have dct:license.") AS ?Message).  
+   }
+  }
+
+UNION
+# Rule_ID:22
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:license ?o.
+     FILTER(!isURI(?o)).
+     BIND (dcat:accessURL AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (22 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:license should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:license ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:23
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (23 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:license has a maximum cardinality of 1" AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:license.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:license ?lic.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
+UNION
+# Rule_ID:24
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:issued ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (24 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dct:issued is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have a dct:issued property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:25
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:issued ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:issued AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (25 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:issued should be literal." AS ?Rule_Description).
+     BIND (concat("The dct:issue ",str(?o)," is not literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:26
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (26 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:issued.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:issued ?issued.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
+UNION
+# Rule_ID:27
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dcat:themeTaxonomy ?taxonomy})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (27 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dcat:themeTaxonomy is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have a dcat:themeTaxonomy property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:28
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dcat:themeTaxonomy ?o.
+     FILTER(!isIRI(?o)).
+     BIND (dcat:themeTaxonomy AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (28 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:themeTaxonomy should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:themeTaxonomy ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:29
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dcat:record ?o.
+     FILTER(!isIRI(?o)).
+     BIND (dcat:themeTaxonomy AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (29 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:catalogRecord should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:catalogRecordy ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:30
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dcat:record ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dcat:CatalogRecord}).
+     BIND (dcat:themeTaxonomy AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (30 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:catalogRecord should be a CatalogRecord." AS ?Rule_Description).
+     BIND (concat("The dcat:catalogRecord ",str(?o)," is not a CatalogRecord.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:31
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     FILTER(!(EXISTS { ?s dct:modified ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Catalog AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (31 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dct:modified is a recommended property for Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?o)," does not have a dct:modified property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:32
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:modified ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:modified AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (32 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:modified should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:modified ",str(?o)," is not a literal.") AS ?Message).
+}
+ }
+
+UNION
+# Rule_ID:33
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (33 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:modified.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:modified ?modified.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
+UNION
+# Rule_ID:34
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:rights ?o.
+     FILTER(!isURI(?o)).
+     BIND (dct:rights AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (34 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:rights should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:rights ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+ 
+UNION
+# Rule_ID:35
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (35 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:rights has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:rights.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:rights ?rights.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
+UNION
+# Rule_ID:36
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:spatial ?o.
+     FILTER(!isURI(?o)).
+     BIND (dct:spatial AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (36 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:spatial should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:spatial ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:37
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dct:description ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (37 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description is a required property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:description.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:38
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:description ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:description AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (38 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description should be a literal." AS ?Rule_Description).
+     BIND (concat("The dcat:description ",str(?p)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:39
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dct:title ?title})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (39 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title is a required property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have the dct:title property.") AS ?Message).
+   }
+  }
+  
+UNION
+# Rule_ID:40
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:title ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:title AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (40 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:title property ",str(?p)," is not literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:41
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s adms:contactPoint ?cPoint})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (41 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("adms:contactPoint is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?s)," does not have the adms:contactPoint property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:42
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s adms:contactPoint ?o.
+     FILTER(!isUri(?o)).
+     BIND (adms:contactPoint AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (42 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("adms:contactPoint should be a resource." AS ?Rule_Description).
+     BIND (concat("The adms:contactPoint ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:43
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s adms:contactPoint ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a <http://www.w3.org/2006/vcard/ns#VCard>}).
+     BIND (adms:contactPoint AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (43 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("adms:contactPoint should be a vCard." AS ?Rule_Description).
+     BIND (concat("The adms:contactPoint ",str(?p)," is not a vCard.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:44
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dcat:distribution ?dist})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (44 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:distribution is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:distribution property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:45
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:distribution ?o.
+     FILTER(!isURI(?o)).
+     BIND (dcat:distribution AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (45 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:distribution should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:distribution ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:46
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:distribution ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dcat:Distribution}).
+     BIND (dcat:distribution AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (46 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:distribution should be a Distribution." AS ?Rule_Description).
+     BIND (concat("The dcat:distribution ",str(?o)," is not a distribution.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:47
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dcat:keyword ?key})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (47 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:keyword is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:keyword property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:48
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:keyword ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dcat:keyword AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (48 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:keyword should be a literal." AS ?Rule_Description).
+     BIND (concat("The dcat:keyword ",str(?o)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:49
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dct:publisher ?pub})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (49 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:publisher property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:50
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (50 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:publisher property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:publisher ?pub.
+   } GROUP BY ?s
+     HAVING (COUNT( ?s) > 1)
+  }
+
+UNION
+# Rule_ID:51
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:publisher ?o.
+     FILTER(!isURI(?o)).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (51 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher should be a resource." AS ?Rule_Description).
+     BIND (concat("The dct:publisher ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+  
+UNION
+# Rule_ID:52
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:publisher ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a foaf:Agent}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (52 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
+     BIND (concat("The dct:publisher ",str(?o)," is not a foaf:Agent.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:53
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     FILTER(!(EXISTS { ?s dcat:theme ?theme})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:Dataset AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (53 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:theme is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:theme property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:54
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:theme ?o.
+     FILTER(!isURI(?o)).
+     BIND (dcat:theme AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (54 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:theme should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:theme ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:55
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:conformsTo ?o.
+     FILTER(!isURI(?o)).
+     BIND (dct:conformsTo AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (55 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:conformsTo should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:conformsTo ",str(?o)," is not a resource.") AS ?Message).
+   }
+  }
+}</textarea>
 						<br/>
 						<label>Output:</label> 
 						<select name="output">
