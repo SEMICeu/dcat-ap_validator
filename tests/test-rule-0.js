@@ -1,5 +1,5 @@
 var test_id='test-rule-0';
-casper.test.begin(test-id, 2, function suite(test) {
+casper.test.begin(test_id, 2, function suite(test) {
 	casper.start(casper.cli.get("url"), function() {
 		this.page.uploadFile('input[type="file"]', '.\\'+casper.cli.get("test-data")+'\\' + test_id + '.rdf');
 		this.capture(casper.cli.get("output")+'/' + test_id + '-0.png');
