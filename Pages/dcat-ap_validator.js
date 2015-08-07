@@ -144,12 +144,12 @@ function setQuery() {
  * Set fields in the instructions of html page
  */
 function setFields() {
-    document.getElementById("ii-page").innerHTML = "ciao";
+    document.getElementById("ii-page").innerHTML = page;
     document.getElementById("ug-port").innerHTML = port;
     document.getElementById("ug-dataset").innerHTML = dataset;
     document.getElementById("ug-hyperlink").innerHTML = page_url;
     document.getElementById("ug-hyperlink").href = page_url;
-    //document.getElementById("endpoint").value = endpoint;
+    document.getElementById("endpoint").value = endpoint;
 }
 
 /**
