@@ -1,6 +1,6 @@
 casper.test.begin('test-rule-0', 2, function suite(test) {
 	casper.start('http://localhost:3030/dcat-ap_validator.html', function() {
-		this.page.uploadFile('input[type="file"]', 'C:\\Users\\stanie\\dcat-ap_validator\\tests\\test-rule-0.rdf');
+		this.page.uploadFile('input[type="file"]', 'C:\\Users\\stanie\\dcat-ap_validator\\tests-data\\test-rule-0.rdf');
 		this.capture('rule-0-0.png');
 		this.click('button[id="validate"]');
 		});
