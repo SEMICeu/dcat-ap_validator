@@ -865,10 +865,10 @@ UNION
 
 UNION
 # Rule_ID:56
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:conformsTo as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
-     ?s dct:publisher ?o.
+     ?s dct:conformsTo ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:Standard}).
      BIND ("DCAT-AP" AS ?Rule_Origin).
