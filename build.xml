@@ -19,7 +19,7 @@
 
 	<target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap_validator.js file.">
 		<jslint haltOnFailure="false" options="sloppy">
-			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document</predef>
+			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
 			<fileset dir="." includes="${pages.dir}/dcat-ap_validator.js"/>
 			<fileset dir="${tests.dir}" includes="*.js"/>
