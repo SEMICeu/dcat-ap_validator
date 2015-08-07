@@ -6,7 +6,7 @@
 	<property name="pages.dir" value="Pages"/>
 	<property name="rules.dir" value="rules"/>
 	<property name="sparql-doc.dir" value="doc"/>
-	<property name="test-execution.dir" value="test-execution"/>
+	<property name="tests-execution.dir" value="tests-execution"/>
 	<property name="jslint.dir" value="jslint"/>
 	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
@@ -23,14 +23,14 @@
 		</jslint>
 	</target>
 
-	<target name="clean" description="It deletes the sparql-doc and test-execution directories in order to be updated with a new version.">
+	<target name="clean" description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
 		<delete dir="${sparql-doc.dir}"/>
-		<delete dir="${test-execution.dir}"/>
+		<delete dir="${tests-execution.dir}"/>
 	</target>
 
-	<target name="create" depends="clean" description="It creates the sparq-doc and test-execution directories.">
+	<target name="create" depends="clean" description="It creates the sparq-doc and tests-execution directories.">
 		<mkdir dir="${sparql-doc.dir}"/>
-		<mkdir dir="${test-execution.dir}"/>
+		<mkdir dir="${tests-execution.dir}"/>
 	</target>
 
 	<target name="sparql-doc" depends="create" description="It executes the sparq-doc command.">
