@@ -13,6 +13,8 @@
 	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
 	<property name="fuseki.port" value="3031"/>
+	<property name="fuseki.page" value="dcat-ap_validator.html"/>
+	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	
 	<target name="main" depends="jslint,sparql-doc,start-fuseki,test"/>
 
@@ -65,14 +67,14 @@
 	<target name="start-fuseki" depends="deploy" description="It executes the Fuseki server.">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
-			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /dcat-ap_validator"/>
+			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
 		</exec>
 	</target>
 
 	<target name="test" depends="deploy" description="It tests with casperjs all the rules.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
-			<arg line="casperjs test ${tests.dir}/ --url=http://localhost:${fuseki.port}/dcat-ap_validator.html --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+			<arg line="casperjs test ${tests.dir}/ --url=http://localhost:${fuseki.port} --page=${fuseki.page} --dataset=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
 		</exec>
 	</target>
 </project>
