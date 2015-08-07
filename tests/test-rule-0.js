@@ -7,6 +7,7 @@ casper.test.begin('test-rule-0', 2, function suite(test) {
 
 	casper.then(function() {
 	  this.waitForResource(this.getCurrentUrl(),function() {
+		this.capture('test-execution/test-rule-0-1.png');
 		var xml = this.page.content;
 		//this.echo(xml);
 		parser = new DOMParser();
@@ -16,7 +17,6 @@ casper.test.begin('test-rule-0', 2, function suite(test) {
 		var binding = xmlDoc.getElementsByTagName("binding")[1].textContent.trim();
 		//this.echo(binding);
 		test.assertEquals(binding,"0");
-		this.capture('test-execution/test-rule-0-1.png');
 	  },function() {
 		//page load failed after 5 seconds
 	  },5000);
