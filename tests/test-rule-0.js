@@ -19,8 +19,6 @@ casper.test.begin(testname, 2, function suite(test) {
             binding = xmlDoc.getElementsByTagName("binding")[1].textContent.trim();
             //this.echo(binding);
             test.assertEquals(binding, testid);
-        }, function() {
-            //page load failed after 5 seconds
         }, 5000);
     });
 
