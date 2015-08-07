@@ -94,4 +94,7 @@
 	<foaf:name>Nobel Media AB</foaf:name>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
+   <rdf:Description rdf:about="http://www.nobelprize.org/nobel_organizations/nobelmedia/nobelprize_org/developer/manual-linkeddata/terms.html">
+    <rdf:type dct:Standard="http://purl.org/dc/terms/Standard"/>
+   </rdf:Description>
 </rdf:RDF>
