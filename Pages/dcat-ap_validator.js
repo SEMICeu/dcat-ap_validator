@@ -149,15 +149,15 @@ function setFields() {
     document.getElementById("ug-dataset").innerHTML = dataset;
     document.getElementById("ug-hyperlink").innerHTML = page_url;
     document.getElementById("ug-hyperlink").href = page_url;
-    //document.getElementById("endpoint").value = endpoint;
+    document.getElementById("endpoint").value = endpoint;
 }
 
 /**
  * Set all fields in the html page
  */
 function setData() {
-   setQuery();
-   setFields();
+    setQuery();
+    setFields();
 }
 
 /**
