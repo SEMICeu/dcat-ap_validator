@@ -1,7 +1,7 @@
 var testid='test-rule-0';
 casper.test.begin(testid, 2, function suite(test) {
 	casper.start(casper.cli.get("url"), function() {
-		var file = '..\\' + casper.cli.get("testdata") + '\\' + testid + '.rdf';
+		var file = '.\\' + casper.cli.get("testdata") + '\\' + testid + '.rdf';
 		this.page.uploadFile('input[type="file"]', file);
 		this.capture(casper.cli.get("output")+'/' + testid + '-0.png');
 		this.click('button[id="validate"]');
