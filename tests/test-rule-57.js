@@ -1,4 +1,4 @@
-var testid = "56", testname = "test-rule-" + testid;
+var testid = "57", testname = "test-rule-" + testid;
 casper.test.begin(testname, 2, function suite(test) {
     casper.start(casper.cli.get("url"), function() {
         var file = '.\\' + casper.cli.get("testdata") + '\\' + testname + '.rdf';

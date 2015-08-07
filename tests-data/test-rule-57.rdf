@@ -46,7 +46,7 @@
     <dct:conformsTo rdf:resource="http://www.nobelprize.org/nobel_organizations/nobelmedia/nobelprize_org/developer/manual-linkeddata/terms.html"/>
     <dct:temporal rdf:nodeID="_n3"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
-    <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
+    <dct:accrualPeriodicity>annual</dct:accrualPeriodicity>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#VCard"/>
@@ -94,7 +94,4 @@
 	<foaf:name>Nobel Media AB</foaf:name>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
-   <rdf:Description rdf:about="http://www.nobelprize.org/nobel_organizations/nobelmedia/nobelprize_org/developer/manual-linkeddata/terms.html">
-    <rdf:type dct:Standard="http://purl.org/dc/terms/Standard"/>
-   </rdf:Description>
 </rdf:RDF>
