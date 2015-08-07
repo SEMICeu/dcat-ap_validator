@@ -1,5 +1,6 @@
 casper.test.begin('test-rule-0', 2, function suite(test) {
 	casper.start('http://localhost:3030/dcat-ap_validator.html', function() {
+        casper.echo(casper.cli.get(0));
 		this.page.uploadFile('input[type="file"]', '.\\tests-data\\test-rule-0.rdf');
 		this.capture('test-execution/test-rule-0-0.png');
 		this.click('button[id="validate"]');
