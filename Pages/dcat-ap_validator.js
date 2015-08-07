@@ -8,7 +8,8 @@ var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph'
 var host = "localhost";
 var port = 3030;
 var dataset = "dcat-ap_validator";
-var endpoint = "http://" + host + ":" + port + "/" + dataset;
+var endpoint;
+//var endpoint = "http://" + host + ":" + port + "/" + dataset;
 var page = "dcat-ap_validator.html";
 var page_url = "http://" + host + ":" + port + "/" + page;
 
@@ -148,7 +149,7 @@ function setFields() {
     document.getElementById("ug-dataset").innerHTML = dataset;
     document.getElementById("ug-hyperlink").innerHTML = page_url;
     document.getElementById("ug-hyperlink").href = page_url;
-    document.getElementById("endpoint").value = endpoint;
+    //document.getElementById("endpoint").value = endpoint;
 }
 
 /**
