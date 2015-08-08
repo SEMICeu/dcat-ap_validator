@@ -144,7 +144,6 @@ function setQuery() {
  * Set fields in the instructions of html page
  */
 function setFields() {
-var host, port, dataset, page;
 if (ant_token_host.startsWith("@")) {
     host = "localhost";
 } else {
@@ -168,11 +167,12 @@ if (ant_token_page.startsWith("@")) {
     page = ant_token_page;
 }
 //var endpoint;
-var endpoint = "http://" + host + ":" + port + "/" + dataset;
-var page_url = "http://" + host + ":" + port + "/" + page;
-var action = "/" + dataset + "/query";
+endpoint = "http://" + host + ":" + port + "/" + dataset;
+page_url = "http://" + host + ":" + port + "/" + page;
+action = "/" + dataset + "/query";
 
     document.getElementById("ii-page").innerHTML = page;
+    document.getElementById("ii-zip").innerHTML = dataset;
     document.getElementById("ug-port").innerHTML = port;
     document.getElementById("ug-dataset").innerHTML = dataset;
     document.getElementById("ug-hyperlink").innerHTML = page_url;
