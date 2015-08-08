@@ -4,6 +4,7 @@
 <project name="DCAT-AP validator" default="main" basedir=".">
 
 	<property name="pages.dir" value="Pages"/>
+	<property name="dcat.js" value="dcat-ap_validator.js"/>
 	<property name="rules.dir" value="rules"/>
 	<property name="sparql-doc.dir" value="doc"/>
 	<property name="tests.dir" value="tests"/>
@@ -13,11 +14,12 @@
 	<property name="jslint.dir" value="jslint"/>
 	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
+	<property name="fuseki.host" value="localhost"/>
 	<property name="fuseki.port" value="3030"/>
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	
-	<target name="main" depends="jslint,sparql-doc,start-fuseki,test"/>
+	<target name="main" depends="jslint,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
@@ -25,7 +27,7 @@
 		<jslint haltOnFailure="false" options="sloppy">
 			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-			<fileset dir="." includes="${pages.dir}/dcat-ap_validator.js"/>
+			<fileset dir="." includes="${pages.dir}/${dcat.js}"/>
 			<fileset dir="${tests.dir}" includes="*.js"/>
 		</jslint>
 	</target>
@@ -54,7 +56,26 @@
 		</exec>
 	</target>
 
-	<target name="deploy" depends="kill-fuseki" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
+	<target name="replace" description="It replaces variables in dcat-ap_validator.js.">
+		<replace file="${pages.dir}/${dcat.js}">
+		  <replacetoken>@port@</replacetoken>
+		  <replacevalue>${fuseki.port}</replacevalue>
+		</replace>
+		<replace file="${pages.dir}/${dcat.js}">
+		  <replacetoken>@host@</replacetoken>
+		  <replacevalue>${fuseki.host}</replacevalue>
+		</replace>
+		<replace file="${pages.dir}/${dcat.js}">
+		  <replacetoken>@dataset@</replacetoken>
+		  <replacevalue>${fuseki.endpoint}</replacevalue>
+		</replace>
+		<replace file="${pages.dir}/${dcat.js}">
+		  <replacetoken>@page@</replacetoken>
+		  <replacevalue>${fuseki.page}</replacevalue>
+		</replace>
+	</target>
+
+	<target name="deploy" depends="replace" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
 		<copy todir="${fuseki-pages.dir}">
 			<fileset dir="${pages.dir}"/>
 		</copy>
@@ -65,17 +86,17 @@
 		</copy>
 	</target>
 
-	<target name="start-fuseki" depends="deploy" description="It executes the Fuseki server.">
+	<target name="start-fuseki" description="It executes the Fuseki server.">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
 			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
 		</exec>
 	</target>
 
-	<target name="test" depends="deploy" description="It tests with casperjs all the rules.">
+	<target name="test" description="It tests with casperjs all the rules.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
-			<arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://localhost:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+			<arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
 		</exec>
 	</target>
 </project>

@@ -4,14 +4,40 @@
  */
 
 // Global variables
-var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
-var host = "localhost";
-var port = "3030";
-var dataset = "dcat-ap_validator";
+var ant_token_host = "@host@";
+var ant_token_port = "@port@";
+var ant_token_dataset = "@dataset@";
+var ant_token_page = "@page@";
+
+var host, port, dataset, page;
+if (ant_token_host == "@host@") {
+	host = "localhost";
+} else {
+	host = ant_token_host;
+}
+if (ant_token_port == "@port@") {
+	port = "3030";
+} else {
+	port = ant_token_port;
+}
+
+if (ant_token_dataset == "@dataset@") {
+	dataset = "dcat-ap_validator";
+} else {
+	dataset = ant_token_dataset;
+}
+
+if (ant_token_page == "@host@") {
+	page = "dcat-ap_validator.html";
+} else {
+	page = ant_token_page;
+}
 //var endpoint;
 var endpoint = "http://" + host + ":" + port + "/" + dataset;
-var page = "dcat-ap_validator.html";
 var page_url = "http://" + host + ":" + port + "/" + page;
+var action = "/" + dataset + "/query";
+
+var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 
 /**
  * Uploads a file
@@ -150,6 +176,7 @@ function setFields() {
     document.getElementById("ug-hyperlink").innerHTML = page_url;
     document.getElementById("ug-hyperlink").href = page_url;
     document.getElementById("endpoint").value = endpoint;
+    document.getElementById("validator-form").action = action;
 }
 
 /**
