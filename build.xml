@@ -14,7 +14,7 @@
 	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
 	<property name="fuseki.host" value="localhost"/>
-	<property name="fuseki.port" value="3031"/>
+	<property name="fuseki.port" value="3030"/>
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	
