@@ -57,22 +57,10 @@
 	</target>
 
 	<target name="replace" description="It replaces variables in dcat-ap_validator.js.">
-		<replace file="${pages.dir}/${dcat.js}">
-		  <replacetoken>@port@</replacetoken>
-		  <replacevalue>${fuseki.port}</replacevalue>
-		</replace>
-		<replace file="${pages.dir}/${dcat.js}">
-		  <replacetoken>@host@</replacetoken>
-		  <replacevalue>${fuseki.host}</replacevalue>
-		</replace>
-		<replace file="${pages.dir}/${dcat.js}">
-		  <replacetoken>@dataset@</replacetoken>
-		  <replacevalue>${fuseki.endpoint}</replacevalue>
-		</replace>
-		<replace file="${pages.dir}/${dcat.js}">
-		  <replacetoken>@page@</replacetoken>
-		  <replacevalue>${fuseki.page}</replacevalue>
-		</replace>
+		<replace file="${pages.dir}/${dcat.js}" token="@port@" value="${fuseki.port}"/>
+		<replace file="${pages.dir}/${dcat.js}" token="@host@" value="${fuseki.host}"/>
+		<replace file="${pages.dir}/${dcat.js}" token="@dataset@" value="${fuseki.endpoint}"/>
+		<replace file="${pages.dir}/${dcat.js}" token="@page@" value="${fuseki.page}"/>
 	</target>
 
 	<target name="deploy" depends="replace" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">

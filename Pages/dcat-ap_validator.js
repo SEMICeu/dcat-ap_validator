@@ -10,27 +10,27 @@ var ant_token_dataset = "@dataset@";
 var ant_token_page = "@page@";
 
 var host, port, dataset, page;
-if (ant_token_host == "@host@") {
-	host = "localhost";
+if (ant_token_host.startsWith("@")) {
+    host = "localhost";
 } else {
-	host = ant_token_host;
+    host = ant_token_host;
 }
-if (ant_token_port == "@port@") {
-	port = "3030";
+if (ant_token_port.startsWith("@")) {
+    port = "3030";
 } else {
-	port = ant_token_port;
-}
-
-if (ant_token_dataset == "@dataset@") {
-	dataset = "dcat-ap_validator";
-} else {
-	dataset = ant_token_dataset;
+    port = ant_token_port;
 }
 
-if (ant_token_page == "@host@") {
-	page = "dcat-ap_validator.html";
+if (ant_token_dataset.startsWith("@")) {
+    dataset = "dcat-ap_validator";
 } else {
-	page = ant_token_page;
+    dataset = ant_token_dataset;
+}
+
+if (ant_token_page.startsWith("@")) {
+    page = "dcat-ap_validator.html";
+} else {
+    page = ant_token_page;
 }
 //var endpoint;
 var endpoint = "http://" + host + ":" + port + "/" + dataset;
