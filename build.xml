@@ -84,7 +84,7 @@
 	<target name="test" description="It tests with casperjs all the rules.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
-			<arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+			<arg line="casperjs --web-security=false test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
 		</exec>
 	</target>
 </project>
