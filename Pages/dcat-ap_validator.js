@@ -179,6 +179,7 @@ action = "/" + dataset + "/query";
     document.getElementById("ug-hyperlink").href = page_url;
     document.getElementById("endpoint").value = endpoint;
     document.getElementById("validator-form").action = action;
+	console.log("port:"+port);
 }
 
 /**
