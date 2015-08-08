@@ -1,16 +1,16 @@
-var testid = "18", testname = "test-rule-" + testid;
+var testid = "18", testname = casper.cli.get("testname") + testid;
 casper.test.begin(testname, 2, function suite(test) {
     casper.start(casper.cli.get("url") + '/' + casper.cli.get("page"), function() {
         var file = '.\\' + casper.cli.get("testdata") + '\\' + testname + '.rdf';
         this.page.uploadFile('input[type="file"]', file);
         this.sendKeys('input#endpoint', casper.cli.get("url") + '/' + casper.cli.get("endpoint"));
-        this.capture(casper.cli.get("output") + '/' + testname + '-0.png');
+        if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-0.png');}
         this.click('button[id="validate"]');
     });
 
     casper.then(function() {
         this.waitForResource(this.getCurrentUrl(), function() {
-            this.capture(casper.cli.get("output") + '/' + testname + '-1.png');
+            if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-1.png');}
             var xml = this.page.content, parser, xmlDoc, results, binding;
             //this.echo(xml);
             parser = new DOMParser();

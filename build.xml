@@ -9,6 +9,7 @@
 	<property name="tests.dir" value="tests"/>
 	<property name="tests-execution.dir" value="tests-execution"/>
 	<property name="tests-data.dir" value="tests-data"/>
+	<property name="tests.name" value="test-rule-"/>
 	<property name="jslint.dir" value="jslint"/>
 	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
@@ -74,7 +75,7 @@
 	<target name="test" depends="deploy" description="It tests with casperjs all the rules.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
-			<arg line="casperjs test ${tests.dir}/ --url=http://localhost:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+			<arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://localhost:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
 		</exec>
 	</target>
 </project>
