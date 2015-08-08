@@ -4,7 +4,6 @@
 <project name="DCAT-AP validator" default="main" basedir=".">
 
 	<property name="pages.dir" value="Pages"/>
-	<property name="dcat.js" value="dcat-ap_validator.js"/>
 	<property name="rules.dir" value="rules"/>
 	<property name="sparql-doc.dir" value="doc"/>
 	<property name="tests.dir" value="tests"/>
@@ -27,7 +26,7 @@
 		<jslint haltOnFailure="false" options="sloppy">
 			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-			<fileset dir="." includes="${pages.dir}/${dcat.js}"/>
+			<fileset dir="." includes="${pages.dir}/dcat-ap_validator.js"/>
 			<fileset dir="${tests.dir}" includes="*.js"/>
 		</jslint>
 	</target>
@@ -56,14 +55,7 @@
 		</exec>
 	</target>
 
-	<target name="replace" description="It replaces variables in dcat-ap_validator.js.">
-		<replace file="${pages.dir}/${dcat.js}" token="@port@" value="${fuseki.port}"/>
-		<replace file="${pages.dir}/${dcat.js}" token="@host@" value="${fuseki.host}"/>
-		<replace file="${pages.dir}/${dcat.js}" token="@dataset@" value="${fuseki.endpoint}"/>
-		<replace file="${pages.dir}/${dcat.js}" token="@page@" value="${fuseki.page}"/>
-	</target>
-
-	<target name="deploy" depends="replace" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
+	<target name="deploy" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
 		<copy todir="${fuseki-pages.dir}">
 			<fileset dir="${pages.dir}"/>
 		</copy>
@@ -84,7 +76,7 @@
 	<target name="test" description="It tests with casperjs all the rules.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
-			<arg line="casperjs --web-security=false test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+			<arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
 		</exec>
 	</target>
 </project>

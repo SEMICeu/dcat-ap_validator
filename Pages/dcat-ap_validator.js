@@ -4,12 +4,7 @@
  */
 
 // Global variables
-var ant_token_host = "@host@";
-var ant_token_port = "@port@";
-var ant_token_dataset = "@dataset@";
-var ant_token_page = "@page@";
-
-var host, port, dataset, page, endpoint, page_url, action;
+var endpoint;
 
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 
@@ -138,56 +133,6 @@ function setQuery() {
     query = getQuery("dcat-ap.rq");
     id = "validationquery";
     document.getElementById(id).innerHTML = query;
-}
-
-/**
- * Set fields in the instructions of html page
- */
-function setFields() {
-if (ant_token_host.startsWith("@")) {
-    host = "localhost";
-} else {
-    host = ant_token_host;
-}
-if (ant_token_port.startsWith("@")) {
-    port = "3030";
-} else {
-    port = ant_token_port;
-}
-
-if (ant_token_dataset.startsWith("@")) {
-    dataset = "dcat-ap_validator";
-} else {
-    dataset = ant_token_dataset;
-}
-
-if (ant_token_page.startsWith("@")) {
-    page = "dcat-ap_validator.html";
-} else {
-    page = ant_token_page;
-}
-//var endpoint;
-endpoint = "http://" + host + ":" + port + "/" + dataset;
-page_url = "http://" + host + ":" + port + "/" + page;
-action = "/" + dataset + "/query";
-
-    document.getElementById("ii-page").innerHTML = page;
-    document.getElementById("ii-zip").innerHTML = dataset;
-    document.getElementById("ug-port").innerHTML = port;
-    document.getElementById("ug-dataset").innerHTML = dataset;
-    document.getElementById("ug-hyperlink").innerHTML = page_url;
-    document.getElementById("ug-hyperlink").href = page_url;
-    document.getElementById("endpoint").value = endpoint;
-    document.getElementById("validator-form").action = action;
-	console.log("port:"+port);
-}
-
-/**
- * Set all fields in the html page
- */
-function setData() {
-    setQuery();
-    setFields();
 }
 
 /**
