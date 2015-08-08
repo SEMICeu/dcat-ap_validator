@@ -9,33 +9,7 @@ var ant_token_port = "@port@";
 var ant_token_dataset = "@dataset@";
 var ant_token_page = "@page@";
 
-var host, port, dataset, page;
-if (ant_token_host.startsWith("@")) {
-    host = "localhost";
-} else {
-    host = ant_token_host;
-}
-if (ant_token_port.startsWith("@")) {
-    port = "3030";
-} else {
-    port = ant_token_port;
-}
-
-if (ant_token_dataset.startsWith("@")) {
-    dataset = "dcat-ap_validator";
-} else {
-    dataset = ant_token_dataset;
-}
-
-if (ant_token_page.startsWith("@")) {
-    page = "dcat-ap_validator.html";
-} else {
-    page = ant_token_page;
-}
-//var endpoint;
-var endpoint = "http://" + host + ":" + port + "/" + dataset;
-var page_url = "http://" + host + ":" + port + "/" + page;
-var action = "/" + dataset + "/query";
+var host, port, dataset, page, endpoint, page_url, action;
 
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 
@@ -170,6 +144,34 @@ function setQuery() {
  * Set fields in the instructions of html page
  */
 function setFields() {
+var host, port, dataset, page;
+if (ant_token_host.startsWith("@")) {
+    host = "localhost";
+} else {
+    host = ant_token_host;
+}
+if (ant_token_port.startsWith("@")) {
+    port = "3030";
+} else {
+    port = ant_token_port;
+}
+
+if (ant_token_dataset.startsWith("@")) {
+    dataset = "dcat-ap_validator";
+} else {
+    dataset = ant_token_dataset;
+}
+
+if (ant_token_page.startsWith("@")) {
+    page = "dcat-ap_validator.html";
+} else {
+    page = ant_token_page;
+}
+//var endpoint;
+var endpoint = "http://" + host + ":" + port + "/" + dataset;
+var page_url = "http://" + host + ":" + port + "/" + page;
+var action = "/" + dataset + "/query";
+
     document.getElementById("ii-page").innerHTML = page;
     document.getElementById("ug-port").innerHTML = port;
     document.getElementById("ug-dataset").innerHTML = dataset;
