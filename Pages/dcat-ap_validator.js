@@ -5,7 +5,6 @@
 
 // Global variables
 var endpoint;
-
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 
 /**
