@@ -20,7 +20,7 @@ Therefore, for example, the test data related to the rule 0 is stored in the fil
 Not all the test data are implemented, for example literals are not tested.
 
 <h2>Structure of a test</h2>
-A test exists only if the test-data has been created. The test file follow the convention:
+A test exists only if the test-data has been created. A test file follows the convention:
 <code>test-rule-id.js</code>
 Therefore, for example, the test which will validate again the test-rule-0.rdf will be called simply test-rule-0.js
 This is important because each test includes the rule number to open the related test data file.
