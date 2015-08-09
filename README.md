@@ -19,9 +19,9 @@ Each rule is indicated with a progressive id number (starting from 0) and stored
 
 Therefore, for example, the rule 0 is stored in the file rule-0.rq.
 
-Each rule it is a SPARQL query which has been documented with <a href="https://github.com/ldodds/sparql-doc">sparql-doc</a> annotations and validated with the <a href="http://www.sparql.org/query-validator.html">online sparql validator</a>.
+Each rule is a SPARQL query which has been documented with <a href="https://github.com/ldodds/sparql-doc">sparql-doc</a> annotations and validated with the <a href="http://www.sparql.org/query-validator.html">online sparql validator</a>.
 
-When a rule is validated it is added to the dcat-ap.rq file (locates inside the Pages folder) which is then loaded into the the web form. 
+When a rule is validated it is added to the dcat-ap.rq file (locates inside the Pages folder) which is then loaded into the the web form via the dcat-ap_validator.js file.
 
 <h2>Structure of a test data</h2>
 Each test data is directly connected to the rule id number and stored in a file named with the convention:
