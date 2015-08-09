@@ -1,13 +1,31 @@
 # dcat-ap_validator
 
 This software performs the validation of DCAT-AP rdf files.
-Validation is performed through a SPARQL query loaded via Javascript.
-The SPARQL query contains several rules which are based on those available here:
+Validation is performed via a form which loads a rdf/xml as graph in the triplestore and queries the triple store with a SPARQL query. The SPARQL query contains several rules which are based on those available here:
 https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
+
+All the rules are stored in the <b>rules</b> folder. For almost each rule a test and a test data have been created. Tests are located in <b>tests</b> folder and they are javascript files based on <a href="http://casperjs.org/">casperjs</a>, test data are located in <b>tests-data</b> folder and they are xml/rdf files to be tested against.
+
+<h2>Structure of a rule</h2>
+Each rule is indicated with a progressive id number (starting from 0) and stored in a file named with the convention:
+<code>rule-id.rq</code>
+Therefore, for example, the rule 0 is stored in the file rule-0.rq.
 
 Each rule has been documented with <a href="https://github.com/ldodds/sparql-doc">sparql-doc</a> annotations and validated with the <a href="http://www.sparql.org/query-validator.html">sparql validator</a>.
 
-All the rules are stored in the <b>rules</b> folder. For almost each rule a test and a test data have been created. Tests are located in tests folder and they are based on casperjs, test data are locate in tests-data folder and they are xml/rdf files to be tested against. 
+<h2>Structure of a test data</h2>
+Each test data is directly connected to the rule id number and stored in a file named with the convention:
+<code>test-rule-id.rdf</code>
+Therefore, for example, the test data related to the rule 0 is stored in the file test-rule-0.rdf
+Not all the test data are implemented, for example literals are not tested.
+
+<h2>Structure of a test</h2>
+A test exists only if the test-data has been created. The test file follow the convention:
+<code>test-rule-id.js</code>
+Therefore, for example, the test which will validate again the test-rule-0.rdf will be called simply test-rule-0.js
+This is important because each test includes the rule number to open the related test data file.
+
+
 
 <h2>Installation instructions</h2>
 The validator is an HTML page, containing a single <a href="http://www.w3.org/TR/sparql11-query/">SPARQL</a> SELECT query to implement the validation logic and a few lines of JavaScript to call the triple store. To execute the SPARQL script it requires an instance of <a href="http://jena.apache.org/documentation/serving_data/index.html">Fuseki</a>. You can easily run Fuseki as a local instance.</p>
@@ -36,3 +54,4 @@ The development process is based on:
 <li><a href="https://jenkins-ci.org/">Jenkins</a> 1.6.2.1 to automate the launch of Ant, sparql-doc, Jslint and get the code from Github, Jenkins has been installed with the Violation plugin to monitor the JSLint error in the Javascript </li>
 <li><a href="https://casperjs.org">casperjs</a> 1.1 beta</li>
 </ol>
+
