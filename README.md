@@ -3,7 +3,7 @@
 This software performs the validation of <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/description">DCAT-AP</a> rdf files.
 Validation is performed via a web form which loads a rdf/xml as graph in a triplestore and it queries the triple store with a SPARQL query.
 
-The validator is located in the <b>pages<b> folder and it is based on the dcat-ap_validator.html file which loads the dcat-ap_validator.js Javascript file responsible for loading the SPARQL query and contacting the triplestore (<a href="http://jena.apache.org/documentation/serving_data/">Fuseki</a>). 
+The validator is located in the <b>pages</b> folder and it is based on the dcat-ap_validator.html file which loads the dcat-ap_validator.js Javascript file responsible for loading the SPARQL query and contacting the triplestore (<a href="http://jena.apache.org/documentation/serving_data/">Fuseki</a>). 
 
 The SPARQL query contains several rules which are based on those available here:
 https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
