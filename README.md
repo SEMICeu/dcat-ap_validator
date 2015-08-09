@@ -8,7 +8,7 @@ The validator is located in the <b>pages</b> folder and it is based on the dcat-
 The SPARQL query contains several rules which are based on those available here:
 https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
 
-All the rules are stored in the <b>rules</b> folder. For almost each rule a test and a test data have been created. Tests are located in <b>tests</b> folder and they are javascript files based on <a href="http://casperjs.org/">casperjs</a>, test data are located in <b>tests-data</b> folder and they are xml/rdf files to be tested against.
+All the rules are stored in the <b>rules</b> folder. For almost each rule a test and a test data have been created. Tests are located in <b>tests</b> folder and they are Javascript files, test data are located in <b>tests-data</b> folder and they are xml/rdf files to be tested against.
 
 All the tools used for the development of the validator are stored in the <b>tools</b> folder.
 
@@ -50,7 +50,9 @@ This is important because each test uses the rule number to open the related tes
 <h2>User guide</h2>
 <ol>
 <li>Launch Fuseki using the command in 'dcat-ap_validator_launchfuseki.cmd':
-<code>java -jar fuseki-server.jar --update --port=3030 --mem /dcat-ap_validator</code></li>
+
+<code>java -jar fuseki-server.jar --update --port=3030 --mem /dcat-ap_validator</code>
+</li>
 <li>Direct your browser to <a href="http://localhost:3030/dcat-ap_validator.html">http://localhost:3030/dcat-ap_validator.html</a></li>
 <li>You get this page from Fuseki's internal web server.</li>
 <li>Select one or more RDF files that contain the software metadata to validate. Optionally, also controlled vocabularies can be incldued to verify correct usage of them.</li>
@@ -60,16 +62,16 @@ This is important because each test uses the rule number to open the related tes
 <h2>Development</h2>
 The development process is based on:
 <ol>
-<li><a href="http://ant.apache.org/">Ant</a>, which executes the build.xml</li>
+<li><a href="http://ant.apache.org/">Ant</a> 1.9.6, which executes the build.xml to automate all the development process</li>
 <li><a href="https://github.com/ldodds/sparql-doc">sparql-doc</a> 0.0.4 which generates HTML documentation based on rules (SPARQL queries). Sparql-doc is installed on Windows machine after <a href="http://railsinstaller.org/en">Railsinstaller</a> 2.2.5 for Ruby 1.9 (required by sparql-doc) with the command:<code>gem install sparql-doc</code></li>
 <li><a href="https://code.google.com/p/jslint4java/">jslint4java</a> 2.0.5 which validates the javascript used by the validator accordingly to JSLint rules.</li>
 <li><a href="https://jenkins-ci.org/">Jenkins</a> 1.6.2.1 to automate the launch of Ant, sparql-doc, Jslint and get the code from Github. Jenkins has been installed with:
 <ol>
 <li>the Github plugin, to download the code from GitHub</li>
-<li>the Violation plugin, to monitor the JSLint errors in the dcat-ap_validator.js and in the tests files.<li>
+<li>the Violation plugin, to monitor the JSLint errors in the dcat-ap_validator.js and in the tests files.</li>
 <li>the Xunit plugin to monitor the result of the test execution</li>
 </ol>
 </li>
-<li><a href="https://casperjs.org">casperjs</a> 1.1 beta</li> to execute all the tests and verify the 
+<li><a href="https://casperjs.org">casperjs</a> 1.1 beta</li> to execute all the tests. 
 </ol>
 
