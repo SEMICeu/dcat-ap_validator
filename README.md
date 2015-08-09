@@ -1,6 +1,6 @@
 # dcat-ap_validator
 
-This software performs the validation of <a hred="https://joinup.ec.europa.eu/asset/dcat_application_profile/description">DCAT-AP</a> rdf files.
+This software performs the validation of <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/description">DCAT-AP</a> rdf files.
 Validation is performed via a web form which loads a rdf/xml as graph in the triplestore and queries the triple store with a SPARQL query. The SPARQL query contains several rules which are based on those available here:
 https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
 
