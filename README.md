@@ -8,22 +8,28 @@ All the rules are stored in the <b>rules</b> folder. For almost each rule a test
 
 <h2>Structure of a rule</h2>
 Each rule is indicated with a progressive id number (starting from 0) and stored in a file named with the convention:
+
 <code>rule-id.rq</code>
+
 Therefore, for example, the rule 0 is stored in the file rule-0.rq.
 
 Each rule it is a SPARQL query which has been documented with <a href="https://github.com/ldodds/sparql-doc">sparql-doc</a> annotations and validated with the <a href="http://www.sparql.org/query-validator.html">online sparql validator</a>.
 
-When a query is validated it is added to the dcat-ap.rq file (inside the Pages folder) which is then loaded via Javascript into the the web form. 
+When a rule is validated it is added to the dcat-ap.rq file (inside the Pages folder) which is then loaded via Javascript into the the web form. 
 
 <h2>Structure of a test data</h2>
 Each test data is directly connected to the rule id number and stored in a file named with the convention:
+
 <code>test-rule-id.rdf</code>
+
 Therefore, for example, the test data related to the rule 0 is stored in the file test-rule-0.rdf
 Not all the test data are implemented, for example literals are not tested.
 
 <h2>Structure of a test</h2>
 A test exists only if the test-data has been created. A test file follows the convention:
+
 <code>test-rule-id.js</code>
+
 Therefore, for example, the test which will validate again the test-rule-0.rdf will be called simply test-rule-0.js
 This is important because each test includes the rule number to open the related test data file.
 
