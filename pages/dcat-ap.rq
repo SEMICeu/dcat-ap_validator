@@ -1068,4 +1068,21 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?s) > 1)
   }
+
+UNION
+# Rule_ID:70
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:spatial ?o.
+     FILTER(!isURI(?o)).
+     BIND (dct:spatial AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (70 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:spatial should be resource." AS ?Rule_Description).
+     BIND (concat("The dct:spatial ",str(?p)," is not a resource.") AS ?Message).
+   }
+  }
+
 }
