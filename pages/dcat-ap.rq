@@ -1023,7 +1023,7 @@ UNION
      BIND (66 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:identifier should be a literal." AS ?Rule_Description).
-     BIND (concat("The adms:identifier ",str(?p)," is not a literal") AS ?Message).
+     BIND (concat("The adms:identifier ",str(?p)," is not a literal.") AS ?Message).
    }
   }
 
@@ -1039,7 +1039,33 @@ UNION
      BIND (67 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:identifier should be a adms:Identifier." AS ?Rule_Description).
-     BIND (concat("The adms:identifier ",str(?p)," is not a adms:Identifier") AS ?Message).
+     BIND (concat("The adms:identifier ",str(?p)," is not a adms:Identifier.") AS ?Message).
    }
+  }
+
+UNION
+# Rule_ID:68
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:issued ?o.
+     FILTER(!isLiteral(?o)).
+     BIND(dct:issued AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (68 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:issued should be literal." AS ?Rule_Description).
+     BIND (concat("The dct:issued ",str(?p)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:69
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (69 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:issued.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:issued ?issued.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
   }
 }
