@@ -77,13 +77,13 @@ The development process is based on:
 </li>
 <li><a href="https://casperjs.org">casperjs</a> 1.1 beta to execute all the tests.</li> 
 </ol>
-<h2>TO DO></h2>
+<h2>TO DO</h2>
 <table>
-<tr><th>Action</th><th>Priority</th></tr>
-<tr><td>Check all the rules from the 1st source and verify with the 2nd source</td><td>High</td></tr>
-<tr><td>Improve quality of the tests: more asserts, jsdoc, parametrize comments</td><td>Medium</td></tr>
-<tr><td>Homogenize css between build.css, dcat-ap_validator.html css and results css</td><td>Low</td>
-<tr><td>Improve form web interface (like W3C validator)</td><td>Low</td></tr>
-<tr><td>Improve results web interface (datatable)</td><td>Low</td></tr>
-<tr><td> Add jsdoc and jsmin to the development process</td><td>Low</td></tr>
+<tr><th>Action</th><th>Priority</th><th>Status>/th></tr>
+<tr><td>Check all the rules from the 1st source and verify with the 2nd source</td><td>High</td><td>22 rules missing for dataset, 18 for distribution, verification:0%</td></tr>
+<tr><td>Improve quality of the tests: more asserts, jsdoc, parametrize comments</td><td>Medium</td><td>Not done</td></tr>
+<tr><td>Homogenize css between build.css, dcat-ap_validator.html css and results css</td><td>Low</td><td>Not done</td></tr>
+<tr><td>Improve form web interface (like W3C validator)</td><td>Low</td><td>Not done</td></tr>
+<tr><td>Improve results web interface (datatable)</td><td>Low</td><td>Not done</td></tr>
+<tr><td> Add jsdoc and jsmin to the development process</td><td>Low</td><td>Not done</td></tr>
 </table>
