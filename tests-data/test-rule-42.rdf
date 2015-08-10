@@ -32,7 +32,7 @@
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
     <dct:title xml:lang="en">Linked Nobel prizes</dct:title>
     <dct:description>This dataset contains Nobel prizes, Nobel laureates and information about related media resources. </dct:description>
-    <adms:contactPoint>Nobel</admc:contactPoint>
+    <adms:contactPoint>Nobel</adms:contactPoint>
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
     <dcat:keyword>science</dcat:keyword>
