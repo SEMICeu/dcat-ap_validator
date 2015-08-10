@@ -3,7 +3,7 @@
 
 <project name="DCAT-AP validator" default="main" basedir=".">
 
-	<property name="pages.dir" value="Pages"/>
+	<property name="pages.dir" value="pages"/>
 	<property name="rules.dir" value="rules"/>
 	<property name="sparql-doc.dir" value="doc"/>
 	<property name="tests.dir" value="tests"/>
