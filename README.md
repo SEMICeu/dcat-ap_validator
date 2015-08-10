@@ -8,6 +8,9 @@ The validator is located in the <b>pages</b> folder and it is based on the dcat-
 The SPARQL query contains several rules which are based on those available here:
 https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
 
+And they should be verified with:
+https://github.com/tenforce/ods-lodms-plugins/blob/master/lodms-ods-transformers/ods-validator/src/main/resources/com/tenforce/lodms/transformers/default_rules.xml
+
 All the rules are stored in the <b>rules</b> folder. For almost each rule a test and a test data have been created. Tests are located in <b>tests</b> folder and they are Javascript files, test data are located in <b>tests-data</b> folder and they are xml/rdf files to be tested against.
 
 All the tools used for the development of the validator are stored in the <b>tools</b> folder.
@@ -74,4 +77,13 @@ The development process is based on:
 </li>
 <li><a href="https://casperjs.org">casperjs</a> 1.1 beta to execute all the tests.</li> 
 </ol>
-
+<h2>TO DO></h2>
+<table>
+<tr><th>Action</th><th>Priority</th></tr>
+<tr><td>Check all the rules from the 1st source and verify with the 2nd source</td><td>High</td></tr>
+<tr><td>Improve quality of the tests: more asserts, jsdoc, parametrize comments</td><td>Medium</td></tr>
+<tr><td>Homogenize css between build.css, dcat-ap_validator.html css and results css</td><td>Low</td>
+<tr><td>Improve form web interface (like W3C validator)</td><td>Low</td></tr>
+<tr><td>Improve results web interface (datatable)</td><td>Low</td></tr>
+<tr><td> Add jsdoc and jsmin to the development process</td><td>Low</td></tr>
+</table>
