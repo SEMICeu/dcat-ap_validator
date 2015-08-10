@@ -5,7 +5,7 @@
 
 	<property name="pages.dir" value="pages"/>
 	<property name="rules.dir" value="rules"/>
-	<property name="sparql-doc.dir" value="doc"/>
+	<property name="sparql-doc.dir" value="sparql-doc"/>
 	<property name="tests.dir" value="tests"/>
 	<property name="tests-execution.dir" value="tests-execution"/>
 	<property name="tests-data.dir" value="tests-data"/>

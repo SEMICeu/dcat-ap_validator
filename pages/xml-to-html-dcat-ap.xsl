@@ -132,7 +132,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
   <xsl:template match="res:binding[@name='Rule_ID']">
 	<!-- datatyped literal value -->
 	<xsl:variable name="x"><xsl:value-of select="."/></xsl:variable>
-	<xsl:variable name="rule_link">../doc/rule-<xsl:value-of select="normalize-space($x)"/>.html</xsl:variable>
+	<xsl:variable name="rule_link">../sparql-doc/rule-<xsl:value-of select="normalize-space($x)"/>.html</xsl:variable>
 	<a href="{$rule_link}"><xsl:value-of select="."/></a>
   </xsl:template>
 
