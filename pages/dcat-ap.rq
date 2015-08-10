@@ -176,7 +176,7 @@ UNION
      BIND (10 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:publisher should be a resource." AS ?Rule_Description).
-    BIND (concat("The dct:publisher ",str(?p)," is not a resource.") AS ?Message).
+    BIND (concat("The dct:publisher ",str(?o)," is not a resource.") AS ?Message).
   }
   }
 
@@ -1082,7 +1082,7 @@ UNION
      BIND (70 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:spatial should be resource." AS ?Rule_Description).
-     BIND (concat("The dct:spatial ",str(?p)," is not a resource.") AS ?Message).
+     BIND (concat("The dct:spatial ",str(?o)," is not a resource.") AS ?Message).
    }
   }
 
