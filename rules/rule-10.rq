@@ -11,9 +11,10 @@ WHERE {
   ?s a dcat:Catalog.
   ?s dct:publisher ?o.
   FILTER(!isURI(?o)).
+  BIND (dct:publisher AS ?p).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (10 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:publisher should be a resource." AS ?Rule_Description).
-  BIND (concat("The dcat:Catalog ",str(?s)," should have the dct:publisher as rdf:resource.") AS ?Message).
+  BIND (concat("The dct:publisher ",str(?p)," is not a resource.") AS ?Message).
 }
