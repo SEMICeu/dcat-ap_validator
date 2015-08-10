@@ -296,7 +296,7 @@ UNION
      BIND (18 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:language is a recommended property for Catalog." AS ?Rule_Description).
-     BIND (concat("The dct:language ",str(?o)," is not a property of Catalog.") AS ?Message).
+     BIND (concat("The dcat:Catalog ",str(?s)," does not have the property dct:language.") AS ?Message).
    }
   }
 
