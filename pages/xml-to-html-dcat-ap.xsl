@@ -174,7 +174,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		h1 {color: white; background-color:#002060}
 		header#branding {background-color: #002060;min-height:70px;width:100%;display:table;}
 		header#branding img {float:left;}
-		header#branding h1 {display:table-cell;vertical-align:middle;background: ##002060;} 
+		header#branding h1 {display:table-cell;vertical-align:middle;background: #002060;} 
 		</style>
       </head>
       <body>
