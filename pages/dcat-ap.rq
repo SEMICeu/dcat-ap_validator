@@ -651,7 +651,7 @@ UNION
    WHERE {
      ?s a dcat:Dataset.
      ?s adms:contactPoint ?o.
-     FILTER(!isUri(?o)).
+     FILTER(!isURI(?o)).
      BIND (adms:contactPoint AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (42 AS ?Rule_ID).
