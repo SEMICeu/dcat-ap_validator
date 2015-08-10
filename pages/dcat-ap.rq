@@ -953,4 +953,13 @@ UNION
    }
   }
 
+UNION
+# Rule_ID:62
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (62 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dcat:landingPage has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dcat:landingPage.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:landingPage ?page.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
 }
