@@ -13,7 +13,7 @@
     <dct:description>A range of datasets maintained by Nobel Media AB </dct:description>
     <dcat:themeTaxonomy rdf:resource="http://eurovoc.europa.eu/"/>
     <dcat:dataset rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
-	<dct:publisher rdf:nodeID="_n0"/>
+	<dct:publisher>European Commission</dct:publisher>
     <dct:issued>2014-09-25</dct:issued>
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
     <dct:modified>2014-09-25</dct:modified>
