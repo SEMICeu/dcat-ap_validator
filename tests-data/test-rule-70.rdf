@@ -40,7 +40,6 @@
     <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
-    <dct:issued>2014-01-17</dct:issued>
     <dct:modified>2014-08-27</dct:modified>
     <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/ENG"/>
     <dcat:landingPage rdf:resource="http://data.nobelprize.org/"/>
