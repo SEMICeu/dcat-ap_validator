@@ -83,6 +83,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://sws.geonames.org/2673730">
     <rdfs:label>Stockholm</rdfs:label>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/publisher/n0">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
@@ -93,8 +94,4 @@
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
-    <rdf:Description rdf:resource="http://sws.geonames.org/2673730"/>
-	 <dct:type rdf:resource="http://purl.org/dc/terms/Location"/>
-	 <rdfs:label>"Belgium"@en</rdfs:label>
-    </rdf:Description>
 </rdf:RDF>
