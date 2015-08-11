@@ -176,6 +176,14 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		header#branding img {float:left;}
 		header#branding h1 {display:table-cell;vertical-align:middle;background: #002060;} 
 		</style>
+		<!-- DataTables CSS -->
+		<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css" />
+		  
+		<!-- jQuery -->
+		<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.js"></script>
+		  
+		<!-- DataTables -->
+		<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
       </head>
       <body>
 	  <header id="branding">
