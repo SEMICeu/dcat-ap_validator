@@ -31,7 +31,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 
 
   <xsl:output
-   method="xml" 
+   method="html" 
    indent="yes"
    encoding="UTF-8" 
    doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
