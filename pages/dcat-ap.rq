@@ -1114,7 +1114,7 @@ UNION
      BIND (72 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:temporal should be a dct:PeriodOfTime." AS ?Rule_Description).
-     BIND (concat("The dct:temporal ",str(?o)," is not a dct:PeriodOfTime.") AS ?Message).
+     BIND (concat("dcat:Dataset ",str(?s)," does not have a dct:temporal of type dct:PeriodOfTime.") AS ?Message).
    }
   }
 
