@@ -77,7 +77,7 @@
     <dct:format>application/sparql-query</dct:format>
   </rdf:Description>
   <rdf:Description rdf:nodeID="_n3">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTim"/>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1905-03-01</schema:startDate>
     <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-01-05</schema:endDate>
   </rdf:Description>

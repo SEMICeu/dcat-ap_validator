@@ -1108,13 +1108,14 @@ UNION
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:temporal ?o.
-     FILTER(!isURI(?o)).
-     BIND (dct:temporal AS ?p).
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dct:PeriodOfTime}).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (72 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:temporal should be resource." AS ?Rule_Description).
-     BIND (concat("The dct:temporal ",str(?o)," is not a resource.") AS ?Message).
+     BIND ("dct:temporal should be a dct:PeriodOfTime." AS ?Rule_Description).
+     BIND (concat("The dct:temporal ",str(?o)," is not a dct:PeriodOfTime.") AS ?Message).
    }
   }
+
 }
