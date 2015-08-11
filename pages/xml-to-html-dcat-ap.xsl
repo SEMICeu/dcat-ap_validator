@@ -58,7 +58,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 
   <xsl:template name="vb-result">
     <div>
-      <table id="results" style="table-layout:fixed;width:100%;word-wrap:break-word">
+      <table id="results" class="display" style="table-layout:fixed;width:100%;word-wrap:break-word">
 	<xsl:text>
 	</xsl:text>
 	<thead>
@@ -161,29 +161,19 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
       <head>
 	    <title>DCAT-AP Validator: SPARQL Query Result</title> 
 		<style>
-	  <![CDATA[
-	  h1 { font-size: 150% ; }
-	  h2 { font-size: 125% ; }
-	  table { border-collapse: collapse ; border: 1px solid black ; }
-	  td, th
- 	  { border: 1px solid black ;
-	    padding-left:0.5em; padding-right: 0.5em; 
-	    padding-top:0.2ex ; padding-bottom:0.2ex 
-	  }
-	  ]]>
 		body {font-family:sans-serif} 
 		h1 {color: white; background-color:#002060}
 		header#branding {background-color: #002060;min-height:70px;width:100%;display:table;}
 		header#branding img {float:left;}
 		header#branding h1 {display:table-cell;vertical-align:middle;background: #002060;}
-		#Rule_Origin{width:7%}
-		#Rule_ID{width:5%}
-		#Rule_Severity{width:7.8%}
-		#Rule_Description{width:9.5%}
-		#Message{width:20%
-		#s{width:16.9%}
-		#p{width:16.9%}
-		#o{width:16.9%}
+		#Rule_Origin{width:8.9%}
+		#Rule_ID{width:6.3%}
+		#Rule_Severity{width:9.9%}
+		#Rule_Description{width:12%}
+		#Message{width:17%}
+		#s{width:15.3%}
+		#p{width:15.3%}
+		#o{width:15.3%}
 		
 		</style>
 		<!-- DataTables CSS -->
