@@ -115,7 +115,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="."/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="."/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
     -->
      <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="$x"/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="$x"/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
-    <a href="?query={$query}&amp;output=xml&amp;stylesheet=%2Fxml-to-html-admssw.xsl">
+    <a href="?query={$query}&amp;output=xml&amp;stylesheet=%2Fxml-to-html-dcat-ap.xsl">
     <xsl:value-of select="."/>
     </a>
   </xsl:template>
@@ -174,7 +174,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		#s{width:15.3%}
 		#p{width:15.3%}
 		#o{width:15.3%}
-		
+		table {border-collapse: collapse ; border: 1px solid rgba(128, 128, 128, 0.32) ; }
+	    td, th {border: 1px solid rgba(128, 128, 128, 0.32); padding-left:0.5em; padding-right: 0.5em; padding-top:0.2ex ; padding-bottom:0.2ex}
 		</style>
 		<!-- DataTables CSS -->
 		<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css" />
