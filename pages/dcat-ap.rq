@@ -1104,7 +1104,7 @@ UNION
 
 UNION
 # Rule_ID:72
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:temporal as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:temporal ?o.
