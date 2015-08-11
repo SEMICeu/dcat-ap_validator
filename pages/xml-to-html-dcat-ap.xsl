@@ -176,6 +176,14 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		header#branding {background-color: #002060;min-height:70px;width:100%;display:table;}
 		header#branding img {float:left;}
 		header#branding h1 {display:table-cell;vertical-align:middle;background: #002060;}
+		#Rule_Origin{width:7%}
+		#Rule_ID{width:5%}
+		#Rule_Severity{width:7.8%}
+		#Rule_Description{width:9.5%}
+		#Message{width:20%
+		#s{width:16.9%}
+		#p{width:16.9%}
+		#o{width:16.9%}
 		
 		</style>
 		<!-- DataTables CSS -->
