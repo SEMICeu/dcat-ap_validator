@@ -58,13 +58,14 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 
   <xsl:template name="vb-result">
     <div>
-      <table id="results">
+      <table id="results" style="table-layout:fixed;width:100%;word-wrap:break-word">
 	<xsl:text>
 	</xsl:text>
 	<thead>
 	<tr>
 	  <xsl:for-each select="res:head/res:variable">
-	    <th><xsl:value-of select="@name"/></th>
+	    <xsl:variable name="x"><xsl:value-of select="@name"/></xsl:variable>
+	    <th id="{$x}"><xsl:value-of select="@name"/></th>
 	  </xsl:for-each>
 	</tr>
 	</thead>
@@ -174,7 +175,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		h1 {color: white; background-color:#002060}
 		header#branding {background-color: #002060;min-height:70px;width:100%;display:table;}
 		header#branding img {float:left;}
-		header#branding h1 {display:table-cell;vertical-align:middle;background: #002060;} 
+		header#branding h1 {display:table-cell;vertical-align:middle;background: #002060;}
+		
 		</style>
 		<!-- DataTables CSS -->
 		<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css" />
