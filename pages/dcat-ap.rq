@@ -1097,8 +1097,8 @@ UNION
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (71 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:spatial should be a dct:LinguisticSystem." AS ?Rule_Description).
-     BIND (concat("The dct:spatial ",str(?o)," dct:LinguisticSystem.") AS ?Message).
+     BIND ("dct:spatial should be a dct:Location." AS ?Rule_Description).
+     BIND (concat("The dct:spatial ",str(?o)," is not a dct:Location.") AS ?Message).
    }
   }
 }
