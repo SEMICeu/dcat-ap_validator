@@ -94,7 +94,7 @@
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
     <rdf:Description rdf:resource="http://sws.geonames.org/2673730"/>
-	 <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-	 <rdfs:label>"Belgium"@en</rdfs:label>;
+	 <dct:type rdf:resource="http://purl.org/dc/terms/Location"/>
+	 <rdfs:label>"Belgium"@en</rdfs:label>
     </rdf:Description>
 </rdf:RDF>
