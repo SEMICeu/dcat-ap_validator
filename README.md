@@ -86,6 +86,6 @@ The development process is based on:
 <tr><td>Improve quality of the tests: more asserts (test 11, 30, 43, 46, 52), jsdoc, parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Homogenize css between build.css, dcat-ap_validator.html css and results css</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Improve form web interface (like W3C validator)</td><td>Low</td><td>Not done</td></tr>
-<tr><td>Improve results web interface (datatable), implies better result data (rules and tests)</td><td>Low</td><td>Not done</td></tr>
+<tr><td>Improve results web interface (datatable)</td><td>Low</td><td>Done</td></tr>
 <tr><td>Add jsdoc and jsmin to the development process</td><td>Low</td><td>Not done</td></tr>
 </table>
