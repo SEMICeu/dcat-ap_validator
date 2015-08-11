@@ -207,11 +207,13 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		  
 		<!-- DataTables -->
 		<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+		<!--
 		<script>
 			$(document).ready( function () {
 				$('#results').DataTable();
 			} );
 		</script>
+	    -->
       </body>
     </html>
   </xsl:template>
