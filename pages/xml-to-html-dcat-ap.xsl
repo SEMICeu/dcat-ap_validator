@@ -219,8 +219,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 					$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
 				} );
 			 
-				// DataTable
-				var table = $('#results').DataTable({bFilter: false});
+				// DataTable, disabling search and ordering by severity
+				var table = $('#results').DataTable({bFilter: false, "order": [[ 2, "desc" ]]});
 			 
 				table.columns().every( function () {
 					var that = this;
