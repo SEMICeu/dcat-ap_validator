@@ -72,8 +72,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
     <tfoot>
 		<tr>
 			<xsl:for-each select="res:head/res:variable">
-				<xsl:variable name="x"><xsl:value-of select="@name"/></xsl:variable>
-				<th><input type="text" placeholder="Search {$x}"/></th>
+				<th><xsl:value-of select="@name"/></th>
 			</xsl:for-each>
 		</tr>
 	</tfoot>
@@ -219,26 +218,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		  
 		<!-- DataTables -->
 		<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
-
-		<script>
-			$(document).ready(function() {
-				//input are added in the xslt trasformation
-				// DataTable, ordering by severity
-				var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
-
-				table.columns().every( function () {
-					var that = this;
-					$( 'input', this.footer() ).on( 'keyup change', function () {
-						that.search( this.value ).draw();
-					} );
-				} );
-				
-				//align the first 3 column to the center
-				$('#results tbody td').each( function () {
-					if($(this).index() < 4) $(this).css('text-align', 'center');
-				} );
-			} );
-		</script>
+		<script type="text/javascript" charset="utf8" src="dcat-ap_validator-results.js"></script>
       </body>
     </html>
   </xsl:template>
