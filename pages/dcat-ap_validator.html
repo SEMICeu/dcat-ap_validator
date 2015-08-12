@@ -17,14 +17,15 @@
 			header#branding img{float:left}
 			header#branding h1{display:table-cell;vertical-align:middle;background:#002060}
 			#body{height:100%;padding:10px;padding-bottom:130px}
-			#stylized{border:solid 2px #b7ddf2;background:#ebf4fb;width:850px;}
+			#stylized{border:solid 2px #b7ddf2;background:#ebf4fb}
 			#stylized label{display:block;float:left;font-weight:700;text-align:right;width:250px}
 			#stylized .small{color:#666;display:block;font-size:11px;font-weight:400;text-align:right;width:250px}
 			#stylized input,textarea,select{margin:2px 0 20px 10px}
-			#stylized button{clear:both;margin-left:260px;width:125px;height:31px;text-align:center;font-size:12px;font-weight:700;color:#365D95}
-			footer{position:absolute;bottom:0;width:100%;height:110px}
+			#stylized input,textarea{width: 70.5%;}
+			#stylized button{clear:both;margin-left:50%;width:125px;height:31px;text-align:center;font-size:12px;font-weight:700;color:#365D95}
+			footer{position:absolute;bottom:0;height:110px;padding: 0 1em;}
+			footer a img{float:left;margin:0 15px 0 0;}
 			footer p{width:800px;float:left;margin:0 5px 0 0;color:#7C8395}
-			footer a img{float:right;margin:0 5px 0 0;}
 			#validator-form{margin-top:1em}
 		</style>
 	</head>
@@ -58,7 +59,7 @@
 						-->
 						<!--
 						-->
-						<textarea id="validationquery" name="query" cols="70" rows="6"></textarea>
+						<textarea id="validationquery" name="query" cols="80" rows="16"></textarea>
 						<br/>
 						<label>Output:</label> 
 						<select name="output">
@@ -78,14 +79,14 @@
 				</div>
 			</div>
 			<footer>
+				<a href="http://ec.europa.eu/isa/"><img src="/images/logo_isa.png" width="307" height="74" alt="Interoperability Solutions for European Public Administrations (ISA) Programme"/></a>
 				<p>
 					<small>The DCAT-AP validator is an initiative by the <a href="http://ec.europa.eu/isa/actions/index_en.htm">ISA Programme</a><br />
+					DCAT-AP validator: Copyright ©  European Union 2015. This validator is published under the <a href="https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11">ISA Open Metadata Licence v1.1</a><br/>
 					Authors: Emidio Stani<br/>
-					DCAT-AP validator: Copyright ©  European Union 2012. This validator is published under the <a href="https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11">ISA Open Metadata Licence v1.1</a><br/>
 					Apache Fuseki is a copyright © 2011-12 of the Apache Software Foundation, licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.<br/>
 					</small>
 				</p>
-				<a href="http://ec.europa.eu/isa/"><img src="/images/logo_isa.png" width="307" height="74" alt="Interoperability Solutions for European Public Administrations (ISA) Programme"/></a>
 			</footer>
 		</div>
 		<script type="text/javascript" src="dcat-ap_validator.js"></script>
