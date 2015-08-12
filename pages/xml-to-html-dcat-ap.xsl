@@ -72,7 +72,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
     <tfoot>
 		<tr>
 			<xsl:for-each select="res:head/res:variable">
-				<th><xsl:value-of select="@name"/></th>
+				<th></th>
 			</xsl:for-each>
 		</tr>
 	</tfoot>
