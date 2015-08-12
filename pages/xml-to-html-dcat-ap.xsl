@@ -222,7 +222,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 
 		<script>
 			$(document).ready(function() {
-
+				//input are added in the xslt trasformation
 				// DataTable, ordering by severity
 				var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
 
@@ -231,6 +231,11 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 					$( 'input', this.footer() ).on( 'keyup change', function () {
 						that.search( this.value ).draw();
 					} );
+				} );
+				
+				//align the first 3 column to the center
+				$('#results tbody td').each( function () {
+					if($(this).index() < 4) $(this).css('text-align', 'center');
 				} );
 			} );
 		</script>
