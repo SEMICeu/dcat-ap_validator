@@ -185,7 +185,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 			table{border-collapse:collapse;border:1px solid rgba(128,128,128,0.32)}
 			td,th{border:1px solid rgba(128,128,128,0.32);padding:.2ex .5em}
 			tfoot{display:table-header-group}
-			tfoot input{width:100%;padding:3px;box-sizing:border-box}
+			tfoot input{width:100%;padding:3px;box-sizing:border-box;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
 			#results_filter{display:none}
 		</style>
 		<!-- DataTables CSS -->
