@@ -220,7 +220,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 				} );
 			 
 				// DataTable, disabling search and ordering by severity
-				var table = $('#results').DataTable({bFilter: false, "order": [[ 2, "desc" ]]});
+				var table = $('#results').DataTable({bFilter: false, "order": [[ 2, "asc" ]]});
 			 
 				table.columns().every( function () {
 					var that = this;
