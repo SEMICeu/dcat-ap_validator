@@ -62,13 +62,20 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 	<xsl:text>
 	</xsl:text>
 	<thead>
-	<tr>
-	  <xsl:for-each select="res:head/res:variable">
-	    <xsl:variable name="x"><xsl:value-of select="@name"/></xsl:variable>
-	    <th id="{$x}"><xsl:value-of select="@name"/></th>
-	  </xsl:for-each>
-	</tr>
+		<tr>
+		  <xsl:for-each select="res:head/res:variable">
+			<xsl:variable name="x"><xsl:value-of select="@name"/></xsl:variable>
+			<th id="{$x}"><xsl:value-of select="@name"/></th>
+		  </xsl:for-each>
+		</tr>
 	</thead>
+    <tfoot>
+		<tr>
+		  <xsl:for-each select="res:head/res:variable">
+			<th><xsl:value-of select="@name"/></th>
+		  </xsl:for-each>
+		</tr>
+	</tfoot>
 	<xsl:text>
 	</xsl:text>
 	<tbody>
@@ -219,10 +226,10 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 					var title = $('#results thead th').eq( $(this).index() ).text();
 					$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
 				} );
-			 
+
 				// DataTable, ordering by severity
-				var table = $('#results').DataTable({"order": [[ 2, "asc" ]]});
-			 
+				var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
+
 				table.columns().every( function () {
 					var that = this;
 					$( 'input', this.footer() ).on( 'keyup change', function () {
