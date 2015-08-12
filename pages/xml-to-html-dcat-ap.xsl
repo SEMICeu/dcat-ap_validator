@@ -161,23 +161,24 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
       <head>
 	    <title>DCAT-AP Validator: SPARQL Query Result</title> 
 		<style>
-		body {font-family:sans-serif} 
-		h1 {color: white; background-color:#002060}
-		header#branding {background-color: #002060;min-height:70px;width:100%;display:table;}
-		header#branding img {float:left;}
-		header#branding h1 {display:table-cell;vertical-align:middle;background: #002060;}
-		#Rule_Origin{width:8.9%}
-		#Rule_ID{width:6.3%}
-		#Rule_Severity{width:9.9%}
-		#Rule_Description{width:12%}
-		#Message{width:17%}
-		#s{width:15.3%}
-		#p{width:15.3%}
-		#o{width:15.3%}
-		table {border-collapse: collapse ; border: 1px solid rgba(128, 128, 128, 0.32) ; }
-	    td, th {border: 1px solid rgba(128, 128, 128, 0.32); padding-left:0.5em; padding-right: 0.5em; padding-top:0.2ex ; padding-bottom:0.2ex}
-		tfoot {display: table-header-group;}
-		tfoot input {width: 100%; padding: 3px; box-sizing: border-box;}
+			body{font-family:sans-serif}
+			h1{color:#fff;background-color:#002060}
+			header#branding{background-color:#002060;min-height:70px;width:100%;display:table}
+			header#branding img{float:left}
+			header#branding h1{display:table-cell;vertical-align:middle;background:#002060}
+			#Rule_Origin{width:8.9%}
+			#Rule_ID{width:6.3%}
+			#Rule_Severity{width:9.9%}
+			#Rule_Description{width:12%}
+			#Message{width:17%}
+			#s{width:15.3%}
+			#p{width:15.3%}
+			#o{width:15.3%}
+			table{border-collapse:collapse;border:1px solid rgba(128,128,128,0.32)}
+			td,th{border:1px solid rgba(128,128,128,0.32);padding:.2ex .5em}
+			tfoot{display:table-header-group}
+			tfoot input{width:100%;padding:3px;box-sizing:border-box}
+			#results_filter{display:none}
 		</style>
 		<!-- DataTables CSS -->
 		<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css" />
@@ -219,8 +220,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 					$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
 				} );
 			 
-				// DataTable, disabling search and ordering by severity
-				var table = $('#results').DataTable({bFilter: false, "order": [[ 2, "asc" ]]});
+				// DataTable, ordering by severity
+				var table = $('#results').DataTable({"order": [[ 2, "asc" ]]});
 			 
 				table.columns().every( function () {
 					var that = this;
