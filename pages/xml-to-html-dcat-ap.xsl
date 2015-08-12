@@ -71,9 +71,10 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 	</thead>
     <tfoot>
 		<tr>
-		  <xsl:for-each select="res:head/res:variable">
-			<th><xsl:value-of select="@name"/></th>
-		  </xsl:for-each>
+			<xsl:for-each select="res:head/res:variable">
+				<xsl:variable name="x"><xsl:value-of select="@name"/></xsl:variable>
+				<th><input type="text" placeholder="Search {$x}"/></th>
+			</xsl:for-each>
 		</tr>
 	</tfoot>
 	<xsl:text>
@@ -221,11 +222,6 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 
 		<script>
 			$(document).ready(function() {
-				// Setup - add a text input to each footer cell
-				$('#results tfoot th').each( function () {
-					var title = $('#results thead th').eq( $(this).index() ).text();
-					$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-				} );
 
 				// DataTable, ordering by severity
 				var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
