@@ -17,16 +17,18 @@
 			header#branding img{float:left}
 			header#branding h1{display:table-cell;vertical-align:middle;background:#002060}
 			#body{height:100%;padding:10px;padding-bottom:130px}
-			#stylized{border:solid 2px #b7ddf2;background:#ebf4fb}
-			#stylized label{display:block;float:left;font-weight:700;text-align:right;width:250px}
+			#stylized{background:#EAEBEE}
+			#stylized label{display:block;float:left;font-weight:700;text-align:right;width:250px;color:#365D95}
 			#stylized .small{color:#666;display:block;font-size:11px;font-weight:400;text-align:right;width:250px}
-			#stylized input,textarea,select{margin:2px 0 20px 10px}
-			#stylized input,textarea{width: 70.5%;}
-			#stylized button{clear:both;margin-left:50%;width:125px;height:31px;text-align:center;font-size:12px;font-weight:700;color:#365D95}
-			footer{position:absolute;bottom:0;height:110px;padding: 0 1em;}
-			footer a img{float:left;margin:0 15px 0 0;}
-			footer p{width:800px;float:left;margin:0 5px 0 0;color:#7C8395}
-			#validator-form{margin-top:1em}
+			#stylized input,textarea,select{margin:2px 0 20px 20px}
+			#stylized input,textarea{width:45%;border:1px solid #bbb;border-top:1px solid #777;border-bottom:1px solid #ddd}
+			#metadatafile{background:#ffffff}
+			footer{position:absolute;bottom:0;height:110px;padding:0 1em}
+			footer a img{float:left;margin:0 15px 0 0}
+			footer p{float:left;margin:0 5px 0 0;color:#7C8395}
+			#validator-form{margin-top:1em;padding-top:10px}
+			#stylized button{clear:both;margin-left:43%;font-weight:700;border:0 outset buttonface;background:#F5F6F8;background-image:-webkit-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-moz-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-ms-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-o-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:linear-gradient(to bottom,#F5F6F8,#DBDCDE);-webkit-border-radius:28;-moz-border-radius:28;border-radius:28px;-webkit-box-shadow:0 1px 3px #666;-moz-box-shadow:0 1px 3px #666;box-shadow:0 1px 3px #666;font-family:Arial;color:#365D95;font-size:14px;padding:10px 40px;text-decoration:none}
+			#stylized button:hover{text-decoration:none;color:#000}
 		</style>
 	</head>
 	<body onload="setQuery();">
@@ -69,7 +71,6 @@
 							<option value="csv">CSV</option>
 							<option value="tsv">TSV</option>
 						</select>
-						<br/>
 						<br/>
 						<label>	</label> 
 						<button type="submit" id="validate">Validate</button>
