@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //align the first 3 column to the center (better before datatables otherwise the 2nd page is not aligned
     $('#results tbody td').each(function () {
-        if($(this).index() < 4) $(this).css('text-align', 'center');
+        if ($(this).index() < 4) {$(this).css('text-align', 'center');}
     } );
 
     // DataTable, ordering by severity
