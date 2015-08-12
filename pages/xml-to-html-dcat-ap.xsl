@@ -176,6 +176,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		#o{width:15.3%}
 		table {border-collapse: collapse ; border: 1px solid rgba(128, 128, 128, 0.32) ; }
 	    td, th {border: 1px solid rgba(128, 128, 128, 0.32); padding-left:0.5em; padding-right: 0.5em; padding-top:0.2ex ; padding-bottom:0.2ex}
+		tfoot {display: table-header-group;}
+		tfoot input {width: 100%; padding: 3px; box-sizing: border-box;}
 		</style>
 		<!-- DataTables CSS -->
 		<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css" />
@@ -210,8 +212,22 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
 
 		<script>
-			$(document).ready( function () {
-				$('#results').DataTable();
+			$(document).ready(function() {
+				// Setup - add a text input to each footer cell
+				$('#results tfoot th').each( function () {
+					var title = $('#results thead th').eq( $(this).index() ).text();
+					$(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+				} );
+			 
+				// DataTable
+				var table = $('#results').DataTable({bFilter: false});
+			 
+				table.columns().every( function () {
+					var that = this;
+					$( 'input', this.footer() ).on( 'keyup change', function () {
+						that.search( this.value ).draw();
+					} );
+				} );
 			} );
 		</script>
       </body>
