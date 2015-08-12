@@ -20,10 +20,10 @@ $(document).ready(function() {
     });
 
     if (table.data().length === 0) {
-        $('#results_wrapper').prepend('<h3 id="congratulations">Congratulations! No Error Found.</h3>');
+        $('#branding').after('<h3 id="congratulations">Congratulations! No Error Found.</h3>');
         $('#congratulations').css({'background-color': '#55B05A', 'color': 'white'});
     } else {
-        $('#results_wrapper').prepend('<h3 id="sorry">Sorry! We found the following violations (' + table.data().length + ')');
+        $('#branding').after('<h3 id="sorry">Sorry! We found the following violations (' + table.data().length + ')');
         $('#sorry').css({'background-color': '#D23D24', 'color': 'white'});
     }
 });
