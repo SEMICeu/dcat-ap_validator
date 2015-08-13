@@ -1188,7 +1188,7 @@ UNION
 
 UNION
 # Rule_ID:78
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (76 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("adms:versionNotes has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 adms:versionNotes.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (78 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("adms:versionNotes has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 adms:versionNotes.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s adms:versionNotes ?version.
