@@ -29,30 +29,31 @@
 			#validator-form{margin-top:1em;padding-top:10px}
 			#stylized button{clear:both;margin-left:43%;font-weight:700;border:0 outset buttonface;background:#F5F6F8;background-image:-webkit-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-moz-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-ms-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-o-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:linear-gradient(to bottom,#F5F6F8,#DBDCDE);-webkit-border-radius:28;-moz-border-radius:28;border-radius:28px;-webkit-box-shadow:0 1px 3px #666;-moz-box-shadow:0 1px 3px #666;box-shadow:0 1px 3px #666;font-family:Arial;color:#365D95;font-size:14px;padding:10px 40px;text-decoration:none}
 			#stylized button:hover{text-decoration:none;color:#000}
+			.hiddenl{display: none !important;}
 		</style>
 	</head>
 	<body>
 		<div id="container">
 			<header id="branding">
-				<a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="DCAT application profile for data portals in Europe logo" /></a>
+				<a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home"><img src="./images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="DCAT application profile for data portals in Europe logo" /></a>
 				<h1>DCAT-AP Validator</h1>
 			</header>
 			<div id="body">
 				<p>This service checks one or more software description metadata files for integrity and consistency against the <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home">DCAT-AP</a> specification and the Joinup DCAT Application Profile.</p>
 				<div id="stylized" class="form">
 					<form id="validator-form" action="/dcat-ap_validator/query" method="GET"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
-						<label>RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
+						<label for="metadatafile">RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
 						<input id="metadatafile" type="file" name="metadatafile" multiple="multiple">
 						<br/>
 						<!--Input syntax:<br/>
 						<input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL
 						<input type="hidden" name="languageSyntax" value="ARQ"/> -->
-						<label>SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>
+						<label for="endpoint">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>
 						<input id="endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" />
 						<br/>
 						<!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> -->
 						<input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />
-						<label>SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label> 
+						<label for="validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label> 
 						<!--
 						SELECT *
 						{
@@ -63,8 +64,8 @@
 						-->
 						<textarea id="validationquery" name="query" cols="80" rows="16"></textarea>
 						<br/>
-						<label>Output:</label> 
-						<select name="output">
+						<label for="output">Output:</label> 
+						<select id="output" name="output">
 							<option value="xml">XML</option>
 							<option value="json">JSON</option>
 							<option value="text">Text</option>
@@ -72,7 +73,7 @@
 							<option value="tsv">TSV</option>
 						</select>
 						<br/>
-						<label>	</label> 
+						<label class="hiddenl" for="validate">validate button</label>
 						<button type="submit" id="validate">Validate</button>
 						<br/>
 						<br/>
@@ -80,7 +81,7 @@
 				</div>
 			</div>
 			<footer>
-				<a href="http://ec.europa.eu/isa/"><img src="/images/logo_isa.png" width="307" height="74" alt="Interoperability Solutions for European Public Administrations (ISA) Programme"/></a>
+				<a href="http://ec.europa.eu/isa/"><img src="./images/logo_isa.png" width="307" height="74" alt="ISA Programme"/></a>
 				<p>
 					<small>The DCAT-AP validator is an initiative by the <a href="http://ec.europa.eu/isa/actions/index_en.htm">ISA Programme</a><br />
 					DCAT-AP validator: Copyright ©  European Union 2015. This validator is published under the <a href="https://joinup.ec.europa.eu/category/licence/isa-open-metadata-licence-v11">ISA Open Metadata Licence v1.1</a><br/>
