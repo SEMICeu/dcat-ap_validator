@@ -85,6 +85,7 @@ The development process is based on:
 <tr><td>Check all the rules from the 1st source and verify with the 2nd source</td><td>High</td><td> 16 rules missing for distribution, verification:0%</td></tr>
 <tr><td>Improve quality of the tests: more asserts (test 11, 30, 43, 46, 52), jsdoc, parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add validation by URL and by input type</td><td>Medium</td><td>Not done</td></tr>
+<tr><td>Add tooltip for class and properties</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Homogenize css between build.css, dcat-ap_validator.html css and results css</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Add jsdoc and jsmin to the development process</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Investigate IE error with JSON and CSV</td><td>Low</td><td>Not done</td></tr>
