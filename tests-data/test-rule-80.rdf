@@ -73,7 +73,7 @@
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
     <dct:title xml:lang="en">Linked Data endpoint</dct:title>
     <dct:description xml:lang="en">Provides browsable linked data and a SPARQL endpoint.</dct:description>
-    <dcat:accessURL>http://www.nobelprize.org<dcat:accessURL>
+    <dcat:accessURL>http://www.nobelprize.org</dcat:accessURL>
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
     <dct:format>application/rdf+xml</dct:format>
     <dct:format>application/sparql-query</dct:format>
