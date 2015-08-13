@@ -104,11 +104,11 @@ function runQuery(query) {
 
 /**
  * Gets SPARQL query from file
- * @param {string} file - File in which the query is stored.
- * @returns {string} The query stored in the file
+ * @param {string} textarea - The id of the textarea to fill.
  */
-function getQuery(file) {
+function getQuery(text) {
     var xmlhttp;
+	var file="dcat-ap.rq";
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -117,21 +117,13 @@ function getQuery(file) {
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
-        }
+        } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+			document.getElementById(text).innerHTML = xmlhttp.responseText;
+		}
     };
-    xmlhttp.open("GET", file, false);
+    xmlhttp.open("GET", file, true);
     xmlhttp.send();
     return xmlhttp.responseText;
-}
-
-/**
- * Extracts a query from a file to be copied in the form with id validationquery
- */
-function setQuery() {
-    var query, id;
-    query = getQuery("dcat-ap.rq");
-    id = "validationquery";
-    document.getElementById(id).innerHTML = query;
 }
 
 /**

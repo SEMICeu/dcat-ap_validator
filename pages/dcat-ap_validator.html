@@ -31,7 +31,7 @@
 			#stylized button:hover{text-decoration:none;color:#000}
 		</style>
 	</head>
-	<body onload="setQuery();">
+	<body>
 		<div id="container">
 			<header id="branding">
 				<a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="DCAT application profile for data portals in Europe logo" /></a>
@@ -91,5 +91,6 @@
 			</footer>
 		</div>
 		<script type="text/javascript" src="dcat-ap_validator.js"></script>
+		<script>getQuery("validationquery");</script>
 	</body>
 </html>
