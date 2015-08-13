@@ -1,0 +1,20 @@
+# Rule_ID:75
+# @title [Dataset] dct:modified should be a literal
+# @tag dataset
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+WHERE {
+  ?s a dcat:Dataset.
+  ?s adms:version ?o.
+  FILTER(!isLiteral(?o)).
+  BIND (adms:version AS ?p).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (75 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("adms:version should be a literal." AS ?Rule_Description).
+  BIND (concat("adms:version ",str(?s)," is not a literal.") AS ?Message).
+}

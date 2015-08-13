@@ -1144,4 +1144,30 @@ UNION
      HAVING (COUNT( ?s) > 1)
   }
 
+UNION
+# Rule_ID:75
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s adms:version ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (adms:version AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (75 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("adms:version should be a literal." AS ?Rule_Description).
+     BIND (concat("adms:version ",str(?s)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:76
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (76 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("adms:version has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 adms:version.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s adms:version ?version.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
 }
