@@ -1,6 +1,6 @@
 var system = require('system');
 var args = system.args;
-var ab = args[1];
+var ab = args[3];
 var myid = ab.split('.')[0].split('-')[2];
 console.log("ab: "+ab);
 console.log("myid: "+myid);
