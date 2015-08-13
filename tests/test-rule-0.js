@@ -1,10 +1,4 @@
-var system = require('system');
-var args = system.args;
-var ab = args[6];
-var myid = ab.split('=')[1].split('.')[0].split('-')[2];
-console.log("ab: "+ab);
-console.log("myid: "+myid);
-var testid = myid, testname = casper.cli.get("testname") + testid;
+var testid = "0", testname = casper.cli.get("testname") + testid;
 casper.test.begin(testname, 2, function suite(test) {
     casper.start(casper.cli.get("url") + '/' + casper.cli.get("page"), function() {
         var file = '.\\' + casper.cli.get("testdata") + '\\' + testname + '.rdf';
