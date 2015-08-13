@@ -6,6 +6,7 @@
 	xmlns:adms="http://www.w3.org/ns/adms#"
 	xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
 	xmlns:schema="http://schema.org/"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#catalog">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Catalog"/>
@@ -47,8 +48,8 @@
     <dct:temporal rdf:nodeID="_n3"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
-	<owl:versionInfo>1.1</owl:versionInfo>
-	<owl:versionInfo>1.2</owl:versionInfo>
+    <owl:versionInfo>1.1</owl:versionInfo>
+    <owl:versionInfo>1.2</owl:versionInfo>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#VCard"/>
