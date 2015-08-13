@@ -1,7 +1,7 @@
 var system = require('system');
 var args = system.args;
 var testname = args[0];
-var myid = args[0].split('.')[0].split('-')[2]
+var myid = args[0].split('.')[0].split('-')[2];
 var testid = myid, testname = casper.cli.get("testname") + testid;
 casper.test.begin(testname, 2, function suite(test) {
     casper.start(casper.cli.get("url") + '/' + casper.cli.get("page"), function() {
