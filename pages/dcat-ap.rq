@@ -1182,7 +1182,7 @@ UNION
      BIND (77 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:versionNotes should be literal." AS ?Rule_Description).
-     BIND (concat("adms:versionNotes",str(?s)," is not a literal.") AS ?Message).
+     BIND (concat("adms:versionNotes ",str(?s)," is not a literal.") AS ?Message).
    }
   }
 
@@ -1208,8 +1208,23 @@ UNION
      BIND (79 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:accessURL is a required property for Distribution." AS ?Rule_Description).
-     BIND (concat("The dcat:Distribution",str(?s)," does not have the dcat:accessURL property.") AS ?Message).
+     BIND (concat("The dcat:Distribution ",str(?s)," does not have the dcat:accessURL property.") AS ?Message).
    }
   }
 
+UNION
+# Rule_ID:80
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Distribution.
+     ?s dcat:accessURL ?o.
+     FILTER(!isURI(?o)).
+     BIND (dcat:accessURL AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (80 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:accessURL should be a resource." AS ?Rule_Description).
+     BIND (concat("The dcat:accessURL ",str(?s)," is not a resource.") AS ?Message).
+   }
+  }
 }
