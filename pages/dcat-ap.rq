@@ -1118,4 +1118,30 @@ UNION
    }
   }
 
+UNION
+# Rule_ID:73
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:modified ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:modified AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (73 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:modified should be a literal." AS ?Rule_Description).
+     BIND (concat("dcat:modified ",str(?s)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:74
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (74 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:modified.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:modified ?modified.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+
 }
