@@ -78,7 +78,7 @@
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
     <dcat:downloadURL rdf:resource="http://data.nobelprize.org/download/ds1"/>
     <dcat:mediaType rdf:resource="http://www.iana.org/assignments/media-types/media-types.xhtml#application"/>
-    <dct:rights>http://nobelprize.org/rights/n0"</dct:rights>
+    <dct:rights>http://nobelprize.org/rights/n0</dct:rights>
   </rdf:Description>
   <rdf:Description rdf:nodeID="_n3">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>

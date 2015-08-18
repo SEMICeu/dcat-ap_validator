@@ -77,7 +77,7 @@
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
     <dcat:downloadURL rdf:resource="http://data.nobelprize.org/download/ds1"/>
-    <dcat:mediaType>http://www.iana.org/assignments/media-types/media-types.xhtml#application"</dcat:mediaType>
+    <dcat:mediaType>http://www.iana.org/assignments/media-types/media-types.xhtml#application</dcat:mediaType>
   </rdf:Description>
   <rdf:Description rdf:nodeID="_n3">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
