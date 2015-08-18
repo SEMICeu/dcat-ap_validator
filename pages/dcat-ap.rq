@@ -777,7 +777,7 @@ UNION
 
 UNION
 # Rule_ID:50
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (50 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:publisher property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (50 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:publisher property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:publisher ?pub.
@@ -826,7 +826,7 @@ UNION
      BIND (dcat:Dataset AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (53 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:theme is a recommended property for Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:theme property.") AS ?Message).
    }
@@ -919,7 +919,7 @@ UNION
      ?s a dcat:Dataset.
      ?s dct:accrualPeriodicity ?period.
    } GROUP BY ?s 
-     HAVING (COUNT( ?s) > 1)
+     HAVING (COUNT( ?period) > 1)
   }
   
 UNION

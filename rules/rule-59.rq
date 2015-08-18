@@ -12,4 +12,4 @@ WHERE {
   ?s a dcat:Dataset.
   ?s dct:accrualPeriodicity ?period.
 } GROUP BY ?s 
-  HAVING (COUNT( ?s) > 1)
+  HAVING (COUNT( ?period) > 1)
