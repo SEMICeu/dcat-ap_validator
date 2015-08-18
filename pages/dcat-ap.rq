@@ -782,7 +782,7 @@ UNION
      ?s a dcat:Dataset.
      ?s dct:publisher ?pub.
    } GROUP BY ?s
-     HAVING (COUNT(DISTINCT ?pub) > 1)
+     HAVING (COUNT( ?pub) > 1)
   }
 
 UNION
