@@ -10,7 +10,7 @@ SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s adms:status ?o.
-  FILTER(!isUri(?o)).
+  FILTER(!isURI(?o)).
   BIND (adms:status AS ?p).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (94 AS ?Rule_ID).
