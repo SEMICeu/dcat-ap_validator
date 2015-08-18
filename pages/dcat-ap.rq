@@ -688,7 +688,7 @@ UNION
      BIND (dcat:Dataset AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (44 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:distribution is a recommended property for Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:distribution property.") AS ?Message).
    }
@@ -737,7 +737,7 @@ UNION
      BIND (dcat:Dataset AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (47 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:keyword is a recommended property for Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:keyword property.") AS ?Message).
    }
@@ -769,7 +769,7 @@ UNION
      BIND (dcat:Dataset AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (49 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:publisher is a recommended property for Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:publisher property.") AS ?Message).
    }
@@ -782,7 +782,7 @@ UNION
      ?s a dcat:Dataset.
      ?s dct:publisher ?pub.
    } GROUP BY ?s
-     HAVING (COUNT( ?s) > 1)
+     HAVING (COUNT( ?pub) > 1)
   }
 
 UNION

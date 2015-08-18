@@ -14,7 +14,7 @@ WHERE {
   BIND (dcat:Dataset AS ?o).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (44 AS ?Rule_ID).
-  BIND ("error" AS ?Rule_Severity).
+  BIND ("warning" AS ?Rule_Severity).
   BIND ("dcat:distribution is a recommended property for Dataset." AS ?Rule_Description).
   BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:distribution property.") AS ?Message).
 }
