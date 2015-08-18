@@ -75,7 +75,6 @@
     <dct:description xml:lang="en">Provides browsable linked data and a SPARQL endpoint.</dct:description>
     <dcat:accessURL rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
-    <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.1/"/>
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
     <dcat:downloadURL>http://data.nobelprize.org/download/ds1</dcat:downloadURL>
   </rdf:Description>
