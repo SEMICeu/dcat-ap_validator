@@ -1,0 +1,20 @@
+# Rule_ID:91
+# @title [Distribution] dcat:mediaType should be a resource
+# @tag distribution
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+WHERE {
+  ?s a dcat:Distribution.
+  ?s dcat:mediaType ?o.
+  FILTER(!isURI(?o)).
+  BIND (dcat:mediaType AS ?p).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (91 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("dcat:mediaType should be a resource." AS ?Rule_Description).
+  BIND (concat("The dcat:mediaType ",str(?s)," is not a resource.") AS ?Message).
+}
+

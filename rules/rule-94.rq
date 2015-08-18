@@ -1,0 +1,21 @@
+# Rule_ID:94
+# @title [Distribution] adms:status should be a resource
+# @tag distribution
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+WHERE {
+  ?s a dcat:Dataset.
+  ?s adms:status ?o.
+  FILTER(!isUri(?o)).
+  BIND (adms:status AS ?p).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (94 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("adms:status should be a resource." AS ?Rule_Description).
+  BIND (concat("The adms:status ",str(?s)," is not a resource.") AS ?Message).
+}
+

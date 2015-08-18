@@ -1,0 +1,22 @@
+# Rule_ID:87
+# @title [Distribution] dct:license should be a resource
+# @tag distribution
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+WHERE {
+  ?s a dcat:Distribution.
+  ?s dct:license ?o.
+  FILTER(!isURI(?o)).
+  BIND (dct:license AS ?p).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (87 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("dct:license should be a resource." AS ?Rule_Description).
+  BIND (concat("The dct:license ",str(?s)," is not a resource.") AS ?Message).
+}
+
