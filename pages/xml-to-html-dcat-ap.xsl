@@ -166,27 +166,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
   <xsl:template match="res:sparql">
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
       <head>
-	    <title>DCAT-AP Validator: SPARQL Query Result</title> 
-		<style>
-			body{font-family:sans-serif}
-			h1{color:#fff;background-color:#002060}
-			header#branding{background-color:#002060;min-height:70px;width:100%;display:table}
-			header#branding img{float:left}
-			header#branding h1{display:table-cell;vertical-align:middle;background:#002060}
-			#Rule_Origin{width:8.9%}
-			#Rule_ID{width:6.3%}
-			#Rule_Severity{width:9.9%}
-			#Rule_Description{width:12%}
-			#Message{width:17%}
-			#s{width:15.3%}
-			#p{width:15.3%}
-			#o{width:15.3%}
-			table{border-collapse:collapse;border:1px solid rgba(128,128,128,0.32)}
-			td,th{border:1px solid rgba(128,128,128,0.32);padding:.2ex .5em}
-			tfoot{display:table-header-group}
-			tfoot input{width:100%;padding:3px;box-sizing:border-box;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
-			#results_filter{display:none}
-		</style>
+	    <title>DCAT-AP Validator: SPARQL Query Result</title>
+		<link rel="stylesheet" type="text/css" href="dcat-ap_validator.css">
 		<!-- DataTables CSS -->
 		<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css" />
       </head>
