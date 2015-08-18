@@ -12,4 +12,4 @@ WHERE {
   ?s a dcat:Dataset.
   ?s dct:modified ?modified.
 } GROUP BY ?s 
-  HAVING (COUNT( ?s) > 1)
+  HAVING (COUNT( ?modified) > 1)

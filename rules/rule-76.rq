@@ -12,4 +12,4 @@ WHERE {
   ?s a dcat:Dataset.
   ?s owl:versionInfo ?version.
 } GROUP BY ?s 
-  HAVING (COUNT( ?s) > 1)
+  HAVING (COUNT( ?version) > 1)

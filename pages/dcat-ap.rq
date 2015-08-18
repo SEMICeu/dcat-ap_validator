@@ -1141,7 +1141,7 @@ UNION
      ?s a dcat:Dataset.
      ?s dct:modified ?modified.
    } GROUP BY ?s 
-     HAVING (COUNT( ?s) > 1)
+     HAVING (COUNT( ?modified) > 1)
   }
 
 UNION
@@ -1167,7 +1167,7 @@ UNION
      ?s a dcat:Dataset.
      ?s owl:versionInfo ?version.
    } GROUP BY ?s 
-     HAVING (COUNT( ?s) > 1)
+     HAVING (COUNT( ?version) > 1)
   }
 
 UNION
