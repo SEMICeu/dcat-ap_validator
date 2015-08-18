@@ -45,7 +45,7 @@
     <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/ENG"/>
     <dcat:landingPage rdf:resource="http://data.nobelprize.org/"/>
     <dct:conformsTo rdf:resource="http://www.nobelprize.org/nobel_organizations/nobelmedia/nobelprize_org/developer/manual-linkeddata/terms.html"/>
-    <dct:temporal rdf:nodeID="_n3"/>
+    <dct:temporal rdf:resource="http://data.nobelprize.org/period"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
     <adms:versionNotes>Updated catalogue</adms:versionNotes>
@@ -76,7 +76,7 @@
     <dcat:accessURL rdf:resource="http://data.nobelprize.org/"/>
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="_n3">
+    <rdf:Description rdf:about="http://data.nobelprize.org/period">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1905-03-01</schema:startDate>
     <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-01-05</schema:endDate>
