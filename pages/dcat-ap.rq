@@ -961,7 +961,7 @@ UNION
      ?s a dcat:Dataset.
      ?s dcat:landingPage ?page.
    } GROUP BY ?s 
-     HAVING (COUNT( ?s) > 1)
+     HAVING (COUNT( ?page) > 1)
   }
 
 UNION
@@ -1019,7 +1019,7 @@ UNION
      ?s a dcat:Dataset.
      ?s adms:identifier ?o.
      FILTER(!isLiteral(?o)).
-     BIND(adms:identifier AS ?p).
+     BIND (adms:identifier AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (66 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
@@ -1051,7 +1051,7 @@ UNION
      ?s a dcat:Dataset.
      ?s dct:issued ?o.
      FILTER(!isLiteral(?o)).
-     BIND(dct:issued AS ?p).
+     BIND (dct:issued AS ?p).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (68 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
@@ -1067,7 +1067,7 @@ UNION
      ?s a dcat:Dataset.
      ?s dct:issued ?issued.
    } GROUP BY ?s 
-     HAVING (COUNT( ?s) > 1)
+     HAVING (COUNT( ?issued) > 1)
   }
 
 UNION

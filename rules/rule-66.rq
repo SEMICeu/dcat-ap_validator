@@ -11,7 +11,7 @@ WHERE {
   ?s a dcat:Dataset.
   ?s adms:identifier ?o.
   FILTER(!isLiteral(?o)).
-  BIND(adms:identifier AS ?p).
+  BIND (adms:identifier AS ?p).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (66 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
