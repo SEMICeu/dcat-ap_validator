@@ -74,8 +74,7 @@
     <dct:description xml:lang="en">Provides browsable linked data and a SPARQL endpoint.</dct:description>
     <dcat:accessURL rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
-    <dct:format>application/rdf+xml</dct:format>
-    <dct:format>application/sparql-query</dct:format>
+    <dct:format rdf:resource="http://nobelprize.org/format/rdf+xml"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="_n3">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>

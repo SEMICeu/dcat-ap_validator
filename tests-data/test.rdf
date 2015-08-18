@@ -63,8 +63,7 @@
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#dist1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
-    <dct:format>application/rdf+xml</dct:format>
-    <dct:format>application/sparql-query</dct:format>
+    <dct:format rdf:resource="http://nobelprize.org/format/rdf+xml"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="_n3">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
