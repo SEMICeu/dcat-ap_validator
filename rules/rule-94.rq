@@ -8,7 +8,7 @@ PREFIX dcat: <http://www.w3.org/ns/dcat#>
 
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
 WHERE {
-  ?s a dcat:Dataset.
+  ?s a dcat:Distribution.
   ?s adms:status ?o.
   FILTER(!isURI(?o)).
   BIND (adms:status AS ?p).
