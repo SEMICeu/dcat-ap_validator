@@ -12,10 +12,10 @@ WHERE {
   ?s a dcat:Distribution.
   FILTER(!(EXISTS { ?s dct:format ?desc})).
   BIND (rdf:type AS ?p).
-  BIND (dcat:Dataset AS ?o).
+  BIND (dcat:Distribution AS ?o).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (83 AS ?Rule_ID).
-  BIND ("error" AS ?Rule_Severity).
+  BIND ("warning" AS ?Rule_Severity).
   BIND ("dct:format is a recommended property for Distribution." AS ?Rule_Description).
   BIND (concat("The dct:Distribution ",str(?s)," does not have a dct:format property.") AS ?Message).
 }
