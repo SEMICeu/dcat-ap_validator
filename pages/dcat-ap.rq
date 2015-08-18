@@ -10,15 +10,15 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX spdx: <http://www.spdx.org/rdf/terms#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message (?s AS ?Subject) (?p AS ?Predicate) (?p AS ?Object)
 WHERE{
 # Rule_ID:0
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a foaf:Agent.
      FILTER(!EXISTS {?s foaf:name ?name}).
-     BIND (rdf:type as ?p).
-     BIND (foaf:Agent as ?o).
+     BIND (rdf:type AS ?p).
+     BIND (foaf:Agent AS ?o).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (0 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
@@ -34,7 +34,7 @@ UNION
      ?s a foaf:Agent.
      ?s foaf:name ?o.
      FILTER(!isLiteral(?o)).
-     BIND (foaf:name as ?p)
+     BIND (foaf:name AS ?p)
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (1 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
