@@ -89,7 +89,6 @@ The development process is based on:
 <tr><td>Add validation by URL and by input type</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add tooltip for class and properties</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Homogenize css between build.css, dcat-ap_validator.css and dcat-ap_validator-results.css</td><td>Low</td><td>Not done</td></tr>
-<tr><td>Add css lint, jsdoc and jsmin/YUI compressor to the development process</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Improve W3C and WCAG 2.0 validation for the results</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Investigate IE error with JSON and CSV</td><td>Low</td><td>Not done</td></tr>
 </table>
