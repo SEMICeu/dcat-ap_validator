@@ -1,8 +1,8 @@
 body{font-family:sans-serif}
 .container{min-height:100%;position:relative}
-.banner{background-color:#002060;min-height:70px;width:100%;display:table}
+.banner{background-color:#002060;min-height:70px;width:100%;overflow:hidden}
 .banner img{float:left}
-h1{display:table-cell;vertical-align:middle;color:#fff}
+h1{margin:0.5em 3em 0em;color:#fff}
 #body{height:100%;padding:10px;padding-bottom:130px}
 .form{background:#EAEBEE;width:1200px;margin-top:1em;padding-top:10px}
 .form label{float:left;font-weight:700;text-align:right;width:250px;color:#365D95}
