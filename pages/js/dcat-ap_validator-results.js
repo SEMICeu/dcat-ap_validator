@@ -23,7 +23,9 @@ $(document).ready(function() {
 
     $('#results tfoot th').each(function () {
         var title = $('#results thead th').eq($(this).index()).text();
-        $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+		var label = '<label class="hiddenlabel" for="' + title + '">' + title + '</label>';
+		var input = '<input type="text" id="' + title + '" placeholder="Search ' + title + '" />';
+        $(this).html(label + input);
     });
 
     table.columns().every(function () {
