@@ -16,5 +16,5 @@ WHERE {
   BIND (40 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:title should be a literal." AS ?Rule_Description).
-  BIND (concat("The dct:title property ",str(?p)," is not literal.") AS ?Message).
+  BIND (concat("The dct:title property ",str(?p)," is not a literal.") AS ?Message).
 }

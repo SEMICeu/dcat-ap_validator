@@ -39,7 +39,7 @@ UNION
      BIND (1 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("The foaf:name property should be a literal." AS ?Rule_Description).
-     BIND (concat("The property ",str(?p)," is not a literal") AS ?Message).
+     BIND (concat("The property ",str(?p)," is not a literal.") AS ?Message).
    }
   }
 
@@ -54,8 +54,8 @@ UNION
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (2 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
-     BIND ("Type is a recommended property for Agent" AS ?Rule_Description).
-     BIND (concat("The agent ",str(?o)," does not have a type property") AS ?Message).
+     BIND ("Type is a recommended property for Agent." AS ?Rule_Description).
+     BIND (concat("The agent ",str(?o)," does not have a type property.") AS ?Message).
    }
   }
 
@@ -71,7 +71,7 @@ UNION
      BIND (3 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("Type should be a resource" AS ?Rule_Description).
-     BIND (concat("The foaf:Agent ",str(?s)," should have a dct:type as rdf:resource") AS ?Message).
+     BIND (concat("The foaf:Agent ",str(?s)," should have a dct:type as rdf:resource.") AS ?Message).
    }
   }
 
@@ -134,7 +134,7 @@ UNION
      BIND (7 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:description should be a literal." AS ?Rule_Description).
-     BIND (concat("The dct:description ",str(?o)," is not literal.") AS ?Message).
+     BIND (concat("The dct:description ",str(?o)," is not a literal.") AS ?Message).
    }
   }
  
@@ -224,7 +224,7 @@ UNION
      BIND (13 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title should be a literal." AS ?Rule_Description).
-     BIND (concat("The dct:title ",str(?o)," should be literal.") AS ?Message).
+     BIND (concat("The dct:title ",str(?o)," is not a literal.") AS ?Message).
    }
  }
  
@@ -402,7 +402,7 @@ UNION
      BIND (25 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:issued should be literal." AS ?Rule_Description).
-     BIND (concat("The dct:issue ",str(?o)," is not literal.") AS ?Message).
+     BIND (concat("The dct:issue ",str(?o)," is not a literal.") AS ?Message).
    }
   }
 
@@ -625,7 +625,7 @@ UNION
      BIND (40 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title should be a literal." AS ?Rule_Description).
-     BIND (concat("The dct:title property ",str(?p)," is not literal.") AS ?Message).
+     BIND (concat("The dct:title property ",str(?p)," is not a literal.") AS ?Message).
    }
   }
 
