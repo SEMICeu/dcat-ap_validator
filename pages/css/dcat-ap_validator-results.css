@@ -1,7 +1,7 @@
 body{font-family:sans-serif}
-header#branding{background-color:#002060;min-height:70px;width:100%;display:table}
-header#branding img{float:left}
-header#branding h1{display:table-cell;vertical-align:middle;color:#fff}
+#branding{background-color:#002060;min-height:70px;width:100%;display:table}
+#branding img{float:left}
+#branding h1{display:table-cell;vertical-align:middle;color:#fff}
 #Rule_Origin{width:8.9%}
 #Rule_ID{width:6.3%}
 #Rule_Severity{width:9.9%}
