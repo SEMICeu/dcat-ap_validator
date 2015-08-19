@@ -1,7 +1,7 @@
 body{font-family:sans-serif}
-.banner{background-color:#002060;min-height:70px;width:100%;display:table}
+.banner{background-color:#365d95;min-height:70px;width:100%;overflow:hidden}
 .banner img{float:left}
-h1{display:table-cell;vertical-align:middle;color:#fff}
+h1{margin:0.5em 3em;color:#fff}
 .Rule_Origin{width:8.9%}
 .Rule_ID{width:6.3%}
 .Rule_Severity{width:9.9%}
