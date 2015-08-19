@@ -71,7 +71,7 @@
 			munge="true"
 			preserveallsemicolons="false"
 			fromdir="${js.dir}"
-			todir="${js.dir}"
+			todir="${js.dir}/min"
 		/>
     </target>
 	
