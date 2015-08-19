@@ -7,9 +7,9 @@ header#branding h1{display:table-cell;vertical-align:middle;color:#fff}
 #Rule_Severity{width:9.9%}
 #Rule_Description{width:12%}
 #Message{width:17%}
-#s{width:15.3%}
-#p{width:15.3%}
-#o{width:15.3%}
+#Subject{width:15.3%}
+#Predicate{width:15.3%}
+#Object{width:15.3%}
 table{border-collapse:collapse;border:1px solid rgba(128,128,128,0.32)}
 td,th{border:1px solid rgba(128,128,128,0.32);padding:.2ex .5em}
 tfoot{display:table-header-group}
