@@ -1,10 +1,10 @@
 body{font-family:sans-serif}
-#container{min-height:100%;position:relative}
+.container{min-height:100%;position:relative}
 .banner{background-color:#002060;min-height:70px;width:100%;display:table}
 .banner img{float:left}
 .banner h1{display:table-cell;vertical-align:middle;color:#fff}
 #body{height:100%;padding:10px;padding-bottom:130px}
-.form{background:#EAEBEE;width:1200px}
+.form{background:#EAEBEE;width:1200px;margin-top:1em;padding-top:10px}
 .form label{display:block;float:left;font-weight:700;text-align:right;width:250px;color:#365D95}
 .form .small{color:#666;display:block;font-size:11px;font-weight:400;text-align:right;width:250px}
 .form input,textarea,select{margin:2px 0 20px 20px}
@@ -15,5 +15,4 @@ body{font-family:sans-serif}
 footer{position:absolute;bottom:0;height:110px;padding:0 1em}
 footer a img{float:left;margin:0 15px 0 0}
 footer p{float:left;margin:0 5px 0 0;color:#7C8395}
-#validator-form{margin-top:1em;padding-top:10px}
 .hiddenl{display: none !important;}

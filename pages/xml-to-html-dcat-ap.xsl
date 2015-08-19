@@ -172,7 +172,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.min.css" />
       </head>
       <body>
-	  <header id="branding">
+	  <header class="banner">
 	  <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="Asset Description Metadata Schema for Software (ADMS.SW) logo" /></a>
 	  <h1>DCAT-AP Validator: SPARQL Query Result</h1>
 	  </header>
