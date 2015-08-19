@@ -23,7 +23,7 @@ WHERE{
      BIND (0 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("Name is a required property for Agent." AS ?Rule_Description).
-     BIND (concat("The agent  ",str(?o)," doesn't have a foaf:name property") AS ?Message).
+     BIND (concat("The agent  ",str(?o)," does not have a foaf:name property") AS ?Message).
    }
   }
 
@@ -55,7 +55,7 @@ UNION
      BIND (2 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("Type is a recommended property for Agent" AS ?Rule_Description).
-     BIND (concat("The agent ",str(?o)," doesn't have a type property") AS ?Message).
+     BIND (concat("The agent ",str(?o)," does not have a type property") AS ?Message).
    }
   }
 
@@ -87,7 +87,7 @@ UNION
      BIND (4 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:dataset is a required property for Catalog" AS ?Rule_Description).
-     BIND (concat("The dact:Catalog ",str(?o)," should have a dcat:dataset property") AS ?Message).
+     BIND (concat("The dcat:Catalog ",str(?o)," should have a dcat:dataset property") AS ?Message).
    }
   }
 
@@ -577,7 +577,7 @@ UNION
      BIND (37 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:description is a required property for Dataset." AS ?Rule_Description).
-     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:description.") AS ?Message).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:description property.") AS ?Message).
    }
   }
 
@@ -609,7 +609,7 @@ UNION
      BIND (39 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title is a required property for Dataset." AS ?Rule_Description).
-     BIND (concat("The dcat:Dataset ",str(?o)," does not have the dct:title property.") AS ?Message).
+     BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:title property.") AS ?Message).
    }
   }
   
@@ -641,7 +641,7 @@ UNION
      BIND (41 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("adms:contactPoint is a recommended property for Dataset." AS ?Rule_Description).
-     BIND (concat("The dcat:Dataset ",str(?s)," does not have the adms:contactPoint property.") AS ?Message).
+     BIND (concat("The dcat:Dataset ",str(?s)," does not have a adms:contactPoint property.") AS ?Message).
    }
   }
 
@@ -1114,7 +1114,7 @@ UNION
      BIND (72 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:temporal should be a dct:PeriodOfTime." AS ?Rule_Description).
-     BIND (concat("dcat:Dataset ",str(?s)," does not have a dct:temporal of type dct:PeriodOfTime.") AS ?Message).
+     BIND (concat("dcat:Dataset ",str(?s)," does not have a dct:temporal property of type dct:PeriodOfTime.") AS ?Message).
    }
   }
 
@@ -1198,7 +1198,7 @@ UNION
      BIND (79 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:accessURL is a required property for Distribution." AS ?Rule_Description).
-     BIND (concat("The dcat:Distribution ",str(?s)," does not have the dcat:accessURL property.") AS ?Message).
+     BIND (concat("The dcat:Distribution ",str(?s)," does not have a dcat:accessURL property.") AS ?Message).
    }
   }
 

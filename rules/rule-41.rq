@@ -17,5 +17,5 @@ WHERE {
   BIND (41 AS ?Rule_ID).
   BIND ("warning" AS ?Rule_Severity).
   BIND ("adms:contactPoint is a recommended property for Dataset." AS ?Rule_Description).
-  BIND (concat("The dcat:Dataset ",str(?s)," does not have the adms:contactPoint property.") AS ?Message).
+  BIND (concat("The dcat:Dataset ",str(?s)," does not have a adms:contactPoint property.") AS ?Message).
 }

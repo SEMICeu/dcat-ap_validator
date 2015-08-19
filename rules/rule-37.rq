@@ -17,5 +17,5 @@ WHERE {
   BIND (37 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:description is a required property for Dataset." AS ?Rule_Description).
-  BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:description.") AS ?Message).
+  BIND (concat("The dcat:Dataset ",str(?o)," does not have a dct:description property.") AS ?Message).
 }

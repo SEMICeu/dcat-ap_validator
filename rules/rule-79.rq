@@ -16,5 +16,5 @@ WHERE {
   BIND (79 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dcat:accessURL is a required property for Distribution." AS ?Rule_Description).
-  BIND (concat("The dcat:Distribution ",str(?s)," does not have the dcat:accessURL property.") AS ?Message).
+  BIND (concat("The dcat:Distribution ",str(?s)," does not have a dcat:accessURL property.") AS ?Message).
 }
