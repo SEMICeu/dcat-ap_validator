@@ -1,9 +1,8 @@
 body{font-family:sans-serif}
 #container{min-height:100%;position:relative}
-h1{color:#fff;background-color:#002060}
 header#branding{background-color:#002060;min-height:70px;width:100%;display:table}
 header#branding img{float:left}
-header#branding h1{display:table-cell;vertical-align:middle;background:#002060}
+header#branding h1{display:table-cell;vertical-align:middle;color:#fff}
 #body{height:100%;padding:10px;padding-bottom:130px}
 #stylized{background:#EAEBEE;width:1200px}
 #stylized label{display:block;float:left;font-weight:700;text-align:right;width:250px;color:#365D95}
