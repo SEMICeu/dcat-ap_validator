@@ -20,10 +20,10 @@ $(document).ready(function() {
     });
 
     if (table.data().length === 0) {
-        $('#branding').after('<h3 id="congratulations">Congratulations! No Error Found.</h3>');
-        $('#congratulations').css({'background-color': '#55B05A', 'color': 'white'});
+        $('#branding').after('<h2 id="congratulations">Congratulations! No Error Found.</h2>');
+        $('#congratulations').css({'background-color': '#55B05A', 'color': 'white','font-size': '1.17em'});
     } else {
-        $('#branding').after('<h3 id="sorry">Sorry! We found the following violations (' + table.data().length + ')');
-        $('#sorry').css({'background-color': '#D23D24', 'color': 'white'});
+        $('#branding').after('<h2 id="sorry">Sorry! We found the following violations (' + table.data().length + ')</h2>');
+        $('#sorry').css({'background-color': '#D23D24', 'color': 'white','font-size': '1.17em'});
     }
 });
