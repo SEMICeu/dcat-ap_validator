@@ -33,6 +33,6 @@ $(document).ready(function() {
         });
     });
 
-    setMessage(table.data().length, '#branding');
+    setMessage(table.data().length, '.banner');
 
 });
