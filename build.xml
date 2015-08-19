@@ -66,7 +66,7 @@
 	</taskdef>
 
     <target name="compress">
-		<yui-compressor linebreak="40" todir="${yui.dir}">
+		<yui-compressor todir="${yui.dir}">
 				<fileset dir="${js.dir}" includes="*.js"/>
 				<mapper type="glob" from="*.js" to="*-min.js"/>
 		</yui-compressor>
