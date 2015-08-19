@@ -1,7 +1,7 @@
 body{font-family:sans-serif}
 .banner{background-color:#002060;min-height:70px;width:100%;display:table}
 .banner img{float:left}
-.banner h1{display:table-cell;vertical-align:middle;color:#fff}
+h1{display:table-cell;vertical-align:middle;color:#fff}
 .Rule_Origin{width:8.9%}
 .Rule_ID{width:6.3%}
 .Rule_Severity{width:9.9%}
@@ -10,8 +10,8 @@ body{font-family:sans-serif}
 .Subject{width:15.3%}
 .Predicate{width:15.3%}
 .Object{width:15.3%}
-table{border-collapse:collapse;border:1px solid rgba(128,128,128,0.32)}
-td,th{border:1px solid rgba(128,128,128,0.32);padding:.2ex .5em}
+table{border-collapse:collapse;border:1px solid #d7d7d7}
+td,th{border:1px solid #d7d7d7;padding:.2ex .5em}
 tfoot{display:table-header-group}
 tfoot input{width:100%;padding:3px;box-sizing:border-box;-webkit-border-radius: 10px;-moz-border-radius: 10px;border-radius: 10px;}
 #results_filter{display:none}
