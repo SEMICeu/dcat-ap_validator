@@ -71,7 +71,7 @@
 			munge="true"
 			preserveallsemicolons="false"
 			fromdir="${js.dir}"
-			todir="${yui.dir}"
+			todir="${js.dir}"
 		/>
     </target>
 	
