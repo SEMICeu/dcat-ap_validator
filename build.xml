@@ -11,6 +11,7 @@
 	<property name="tests-data.dir" value="tests-data"/>
 	<property name="tests.name" value="test-rule-"/>
 	<property name="jslint.dir" value="jslint"/>
+	<property name="csslint.dir" value="csslint"/>
 	<property name="fuseki.dir" value="C:/Users/stanie/Documents/jena-fuseki1-1.1.2/"/>
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
 	<property name="fuseki.host" value="localhost"/>
@@ -18,7 +19,7 @@
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	
-	<target name="main" depends="jslint,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
+	<target name="main" depends="jslint,csslint,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
@@ -30,6 +31,20 @@
 			<fileset dir="." includes="${pages.dir}/dcat-ap_validator-results.js"/>
 			<fileset dir="${tests.dir}" includes="*.js"/>
 		</jslint>
+	</target>
+
+	<target name="csslint">       
+	<apply executable="java" failonerror="true" parallel="true">
+		<fileset dir="${pages.dir}" includes="**/*.css" />
+		<arg line="-jar"/>
+		<arg path="${csslint.dir}/js-1.7.6.jar"/>
+		<arg path="${csslint.dir}/csslint-rhino.js" />      
+
+		<!-- your customized arguments go here -->
+		<arg line="--format=lint-xml ${cssfiles.clean} > ${csslint.dir}/result.xml"/>
+
+		<srcfile/>
+	</apply>
 	</target>
 
 	<target name="clean" description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
