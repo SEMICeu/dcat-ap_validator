@@ -21,7 +21,7 @@
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	
-	<target name="main" depends="jslint,csslint,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
+	<target name="main" depends="jslint,csslint,jsdoc,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
