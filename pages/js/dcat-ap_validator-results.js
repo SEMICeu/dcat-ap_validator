@@ -22,9 +22,10 @@ $(document).ready(function() {
     var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
 
     $('#results tfoot th').each(function () {
-        var title = $('#results thead th').eq($(this).index()).text();
-		var label = '<label class="hiddenlabel" for="' + title + '">' + title + '</label>';
-		var input = '<input type="text" id="' + title + '" placeholder="Search ' + title + '" />';
+        var title, label, input;
+        title = $('#results thead th').eq($(this).index()).text();
+        label = '<label class="hiddenlabel" for="' + title + '">' + title + '</label>';
+        input = '<input type="text" id="' + title + '" placeholder="Search ' + title + '" />';
         $(this).html(label + input);
     });
 
