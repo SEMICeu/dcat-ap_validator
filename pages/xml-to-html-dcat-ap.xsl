@@ -117,11 +117,11 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
     <!-- XSLT 2.0
     <xsl:variable name="x"><xsl:value-of select="fn:encode-for-uri(.)"/></xsl:variable>
     -->
-    <xsl:variable name="x"><xsl:value-of select="str:encode-uri(.)"/></xsl:variable>
+    <xsl:variable name="x"><xsl:value-of select="."/></xsl:variable>
     <!--
     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="."/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="."/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
     -->
-     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="$x"/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="$x"/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
+     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="str:encode-uri($x, false())"/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="$x"/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
     <a href="?query={$query}&amp;output=xml&amp;stylesheet=%2Fxml-to-html-dcat-ap.xsl">
     <xsl:value-of select="."/>
     </a>
