@@ -148,13 +148,13 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 	<!-- non-datatyped literal value -->
 	<xsl:choose>
 		<xsl:when test=".='warning'">
-		  <img src="/images/warning.png" width="15" height="15"/> warning
+		  <img src="/images/warning.png" width="15" height="15" alt="warning" /> warning
 		</xsl:when>
 		<xsl:when test=".='error'">
-		  <img src="/images/error.png" width="15" height="15"/> error
+		  <img src="/images/error.png" width="15" height="15" alt="error" /> error
 		</xsl:when>	
 		<xsl:when test=".='info'">
-		  <img src="/images/info.png" width="15" height="15"/> info
+		  <img src="/images/info.png" width="15" height="15" alt="info" /> info
 		</xsl:when>			
 		<xsl:otherwise>
 			<xsl:value-of select="."/>
