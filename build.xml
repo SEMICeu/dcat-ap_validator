@@ -4,6 +4,8 @@
 <project name="DCAT-AP validator" default="main" basedir=".">
 
 	<property name="pages.dir" value="pages"/>
+	<property name="js.dir" value="${pages.dir}/js"/>
+	<property name="jsdoc.dir" value="jsdoc"/>
 	<property name="rules.dir" value="rules"/>
 	<property name="sparql-doc.dir" value="sparql-doc"/>
 	<property name="tests.dir" value="tests"/>
@@ -27,23 +29,26 @@
 		<jslint haltOnFailure="false" options="sloppy">
 			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-			<fileset dir="${pages.dir}/js" includes="*.js" />
+			<fileset dir="${js.dir}" includes="*.js" />
 			<fileset dir="${tests.dir}" includes="*.js"/>
 		</jslint>
 	</target>
 
-	<target name="csslint">       
-	<apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/csslint.xml">
-		<fileset dir="${pages.dir}/css" includes="*.css" />
-		<arg line="-jar"/>
-		<arg path="${csslint.dir}/js-1.7.6.jar"/>
-		<arg path="${csslint.dir}/csslint-rhino.js" />      
+	<target name="csslint">
+		<apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/csslint.xml">
+			<fileset dir="${pages.dir}/css" includes="*.css" />
+			<arg line="-jar"/>
+			<arg path="${csslint.dir}/js-1.7.6.jar"/>
+			<arg path="${csslint.dir}/csslint-rhino.js" />      
+			<arg line="--format=lint-xml"/>
+			<srcfile/>
+		</apply>
+	</target>
 
-		<!-- your customized arguments go here -->
-		<arg line="--format=lint-xml"/>
-
-		<srcfile/>
-	</apply>
+	<taskdef name="jsdoc" classname="net.jannon.ant.tasks.JsDoc3" classpath="${jsdoc.dir}/jsdoc3-ant-task-1.0.jar:${jsdoc.dir}/jsdoc3/lib/js.jar"/>
+	
+	<target name="jsdoc">
+		<jsdoc jsdochome="${jsdoc.dir}" to="${jsdoc.dir}/output" dir="${js.dir}" />
 	</target>
 
 	<target name="clean" description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
