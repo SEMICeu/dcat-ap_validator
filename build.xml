@@ -66,6 +66,7 @@
 	</taskdef>
 
     <target name="compress">
+		<delete dir="${js.dir}/min"/>
 		<yui-compressor
 			warn="false"
 			munge="true"
