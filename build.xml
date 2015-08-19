@@ -66,10 +66,13 @@
 	</taskdef>
 
     <target name="compress">
-		<yui-compressor todir="${yui.dir}">
-				<fileset dir="${js.dir}" includes="*.js"/>
-				<mapper type="glob" from="*.js" to="*-min.js"/>
-		</yui-compressor>
+		<yui-compressor
+			warn="false"
+			munge="true"
+			preserveallsemicolons="false"
+			fromdir="${js.dir}"
+			todir="${yui.dir}"
+		/>
     </target>
 	
 	<target name="clean" description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
