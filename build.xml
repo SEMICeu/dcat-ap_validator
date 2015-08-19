@@ -7,6 +7,7 @@
 	<property name="js.dir" value="${pages.dir}/js"/>
 	<property name="jsdoc.dir" value="jsdoc"/>
 	<property name="jsdoc.home" value="${jsdoc.dir}/jsdoc3"/>
+	<property name="yui.dir" value="yui"/>
 	<property name="rules.dir" value="rules"/>
 	<property name="sparql-doc.dir" value="sparql-doc"/>
 	<property name="tests.dir" value="tests"/>
@@ -22,7 +23,7 @@
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	
-	<target name="main" depends="jslint,csslint,jsdoc,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
+	<target name="main" depends="jslint,csslint,jsdoc,compress,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
@@ -52,6 +53,25 @@
 		<jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/output" dir="${js.dir}" />
 	</target>
 
+	<property name="yui-compressor" location="${yui.dir}/yuicompressor-2.4.2.jar" />
+	<property name="yui-compressor-ant-task" location="${yui.dir}/yui-compressor-ant-task-0.5.jar" />
+	<!-- adds libraries to the classpath -->
+	<path id="yui.classpath">
+	  <pathelement location="${yui-compressor}" />
+	  <pathelement location="${yui-compressor-ant-task}" />
+	</path>
+	<!-- define tasks -->
+	<taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+	  <classpath refid="yui.classpath" />
+	</taskdef>
+
+    <target name="compress">
+		<yuicompressor linebreak="40" todir="${yui.dir}">
+				<fileset dir="${js.dir}" includes="*.js"/>
+				<mapper type="glob" from="*.js" to="*-min.js"/>
+		</yuicompressor>
+    </target>
+	
 	<target name="clean" description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
 		<delete dir="${sparql-doc.dir}"/>
 		<delete dir="${tests-execution.dir}"/>
