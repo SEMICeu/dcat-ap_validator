@@ -7,5 +7,11 @@
         "excludePattern": "(^|\\/)_"
     },
     "plugins": [],
-    "jsVersion": 180
+    "jsVersion": 180,
+	"templates": {
+		  "default":
+		  {
+			"outputSourceFiles": "true"
+		  }
+		}
 }
