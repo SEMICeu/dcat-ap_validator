@@ -65,7 +65,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		<tr>
 		  <xsl:for-each select="res:head/res:variable">
 			<xsl:variable name="x"><xsl:value-of select="@name"/></xsl:variable>
-			<th id="{$x}"><xsl:value-of select="@name"/></th>
+			<th class="{$x}"><xsl:value-of select="@name"/></th>
 		  </xsl:for-each>
 		</tr>
 	</thead>

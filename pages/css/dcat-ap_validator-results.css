@@ -2,14 +2,14 @@ body{font-family:sans-serif}
 .banner{background-color:#002060;min-height:70px;width:100%;display:table}
 .banner img{float:left}
 .banner h1{display:table-cell;vertical-align:middle;color:#fff}
-#Rule_Origin{width:8.9%}
-#Rule_ID{width:6.3%}
-#Rule_Severity{width:9.9%}
-#Rule_Description{width:12%}
-#Message{width:17%}
-#Subject{width:15.3%}
-#Predicate{width:15.3%}
-#Object{width:15.3%}
+.Rule_Origin{width:8.9%}
+.Rule_ID{width:6.3%}
+.Rule_Severity{width:9.9%}
+.Rule_Description{width:12%}
+.Message{width:17%}
+.Subject{width:15.3%}
+.Predicate{width:15.3%}
+.Object{width:15.3%}
 table{border-collapse:collapse;border:1px solid rgba(128,128,128,0.32)}
 td,th{border:1px solid rgba(128,128,128,0.32);padding:.2ex .5em}
 tfoot{display:table-header-group}
