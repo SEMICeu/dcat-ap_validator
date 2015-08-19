@@ -27,15 +27,14 @@
 		<jslint haltOnFailure="false" options="sloppy">
 			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-			<fileset dir="." includes="${pages.dir}/dcat-ap_validator.js"/>
-			<fileset dir="." includes="${pages.dir}/dcat-ap_validator-results.js"/>
+			<fileset dir="${pages.dir}/js" includes="*.js" />
 			<fileset dir="${tests.dir}" includes="*.js"/>
 		</jslint>
 	</target>
 
 	<target name="csslint">       
-	<apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/output.xml">
-		<fileset dir="${pages.dir}/css" includes="**/*.css" />
+	<apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/csslint.xml">
+		<fileset dir="${pages.dir}/css" includes="*.css" />
 		<arg line="-jar"/>
 		<arg path="${csslint.dir}/js-1.7.6.jar"/>
 		<arg path="${csslint.dir}/csslint-rhino.js" />      
