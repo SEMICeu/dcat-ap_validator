@@ -22,13 +22,16 @@ $(document).ready(function() {
 	var subject_index = $('#results thead th:contains("Subject")').index();
 	var predicate_index = $('#results thead th:contains("Predicate")').index();
 	var object_index = $('#results thead th:contains("Object")').index();
-	$('#results tbody td a').each(function () {
+	$('#results tbody td').each(function () {
         if ($(this).index() === subject_index || $(this).index() === predicate_index || $(this).index() === object_index ) {
-			var text = $(this).text().trim();
-			var query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
-			var query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
-			var link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
-			$(this).html(link);
+			var anchor = $(this).find('a');
+			(if(anchor.length){
+				var text = $(this).text().trim();
+				var query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
+				var query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
+				var link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
+				$(this).html(link);
+			}
 		}
     });
 
