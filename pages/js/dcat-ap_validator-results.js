@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 	$('#results tbody td').each(function () {
         if ($(this).index() > 4) {
-			var text = $('#results thead th').eq($(this).index()).text();
+			var text = $('#results tbody td').eq($(this).index()).text();
 			var query = 'SELECT (<' + text + '> AS ?subject) ?predicate ?object {<' + text + '> ?predicate ?object }';
 			var url = '?query=' + query + '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
 			var link = '<a href="' + url +'">' + text + '</a>';
