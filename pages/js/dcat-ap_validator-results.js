@@ -18,25 +18,28 @@ $(document).ready(function() {
         if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
     });
 
+    //improve xslt transformartion on subject, predicate object
+	
+    var table,
+        subject_index = $('#results thead th:contains("Subject")').index(),
+        predicate_index = $('#results thead th:contains("Predicate")').index(),
+        object_index = $('#results thead th:contains("Object")').index();
 
-    var subject_index = $('#results thead th:contains("Subject")').index();
-    var predicate_index = $('#results thead th:contains("Predicate")').index();
-    var object_index = $('#results thead th:contains("Object")').index();
     $('#results tbody td').each(function () {
-        if ($(this).index() === subject_index || $(this).index() === predicate_index || $(this).index() === object_index ) {
-            var anchor = $(this).find('a');
-            if(anchor.length){
-                var text = $(this).text().trim();
-                var query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
-                var query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
-                var link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
+        if ($(this).index() === subject_index || $(this).index() === predicate_index || $(this).index() === object_index) {
+            var anchor = $(this).find('a'), text, query, query_param, link;
+            if (anchor.length) {
+                text = $(this).text().trim();
+                query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
+                query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
+                link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
                 $(this).html(link);
             }
         }
     });
 
     // DataTable, ordering by severity
-    var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
+    table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
 
     $('#results tfoot th').each(function () {
         var title, label, input;
