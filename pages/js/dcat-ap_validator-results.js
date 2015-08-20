@@ -18,12 +18,12 @@ $(document).ready(function() {
         if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
     });
 
-	/**
+
 	var subject_index = $('#results thead th:contains("Subject")').index();
 	var predicate_index = $('#results thead th:contains("Predicate")').index();
 	var object_index = $('#results thead th:contains("Object")').index();
-	$('#results tbody td').each(function () {
-        if ($(this).index() === subject_index || $(this).index() === predicate_index ||$(this).index() === object_index) {
+	$('#results tbody td a').each(function () {
+        if ($(this).index() === subject_index || $(this).index() === predicate_index || $(this).index() === object_index ) {
 			var text = $(this).text().trim();
 			var query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
 			var query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
@@ -31,7 +31,7 @@ $(document).ready(function() {
 			$(this).html(link);
 		}
     });
-	**/
+
     // DataTable, ordering by severity
     var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
 
