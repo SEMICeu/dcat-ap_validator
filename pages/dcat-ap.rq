@@ -1488,4 +1488,14 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?type) > 1)
   }  
+
+UNION
+# Rule_ID:99
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (99 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:isPartOf has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:isPartOf.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:isPartOf ?typ.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?typ) > 1)
+  }
 }
