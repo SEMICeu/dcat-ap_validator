@@ -81,7 +81,7 @@
     <dct:format rdf:resource="http://nobelprize.org/format/rdf+xml"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.nobelprize.org/period">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTim"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1905-03-01</schema:startDate>
     <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-01-05</schema:endDate>
   </rdf:Description>
