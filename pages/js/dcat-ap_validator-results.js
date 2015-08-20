@@ -23,7 +23,7 @@ $(document).ready(function() {
 			var text = $('#results tbody td').eq($(this).index()).text().trim();
 			var query = 'SELECT (<' + text + '> AS ?subject) ?predicate ?object {<' + text + '> ?predicate ?object }';
 			var query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
-			var link = '<a href="?query={' + encodeURIComponent(query) +'}' + encodeURIComponent(query_param)'">' + text + '</a>';
+			var link = '<a href="?query={' + encodeURIComponent(query) +'}' + encodeURIComponent(query_param) + '">' + text + '</a>';
 			$(this).html(link);
 		}
     });
