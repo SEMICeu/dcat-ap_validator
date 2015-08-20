@@ -18,6 +18,7 @@ $(document).ready(function() {
         if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
     });
 
+	/**
 	var subject_index = $('#results thead th:contains("Subject")').index();
 	var predicate_index = $('#results thead th:contains("Predicate")').index();
 	var object_index = $('#results thead th:contains("Object")').index();
@@ -30,6 +31,7 @@ $(document).ready(function() {
 			$(this).html(link);
 		}
     });
+	**/
     // DataTable, ordering by severity
     var table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
 
