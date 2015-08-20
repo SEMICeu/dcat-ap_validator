@@ -3,14 +3,14 @@
  * @param {String} container_id - ID of the container
  */
 function setMessage(rows, container_id) {
-    subject_index = $('#results thead th:contains("Subject")').index();
+    var subject_index = $('#results thead th:contains("Subject")').index();
     if (subject_index !== 0) {
         if (rows === 0) {
             $(container_id).after('<h2 id="congratulations">Congratulations! No Error Found.</h2>');
             $('#congratulations').css({'background-color': '#55B05A', 'color': 'white', 'font-size': '1.17em'});
-		} else {
-			$(container_id).after('<h2 id="sorry">Sorry! We found the following violations (' + rows + ')</h2>');
-			$('#sorry').css({'background-color': '#D23D24', 'color': 'white', 'font-size': '1.17em'});
+        } else {
+            $(container_id).after('<h2 id="sorry">Sorry! We found the following violations (' + rows + ')</h2>');
+            $('#sorry').css({'background-color': '#D23D24', 'color': 'white', 'font-size': '1.17em'});
         }
     } else {
         $('#description').hide();
