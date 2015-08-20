@@ -23,6 +23,12 @@
 	<dct:rights rdf:resource="http://nobelprize.org/rights/n0"/>
 	<dct:spatial rdf:resource="http://nobelprize.org/spatial/n0"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://nobelprize.org/type/n0">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="http://nobelprize.org/type/n2">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datarecords/dcat#dr1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#CatalogRecord"/>
     <foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
@@ -47,8 +53,9 @@
     <dct:temporal rdf:resource="http://data.nobelprize.org/period"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
-	<dct:type rdf:resource="http://nobelprize.org/publisher/n2"/>
-	<dct:type rdf:resource="http://nobelprize.org/publisher/n3"/>
+	<dct:type rdf:resource="http://nobelprize.org/type/n0"/>
+	<dct:type rdf:resource="http://nobelprize.org/type/n2"/>
+	
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#VCard"/>
