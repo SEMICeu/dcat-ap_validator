@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 	var subject_index = $('#results thead th:contains("Subject")').index();
 	var predicate_index = $('#results thead th:contains("Predicate")').index();
-	var object_index = $('#results thead th:contains("Predicate")').index();
+	var object_index = $('#results thead th:contains("Object")').index();
 	$('#results tbody td').each(function () {
         if ($(this).index() === subject_index || $(this).index() === predicate_index ||$(this).index() === object_index) {
 			var text = $(this).text().trim();
