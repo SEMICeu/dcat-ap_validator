@@ -1498,4 +1498,14 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?typ) > 1)
   }
+  
+UNION
+# Rule_ID:100
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (100 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:accessRights has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ", str(?s)," has more than 1 dct:accessRights.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:accessRights ?rights.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?rights) > 1)
+  }
 }
