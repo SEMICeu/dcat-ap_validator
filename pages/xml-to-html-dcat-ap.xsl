@@ -29,7 +29,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		xmlns:fn="http://www.w3.org/2005/xpath-functions"
 		exclude-result-prefixes="res xsl"
 		xmlns:str="http://exslt.org/Strings"
-		extension-element-prefixes="str" str:doc="http://www.exslt.org/str">
+		extension-element-prefixes="str">
 		
 		<import href="str.encode-uri.xsl"/>
 
