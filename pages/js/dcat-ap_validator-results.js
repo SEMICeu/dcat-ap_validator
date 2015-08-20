@@ -12,6 +12,7 @@ function setMessage(rows, container_id) {
 			$(container_id).after('<h2 id="sorry">Sorry! We found the following violations (' + rows + ')</h2>');
 			$('#sorry').css({'background-color': '#D23D24', 'color': 'white', 'font-size': '1.17em'});
 		}
+		$('#description').hide();
 	}
 }
 
