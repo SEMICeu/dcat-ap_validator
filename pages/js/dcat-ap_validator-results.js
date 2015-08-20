@@ -18,8 +18,11 @@ $(document).ready(function() {
         if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
     });
 
+	var subject_index = $('#results thead th:contains("Subject")').index();
+	var predicate_index = $('#results thead th:contains("Predicate")').index();
+	var object_index = $('#results thead th:contains("Predicate")').index();
 	$('#results tbody td').each(function () {
-        if ($(this).index() > 4) {
+        if ($(this).index() === subject_index || $(this).index() === predicate_index ||$(this).index() === object_index) {
 			var text = $(this).text().trim();
 			var query = 'SELECT (<' + text + '> AS ?subject) ?predicate ?object {<' + text + '> ?predicate ?object }';
 			var query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
