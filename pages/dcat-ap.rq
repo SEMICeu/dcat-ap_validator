@@ -1559,5 +1559,5 @@ UNION
      BIND ("dct:type should be a skos:Concept." AS ?Rule_Description).
      BIND (concat("dcat:Dataset ",str(?s)," does not have a dct:type property of type skos:Concept.") AS ?Message).
    }
-   } 
+  } 
 }
