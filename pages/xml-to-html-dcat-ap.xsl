@@ -27,7 +27,11 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 		xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:res="http://www.w3.org/2005/sparql-results#"
 		xmlns:fn="http://www.w3.org/2005/xpath-functions"
-		exclude-result-prefixes="res xsl">
+		exclude-result-prefixes="res xsl"
+		xmlns:str="http://exslt.org/Strings"
+		extension-element-prefixes="str" str:doc="http://www.exslt.org/str">
+		
+		<import href="str.encode-uri.xsl"/>
 
 
   <xsl:output
@@ -117,11 +121,11 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
     <!-- XSLT 2.0
     <xsl:variable name="x"><xsl:value-of select="fn:encode-for-uri(.)"/></xsl:variable>
     -->
-    <xsl:variable name="x"><xsl:value-of select="."/></xsl:variable>
+    <xsl:variable name="x"><xsl:value-of select="str:encode-uri(.,(false())"/></xsl:variable>
     <!--
     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="."/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="."/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
     -->
-     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="str:encode-uri($x)"/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="$x"/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
+     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="$x"/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="$x"/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
     <a href="?query={$query}&amp;output=xml&amp;stylesheet=%2Fxml-to-html-dcat-ap.xsl">
     <xsl:value-of select="."/>
     </a>
