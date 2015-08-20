@@ -125,7 +125,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
     <!--
     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="."/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="."/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
     -->
-     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="str:encode-uri(string($x),false())"/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="$x"/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
+     <xsl:variable name="query">SELECT%20%28%3C<xsl:value-of select="str:encode-uri(string("http://pippo.com"),false())"/>%3E%20AS%20%3Fsubject%29%20%3Fpredicate%20%3Fobject%20%7B%3C<xsl:value-of select="$x"/>%3E%20%3Fpredicate%20%3Fobject%20%7D</xsl:variable>
     <a href="?query={$query}&amp;output=xml&amp;stylesheet=%2Fxml-to-html-dcat-ap.xsl">
     <xsl:value-of select="."/>
     </a>
