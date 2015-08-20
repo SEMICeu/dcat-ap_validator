@@ -22,8 +22,8 @@ $(document).ready(function() {
         if ($(this).index() > 4) {
 			var text = $('#results tbody td').eq($(this).index()).text().trim();
 			var query = 'SELECT (<' + text + '> AS ?subject) ?predicate ?object {<' + text + '> ?predicate ?object }';
-			var url = '?query=' + query + '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
-			var link = '<a href="' + encodeURIComponent(url) +'">' + text + '</a>';
+			var query_param = query + '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
+			var link = '<a href="?query=' + encodeURIComponent(query_param) +'">' + text + '</a>';
 			$(this).html(link);
 		}
     });
