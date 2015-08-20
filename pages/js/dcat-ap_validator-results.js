@@ -18,8 +18,7 @@ $(document).ready(function() {
         if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
     });
 
-    //improve xslt transformartion on subject, predicate object
-	
+    //improve xslt transformation on subject, predicate object
     var table,
         subject_index = $('#results thead th:contains("Subject")').index(),
         predicate_index = $('#results thead th:contains("Predicate")').index(),
