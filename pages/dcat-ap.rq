@@ -1595,4 +1595,5 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?lic) > 1)   
   }
+ }
 }
