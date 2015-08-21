@@ -163,7 +163,7 @@ function createOptions(optiontab, output, endpoint, validationquery, validationq
 	$(optionstab).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
 							'<div class="options">' +
 							'<label for="' + output + '">Output:<span class="small">Select the output format</span></label>' +
-							'<select id="' + output + '" name="output'"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
+							'<select id="' + output + '" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
 							'<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->' +
 							'<label for="' + endpoint + '">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>' +
 							'<input id="' + endpoint + '" name="endpoint'" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
