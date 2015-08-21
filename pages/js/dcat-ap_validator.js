@@ -189,7 +189,7 @@ function onForm2Submit(form) {
     var endpoint, fileURL;
     try {
         endpoint = document.getElementById('tab2-endpoint').value;
-        fileURL = document.getElementById('addess').value;
+        fileURL = document.getElementById('address').value;
         if (fileURL === "") {
             window.alert('No link has been provided');
             return false;
