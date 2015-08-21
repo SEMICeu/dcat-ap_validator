@@ -172,7 +172,7 @@ function getFileFromURL(fileURL) {
     }
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
-            alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
+            alert('Error when opening the file: ' + fileURL + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         }
     };
     xmlhttp.open("GET", fileURL, true);
@@ -186,7 +186,7 @@ function getFileFromURL(fileURL) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm2Submit(form) {
-    var endpoint, fileURL;
+    var endpoint, fileURL, file, i;
     try {
         endpoint = document.getElementById('tab2-endpoint').value;
         fileURL = document.getElementById('address').value;
@@ -201,11 +201,8 @@ function onForm2Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-		var file=getFileFromURL(fileURL);
-        for (i = 0; i < fileInput.files.length; i = i + 1) {
-            file = fileInput.files[i];
-            uploadFile(file, graph); //uploads the metadata file
-        }
+        file = getFileFromURL(fileURL);
+        uploadFile(file, graph); //uploads the metadata file
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
         //}
@@ -219,7 +216,7 @@ function onForm2Submit(form) {
  * @param {Object} optionstab_id - the tab id to be filled.
  */
 function createOptions(optionstab_id, output, endpoint, validationquery, validationquery_class, validate) {
-	$(optionstab_id).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
+    $(optionstab_id).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
 							'<div class="options">' +
 							'<label for="' + output + '">Output:<span class="small">Select the output format</span></label>' +
 							'<select id="' + output + '" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
