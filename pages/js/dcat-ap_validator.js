@@ -169,7 +169,7 @@ function createOptions(optiontab, output, endpoint, validationquery, validationq
 							'<input id="' + endpoint + '" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
 							'<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />' +
 							'<label for="' + validationquery +'">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>' +
-							'<textarea class="' + validationquery_class +'" id="+' validationquery + '" name="query" cols="80" rows="16"></textarea> ' +
+							'<textarea class="' + validationquery_class +'" id="'+ validationquery + '" name="query" cols="80" rows="16"></textarea> ' +
 							'</div>'+
 							'<div class="fancy-line"></div>' +
 							'<label class="hiddenlabel" for="' + validate +'">validate button</label>' +
