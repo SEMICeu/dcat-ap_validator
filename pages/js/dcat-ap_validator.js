@@ -130,10 +130,10 @@ function getQuery(textarea) {
  * @param {Object} form - HTML form used for the validation.
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
-function onFormSubmit(form) {
+function onForm1Submit(form) {
     var fileInput, i, file;
     try {
-        endpoint = $('.endpoint').val();
+        endpoint = $('#endpoint').val();
         fileInput = document.getElementById('metadatafile');
         if (fileInput.files.length === 0) {
             window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
@@ -159,21 +159,30 @@ function onFormSubmit(form) {
     }
 }
 
-$(document).ready(function() {
-
-    $(".commonoptions").html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
+function createOptions(optiontab, output, endpoint, validationquery, validationquery_class, validate) {
+	$(optionstab).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
 							'<div class="options">' +
-							'<label for="output">Output:<span class="small">Select the output format</span></label>' +
-							'<select id="output" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
+							'<label for="' + output + '">Output:<span class="small">Select the output format</span></label>' +
+							'<select id="' + output + '" name="output'"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
 							'<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->' +
-							'<label for="endpoint">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>' +
-							'<input class="endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
+							'<label for="' + endpoint + '">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>' +
+							'<input id="' + endpoint + '" name="endpoint'" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
 							'<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />' +
-							'<label for="validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>' +
-							'<textarea class="validationquery" name="query" cols="80" rows="16"></textarea> ' +
+							'<label for="' + validationquery +'">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>' +
+							'<textarea class="' + validationquery_class +'" id="+' validationquery + '" name="query" cols="80" rows="16"></textarea> ' +
 							'</div>'+
 							'<div class="fancy-line"></div>' +
-							'<label class="hiddenlabel" for="validate">validate button</label><button type="submit" id="validate">Validate</button>');
+							'<label class="hiddenlabel" for="' + validate +'">validate button</label>' +
+							'<button type="submit" id="' + validate +'">Validate</button>');
+}
+
+$(document).ready(function() {
+	var tab1_output_id = "output";
+	var tab1_endpoint_id = "endpoint";
+	var tab1_validationquery_id = "validationquery";
+	var tab1_validationquery_class = "validationquery";
+	var tab1_submit_id = "validate";
+    createOptions("#tab1-options",tab1_output_id,tab1_endpoint_id,tab1_validationquery_id,tab1_validationquery_class, tab1_submit_id);
 	
 	getQuery(".validationquery");
 	
