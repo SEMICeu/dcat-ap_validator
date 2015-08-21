@@ -158,9 +158,12 @@ function onForm1Submit(form) {
         return false;
     }
 }
-
-function createOptions(optionstab, output, endpoint, validationquery, validationquery_class, validate) {
-	$(optionstab).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
+/**
+ * This function fills the options for a tab
+ * @param {Object} optionstab_id - the tab id to be filled.
+ */
+function createOptions(optionstab_id, output, endpoint, validationquery, validationquery_class, validate) {
+	$(optionstab_id).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
 							'<div class="options">' +
 							'<label for="' + output + '">Output:<span class="small">Select the output format</span></label>' +
 							'<select id="' + output + '" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
@@ -179,7 +182,7 @@ function createOptions(optionstab, output, endpoint, validationquery, validation
 $(document).ready(function() {
     createOptions("#tab1-options","tab1-output","tab1-endpoint","tab1-validationquery","validationquery", "tab1-validate");
 	createOptions("#tab2-options","tab2-output","tab2-endpoint","tab2-validationquery","validationquery", "tab2-validate");
-	createOptions("#tab2-options","tab3-output","tab3-endpoint","tab3-validationquery","validationquery", "tab3-validate");
+	createOptions("#tab3-options","tab3-output","tab3-endpoint","tab3-validationquery","validationquery", "tab3-validate");
 	
 	getQuery(".validationquery");
 	
