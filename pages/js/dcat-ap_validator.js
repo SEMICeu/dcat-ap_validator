@@ -166,7 +166,7 @@ function createOptions(optiontab, output, endpoint, validationquery, validationq
 							'<select id="' + output + '" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
 							'<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->' +
 							'<label for="' + endpoint + '">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>' +
-							'<input id="' + endpoint + '" name="endpoint'" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
+							'<input id="' + endpoint + '" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
 							'<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />' +
 							'<label for="' + validationquery +'">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>' +
 							'<textarea class="' + validationquery_class +'" id="+' validationquery + '" name="query" cols="80" rows="16"></textarea> ' +
