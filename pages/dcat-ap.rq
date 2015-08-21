@@ -1570,4 +1570,20 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?checksum) > 1)
   }
+  
+UNION
+# Rule_ID:106
+   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a dcat:Distribution.
+     ?s spdx:checksum ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (spdx:checksum AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (106 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("spdx:checksum should be literal." AS ?Rule_Description).
+     BIND (concat("The spdx:checksum ",str(?s)," is not a literal.") AS ?Message).
+   }
+  }
 }
