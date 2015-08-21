@@ -1524,4 +1524,40 @@ UNION
      BIND (concat("The dct:creator ",str(?o)," is not a foaf:Agent.") AS ?Message).
    }
   }
+  
+UNION
+# Rule_ID:102
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (102 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:creator has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:creator property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:creator ?pub.
+   } GROUP BY ?s
+     HAVING (COUNT( ?pub) > 1)
+  }
+  
+UNION
+# Rule_ID:103
+   {SELECT ("DCAT-AP" AS ?Rule_Origin) (103 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:type has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:type property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:type ?pub.
+   } GROUP BY ?s
+     HAVING (COUNT( ?pub) > 1)
+  }
+  
+UNION
+# Rule_ID:104
+   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:type as ?p) ?o 
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:type ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a skos:Concept}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (104 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:type should be a skos:Concept." AS ?Rule_Description).
+     BIND (concat("dcat:Dataset ",str(?s)," does not have a dct:type property of type skos:Concept.") AS ?Message).
+   }
+  } 
 }
