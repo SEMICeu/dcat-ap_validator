@@ -19,40 +19,36 @@
 			</header>
 			<div id="body">
 				<p>This service checks one or more software description metadata files for integrity and consistency against the <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/home">DCAT-AP</a> specification and the Joinup DCAT Application Profile.</p>
-				<div>
-					<form class="form" action="/dcat-ap_validator/query" method="POST"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
-						<label for="metadatafile">RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
-						<input id="metadatafile" type="file" name="metadatafile" multiple="multiple">
-						<br/>
-						<label for="output">Output:<span class="small">Select the output format</span></label> 
-						<select id="output" name="output">
-							<option value="xml">XML</option>
-							<option value="json">JSON</option>
-							<option value="text">Text</option>
-							<option value="csv">CSV</option>
-							<option value="tsv">TSV</option>
-						</select>
-						<br/>
-						<div class="more">
-							<img id="toggleicon" class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/>
-							<span class="menu">More Options</span>
-						</div>
-						<div class="options">
-							<!--Input syntax:<br/>
-							<input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL
-							<input type="hidden" name="languageSyntax" value="ARQ"/> -->
-							<label for="endpoint">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>
-							<input id="endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" />
+				<div id="tabs">
+					<ul>
+						<li><a href="#tab-1">Validate by <span>File Upload</span></a></li>
+						<li><a href="#tab-2">Validate by <span>URI</span></a></li>
+						<li><a href="#tab-3">Validate by <span>Direct Input</span></a></li>
+					</ul>
+					<div id="tab-1">
+						<form class="form" action="/dcat-ap_validator/query" method="POST"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
+							<label for="metadatafile">RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
+							<input id="metadatafile" type="file" name="metadatafile" multiple="multiple">
 							<br/>
-							<!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> -->
-							<input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />
-							<label for="validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label> 
-							<textarea id="validationquery" name="query" cols="80" rows="16"></textarea>
-						</div>
-						<div class="fancy-line"></div>
-						<label class="hiddenlabel" for="validate">validate button</label>
-						<button type="submit" id="validate">Validate</button>
-					</form>
+							<div class="commonoptions"></div>
+						</form>
+					</div>
+					<div id="tab-2">
+						<form class="form" action="/dcat-ap_validator/query" method="POST"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
+							<label for="address">Address:<span class="small">Insert the address of the RDF file</span></label>
+							<input id="address" type="text" name="address" size="45">
+							<br/>
+							<div class="commonoptions"></div>
+						</form>
+					</div>
+					<div id="tab-3">
+						<form class="form" action="/dcat-ap_validator/query" method="POST"  accept-charset="UTF-8" onsubmit="return onFormSubmit(this)">
+							<label for="directinput">Direct input:<span class="small">Insert your markup here</span></label> 
+							<textarea id="directinput" name="directinput" cols="80" rows="16"></textarea>
+							<br/>
+							<div class="commonoptions"></div>
+						</form>
+					</div>
 				</div>
 			</div>
 			<footer>
@@ -67,7 +63,7 @@
 			</footer>
 		</div>
 		<script type="text/javascript" charset="utf-8" src="DataTables-1.10.7/media/js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/dcat-ap_validator.js"></script>
-		<script>getQuery("validationquery");</script>
 	</body>
 </html>

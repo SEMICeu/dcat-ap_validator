@@ -104,9 +104,9 @@ function runQuery(query) {
 
 /**
  * Gets SPARQL query from file
- * @param {string} textarea - The id of the textarea to fill.
+ * @param {string} textarea - The class of the textarea to fill.
  */
-function getQuery(text) {
+function getQuery(textarea) {
     var xmlhttp, file = "dcat-ap.rq";
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -117,7 +117,7 @@ function getQuery(text) {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            document.getElementById(text).innerHTML = xmlhttp.responseText;
+            $(textarea).text(xmlhttp.responseText);
         }
     };
     xmlhttp.open("GET", file, true);
@@ -133,7 +133,7 @@ function getQuery(text) {
 function onFormSubmit(form) {
     var fileInput, i, file;
     try {
-        endpoint = document.getElementById('endpoint').value;
+        endpoint = $('.endpoint').val();
         fileInput = document.getElementById('metadatafile');
         if (fileInput.files.length === 0) {
             window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
@@ -160,6 +160,25 @@ function onFormSubmit(form) {
 }
 
 $(document).ready(function() {
+
+    $(".commonoptions").html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
+							'<div class="options">' +
+							'<label for="output">Output:<span class="small">Select the output format</span></label>' +
+							'<select id="output" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
+							'<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->' +
+							'<label for="endpoint">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>' +
+							'<input class="endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
+							'<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />' +
+							'<label for="validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>' +
+							'<textarea class="validationquery" name="query" cols="80" rows="16"></textarea> ' +
+							'</div>'+
+							'<div class="fancy-line"></div>' +
+							'<label class="hiddenlabel" for="validate">validate button</label><button type="submit" id="validate">Validate</button>');
+	
+	getQuery(".validationquery");
+	
+	$("#tabs").tabs();
+	
     $(".more").click(function () {
         var $header = $(this),
             $icon = $(".toggleicon"),
