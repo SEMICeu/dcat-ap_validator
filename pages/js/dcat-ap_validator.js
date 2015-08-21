@@ -133,7 +133,7 @@ function getQuery(textarea) {
 function onForm1Submit(form) {
     var fileInput, i, file;
     try {
-        endpoint = $('#endpoint').val();
+        endpoint = document.getElementById('tab1-endpoint');
         fileInput = document.getElementById('metadatafile');
         if (fileInput.files.length === 0) {
             window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
@@ -177,12 +177,9 @@ function createOptions(optionstab, output, endpoint, validationquery, validation
 }
 
 $(document).ready(function() {
-	var tab1_output_id = "output";
-	var tab1_endpoint_id = "endpoint";
-	var tab1_validationquery_id = "validationquery";
-	var tab1_validationquery_class = "validationquery";
-	var tab1_submit_id = "validate";
-    createOptions("#tab1-options",tab1_output_id,tab1_endpoint_id,tab1_validationquery_id,tab1_validationquery_class, tab1_submit_id);
+    createOptions("#tab1-options","tab1-output","tab1-endpoint","tab1-validationquery","validationquery", "tab1-validate");
+	createOptions("#tab2-options","tab2-output","tab2-endpoint","tab2-validationquery","validationquery", "tab2-validate");
+	createOptions("#tab2-options","tab3-output","tab3-endpoint","tab3-validationquery","validationquery", "tab3-validate");
 	
 	getQuery(".validationquery");
 	
