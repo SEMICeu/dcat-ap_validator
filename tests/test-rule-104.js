@@ -23,7 +23,7 @@ casper.test.begin(testname, 2, function suite(test) {
             binding = xmlDoc.getElementsByTagName("binding")[1].textContent.trim();
             //this.echo(binding);
             test.assertEquals(binding, testid);
-        }, 4000);
+        }, 3000);
     });
 
     casper.run(function() {
