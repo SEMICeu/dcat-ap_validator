@@ -158,6 +158,62 @@ function onForm1Submit(form) {
         return false;
     }
 }
+
+/**
+ * Gets SPARQL query from file
+ * @param {string} textarea - The class of the textarea to fill.
+ */
+function getFileFromURL(fileURL) {
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
+            alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
+        }
+    };
+    xmlhttp.open("GET", fileURL, true);
+    xmlhttp.send();
+    return xmlhttp.responseText;
+}
+
+/**
+ * This function is called before submitting the form. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
+ * @param {Object} form - HTML form used for the validation.
+ * @returns {boolean} True if the operation succeeded, false otherwise
+ */
+function onForm2Submit(form) {
+    var endpoint, fileURL;
+    try {
+        endpoint = document.getElementById('tab2-endpoint').value;
+        fileURL = document.getElementById('addess').value;
+        if (fileURL === "") {
+            window.alert('No link has been provided');
+            return false;
+        }// else {
+        if (graph === 'default') {
+            runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
+        } else {
+            runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+        }
+        //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
+        //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
+		var file=getFileFromURL(fileURL);
+        for (i = 0; i < fileInput.files.length; i = i + 1) {
+            file = fileInput.files[i];
+            uploadFile(file, graph); //uploads the metadata file
+        }
+        form.action = endpoint + '/query'; //The validation query will be called from the form
+        return true;
+        //}
+    } catch (e) {
+        alert('Error: ' + e.message);
+        return false;
+    }
+}
 /**
  * This function fills the options for a tab
  * @param {Object} optionstab_id - the tab id to be filled.
