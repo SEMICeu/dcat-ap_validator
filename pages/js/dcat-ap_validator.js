@@ -133,7 +133,7 @@ function getQuery(textarea) {
 function onForm1Submit(form) {
     var fileInput, i, file;
     try {
-        endpoint = document.getElementById('tab1-endpoint');
+        endpoint = document.getElementById('tab1-endpoint').value;
         fileInput = document.getElementById('metadatafile');
         if (fileInput.files.length === 0) {
             window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
