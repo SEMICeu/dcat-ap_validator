@@ -4,7 +4,7 @@ casper.test.begin(testname, 2, function suite(test) {
         var file = '.\\' + casper.cli.get("testdata") + '\\' + testname + '.rdf';
         this.page.uploadFile('input[type="file"]', file);
         this.click('div.more');
-        this.wait(500, function() {
+        this.wait(300, function() {
             this.sendKeys('input#endpoint', casper.cli.get("url") + '/' + casper.cli.get("endpoint"), {reset: true});
             if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-0.png'); }
             this.click('button[id="validate"]');
@@ -23,7 +23,7 @@ casper.test.begin(testname, 2, function suite(test) {
             binding = xmlDoc.getElementsByTagName("binding")[1].textContent.trim();
             //this.echo(binding);
             test.assertEquals(binding, testid);
-        }, 5000);
+        }, 4000);
     });
 
     casper.run(function() {
