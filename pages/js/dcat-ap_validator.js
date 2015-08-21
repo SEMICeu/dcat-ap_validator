@@ -161,9 +161,9 @@ function onFormSubmit(form) {
 
 $(document).ready(function() {
     $(".more").click(function () {
-
-        $header = $(this);
-        $icon = $(".toggleicon");
+        var $header = $(this),
+            $icon = $(".toggleicon"),
+            $content = $header.next()
         //getting the next element
         $content = $header.next();
         //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
