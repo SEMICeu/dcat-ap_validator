@@ -71,7 +71,7 @@
     <vcard:country-name>Sweden</vcard:country-name>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.nobelprize.org/checksum/c1">
-    <rdf:type rdf:resource="http://spdx.org/rdf/terms#Checksum"/>
+    <rdf:type rdf:resource="http://spdx.org/rdf/terms#Checksu"/>
   </rdf:Description>
  <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#dist1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
