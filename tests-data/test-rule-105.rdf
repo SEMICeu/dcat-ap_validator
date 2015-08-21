@@ -71,8 +71,11 @@
     <vcard:country-name>Sweden</vcard:country-name>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.nobelprize.org/checksum/c1">
-    <rdf:type rdf:resource="http://spdx.org/rdf/terms#checksu"/>
-  </rdf:Description> 
+    <rdf:type rdf:resource="http://spdx.org/rdf/terms#checksum"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="http://data.nobelprize.org/checksum/c2">
+    <rdf:type rdf:resource="http://spdx.org/rdf/terms#checksum"/>
+  </rdf:Description>
  <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#dist1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
     <dct:title xml:lang="en">Linked Data endpoint</dct:title>
@@ -81,6 +84,7 @@
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
     <spdx:checksum rdf:resource="http://data.nobelprize.org/checksum/c1"/>
+	<spdx:checksum rdf:resource="http://data.nobelprize.org/checksum/c2"/>
   </rdf:Description>
     <rdf:Description rdf:about="http://data.nobelprize.org/period">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
