@@ -171,10 +171,10 @@ $(document).ready(function() {
             //execute this after slideToggle is done
             //change text of header based on visibility of content div
             if ($content.is(":visible")) {
-                $icon.attr('src', '../images/arrow-open.png');
+                $icon.attr('src', './images/arrow-open.png');
                 $icon.attr('alt', 'Show Options');
             } else {
-                $icon.attr('src', '../images/arrow-closed.png');
+                $icon.attr('src', './images/arrow-closed.png');
                 $icon.attr('alt', 'Hide Options');
             }
         });
