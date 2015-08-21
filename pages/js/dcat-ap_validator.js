@@ -159,7 +159,7 @@ function onForm1Submit(form) {
     }
 }
 
-function createOptions(optiontab, output, endpoint, validationquery, validationquery_class, validate) {
+function createOptions(optionstab, output, endpoint, validationquery, validationquery_class, validate) {
 	$(optionstab).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
 							'<div class="options">' +
 							'<label for="' + output + '">Output:<span class="small">Select the output format</span></label>' +
