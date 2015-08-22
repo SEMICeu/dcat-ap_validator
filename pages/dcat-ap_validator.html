@@ -30,7 +30,22 @@
 							<label for="metadatafile">RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
 							<input id="metadatafile" type="file" name="metadatafile" multiple="multiple">
 							<br/>
-							<div id="tab1-options"></div>
+							<div id="tab1-options">
+								<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>
+								<div class="options">
+									<label for="tab1-output">Output:<span class="small">Select the output format</span></label>
+									<select id="tab1-output" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>
+									<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->
+									<label for="tab1-endpoint">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>
+									<input id="tab1-endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" />
+									<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />
+									<label for="tab1-validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>
+									<textarea class="validationquery" id="tab1-validationquery" name="query" cols="80" rows="16"></textarea>
+								</div>
+								<div class="fancy-line"></div>
+								<label class="hiddenlabel" for="tab1-validate">validate button</label>
+								<button type="submit" id="tab1-validate">Validate</button>
+							</div>
 						</form>
 					</div>
 					<div id="tab-2">
@@ -38,7 +53,22 @@
 							<label for="address">Address:<span class="small">Insert the address of the RDF file</span></label>
 							<input id="address" type="text" name="address" size="45">
 							<br/>
-							<div id="tab2-options"></div>
+							<div id="tab2-options">
+								<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>
+								<div class="options">
+									<label for="tab2-output">Output:<span class="small">Select the output format</span></label>
+									<select id="tab2-output" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>
+									<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->
+									<label for="tab2-endpoint">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>
+									<input id="tab2-endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" />
+									<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />
+									<label for="tab2-validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>
+									<textarea class="validationquery" id="tab2-validationquery" name="query" cols="80" rows="16"></textarea>
+								</div>
+								<div class="fancy-line"></div>
+								<label class="hiddenlabel" for="tab2-validate">validate button</label>
+								<button type="submit" id="tab2-validate">Validate</button>
+							</div>
 						</form>
 					</div>
 					<div id="tab-3">
@@ -46,7 +76,22 @@
 							<label for="directinput">Direct input:<span class="small">Insert your markup here</span></label> 
 							<textarea id="directinput" name="directinput" cols="80" rows="16"></textarea>
 							<br/>
-							<div id="tab3-options"></div>
+							<div id="tab3-options">
+								<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>
+								<div class="options">
+									<label for="tab3-output">Output:<span class="small">Select the output format</span></label>
+									<select id="tab3-output" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>
+									<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->
+									<label for="tab3-endpoint">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>
+									<input id="tab3-endpoint" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" />
+									<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />
+									<label for="tab3-validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>
+									<textarea class="validationquery" id="tab3-validationquery" name="query" cols="80" rows="16"></textarea>
+								</div>
+								<div class="fancy-line"></div>
+								<label class="hiddenlabel" for="tab3-validate">validate button</label>
+								<button type="submit" id="tab3-validate">Validate</button>
+							</div>
 						</form>
 					</div>
 				</div>

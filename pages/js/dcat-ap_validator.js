@@ -49,7 +49,7 @@ function getAndLoadFile(fileURL) {
         } else if (this.readyState === 4 && this.status === 200) {
             alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
-            var blob = new Blob([this.responseText], { type: "text\/turtle"}); //text\/turtle   text\/xml
+            var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
             uploadFile(blob, graph);
         }
     };
@@ -126,7 +126,7 @@ function getQuery(textarea) {
 }
 
 /**
- * This function is called before submitting the form. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
+ * This function is called before submitting the form1. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
  * @param {Object} form - HTML form used for the validation.
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
@@ -164,29 +164,18 @@ function onForm1Submit(form) {
  * @param {string} textarea - The class of the textarea to fill.
  */
 function getFileFromURL(fileURL) {
-    var xmlhttp;
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
-            alert('Error when opening the file: ' + fileURL + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
-        }
-    };
-    xmlhttp.open("GET", fileURL, true);
-    xmlhttp.send();
-    return xmlhttp.responseText;
+	$.get(fileURL, function( data ) {
+		return data;
+	});
 }
 
 /**
- * This function is called before submitting the form. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
+ * This function is called before submitting the form2. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
  * @param {Object} form - HTML form used for the validation.
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm2Submit(form) {
-    var endpoint, fileURL, file, i;
+    var fileURL, file, i;
     try {
         endpoint = document.getElementById('tab2-endpoint').value;
         fileURL = document.getElementById('address').value;
@@ -201,7 +190,39 @@ function onForm2Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        file = getFileFromURL(fileURL);
+        //file = getFileFromURL(fileURL);
+        getAndLoadFile(fileURL); //uploads the metadata file
+        form.action = endpoint + '/query'; //The validation query will be called from the form
+        return true;
+        //}
+    } catch (e) {
+        alert('Error: ' + e.message);
+        return false;
+    }
+}
+
+/**
+ * This function is called before submitting the form3. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
+ * @param {Object} form - HTML form used for the validation.
+ * @returns {boolean} True if the operation succeeded, false otherwise
+ */
+function onForm3Submit(form) {
+    var fileURL, file, i;
+    try {
+        endpoint = document.getElementById('tab3-endpoint').value;
+        fileURL = document.getElementById('directinput').value;
+        if (fileURL === "") {
+            window.alert('No link has been provided');
+            return false;
+        }// else {
+        if (graph === 'default') {
+            runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
+        } else {
+            runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+        }
+        //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
+        //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
+        file = fileURL;
         uploadFile(file, graph); //uploads the metadata file
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
@@ -211,36 +232,11 @@ function onForm2Submit(form) {
         return false;
     }
 }
-/**
- * This function fills the options for a tab
- * @param {Object} optionstab_id - the tab id to be filled.
- */
-function createOptions(optionstab_id, output, endpoint, validationquery, validationquery_class, validate) {
-    $(optionstab_id).html('<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>'+
-							'<div class="options">' +
-							'<label for="' + output + '">Output:<span class="small">Select the output format</span></label>' +
-							'<select id="' + output + '" name="output"><option value="xml">XML</option><option value="json">JSON</option><option value="text">Text</option><option value="csv">CSV</option><option value="tsv">TSV</option></select>' +
-							'<br/><!--Input syntax:<br/><input type="radio" type="hidden" name="languageSyntax" value="SPARQL" checked="checked"/>SPARQL<input type="hidden" name="languageSyntax" value="ARQ"/> -->' +
-							'<label for="' + endpoint + '">SPARQL endpoint:<span class="small">Set the SPARQL endpoint</span></label>' +
-							'<input id="' + endpoint + '" name="endpoint" value="http://localhost:3030/dcat-ap_validator" size="40" /> ' +
-							'<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />' +
-							'<label for="' + validationquery +'">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>' +
-							'<textarea class="' + validationquery_class +'" id="'+ validationquery + '" name="query" cols="80" rows="16"></textarea> ' +
-							'</div>'+
-							'<div class="fancy-line"></div>' +
-							'<label class="hiddenlabel" for="' + validate +'">validate button</label>' +
-							'<button type="submit" id="' + validate +'">Validate</button>');
-}
-
 $(document).ready(function() {
-    createOptions("#tab1-options","tab1-output","tab1-endpoint","tab1-validationquery","validationquery", "tab1-validate");
-	createOptions("#tab2-options","tab2-output","tab2-endpoint","tab2-validationquery","validationquery", "tab2-validate");
-	createOptions("#tab3-options","tab3-output","tab3-endpoint","tab3-validationquery","validationquery", "tab3-validate");
-	
-	getQuery(".validationquery");
-	
-	$("#tabs").tabs();
-	
+    $("#tabs").tabs();
+
+    getQuery(".validationquery");
+
     $(".more").click(function () {
         var $header = $(this),
             $icon = $(".toggleicon"),
