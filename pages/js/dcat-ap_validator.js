@@ -203,11 +203,11 @@ function onForm2Submit(form) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm3Submit(form) {
-    var fileURL, file, i;
+    var directfile, i;
     try {
         endpoint = document.getElementById('tab3-endpoint').value;
-        fileURL = document.getElementById('directinput').value;
-        if (fileURL === "") {
+        directfile = document.getElementById('directinput').value;
+        if (directfile === "") {
             window.alert('No link has been provided');
             return false;
         }// else {
@@ -218,8 +218,8 @@ function onForm3Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        file = fileURL;
-        uploadFile(file, graph); //uploads the metadata file
+		var blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
+        uploadFile(blob, graph);
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
         //}
