@@ -13,7 +13,7 @@ casper.test.begin(testname, 2, function suite(test) {
 
     casper.then(function() {
         this.waitForResource(this.getCurrentUrl(), function() {
-			this.echo("test");
+			this.echo("test: "+this.getCurrentUrl());
             if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-1.png'); }
             var xml = this.page.content, parser, xmlDoc, results, binding;
             //this.echo(xml);
