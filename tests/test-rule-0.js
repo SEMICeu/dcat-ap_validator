@@ -13,6 +13,7 @@ casper.test.begin(testname, 2, function suite(test) {
 
     casper.then(function() {
         this.waitForResource(this.getCurrentUrl(), function() {
+			this.echo("test");
             if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-1.png'); }
             var xml = this.page.content, parser, xmlDoc, results, binding;
             //this.echo(xml);
@@ -23,7 +24,7 @@ casper.test.begin(testname, 2, function suite(test) {
             binding = xmlDoc.getElementsByTagName("binding")[1].textContent.trim();
             //this.echo(binding);
             test.assertEquals(binding, testid);
-        }, 3000);
+        }, 5000);
     });
 
     casper.run(function() {
