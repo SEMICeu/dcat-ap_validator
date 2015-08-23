@@ -36,7 +36,7 @@ function uploadFile(file, graph) {
  * WARNING: does only work on Chrome with proper security settings. We need to await HTML5.
  * @param {string} fileURL - URL of the file to be loaded.
  */
-function getAndLoadFile(fileURL) {
+function getAndLoadFile(fileURL,form) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -51,9 +51,10 @@ function getAndLoadFile(fileURL) {
             //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
             var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
             uploadFile(blob, graph);
+			form.action = endpoint + '/query'; //The validation query will be called from the form
         }
     };
-    xmlhttp.responseType = "text"; //text,document,arraybuffer
+    xmlhttp.responseType = "text/xml"; //text,document,arraybuffer
     xmlhttp.open("GET", fileURL, true);  //must be asynchronous - third parameter true
     xmlhttp.send();
 }
@@ -74,7 +75,7 @@ function runUpdateQuery(query) {
             alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
     };
-    xmlhttp.open("POST", endpoint + "/update", false);
+    xmlhttp.open("POST", endpoint + "/update", true);
     xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8;');
     xmlhttp.send('update=' + encodeURIComponent(query));
 }
@@ -160,16 +161,6 @@ function onForm1Submit(form) {
 }
 
 /**
- * Gets SPARQL query from file
- * @param {string} textarea - The class of the textarea to fill.
- */
-function getFileFromURL(fileURL) {
-	$.get(fileURL, function( data ) {
-		return data;
-	});
-}
-
-/**
  * This function is called before submitting the form2. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
  * @param {Object} form - HTML form used for the validation.
  * @returns {boolean} True if the operation succeeded, false otherwise
@@ -191,7 +182,13 @@ function onForm2Submit(form) {
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
         //file = getFileFromURL(fileURL);
-        getAndLoadFile(fileURL); //uploads the metadata file
+        //getAndLoadFile(fileURL,form); //uploads the metadata file
+		var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
+		var list = "url=" + encodeURIComponent(fileURL); 
+		var address = url+list;
+		callWebService(address,form);
+		
+		console.log("execute query");
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
         //}
@@ -232,14 +229,47 @@ function onForm3Submit(form) {
         return false;
     }
 }
+
+function callWebService(address){
+
+ var xmlhttp  = null;
+ if (window.XMLHttpRequest){
+ xmlhttp = new XMLHttpRequest();
+ }
+ else if (window.ActiveXObject){// for Internet Explorer
+ xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+ }  
+
+     xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status !== 200) {
+			console.log("execute alert");
+            alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
+        } else if (this.readyState === 4 && this.status === 200) {
+            alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
+            //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
+            console.log("execute blob");
+			var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
+            uploadFile(blob, graph);
+        }
+    };
+
+    //xmlhttp.responseType = "text"; //text,document,arraybuffer
+	console.log("execute get");
+
+	xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
+    xmlhttp.send();
+
+};
+
+
 $(document).ready(function() {
     $("#tabs").tabs();
 
-    getQuery(".validationquery");
+    getQuery("textarea.validationquery");
 
-    $(".more").click(function () {
+    $("div.more").click(function () {
         var $header = $(this),
-            $icon = $(".toggleicon"),
+            $icon = $("img.toggleicon"),
             $content = $header.next();
         //getting the next element
         $content = $header.next();
@@ -249,10 +279,8 @@ $(document).ready(function() {
             //change text of header based on visibility of content div
             if ($content.is(":visible")) {
                 $icon.attr('src', './images/arrow-open.png');
-                $icon.attr('alt', 'Show Options');
             } else {
                 $icon.attr('src', './images/arrow-closed.png');
-                $icon.attr('alt', 'Hide Options');
             }
         });
     });
