@@ -86,6 +86,7 @@ The development process is based on:
 <tr><td>Add missing rules from document</td><td>High</td><td>Not done</td></tr>
 <tr><td>Add automatic tests for file upload and direct input</td><td>High</td><td>Not done</td></tr>
 <tr><td>Replace php proxy with nodejs</td><td>High</td><td>Not done</td></tr>
+<tr><td>Use js cookie to setup a custom graph per session https://github.com/js-cookie/js-cookie</td><td>High</td><td>Not done</td></tr>
 <tr><td>Improve quality of the tests: more asserts (test 11, 30, 43, 46, 52), parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add <a href="https://datatables.net/examples/api/show_hide.html">toggle columns</a> in the results (in case more data are returned->better queries)</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add possible format JSON and Turtle</td><td>Medium/td><td>Not done</td></tr>
