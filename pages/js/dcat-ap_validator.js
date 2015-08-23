@@ -75,7 +75,7 @@ function runUpdateQuery(query) {
             alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
     };
-    xmlhttp.open("POST", endpoint + "/update", true);
+    xmlhttp.open("POST", endpoint + "/update", false);
     xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8;');
     xmlhttp.send('update=' + encodeURIComponent(query));
 }
@@ -186,7 +186,7 @@ function onForm2Submit(form) {
 		var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
 		var list = "url=" + encodeURIComponent(fileURL); 
 		var address = url+list;
-		callWebService(address,form);
+		callWebService(address);
 		
 		console.log("execute query");
         form.action = endpoint + '/query'; //The validation query will be called from the form
