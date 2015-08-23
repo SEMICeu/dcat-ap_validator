@@ -86,9 +86,11 @@ The development process is based on:
 <tr><td>Add missing rules from document</td><td>High</td><td>Not done</td></tr>
 <tr><td>Improve quality of the tests: more asserts (test 11, 30, 43, 46, 52), parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add <a href="https://datatables.net/examples/api/show_hide.html">toggle columns</a> in the results (in case more data are returned->better queries)</td><td>Medium</td><td>Not done</td></tr>
-<tr><td>Add validation by URL and by input type</td><td>Medium</td><td>Not done</td></tr>
+<tr><td>Add possible format JSON and Turtle</td><td>Medium/td><td>Not done</td></tr>
+<tr><td>Concatenate jquery/jqueryui/dcat-ap_validator.js</td><td>Low</td><td>Not done</td></tr>
+<tr><td>Minimize jquery ui only for tabs/accordion</td><td>Low</td><td>Not done</td></tr>
+<tr><td>Add possible html compressor such as: https://code.google.com/p/htmlcompressor/</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Add tooltip for class and properties</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Homogenize css between build.css, dcat-ap_validator.css and dcat-ap_validator-results.css</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Improve W3C and WCAG 2.0 validation for the results</td><td>Low</td><td>Not done</td></tr>
-<tr><td>Investigate IE error with JSON and CSV</td><td>Low</td><td>Not done</td></tr>
 </table>
