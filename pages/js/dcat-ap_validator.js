@@ -182,12 +182,10 @@ function onForm2Submit(form) {
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
         //file = getFileFromURL(fileURL);
         //getAndLoadFile(fileURL,form); //uploads the metadata file
-		var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
-		var list = "url=" + encodeURIComponent(fileURL); 
-		var address = url+list;
-		callWebService(address);
-		
-		console.log("execute query");
+        var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
+        var list = "url=" + encodeURIComponent(fileURL);
+        var address = url + list;
+        callWebService(address);
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
         //}
@@ -241,20 +239,16 @@ function callWebService(address){
 
      xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status !== 200) {
-			console.log("execute alert");
             alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
             alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
-            console.log("execute blob");
 			var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
             uploadFile(blob, graph);
         }
     };
 
     //xmlhttp.responseType = "text"; //text,document,arraybuffer
-	console.log("execute get");
-
 	xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
     xmlhttp.send();
 
