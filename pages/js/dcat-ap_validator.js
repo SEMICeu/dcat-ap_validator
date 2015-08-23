@@ -159,17 +159,16 @@ function onForm1Submit(form) {
     }
 }
 
-function callWebService(address){
+function callWebService(address) {
 
- var xmlhttp  = null;
- if (window.XMLHttpRequest){
- xmlhttp = new XMLHttpRequest();
- }
- else if (window.ActiveXObject){// for Internet Explorer
- xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
- }  
+    var xmlhttp  = null;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else if (window.ActiveXObject){// for Internet Explorer
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
 
-     xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status !== 200) {
             alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
@@ -228,7 +227,7 @@ function onForm2Submit(form) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm3Submit(form) {
-    var directfile, i;
+    var directfile, blob;
     try {
         endpoint = document.getElementById('tab3-endpoint').value;
         directfile = document.getElementById('directinput').value;
@@ -243,7 +242,7 @@ function onForm3Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        var blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
+        blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
         uploadFile(blob, graph);
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
