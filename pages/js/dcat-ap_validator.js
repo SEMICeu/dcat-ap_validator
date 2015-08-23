@@ -74,7 +74,7 @@ function runUpdateQuery(query) {
             alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
     };
-    xmlhttp.open("POST", endpoint + "/update", false);
+    xmlhttp.open("POST", endpoint + "/update", false); // must be false for casperjs tests
     xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8;');
     xmlhttp.send('update=' + encodeURIComponent(query));
 }
@@ -164,7 +164,7 @@ function callWebService(address) {
     var xmlhttp  = null;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
-    } else if (window.ActiveXObject){// for Internet Explorer
+    } else if (window.ActiveXObject) {// for Internet Explorer
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
@@ -179,11 +179,11 @@ function callWebService(address) {
         }
     };
 
-    //xmlhttp.responseType = "text"; //text,document,arraybuffer
+    //xmlhttp.responseType = "text"; //text,document,arraybuffer, IE11 doesn't like it
     xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
     xmlhttp.send();
 
-};
+}
 
 /**
  * This function is called before submitting the form2. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
