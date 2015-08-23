@@ -159,13 +159,40 @@ function onForm1Submit(form) {
     }
 }
 
+function callWebService(address){
+
+ var xmlhttp  = null;
+ if (window.XMLHttpRequest){
+ xmlhttp = new XMLHttpRequest();
+ }
+ else if (window.ActiveXObject){// for Internet Explorer
+ xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+ }  
+
+     xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status !== 200) {
+            alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
+        } else if (this.readyState === 4 && this.status === 200) {
+            alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
+            //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
+            var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
+            uploadFile(blob, graph);
+        }
+    };
+
+    //xmlhttp.responseType = "text"; //text,document,arraybuffer
+    xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
+    xmlhttp.send();
+
+};
+
 /**
  * This function is called before submitting the form2. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
  * @param {Object} form - HTML form used for the validation.
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm2Submit(form) {
-    var fileURL, file, i;
+    var fileURL, url, list, address;
     try {
         endpoint = document.getElementById('tab2-endpoint').value;
         fileURL = document.getElementById('address').value;
@@ -182,9 +209,9 @@ function onForm2Submit(form) {
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
         //file = getFileFromURL(fileURL);
         //getAndLoadFile(fileURL,form); //uploads the metadata file
-        var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
-        var list = "url=" + encodeURIComponent(fileURL);
-        var address = url + list;
+        url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
+        list = "url=" + encodeURIComponent(fileURL);
+        address = url + list;
         callWebService(address);
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
@@ -216,7 +243,7 @@ function onForm3Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-		var blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
+        var blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
         uploadFile(blob, graph);
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
@@ -226,34 +253,6 @@ function onForm3Submit(form) {
         return false;
     }
 }
-
-function callWebService(address){
-
- var xmlhttp  = null;
- if (window.XMLHttpRequest){
- xmlhttp = new XMLHttpRequest();
- }
- else if (window.ActiveXObject){// for Internet Explorer
- xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
- }  
-
-     xmlhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status !== 200) {
-            alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
-        } else if (this.readyState === 4 && this.status === 200) {
-            alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
-            //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
-			var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
-            uploadFile(blob, graph);
-        }
-    };
-
-    //xmlhttp.responseType = "text"; //text,document,arraybuffer
-	xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
-    xmlhttp.send();
-
-};
-
 
 $(document).ready(function() {
     $("#tabs").tabs();

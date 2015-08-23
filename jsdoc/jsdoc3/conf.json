@@ -9,8 +9,7 @@
     "plugins": [],
     "jsVersion": 180,
 	"templates": {
-		  "default":
-		  {
+		  "default": {
 			"outputSourceFiles": "true"
 		  }
 		}
