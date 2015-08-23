@@ -36,7 +36,7 @@ function uploadFile(file, graph) {
  * WARNING: does only work on Chrome with proper security settings. We need to await HTML5.
  * @param {string} fileURL - URL of the file to be loaded.
  */
-function getAndLoadFile(fileURL,form) {
+function getAndLoadFile(fileURL) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -51,7 +51,6 @@ function getAndLoadFile(fileURL,form) {
             //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
             var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
             uploadFile(blob, graph);
-			form.action = endpoint + '/query'; //The validation query will be called from the form
         }
     };
     xmlhttp.responseType = "text/xml"; //text,document,arraybuffer
