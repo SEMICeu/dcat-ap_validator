@@ -1631,5 +1631,14 @@ UNION
      BIND ("adms:status should be a skos:Concept." AS ?Rule_Description).
      BIND (concat("dcat:Distribution ",str(?s)," does not have a adms:status property of type skos:Concept.") AS ?Message).
    }
+   
+UNION
+# Rule_ID:111
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (111 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:modified.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+   WHERE {
+     ?s a dcat:Distribution.
+     ?s dct:modified ?rig.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?rig) > 1)
   }
 }
