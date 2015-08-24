@@ -1618,7 +1618,7 @@ UNION
  }
 
 UNION
-# Rule_ID:109
+# Rule_ID:110
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:status as ?p) ?o 
    WHERE {
      ?s a dcat:Distribution.
