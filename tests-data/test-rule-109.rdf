@@ -79,7 +79,7 @@
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
     <dct:rights rdf:resource="http://nobelprize.org/rights/n1"/>
     <adms:status rdf:resource="http://nobelprize.org/status/n0"/>
-    <adms:status rdf:resource="http://nobelprize.org/status/n0"/>
+    <adms:status rdf:resource="http://nobelprize.org/status/n1"/>
   </rdf:Description>
     <rdf:Description rdf:about="http://data.nobelprize.org/period">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>

@@ -81,7 +81,7 @@
 	<adms:status rdf:resource="http://nobelprize.org/type/n0"/>
   </rdf:Description>
     <rdf:Description rdf:about="http://nobelprize.org/type/n0">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concep"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.nobelprize.org/period">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
