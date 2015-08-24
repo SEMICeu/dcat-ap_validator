@@ -5,17 +5,18 @@
 
 	<property name="pages.dir" value="pages"/>
 	<property name="js.dir" value="${pages.dir}/js"/>
-	<property name="jsdoc.dir" value="jsdoc"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="jsdoc.dir" value="${lib.dir}/jsdoc"/>
 	<property name="jsdoc.home" value="${jsdoc.dir}/jsdoc3"/>
-	<property name="yui.dir" value="yui"/>
+	<property name="yui.dir" value="${lib.dir}/yui"/>
 	<property name="rules.dir" value="rules"/>
 	<property name="sparql-doc.dir" value="sparql-doc"/>
 	<property name="tests.dir" value="tests"/>
 	<property name="tests-execution.dir" value="tests-execution"/>
 	<property name="tests-data.dir" value="tests-data"/>
 	<property name="tests.name" value="test-rule-"/>
-	<property name="jslint.dir" value="jslint"/>
-	<property name="csslint.dir" value="csslint"/>
+	<property name="jslint.dir" value="${lib.dir}/jslint"/>
+	<property name="csslint.dir" value="${lib.dir}/csslint"/>
 	<property name="fuseki.dir" value="C:/Development/jena-fuseki1-1.1.2/"/>   
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
 	<property name="fuseki.host" value="localhost"/>
