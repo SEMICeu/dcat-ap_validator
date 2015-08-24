@@ -43,6 +43,7 @@ footer p{float:left;margin:0 5px 0 0;color:#7C8395}
 .ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{border:1px solid #ccc;background:#f6f6f6;font-weight:700}
 .ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited{text-decoration:none}
 .ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active{background:#EAEBEE}
+.ui-state-hover a span{color:#2a70d3}
 .ui-corner-all,.ui-corner-top,.ui-corner-left,.ui-corner-tl{border-top-left-radius:4px}
 .ui-corner-all,.ui-corner-top,.ui-corner-right,.ui-corner-tr{border-top-right-radius:4px}
 .ui-corner-all,.ui-corner-bottom,.ui-corner-left,.ui-corner-bl{border-bottom-left-radius:4px}
