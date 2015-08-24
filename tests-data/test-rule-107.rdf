@@ -18,16 +18,16 @@
     <dct:issued>2014-09-25</dct:issued>
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
     <dct:modified>2014-09-25</dct:modified>
-	<foaf:homepage rdf:resource="http://data.nobelprize.org/"/>
+    <foaf:homepage rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
-	<dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
-	<dct:rights rdf:resource="http://nobelprize.org/rights/n0"/>
-	<dct:spatial rdf:resource="http://nobelprize.org/spatial/n0"/>
+    <dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
+    <dct:rights rdf:resource="http://nobelprize.org/rights/n0"/>
+    <dct:spatial rdf:resource="http://nobelprize.org/spatial/n0"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datarecords/dcat#dr1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#CatalogRecord"/>
-	<foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
-	<dct:modified>2014-09-25</dct:modified>
+    <foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
+    <dct:modified>2014-09-25</dct:modified>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
@@ -75,8 +75,8 @@
     <dct:description xml:lang="en">Provides browsable linked data and a SPARQL endpoint.</dct:description>
     <dcat:accessURL rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
-    <dct:issued rdf:resource="http://creativecommons.org/licenses/by-nc/3.1/"/>
-	<dct:issued rdf:resource="http://creativecommons.org/licenses/by-nc/3.1/"/>
+    <dct:issued>2014-01-15</dct:issued>
+    <dct:issued>2014-01-15</dct:issued>
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
   </rdf:Description>
     <rdf:Description rdf:about="http://data.nobelprize.org/period">

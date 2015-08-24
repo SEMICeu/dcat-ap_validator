@@ -1487,7 +1487,7 @@ UNION
      ?s dct:type ?type.
    } GROUP BY ?s 
      HAVING (COUNT( ?type) > 1)
-  }  
+  }
 
 UNION
 # Rule_ID:99
@@ -1589,7 +1589,7 @@ UNION
    
 UNION
 # Rule_ID:107
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (107 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:issued.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (107 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:issued.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:issued ?lic.
