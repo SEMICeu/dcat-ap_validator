@@ -97,7 +97,6 @@ The development process is based on:
 <tr><td>Add possible format JSON and Turtle</td><td>Medium/td><td>Not done</td></tr>
 <tr><td>Add placeholders for file upload and direct input</td><td>Medium/td><td>Not done</td></tr>
 <tr><td>Concatenate jquery/jqueryui/dcat-ap_validator.js</td><td>Low</td><td>Not done</td></tr>
-<tr><td>Minimize jquery ui only for tabs/accordion</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Add possible html compressor such as: https://code.google.com/p/htmlcompressor/</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Change font textarea query especially for Firefox</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Add tooltip for class and properties</td><td>Low</td><td>Not done</td></tr>
