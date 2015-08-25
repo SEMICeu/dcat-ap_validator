@@ -173,8 +173,7 @@ function callWebService(address) {
         if (this.readyState === 4 && this.status !== 200) {
             alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
-            alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
-            //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
+            //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);    
             var pattern = /^\s*<\?xml/;
 			var test = pattern.test(this.responseText);
 			if (test) {
