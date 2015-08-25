@@ -6,6 +6,7 @@
 // Global variables
 var endpoint;
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
+var editor;
 
 /**
  * Uploads a file
@@ -256,7 +257,7 @@ function onForm3Submit(form) {
 
 $(document).ready(function() {
 
-   var editor = CodeMirror.fromTextArea(document.getElementById("directinput"), {
+    editor = CodeMirror.fromTextArea(document.getElementById("directinput"), {
     mode: "turtle",
     lineNumbers: true
   });
