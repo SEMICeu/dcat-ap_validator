@@ -174,12 +174,18 @@ function callWebService(address) {
             alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
             //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);    
-            var pattern = /^\s*<\?xml/;
-			var test = pattern.test(this.responseText);
-			if (test) {
+			var pattern_xml = /^\s*<\?xml/;
+			var pattern_turtle = /^\s*@/;
+			var pattern_json_ld = /^\s*{/;
+			var pattern_n3 = /^\s*<http/;
+			if (pattern_xml.test(this.responseText)) {
 				blob = new Blob([this.responseText], { type: "text\/xml"});
-			} else {
+			} else if (pattern_turtle.test(this.responseText)) {
 				blob = new Blob([this.responseText], { type: "text\/turtle"});
+			} else if (pattern_json_ld.test(this.responseText)) {
+				blob = new Blob([this.responseText], { type: "application\/ld+json"});
+			} else if (pattern_n3.test(this.responseText)) {
+				blob = new Blob([this.responseText], { type: "text\/n-triples"});
 			}
             uploadFile(blob, graph);
         }
@@ -249,14 +255,19 @@ function onForm3Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-		var pattern = /^\s*<\?xml/;
-		var test = pattern.test(directfile);
-		if (test) {
+		var pattern_xml = /^\s*<\?xml/;
+		var pattern_turtle = /^\s*@/;
+		var pattern_json_ld = /^\s*{/;
+		var pattern_n3 = /^\s*<http/;
+		if (pattern_xml.test(directfile)) {
 			blob = new Blob([directfile], { type: "text\/xml"});
-		} else {
+		} else if (pattern_turtle.test(directfile)) {
 			blob = new Blob([directfile], { type: "text\/turtle"});
+		} else if (pattern_json_ld.test(directfile)) {
+			blob = new Blob([directfile], { type: "application\/ld+json"});
+		} else if (pattern_n3.test(directfile)) {
+			blob = new Blob([directfile], { type: "text\/n-triples"});
 		}
-        //blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
         uploadFile(blob, graph);
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
@@ -278,13 +289,22 @@ $(document).ready(function() {
     clearTimeout(pending);
     pending = setTimeout(update, 400);
   });
-  function looksLikeXML(code) {
-    var pattern = /^\s*<\?xml/;
-    var test = pattern.test(code);
-	return test;
-  }
+
   function update() {
-    editor.setOption("mode", looksLikeXML(editor.getValue()) ? "xml" : "turtle");
+  
+  		var pattern_xml = /^\s*<\?xml/;
+		var pattern_turtle = /^\s*@/;
+		var pattern_json_ld = /^\s*{/;
+		var pattern_n3 = /^\s*<http/;
+		if (pattern_xml.test(editor.getValue())) {
+			editor.setOption("mode", "xml");
+		} else if (pattern_turtle.test(editor.getValue())) {
+			editor.setOption("mode", "text/turtle");
+		} else if (pattern_json_ld.test(editor.getValue())) {
+			editor.setOption("mode", "application/ld+json");
+		} else if (pattern_n3.test(editor.getValue())) {
+			editor.setOption("mode", "text/n-triples");
+		}
   }
   
     $("#tabs").tabs();
