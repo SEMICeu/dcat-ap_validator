@@ -6,6 +6,7 @@
 	<property name="pages.dir" value="pages"/>
 	<property name="js.dir" value="${pages.dir}/js/dcat-ap"/>
 	<property name="css.dir" value="${pages.dir}/css/dcat-ap/"/>
+	<property name="cm.dir" value="${pages.dir}/css/codemirror/"/>
 	<property name="lib.dir" value="lib"/>
 	<property name="jsdoc.dir" value="${lib.dir}/jsdoc"/>
 	<property name="jsdoc.home" value="${jsdoc.dir}/jsdoc3"/>
@@ -69,9 +70,7 @@
 
     <target name="compress">
 		<delete dir="${js.dir}/min"/>
-		<delete dir="${css.dir}/min"/>
 		<mkdir dir="${js.dir}/min"/>
-		<mkdir dir="${css.dir}/min"/>
 		<yui-compressor
 			warn="false"
 			munge="true"
@@ -79,12 +78,25 @@
 			fromdir="${js.dir}"
 			todir="${js.dir}/min"
 		/>
+		
+		<delete dir="${css.dir}/min"/>
+		<mkdir dir="${css.dir}/min"/>
 		<yui-compressor
 			warn="false"
 			munge="true"
 			preserveallsemicolons="false"
 			fromdir="${css.dir}"
 			todir="${css.dir}/min"
+		/>
+		
+		<delete dir="${cm.dir}/min"/>
+		<mkdir dir="${cm.dir}/min"/>
+		<yui-compressor
+			warn="false"
+			munge="true"
+			preserveallsemicolons="false"
+			fromdir="${cm.dir}"
+			todir="${cm.dir}/min"
 		/>
     </target>
 	
