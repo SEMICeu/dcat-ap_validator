@@ -162,7 +162,7 @@ function onForm1Submit(form) {
 
 function callWebService(address) {
 
-    var xmlhttp  = null;
+    var xmlhttp  = null, blob;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else if (window.ActiveXObject) {// for Internet Explorer
@@ -175,7 +175,13 @@ function callWebService(address) {
         } else if (this.readyState === 4 && this.status === 200) {
             alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
-            var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
+            var pattern = /^\s*<\?xml/;
+			var test = pattern.test(this.responseText);
+			if (test) {
+				blob = new Blob([this.responseText], { type: "text\/xml"});
+			} else {
+				blob = new Blob([this.responseText], { type: "text\/turtle"});
+			}
             uploadFile(blob, graph);
         }
     };
@@ -245,7 +251,7 @@ function onForm3Submit(form) {
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
 		var pattern = /^\s*<\?xml/;
-		var test = pattern.test(code);
+		var test = pattern.test(directfile);
 		if (test) {
 			blob = new Blob([directfile], { type: "text\/xml"});
 		} else {

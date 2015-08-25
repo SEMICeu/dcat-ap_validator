@@ -1,0 +1,77 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://nobelprize.org/datasets/dcat#Catalog>
+  a dcat:Catalog ;
+  dc:title "Nobel Media Dataset catalog"@en ;
+  dcat:themeTaxonomy <http://eurovoc.europa.eu/> ;
+  dcat:dataset <http://nobelprize.org/datasets/dcat#ds1> ;
+  dc:publisher <http://nobelprize.org/publisher/n0> ;
+  dc:language <http://id.loc.gov/vocabulary/iso639-1/en> ;
+  dc:modified "2014-09-25" ;
+  dc:license <http://creativecommons.org/publicdomain/zero/1.0/>, <http://creativecommons.org/publicdomain/zero/2.0/> ;
+  dcat:record <http://nobelprize.org/datarecords/dcat#dr1> ;
+  dc:rights <http://nobelprize.org/rights/n0> ;
+  dc:spatial "Brussels" .
+
+<http://nobelprize.org/datarecords/dcat#dr1>
+  a dcat:CatalogRecord ;
+  foaf:primaryTopic <http://nobelprize.org/datasets/dcat#ds1> ;
+  dc:modified "2014-09-25" .
+
+<http://nobelprize.org/datasets/dcat#ds1>
+  a dcat:Dataset ;
+  dcat:keyword "Nobel prize", "prize", "science" ;
+  dcat:theme <http://eurovoc.europa.eu/100142> ;
+  dcat:distribution <http://nobelprize.org/datasets/dcat#dist1> ;
+  dc:modified "2014-08-27" ;
+  dc:language <http://publications.europa.eu/resource/authority/language/ENG> ;
+  dcat:landingPage "Nobelprize.org" ;
+  dc:conformsTo <http://www.nobelprize.org/nobel_organizations/nobelmedia/nobelprize_org/developer/manual-linkeddata/terms.html> ;
+  dc:temporal <http://data.nobelprize.org/period> ;
+  dc:spatial <http://sws.geonames.org/2673730> ;
+  dc:accrualPeriodicity "daily" .
+
+<http://nobelprize.org/contacts/n1>
+  a vcard:VCar ;
+  vcard:fn "Nobel Media AB" ;
+  vcard:hasTelephone [
+    vcard:hasValue <tel:086631722> ;
+    a vcard:Voice, vcard:Work
+  ] ;
+  vcard:hasAddress [
+    a vcard:Address ;
+    vcard:street-address "Stureg. 14" ;
+    vcard:postal-code "11436" ;
+    vcard:locality "Stockholm" ;
+    vcard:country-name "Sweden"
+  ] ;
+  vcard:hasEmail <mailto:info@nobelmedia.org> .
+
+<http://nobelprize.org/datasets/dcat#dist1>
+  a dcat:Distribution ;
+  dc:license <http://creativecommons.org/licenses/by-nc/3.0/> ;
+  dc:format <http://nobelprize.org/format/rdf+xml> .
+
+<http://data.nobelprize.org/period>
+  a dc:PeriodOfTime ;
+  schema:startDate "1905-03-01"^^xsd:date ;
+  schema:endDate "2013-01-05"^^xsd:date .
+
+<http://sws.geonames.org/2673730>
+  rdfs:label "Stockholm" ;
+  a dc:Location .
+
+<http://nobelprize.org/publisher/n0>
+  a foaf:Agent ;
+  dc:type <http://purl.org/adms/publishertype/Company> .
+
+<http://nobelprize.org/publisher/n2>
+  a foaf:Agen ;
+  foaf:name "Nobel Media AB" ;
+  dc:type <http://purl.org/adms/publishertype/Company> .
