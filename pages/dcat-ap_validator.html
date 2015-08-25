@@ -28,7 +28,7 @@
 					</ul>
 					<div id="tab-1">
 						<form class="form" action="/dcat-ap_validator/query" method="POST"  accept-charset="UTF-8" onsubmit="return onForm1Submit(this)">
-							<label for="metadatafile">RDF file(s):<span class="small">Select RDF file(s) with metadata and taxonomies</span></label>
+							<label for="metadatafile">RDF file(s):<span class="small">Select RDF file(XML/Turtle) with metadata and taxonomies</span></label>
 							<input id="metadatafile" type="file" name="metadatafile" multiple="multiple">
 							<br/>
 							<div id="tab1-options">
@@ -51,7 +51,7 @@
 					</div>
 					<div id="tab-2">
 						<form class="form" action="/dcat-ap_validator/query" method="POST"  accept-charset="UTF-8" onsubmit="return onForm2Submit(this)">
-							<label for="address">Address:<span class="small">Insert the address of the RDF file</span></label>
+							<label for="address">Address:<span class="small">Insert the address of the RDF file (XML/Turtle)</span></label>
 							<input id="address" type="text" name="address" size="45">
 							<br/>
 							<div id="tab2-options">
@@ -74,7 +74,7 @@
 					</div>
 					<div id="tab-3">
 						<form class="form" action="/dcat-ap_validator/query" method="POST"  accept-charset="UTF-8" onsubmit="return onForm3Submit(this)">
-							<label for="directinput">Direct input:<span class="small">Insert your markup here</span></label> 
+							<label for="directinput">Direct input:<span class="small">Insert the RDF markup (XML/Turtle)</span></label> 
 							<textarea id="directinput" name="directinput" cols="80" rows="16"></textarea>
 							<br/>
 							<div id="tab3-options">
