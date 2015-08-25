@@ -39,7 +39,7 @@
 
 	<target name="csslint">
 		<apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/csslint.xml">
-			<fileset dir="${pages.dir}/css/dcat-ap" includes="*.css" />
+			<fileset dir="${pages.dir}/css/dcat-ap/" includes="*.css" />
 			<arg line="-jar"/>
 			<arg path="${csslint.dir}/js-1.7.6.jar"/>
 			<arg path="${csslint.dir}/csslint-rhino.js" />      
