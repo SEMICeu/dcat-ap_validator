@@ -244,7 +244,14 @@ function onForm3Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
+		var pattern = /^\s*<\?xml/;
+		var test = pattern.test(code);
+		if (test) {
+			blob = new Blob([directfile], { type: "text\/xml"});
+		} else {
+			blob = new Blob([directfile], { type: "text\/turtle"});
+		}
+        //blob = new Blob([directfile], { type: "text\/xml"}); //text\/turtle   text\/xml
         uploadFile(blob, graph);
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
