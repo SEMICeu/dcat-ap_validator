@@ -194,11 +194,11 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 	</xsl:choose>
 
 		<!-- jQuery -->
-		<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.js"></script>
+		<script type="text/javascript" charset="utf8" src="/js/DataTables-1.10.7/media/js/jquery.js"></script>
 		  
 		<!-- DataTables -->
-		<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" charset="utf8" src="/js/min/dcat-ap_validator-results-min.js"></script>
+		<script type="text/javascript" charset="utf8" src="/js/DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="/js/dcat-ap/min/dcat-ap_validator-results-min.js"></script>
       </body>
     </html>
   </xsl:template>

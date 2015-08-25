@@ -4,7 +4,7 @@
 <project name="DCAT-AP validator" default="main" basedir=".">
 
 	<property name="pages.dir" value="pages"/>
-	<property name="js.dir" value="${pages.dir}/js"/>
+	<property name="js.dir" value="${pages.dir}/js/dcat-ap"/>
 	<property name="lib.dir" value="lib"/>
 	<property name="jsdoc.dir" value="${lib.dir}/jsdoc"/>
 	<property name="jsdoc.home" value="${jsdoc.dir}/jsdoc3"/>
@@ -28,7 +28,7 @@
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
-	<target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap_validator.js file.">
+	<target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap js files and tests.">
 		<jslint haltOnFailure="false" options="sloppy">
 			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
