@@ -230,9 +230,10 @@ function onForm3Submit(form) {
     var directfile, blob;
     try {
         endpoint = document.getElementById('tab3-endpoint').value;
-        directfile = document.getElementById('directinput').value;
+        //directfile = document.getElementById('directinput').value; 
+		directfile = editor.getValue();
         if (directfile === "") {
-            window.alert('No link has been provided');
+            window.alert('No RDF input has been provided');
             return false;
         }// else {
         if (graph === 'default') {
@@ -254,6 +255,25 @@ function onForm3Submit(form) {
 }
 
 $(document).ready(function() {
+
+   var editor = CodeMirror.fromTextArea(document.getElementById("directinput"), {
+    mode: "turtle",
+    lineNumbers: true
+  });
+  var pending;
+  editor.on("change", function() {
+    clearTimeout(pending);
+    pending = setTimeout(update, 400);
+  });
+  function looksLikeXML(code) {
+    var pattern = /^\s*<\?xml/;
+    var test = pattern.test(code);
+	return test;
+  }
+  function update() {
+    editor.setOption("mode", looksLikeXML(editor.getValue()) ? "xml" : "turtle");
+  }
+  
     $("#tabs").tabs();
 
     getQuery("textarea.validationquery");
