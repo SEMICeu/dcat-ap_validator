@@ -1740,4 +1740,20 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?s) > 1)
 }
+
+UNION
+# Rule_ID:119
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     FILTER(!EXISTS {?s foaf:primaryTopic ?name}).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:CatalogRecord AS ?o).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (119 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("A Catalog Record should have foaf:primaryTopic property." AS ?Rule_Description).
+     BIND (concat("The dcat:CatalogRecord ",str(?s)," does not have a foaf:primaryTopic property.") AS ?Message).
+   }
+  }
 }
