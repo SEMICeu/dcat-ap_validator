@@ -103,16 +103,12 @@
     </target>
 
 	<target name="concat">
-		<!-- concatenates all compressed request/response CSS files into one -->
+		<!-- concatenates all compressed request CSS files into one -->
 		<delete dir="${css.dir}/concat/"/>
 		<mkdir dir="${css.dir}/concat/"/>
 		<concat destfile="${css.dir}/concat/dcat.css" force="true" fixlastline="true">
 			<fileset dir="${css-dcat.dir}/min/" includes="dcat-ap_validator-min.css" />
 			<fileset dir="${cm.dir}/min/" includes="codemirror-min.css" />
-		</concat>
-		<concat destfile="${css.dir}/concat/dcat-results.css" force="true" fixlastline="true">
-			<fileset dir="${css-dcat.dir}/min/" includes="dcat-ap_validator-results-min.css" />
-			<fileset dir="${js.dir}" includes="DataTables-1.10.7/media/css/jquery.dataTables.min.css" />
 		</concat>
 		<!-- concatenates all compressed request/response JS files into one -->
 		<delete dir="${js.dir}/concat/"/>
