@@ -254,7 +254,7 @@ function onForm3Submit(form) {
         endpoint = document.getElementById('tab3-endpoint').value;
         if (typeof(editor) != "undefined") {
             directfile = editor.getValue();
-        else {
+        } else {
             directfile = document.getElementById('directinput').value; 
         }
         if (directfile === "") {
