@@ -10,7 +10,7 @@ h1{margin:.5em 3em;color:#fff}
 .form .small{color:#666;display:block;font-size:11px;font-weight:400;text-align:right;width:250px}
 .form input,textarea,select{margin:2px 0 20px 20px;border-radius:4px}
 .form select{padding-left:10px;}
-.form input,textarea{width:45%;border:1px solid #bbb;border-top:1px solid #777;border-bottom:1px solid #ddd;}
+.form input,textarea{width:75%;border:1px solid #bbb;border-top:1px solid #777;border-bottom:1px solid #ddd;}
 .form button{cursor:pointer;margin-bottom:20px;clear:both;margin-left:42%;font-weight:700;border:0 outset buttonface;background:#F5F6F8;background-image:-webkit-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-moz-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-ms-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:-o-linear-gradient(top,#F5F6F8,#DBDCDE);background-image:linear-gradient(to bottom,#F5F6F8,#DBDCDE);-webkit-border-radius:28;-moz-border-radius:28;border-radius:28px;-webkit-box-shadow:0 1px 3px #666;-moz-box-shadow:0 1px 3px #666;box-shadow:0 1px 3px #666;font-family:Arial;color:#365D95;font-size:14px;padding:10px 40px;text-decoration:none}
 .form button:hover{text-decoration:none;color:#2a70d3}
 .menu:hover{color:#2a70d3}
