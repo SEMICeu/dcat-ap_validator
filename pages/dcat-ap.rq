@@ -1716,4 +1716,28 @@ UNION
    }
   }
 
+UNION
+# Rule_ID:117
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:theme ?p.
+     FILTER(!EXISTS {?p skos:prefLabel ?val}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (117 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("If a theme exists, it should have a skos:prefLabel property." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?p)," which does not have a skos:prefLabel property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:118
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (118 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has a maximum cardinality of 1 for dct:LicenseDocument" AS ?Rule_Description) (concat("The dct:LicenseDocument ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s
+   WHERE {
+     ?s a dct:LicenseDocument.
+     ?s dct:type ?lic.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+}
 }

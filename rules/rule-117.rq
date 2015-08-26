@@ -1,0 +1,19 @@
+# Rule_ID:117
+# @title [Dataset] If a theme exists, it should have a skos:prefLabel property.
+# @tag dataset
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+WHERE {
+  ?s a dcat:Dataset.
+  ?s dcat:theme ?p.
+  FILTER(!EXISTS {?p skos:prefLabel ?val}).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (117 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("If a theme exists, it should have a skos:prefLabel property." AS ?Rule_Description).
+  BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?p)," which does not have a skos:prefLabel property.") AS ?Message).
+}
