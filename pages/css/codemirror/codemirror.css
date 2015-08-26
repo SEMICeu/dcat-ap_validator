@@ -146,7 +146,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 .CodeMirror {
   position: relative;
   overflow: hidden;
-  background: white;
+  padding-left: 25px
 }
 
 .CodeMirror-scroll {
@@ -158,6 +158,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   height: 100%;
   outline: none; /* Prevent dragging from highlighting the element */
   position: relative;
+  background-color: white;
 }
 .CodeMirror-sizer {
   position: relative;
