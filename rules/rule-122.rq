@@ -1,0 +1,14 @@
+# Rule_ID:122
+# @title [Catalog Record] A Catalog Record should have foaf:primaryTopic property
+# @tag Catalog Record
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ("DCAT-AP" AS ?Rule_Origin) (122 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:modified.") AS ?Message) ?s
+WHERE {
+  ?s a dcat:CatalogRecord.
+  ?s dct:modified ?mod.
+} GROUP BY ?s 
+  HAVING (COUNT( ?s) > 1)
