@@ -252,7 +252,7 @@ function onForm3Submit(form) {
     var directfile, blob;
     try {
         endpoint = document.getElementById('tab3-endpoint').value;
-        if (typeof(editor) === "undefined") {
+        if (editor === "undefined") {
             directfile = document.getElementById('directinput').value;
         } else {
             directfile = editor.getValue();
@@ -288,6 +288,21 @@ function onForm3Submit(form) {
     }
 }
 
+/**
+ * This function is called when updating the syntax highlighting of the codemirror editor.
+ */
+function update() {
+	if (pattern_xml.test(editor.getValue())) {
+		editor.setOption("mode", "xml");
+	} else if (pattern_turtle.test(editor.getValue())) {
+		editor.setOption("mode", "text/turtle");
+	} else if (pattern_json_ld.test(editor.getValue())) {
+		editor.setOption("mode", "application/ld+json");
+	} else if (pattern_n3.test(editor.getValue())) {
+		editor.setOption("mode", "text/n-triples");
+	}
+}
+
 $(document).ready(function() {
 
     editor = CodeMirror.fromTextArea(document.getElementById("directinput"), {
@@ -300,17 +315,6 @@ $(document).ready(function() {
         pending = setTimeout(update(), 400);
     });
 
-    function update() {
-        if (pattern_xml.test(editor.getValue())) {
-            editor.setOption("mode", "xml");
-        } else if (pattern_turtle.test(editor.getValue())) {
-            editor.setOption("mode", "text/turtle");
-        } else if (pattern_json_ld.test(editor.getValue())) {
-            editor.setOption("mode", "application/ld+json");
-        } else if (pattern_n3.test(editor.getValue())) {
-            editor.setOption("mode", "text/n-triples");
-        }
-    }
 
     $("#tabs").tabs();
 
