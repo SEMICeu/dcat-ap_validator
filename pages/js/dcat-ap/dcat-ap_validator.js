@@ -9,7 +9,7 @@ var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph'
 var editor;
 var pattern_xml = /^\s*<\?xml/;
 var pattern_turtle = /^\s*@/;
-var pattern_json_ld = /^\s*{/;
+var pattern_json_ld = /^\s*\{/;
 var pattern_n3 = /^\s*<http/;
 
 /**
@@ -252,10 +252,10 @@ function onForm3Submit(form) {
     var directfile, blob;
     try {
         endpoint = document.getElementById('tab3-endpoint').value;
-        if (typeof(editor) != "undefined") {
-            directfile = editor.getValue();
+        if (typeof(editor) === "undefined") {
+            directfile = document.getElementById('directinput').value;
         } else {
-            directfile = document.getElementById('directinput').value; 
+            directfile = editor.getValue();
         }
         if (directfile === "") {
             window.alert('No RDF input has been provided');
@@ -291,14 +291,14 @@ function onForm3Submit(form) {
 $(document).ready(function() {
 
     editor = CodeMirror.fromTextArea(document.getElementById("directinput"), {
-    mode: "turtle",
-    lineNumbers: true
-  });
-  var pending;
-  editor.on("change", function() {
-    clearTimeout(pending);
-    pending = setTimeout(update, 400);
-  });
+        mode: "turtle",
+        lineNumbers: true
+    });
+    var pending;
+    editor.on("change", function() {
+        clearTimeout(pending);
+        pending = setTimeout(update(), 400);
+    });
 
     function update() {
         if (pattern_xml.test(editor.getValue())) {
@@ -311,7 +311,7 @@ $(document).ready(function() {
             editor.setOption("mode", "text/n-triples");
         }
     }
-  
+
     $("#tabs").tabs();
 
     getQuery("textarea.validationquery");
