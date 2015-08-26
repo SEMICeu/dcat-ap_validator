@@ -109,7 +109,6 @@
    <rdf:Description rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
     <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>
 	<dct:type rdf:resource="http://nobelprize.org/license/c1"/>
-	<dct:type rdf:resource="http://nobelprize.org/license/c2"/>
   </rdf:Description>
      <rdf:Description rdf:about="http://creativecommons.org/licenses/by-nc/3.0/">
     <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>

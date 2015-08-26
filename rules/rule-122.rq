@@ -1,5 +1,5 @@
 # Rule_ID:122
-# @title [Catalog Record] A Catalog Record should have foaf:primaryTopic property
+# @title [Catalog Record] dct:modified has a maximum cardinality of 1 for dcat:CatalogRecord
 # @tag Catalog Record
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 
