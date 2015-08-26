@@ -32,6 +32,7 @@ function uploadFile(file, graph) {
     xmlhttp.send(formData);
 }
 
+
 /**
  * Retrieves a file from a given URL and loads it into the triple store.
  * WARNING: does only work on Chrome with proper security settings. We need to await HTML5.
@@ -126,6 +127,10 @@ function getQuery(textarea) {
     return xmlhttp.responseText;
 }
 
+String.prototype.endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+};
+
 /**
  * This function is called before submitting the form1. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
  * @param {Object} form - HTML form used for the validation.
@@ -149,7 +154,12 @@ function onForm1Submit(form) {
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
         for (i = 0; i < fileInput.files.length; i = i + 1) {
             file = fileInput.files[i];
-            uploadFile(file, graph); //uploads the metadata file
+			if (file.name.endsWith("json") || file.name.endsWith("jsonld")) {
+				var blob = new Blob([file], {type: "application/ld+json"});
+				uploadFile(blob, graph);
+			} else {
+				uploadFile(file, graph); //uploads the metadata file
+			}
         }
         form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
@@ -185,7 +195,7 @@ function callWebService(address) {
 			} else if (pattern_json_ld.test(this.responseText)) {
 				blob = new Blob([this.responseText], { type: "application\/ld+json"});
 			} else if (pattern_n3.test(this.responseText)) {
-				blob = new Blob([this.responseText], { type: "text\/n-triples"});
+				blob = new Blob([this.responseText], { type: "application\/n-triples"});
 			}
             uploadFile(blob, graph);
         }
@@ -255,6 +265,7 @@ function onForm3Submit(form) {
         }
         //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
+		// https://jena.apache.org/documentation/io/rdf-input.html
 		var pattern_xml = /^\s*<\?xml/;
 		var pattern_turtle = /^\s*@/;
 		var pattern_json_ld = /^\s*{/;
@@ -266,7 +277,7 @@ function onForm3Submit(form) {
 		} else if (pattern_json_ld.test(directfile)) {
 			blob = new Blob([directfile], { type: "application\/ld+json"});
 		} else if (pattern_n3.test(directfile)) {
-			blob = new Blob([directfile], { type: "text\/n-triples"});
+			blob = new Blob([directfile], { type: "application\/n-triples"});
 		}
         uploadFile(blob, graph);
         form.action = endpoint + '/query'; //The validation query will be called from the form
