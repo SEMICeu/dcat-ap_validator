@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	xmlns:dct="http://purl.org/dc/terms/"
-		xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:dcat="http://www.w3.org/ns/dcat#"
 	xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	xmlns:adms="http://www.w3.org/ns/adms#"
