@@ -1698,4 +1698,22 @@ UNION
      BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?o)," which is not a skos:Concept") AS ?Message).
    }
   }
+  
+UNION
+# Rule_ID:116
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:theme ?p.
+     ?p skos:inScheme ?val.
+     FILTER(!EXISTS {?val a skos:ConceptScheme}).
+     BIND (?val AS ?o)
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (116 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("If a theme exists, it should be linked to a ConceptScheme." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?p)," which does not belong to a ConceptScheme.") AS ?Message).
+   }
+  }
+
 }
