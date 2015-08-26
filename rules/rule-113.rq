@@ -1,0 +1,16 @@
+# Rule_ID:113
+# @title [Agent] foaf:Agent does not exist
+# @tag agent
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+WHERE {
+  FILTER(!EXISTS {?s a foaf:Agent}).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (113 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("foaf:Agent does not exist." AS ?Rule_Description).
+  BIND (concat("The mandatory class foaf:Agent does not exist.") AS ?Message).
+}

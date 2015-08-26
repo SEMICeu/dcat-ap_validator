@@ -1642,4 +1642,44 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?rig) > 1)
   }
+  
+UNION
+# Rule_ID:112
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     FILTER(!EXISTS {?s a dcat:Distribution}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (112 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:Catalog does not exist." AS ?Rule_Description).
+     BIND (concat("The mandatory class dcat:Catalog does not exist.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:113
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     FILTER(!EXISTS {?s a foaf:Agent}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (113 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("foaf:Agent does not exist." AS ?Rule_Description).
+     BIND (concat("The mandatory class foaf:Agent does not exist.") AS ?Message).
+   }
+  }
+  
+UNION
+# Rule_ID:113
+   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     FILTER(!EXISTS {?s a dcat:Dataset}).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (114 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:Dataset does not exist." AS ?Rule_Description).
+     BIND (concat("The mandatory class dcat:Dataset does not exist.") AS ?Message).
+   }
+  }
+
 }

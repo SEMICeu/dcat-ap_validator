@@ -1,0 +1,16 @@
+# Rule_ID:112
+# @title [Catalog] dcat:Catalog does not exist
+# @tag catalog
+# @endpoint http://localhost:3030/dcat-ap_validator/query
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+
+SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+WHERE {
+  FILTER(!EXISTS {?s a dcat:Distribution}).
+  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND (112 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("dcat:Catalog does not exist." AS ?Rule_Description).
+  BIND (concat("The mandatory class dcat:Catalog does not exist.") AS ?Message).
+}
