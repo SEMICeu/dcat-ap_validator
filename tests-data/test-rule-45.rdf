@@ -37,7 +37,6 @@
     <dcat:keyword>prize</dcat:keyword>
     <dcat:keyword>science</dcat:keyword>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
-    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dcat:distribution>Distribution 1</dcat:distribution>
     <dct:issued>2014-01-15</dct:issued>
     <dct:modified>2014-08-27</dct:modified>
