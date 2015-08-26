@@ -102,7 +102,7 @@ UNION
      BIND (5 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:dataset should be a Dataset" AS ?Rule_Description).
-     BIND (concat("The dcat:dataset ",str(?o)," does not exist.") AS ?Message).
+     BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset") AS ?Message).
    }
   }
 
@@ -1647,7 +1647,7 @@ UNION
 # Rule_ID:112
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
-     FILTER(!EXISTS {?s a dcat:Distribution}).
+     FILTER(!EXISTS {?s a dcat:Catalog}).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (112 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
@@ -1670,7 +1670,7 @@ UNION
   }
   
 UNION
-# Rule_ID:113
+# Rule_ID:114
    {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      FILTER(!EXISTS {?s a dcat:Dataset}).

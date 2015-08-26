@@ -14,5 +14,5 @@ WHERE {
   BIND (5 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dcat:dataset should be a Dataset." AS ?Rule_Description).
-  BIND (concat("The dcat:Dataset ",str(?o)," does not exist.") AS ?Message).
+  BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset") AS ?Message).
 }
