@@ -37,6 +37,7 @@
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
     <dcat:keyword>science</dcat:keyword>
+    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
     <dct:modified>2014-08-27</dct:modified>
@@ -93,5 +94,14 @@
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
 	<foaf:name>Nobel Media AB</foaf:name>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://eurovoc.org/europa.eu/100142">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>Private</skos:prefLabel>
+	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="http://nobelprize.org/categoryScheme/cs1">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+	<dct:description xml:lang="en">Private scheme</dct:description>
   </rdf:Description>
 </rdf:RDF>

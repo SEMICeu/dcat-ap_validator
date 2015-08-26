@@ -37,6 +37,7 @@
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
     <dcat:keyword>science</dcat:keyword>
+    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dcat:theme rdf:resource="http://nobelprize.org/category/c1"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
@@ -97,6 +98,15 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/category/c1">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="http://nobelprize.org/categoryScheme/cs1">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+	<dct:description xml:lang="en">Private scheme</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://eurovoc.org/europa.eu/100142">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>Private</skos:prefLabel>
 	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
   </rdf:Description>
    <rdf:Description rdf:about="http://nobelprize.org/categoryScheme/cs1">
