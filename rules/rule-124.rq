@@ -13,7 +13,7 @@ WHERE {
   FILTER(!isURI(?o)).
   BIND (dct:type AS ?p)
   BIND ("DCAT-AP" AS ?Rule_Origin).
-  BIND (3 AS ?Rule_ID).
+  BIND (124 AS ?Rule_ID).
   BIND ("warning" AS ?Rule_Severity).
   BIND ("dct:conformsTo should be a resource." AS ?Rule_Description).
   BIND (concat("The foaf:Agent ",str(?s)," should have a dct:conformsTo as a resource.") AS ?Message).
