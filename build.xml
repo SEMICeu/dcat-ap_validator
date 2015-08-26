@@ -4,9 +4,11 @@
 <project name="DCAT-AP validator" default="main" basedir=".">
 
 	<property name="pages.dir" value="pages"/>
-	<property name="js.dir" value="${pages.dir}/js/dcat-ap"/>
-	<property name="css.dir" value="${pages.dir}/css/dcat-ap/"/>
-	<property name="cm.dir" value="${pages.dir}/css/codemirror/"/>
+	<property name="js.dir" value="${pages.dir}/js/"/>
+	<property name="js-dcat.dir" value="${pages.dir}/js/dcat-ap"/>
+	<property name="css.dir" value="${pages.dir}/css/"/>
+	<property name="css-dcat.dir" value="${pages.dir}/css/dcat-ap/"/>
+	<property name="cm.dir" value="${css.dir}/codemirror/"/>
 	<property name="lib.dir" value="lib"/>
 	<property name="jsdoc.dir" value="${lib.dir}/jsdoc"/>
 	<property name="jsdoc.home" value="${jsdoc.dir}/jsdoc3"/>
@@ -26,7 +28,7 @@
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	
-	<target name="main" depends="jslint,csslint,jsdoc,compress,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
+	<target name="main" depends="jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
 
@@ -34,14 +36,14 @@
 		<jslint haltOnFailure="false" options="sloppy">
 			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$,CodeMirror</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-			<fileset dir="${js.dir}" includes="*.js" />
+			<fileset dir="${js-dcat.dir}" includes="*.js" />
 			<fileset dir="${tests.dir}" includes="*.js"/>
 		</jslint>
 	</target>
 
 	<target name="csslint">
 		<apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/csslint.xml">
-			<fileset dir="${css.dir}" includes="*.css" />
+			<fileset dir="${css-dcat.dir}" includes="*.css" />
 			<arg line="-jar"/>
 			<arg path="${csslint.dir}/js-1.7.6.jar"/>
 			<arg path="${csslint.dir}/csslint-rhino.js" />      
@@ -53,7 +55,7 @@
 	<taskdef name="jsdoc" classname="net.jannon.ant.tasks.JsDoc3" classpath="${jsdoc.dir}/jsdoc3-ant-task-1.0.jar:${jsdoc.home}/lib/js.jar"/>
 	
 	<target name="jsdoc">
-		<jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/output" dir="${js.dir}" />
+		<jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/output" dir="${js-dcat.dir}" />
 	</target>
 
 	<property name="yui-compressor" location="${yui.dir}/yuicompressor-2.4.2.jar" />
@@ -69,24 +71,24 @@
 	</taskdef>
 
     <target name="compress">
-		<delete dir="${js.dir}/min"/>
-		<mkdir dir="${js.dir}/min"/>
+		<delete dir="${js-dcat.dir}/min"/>
+		<mkdir dir="${js-dcat.dir}/min"/>
 		<yui-compressor
 			warn="false"
 			munge="true"
 			preserveallsemicolons="false"
-			fromdir="${js.dir}"
-			todir="${js.dir}/min"
+			fromdir="${js-dcat.dir}"
+			todir="${js-dcat.dir}/min"
 		/>
 		
-		<delete dir="${css.dir}/min"/>
-		<mkdir dir="${css.dir}/min"/>
+		<delete dir="${css-dcat.dir}/min"/>
+		<mkdir dir="${css-dcat.dir}/min"/>
 		<yui-compressor
 			warn="false"
 			munge="true"
 			preserveallsemicolons="false"
-			fromdir="${css.dir}"
-			todir="${css.dir}/min"
+			fromdir="${css-dcat.dir}"
+			todir="${css-dcat.dir}/min"
 		/>
 		
 		<delete dir="${cm.dir}/min"/>
@@ -99,7 +101,25 @@
 			todir="${cm.dir}/min"
 		/>
     </target>
-	
+
+	<target name="concat">
+		<!-- concatenates all compressed JS files into one -->
+		<delete dir="${js.dir}/concat/"/>
+		<mkdir dir="${js.dir}/concat/"/>
+		<concat destfile="${js.dir}/concat/dcat.js" force="true" fixlastline="true">
+			<fileset dir="${js.dir}/jquery-ui/" includes="jquery-ui.min.js" />
+			<fileset dir="${js.dir}/codemirror/" includes="codemirror-compressed.js" />
+			<fileset dir="${js-dcat.dir}/min/" includes="dcat-ap_validator-min.js" />
+		</concat>
+		<!-- concatenates all compressed CSS files into one -->
+		<delete dir="${css.dir}/concat/"/>
+		<mkdir dir="${css.dir}/concat/"/>
+		<concat destfile="${css.dir}/concat/dcat.css" force="true" fixlastline="true">
+			<fileset dir="${css-dcat.dir}/min/" includes="dcat-ap_validator-min.css" />
+			<fileset dir="${cm.dir}/min/" includes="codemirror-min.js" />
+		</concat>
+	</target>
+
 	<target name="clean" description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
 		<delete dir="${sparql-doc.dir}"/>
 		<delete dir="${tests-execution.dir}"/>
