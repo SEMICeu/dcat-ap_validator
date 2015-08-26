@@ -166,9 +166,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
       <head>
 	    <title>DCAT-AP Validator: SPARQL Query Result</title>
-		<link rel="stylesheet" type="text/css" href="/css/dcat-ap/dcat-ap_validator-results.css" />
-		<!-- DataTables CSS -->
-		<link rel="stylesheet" type="text/css" href="/js/DataTables-1.10.7/media/css/jquery.dataTables.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/concat/dcat-results.css" />
       </head>
       <body>
 	  <header class="banner">
@@ -193,12 +191,8 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 
 	</xsl:choose>
 
-		<!-- jQuery -->
 		<script type="text/javascript" charset="utf8" src="/js/DataTables-1.10.7/media/js/jquery.js"></script>
-		  
-		<!-- DataTables -->
-		<script type="text/javascript" charset="utf8" src="/js/DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
-		<script type="text/javascript" charset="utf8" src="/js/dcat-ap/min/dcat-ap_validator-results-min.js"></script>
+		<script type="text/javascript" charset="utf8" src="/js/concat/dcat-results.js"></script>
       </body>
     </html>
   </xsl:template>
