@@ -2,6 +2,7 @@ body{font-family:sans-serif}
 .container{min-height:100%;position:relative}
 .banner{background-color:#365d95;min-height:70px;width:100%;overflow:hidden}
 .banner img{float:left}
+.banner a{text-decoration:none}
 h1{margin:.5em 3em;color:#fff}
 .body{height:100%;padding:10px}
 .form{background:#EAEBEE;padding-top:10px;border-radius:10px}
