@@ -292,15 +292,15 @@ function onForm3Submit(form) {
  * This function is called when updating the syntax highlighting of the codemirror editor.
  */
 function update() {
-	if (pattern_xml.test(editor.getValue())) {
-		editor.setOption("mode", "xml");
-	} else if (pattern_turtle.test(editor.getValue())) {
-		editor.setOption("mode", "text/turtle");
-	} else if (pattern_json_ld.test(editor.getValue())) {
-		editor.setOption("mode", "application/ld+json");
-	} else if (pattern_n3.test(editor.getValue())) {
-		editor.setOption("mode", "text/n-triples");
-	}
+    if (pattern_xml.test(editor.getValue())) {
+        editor.setOption("mode", "xml");
+    } else if (pattern_turtle.test(editor.getValue())) {
+        editor.setOption("mode", "text/turtle");
+    } else if (pattern_json_ld.test(editor.getValue())) {
+        editor.setOption("mode", "application/ld+json");
+    } else if (pattern_n3.test(editor.getValue())) {
+        editor.setOption("mode", "text/n-triples");
+    }
 }
 
 $(document).ready(function() {
