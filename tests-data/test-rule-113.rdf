@@ -5,6 +5,7 @@
 	xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	xmlns:adms="http://www.w3.org/ns/adms#"
 	xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
+	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:schema="http://schema.org/"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#catalog">
@@ -84,7 +85,7 @@
     <rdfs:label>Stockholm</rdfs:label>
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://eurovoc.org/europa.eu/100142">
+  <rdf:Description rdf:about="http://eurovoc.europa.eu/100142">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:prefLabel>Private</skos:prefLabel>
 	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
