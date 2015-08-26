@@ -116,7 +116,7 @@
 		<mkdir dir="${css.dir}/concat/"/>
 		<concat destfile="${css.dir}/concat/dcat.css" force="true" fixlastline="true">
 			<fileset dir="${css-dcat.dir}/min/" includes="dcat-ap_validator-min.css" />
-			<fileset dir="${cm.dir}/min/" includes="codemirror-min.js" />
+			<fileset dir="${cm.dir}/min/" includes="codemirror-min.css" />
 		</concat>
 	</target>
 
