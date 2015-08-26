@@ -6,8 +6,7 @@
 	xmlns:adms="http://www.w3.org/ns/adms#"
 	xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
-
-		xmlns:schema="http://schema.org/"
+	xmlns:schema="http://schema.org/"
 	xmlns:owl="http://www.w3.org/2002/07/owl#"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#catalog">
@@ -38,10 +37,8 @@
     <adms:contactPoint rdf:resource="http://nobelprize.org/contacts/n1"/>
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
-    <dcat:keyword>science</dcat:keyword>
-    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dcat:keyword>science</dcat:keyword>    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
-    pippo
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
     <dct:modified>2014-08-27</dct:modified>
