@@ -30,6 +30,7 @@
   <rdf:Description rdf:about="http://nobelprize.org/datarecords/dcat#dr1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#CatalogRecord"/>
     <foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
+	<dct:modified>2014-09-25</dct:modified>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
@@ -39,8 +40,7 @@
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
-    <dcat:keyword>science</dcat:keyword>
-    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dcat:keyword>science</dcat:keyword>    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
     <dct:modified>2014-08-27</dct:modified>

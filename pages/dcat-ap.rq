@@ -1768,8 +1768,8 @@ UNION
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (120 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("A Catalog Record should have foaf:primaryTopic property." AS ?Rule_Description).
-     BIND (concat("The dcat:CatalogRecord ",str(?s)," does not have a foaf:primaryTopic property.") AS ?Message).
+     BIND ("A Catalog Record should have dct:modified property." AS ?Rule_Description).
+     BIND (concat("The dcat:CatalogRecord ",str(?s)," does not have a dct:modified property.") AS ?Message).
    }
   }
   
