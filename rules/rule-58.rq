@@ -16,5 +16,5 @@ WHERE {
   BIND (58 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:accrualPeriodicity should be a dct:Frequency." AS ?Rule_Description).
-  BIND (concat("The dct:accrualPeriodicity ",str(?p)," is not a dct:Frequency.") AS ?Message).
+  BIND (concat("The dcat:Dataset ",str(?s)," has a dct:accrualPeriodicity property which is not a dct:Frequency.") AS ?Message).
 }
