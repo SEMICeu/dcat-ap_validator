@@ -1,4 +1,4 @@
-var testid = "131", testname = casper.cli.get("testname") + testid;
+var testid = "133", testname = casper.cli.get("testname") + testid;
 casper.test.begin(testname, 2, function suite(test) {
     casper.start(casper.cli.get("url") + '/' + casper.cli.get("page"), function() {
         var file = '.\\' + casper.cli.get("testdata") + '\\' + testname + '.rdf';
@@ -19,7 +19,7 @@ casper.test.begin(testname, 2, function suite(test) {
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(xml, 'text/xml');
             results = xmlDoc.getElementsByTagName("results")[0].childNodes;
-            test.assertEquals(results.length, 5);
+            test.assertEquals(results.length, 3);
             binding = xmlDoc.getElementsByTagName("binding")[1].textContent.trim();
             //this.echo(binding);
             test.assertEquals(binding, testid);
