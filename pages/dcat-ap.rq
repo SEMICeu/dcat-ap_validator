@@ -909,7 +909,7 @@ UNION
      BIND (58 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:accrualPeriodicity should be a dct:Frequency." AS ?Rule_Description).
-     BIND (concat("The dct:accrualPeriodicity ",str(?p)," is not a dct:Frequency.") AS ?Message).
+     BIND (concat("The dcat:Dataset ",str(?s)," has a dct:accrualPeriodicity property which is not a dct:Frequency.") AS ?Message).
    }
   }
   
@@ -977,7 +977,7 @@ UNION
      BIND (63 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:landingPage should be a foaf:Document." AS ?Rule_Description).
-     BIND (concat("The dcat:landingPage ",str(?p)," is not a foaf:Document.") AS ?Message).
+     BIND (concat("The dcat:Dataset ",str(?s)," has a dcat:landingPage which is not a foaf:Document.") AS ?Message).
    }
   }
   
