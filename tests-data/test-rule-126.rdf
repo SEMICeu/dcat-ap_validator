@@ -29,7 +29,7 @@
 	<foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
 	<dct:conformsTo rdf:resource="http://nobelprize.org/law/12345"/>
 	<dct:modified>2014-09-25</dct:modified>
-	<adms:status rdf:resource="http://nobelprize.org/status/s1/">
+	<adms:status rdf:resource="http://nobelprize.org/status/s1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
