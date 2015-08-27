@@ -35,7 +35,7 @@
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/fr"/>
   </rdf:Description>
    <rdf:Description rdf:about="http://id.loc.gov/vocabulary/iso639-1/fr">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/LinguisticSystem"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/LinguisticSyste"/>
 	<dct:description>French language</dct:description>
   </rdf:Description>
    <rdf:Description rdf:about="http://nobelprize.org/datarecords/dcat#dr2">
