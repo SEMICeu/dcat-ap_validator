@@ -1842,7 +1842,7 @@ UNION
      BIND (126 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:status should be a skos:Concept." AS ?Rule_Description).
-     BIND (concat("The dcat:CatalogRecord ",str(?s)," has a ",str(?o)," which is not a skos:Concept") AS ?Message).
+     BIND (concat("The dcat:CatalogRecord ",str(?s)," has a ",str(?o)," which is not a skos:Concept.") AS ?Message).
    }
   }
 
@@ -1854,5 +1854,22 @@ UNION
      ?s dct:issued ?mod.
    } GROUP BY ?s 
      HAVING (COUNT( ?s) > 1)
+  }
+  
+UNION
+# Rule_ID:128
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s dct:source ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dcat:CatalogRecord}).
+     BIND (dct:source AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (128 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:source should be a dcat:CatalogRecord." AS ?Rule_Description).
+     BIND (concat("dcat:CatalogRecord ",str(?s)," has a ",str(?o)," which is not a dcat:CatalogRecord.") AS ?Message).
+   }
   }
 }

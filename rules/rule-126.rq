@@ -18,5 +18,5 @@ WHERE {
   BIND (126 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("adms:status should be a skos:Concept." AS ?Rule_Description).
-  BIND (concat("The dcat:CatalogRecord ",str(?s)," has a ",str(?o)," which is not a skos:Concept") AS ?Message).
+  BIND (concat("The dcat:CatalogRecord ",str(?s)," has a ",str(?o)," which is not a skos:Concept.") AS ?Message).
 }
