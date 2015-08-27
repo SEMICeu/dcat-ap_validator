@@ -1,5 +1,5 @@
 # Rule_ID:106
-# @title [Distribution] spdx:checksum should be literal
+# @title [Distribution] spdx:checksum should be a spdx:Checksum.
 # @tag distribution
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 
