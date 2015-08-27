@@ -1648,7 +1648,6 @@ UNION
 # Rule_ID:112
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
-     ?s ?p ?o.
      FILTER(!EXISTS {?s a dcat:Catalog}).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (112 AS ?Rule_ID).
@@ -1662,7 +1661,6 @@ UNION
 # Rule_ID:113
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
-     ?s ?p ?o.
      FILTER(!EXISTS {?s a foaf:Agent}).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (113 AS ?Rule_ID).
@@ -1676,7 +1674,6 @@ UNION
 # Rule_ID:114
    {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
-     ?s ?p ?o.
      FILTER(!EXISTS {?s a dcat:Dataset}).
      BIND ("DCAT-AP" AS ?Rule_Origin).
      BIND (114 AS ?Rule_ID).
