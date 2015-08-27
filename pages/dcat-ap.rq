@@ -1818,4 +1818,31 @@ UNION
      BIND (concat("The foaf:Agent ",str(?s)," should have a dct:conformsTo as a resource.") AS ?Message).
    }
   }
+  
+UNION
+# Rule_ID:125
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (125 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("adms:status has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 adms:status.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s adms:status ?mod.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
+  
+UNION
+# Rule_ID:126
+  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s adms:status ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a skos:Concept}).
+     BIND (adms:status AS ?p).
+     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND (126 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("adms:status should be a skos:Concept." AS ?Rule_Description).
+     BIND (concat("The dcat:CatalogRecord ",str(?s)," has a ",str(?o)," which is not a skos:Concept") AS ?Message).
+   }
+  }
 }
