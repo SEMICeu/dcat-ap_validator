@@ -31,7 +31,7 @@
 	<dct:modified>2014-09-25</dct:modified>
 	<adms:status rdf:resource="http://nobelprize.org/status/s1"/>
 	<dct:issued>2014-09-25</dct:issued>
-	<dct:source rdf:resource="hhttp://nobelprize.org/datarecords/dcat#dr2"/>
+	<dct:source rdf:resource="http://nobelprize.org/datarecords/dcat#dr2"/>
   </rdf:Description>
    <rdf:Description rdf:about="http://nobelprize.org/datarecords/dcat#dr2">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#CatalogRecor"/>
