@@ -1845,4 +1845,14 @@ UNION
      BIND (concat("The dcat:CatalogRecord ",str(?s)," has a ",str(?o)," which is not a skos:Concept") AS ?Message).
    }
   }
+
+UNION
+# Rule_ID:127
+  {SELECT ("DCAT-AP" AS ?Rule_Origin) (127 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:issued.") AS ?Message) ?s
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s dct:issued ?mod.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?s) > 1)
+  }
 }
