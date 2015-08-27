@@ -16,5 +16,5 @@ WHERE {
   BIND (67 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("adms:identifier should be a adms:Identifier." AS ?Rule_Description).
-  BIND (concat("The adms:identifier ",str(?p)," is not a adms:Identifier.") AS ?Message).
+  BIND (concat("The dcat:Dataset ",str(?s)," has a adms:identifier property which is not a adms:Identifier.") AS ?Message).
 }

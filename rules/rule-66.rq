@@ -4,17 +4,18 @@
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX adms: <http://www.w3.org/ns/adms#>
-PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
-  ?s a dcat:Dataset.
-  ?s adms:identifier ?o.
-  FILTER(!isLiteral(?o)).
-  BIND (adms:identifier AS ?p).
+  ?s a adms:identifier.
+  FILTER(!EXISTS {?s skos:notation ?id}).
+  BIND (rdf:type AS ?p).
+  BIND (adms:identifier AS ?o).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (66 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("adms:identifier should be a literal." AS ?Rule_Description).
-  BIND (concat("The adms:identifier ",str(?p)," is not a literal.") AS ?Message).
+  BIND ("adms:identifier should have a skos:notation" AS ?Rule_Description).
+  BIND (concat("The adms:identifier ",str(?s)," does not have a skos:notation.") AS ?Message).
 }
