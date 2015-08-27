@@ -12,6 +12,7 @@ WHERE {
   ?s foaf:homepage ?o.
   ?o ?pred ?val.
   FILTER(!EXISTS {?o a foaf:Document}).
+  BIND (foaf:homepage AS ?p).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (17 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).

@@ -7,6 +7,7 @@ PREFIX dcat: <http://www.w3.org/ns/dcat#>
 
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
 WHERE {
+  ?s ?p ?o.
   FILTER(!EXISTS {?s a dcat:Dataset}).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (114 AS ?Rule_ID).

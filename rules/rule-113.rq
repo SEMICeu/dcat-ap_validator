@@ -7,6 +7,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
 WHERE {
+  ?s ?p ?o.
   FILTER(!EXISTS {?s a foaf:Agent}).
   BIND ("DCAT-AP" AS ?Rule_Origin).
   BIND (113 AS ?Rule_ID).
