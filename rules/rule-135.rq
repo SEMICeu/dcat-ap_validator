@@ -5,9 +5,9 @@
 
 PREFIX spdx: <http://spdx.org/rdf/terms#>
 
-SELECT ("DCAT-AP" AS ?Rule_Origin) (135 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("spdx:checksumValue has a maximum cardinality of 1 for spdx:Checksum." AS ?Rule_Description) (concat("The spdx:Checksum. ", str(?s)," has more than 1 spdx:checksumValue.") AS ?Message) ?s
+SELECT ("DCAT-AP" AS ?Rule_Origin) (135 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("spdx:checksumValue has a maximum cardinality of 1 for spdx:Checksum." AS ?Rule_Description) (concat("The spdx:Checksum ", str(?s)," has more than 1 spdx:checksumValue.") AS ?Message) ?s
 WHERE {
   ?s a spdx:Checksum.
-  ?s spdx:checksumValue?mod.
+  ?s spdx:checksumValue ?mod.
 } GROUP BY ?s 
   HAVING (COUNT( ?s) > 1)
