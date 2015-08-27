@@ -1934,7 +1934,7 @@ UNION
 UNION
 # Rule_ID:133
   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   {WHERE {
+   WHERE {
      ?s a spdx:Checksum.
      FILTER(!EXISTS {?s spdx:checksumValue ?name}).
      BIND (rdf:type AS ?p).
