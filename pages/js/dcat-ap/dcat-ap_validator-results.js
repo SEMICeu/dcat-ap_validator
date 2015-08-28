@@ -49,7 +49,7 @@ $(document).ready(function() {
         }
     });
 	var end2 = new Date().getTime();
-	console.log("Second time:" + (end - start));
+	console.log("Second time:" + (end2 - start2));
 
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
