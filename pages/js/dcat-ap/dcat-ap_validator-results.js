@@ -1,4 +1,9 @@
 /**
+ * Utility functions for the results of DCAT-AP validator.
+ * @license EUPL v1.1
+ */
+
+/**
  * Set the result message
  * @param {String} container_id - ID of the container
  */

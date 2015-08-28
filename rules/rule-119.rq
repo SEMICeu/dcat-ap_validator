@@ -7,13 +7,13 @@ PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:CatalogRecord.
   FILTER(!EXISTS {?s foaf:primaryTopic ?name}).
   BIND (rdf:type AS ?p).
   BIND (dcat:CatalogRecord AS ?o).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("CatalogRecord" AS ?Class_Name).
   BIND (119 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("A Catalog Record should have foaf:primaryTopic property." AS ?Rule_Description).

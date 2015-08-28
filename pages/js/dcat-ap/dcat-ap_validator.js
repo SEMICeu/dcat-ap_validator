@@ -1,6 +1,6 @@
 /**
  * Utility functions for the DCAT-AP validator.
- * @license ISA Open Metadata Licence v1.1
+ * @license EUPL v1.1
  */
 
 // Global variables

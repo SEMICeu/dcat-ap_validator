@@ -6,12 +6,12 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s dcat:theme ?p.
   FILTER(!EXISTS {?p skos:prefLabel ?val}).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Dataset" AS ?Class_Name).
   BIND (117 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("If a theme exists, it should have a skos:prefLabel property." AS ?Rule_Description).

@@ -7,13 +7,13 @@ PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX dct: <http://purl.org/dc/terms/>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:CatalogRecord.
   FILTER(!EXISTS {?s dct:modified ?name}).
   BIND (rdf:type AS ?p).
   BIND (dcat:CatalogRecord AS ?o).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("CatalogRecord" AS ?Class_Name).
   BIND (120 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("A Catalog Record should have dct:modified property." AS ?Rule_Description).

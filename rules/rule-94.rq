@@ -6,13 +6,13 @@
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
 WHERE {
   ?s a dcat:Distribution.
   ?s adms:status ?o.
   FILTER(!isURI(?o)).
   BIND (adms:status AS ?p).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Distribution" AS ?Class_Name).
   BIND (94 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("adms:status should be a resource." AS ?Rule_Description).

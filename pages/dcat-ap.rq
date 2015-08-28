@@ -10,16 +10,16 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX spdx: <http://spdx.org/rdf/terms#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message (?s AS ?Subject) (?p AS ?Predicate) (?o AS ?Object)
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message (?s AS ?Subject) (?p AS ?Predicate) (?o AS ?Object)
 WHERE{
 # Rule_ID:0
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a foaf:Agent.
      FILTER(!EXISTS {?s foaf:name ?name}).
      BIND (rdf:type AS ?p).
      BIND (foaf:Agent AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Agent" AS ?Class_Name).
      BIND (0 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("Name is a required property for Agent." AS ?Rule_Description).
@@ -29,13 +29,13 @@ WHERE{
 
 UNION
 # Rule_ID:1
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a foaf:Agent.
      ?s foaf:name ?o.
      FILTER(!isLiteral(?o)).
      BIND (foaf:name AS ?p)
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Agent" AS ?Class_Name).
      BIND (1 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("The foaf:name property should be a literal." AS ?Rule_Description).
@@ -45,13 +45,13 @@ UNION
 
 UNION
 # Rule_ID:2
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a foaf:Agent.
      FILTER(!EXISTS {?s dct:type ?type}).
      BIND (rdf:type AS ?p).
      BIND (foaf:Agent AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Agent" AS ?Class_Name).
      BIND (2 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("Type is a recommended property for Agent." AS ?Rule_Description).
@@ -61,13 +61,13 @@ UNION
 
 UNION
 # Rule_ID:3
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a foaf:Agent.
      ?s dct:type ?o.
      FILTER(!isURI(?o)).
      BIND (dct:type AS ?p)
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Agent" AS ?Class_Name).
      BIND (3 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("Type should be a resource" AS ?Rule_Description).
@@ -77,13 +77,13 @@ UNION
 
 UNION
 # Rule_ID:4
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dcat:dataset ?ds})).
      BIND(rdf:type AS ?p).
      BIND(dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (4 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:dataset is a required property for Catalog" AS ?Rule_Description).
@@ -93,12 +93,12 @@ UNION
 
 UNION
 # Rule_ID:5
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dcat:dataset ?o.
      FILTER(!EXISTS {?o a dcat:Dataset}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (5 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:dataset should be a Dataset" AS ?Rule_Description).
@@ -108,13 +108,13 @@ UNION
 
 UNION
 # Rule_ID:6
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dct:description ?desc})).
      BIND(rdf:type AS ?p).
      BIND(dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (6 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:description is a required property for Catalog." AS ?Rule_Description).
@@ -124,13 +124,13 @@ UNION
  
 UNION
 # Rule_ID:7
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:description ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:description AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (7 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:description should be a literal." AS ?Rule_Description).
@@ -140,13 +140,13 @@ UNION
  
 UNION
 # Rule_ID:8
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dct:publisher ?pub})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (8 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:publisher is a required property for Catalog." AS ?Rule_Description).
@@ -156,7 +156,7 @@ UNION
 
 UNION
 # Rule_ID:9
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (9 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ",str(?s)," has more than 1 dct:publisher.") AS ?Message) ?s
+  {SELECT ("Catalog" AS ?Class_Name) (9 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ",str(?s)," has more than 1 dct:publisher.") AS ?Message) ?s
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:publisher ?pub.
@@ -166,13 +166,13 @@ UNION
 
 UNION
 # Rule_ID:10
- {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+ {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:publisher ?o.
      FILTER(!isURI(?o)).
      BIND (dct:publisher AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (10 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:publisher should be a resource." AS ?Rule_Description).
@@ -182,13 +182,13 @@ UNION
 
 UNION
 # Rule_ID:11
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:publisher ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Agent}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (11 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
@@ -198,13 +198,13 @@ UNION
 
 UNION
 # Rule_ID:12
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dct:title ?title})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (12 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title is a required property for Catalog." AS ?Rule_Description).
@@ -214,13 +214,13 @@ UNION
 
 UNION
 # Rule_ID:13
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:title ?o.
      FILTER(!isLiteral(?o)).
      BIND ( dct:title AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (13 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title should be a literal." AS ?Rule_Description).
@@ -230,13 +230,13 @@ UNION
  
 UNION
 # Rule_ID:14
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s foaf:homepage ?homepage})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (14 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("foaf:homepage is a recommended property for Catalog." AS ?Rule_Description).
@@ -246,7 +246,7 @@ UNION
 
 UNION
 # Rule_ID:15
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (15 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("foaf:homepage has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 foaf:homepage.") AS ?Message) ?s
+  {SELECT ("Catalog" AS ?Class_Name) (15 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("foaf:homepage has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 foaf:homepage.") AS ?Message) ?s
    WHERE {
      ?s a dcat:Catalog.
      ?s foaf:homepage ?home.
@@ -256,12 +256,12 @@ UNION
 
 UNION
 # Rule_ID:16
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s foaf:homepage ?o.
      FILTER(!isURI(?o)).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (16 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("foaf:homepage should be a resource." AS ?Rule_Description).
@@ -271,14 +271,14 @@ UNION
  
 UNION
 # Rule_ID:17
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s foaf:homepage ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Document}).
      BIND (foaf:homepage AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (17 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("foaf:homepage should be a foaf:Document." AS ?Rule_Description).
@@ -288,12 +288,12 @@ UNION
 
 UNION
 # Rule_ID:18
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!EXISTS {?s dct:language ?o.}).
      BIND (dct:language AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (18 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:language is a recommended property for Catalog." AS ?Rule_Description).
@@ -303,13 +303,13 @@ UNION
 
 UNION
 # Rule_ID:19
- {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+ {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:language ?o.
      FILTER(!isURI(?o)).
      BIND (dct:language AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (19 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:language should be a resource." AS ?Rule_Description).
@@ -319,13 +319,13 @@ UNION
 
 UNION
 # Rule_ID:20
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:language ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:LinguisticSystem}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (20 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:language should be a dct:LinguisticSystem." AS ?Rule_Description).
@@ -335,13 +335,13 @@ UNION
  
 UNION
 # Rule_ID:21
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dct:license ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (21 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:license is a recommended property for Catalog." AS ?Rule_Description).
@@ -351,13 +351,13 @@ UNION
 
 UNION
 # Rule_ID:22
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:license ?o.
      FILTER(!isURI(?o)).
      BIND (dcat:accessURL AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (22 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:license should be a resource." AS ?Rule_Description).
@@ -367,7 +367,7 @@ UNION
 
 UNION
 # Rule_ID:23
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (23 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:license has a maximum cardinality of 1." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:license.") AS ?Message) ?s
+  {SELECT ("Catalog" AS ?Class_Name) (23 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:license has a maximum cardinality of 1." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:license.") AS ?Message) ?s
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:license ?lic.
@@ -377,13 +377,13 @@ UNION
 
 UNION
 # Rule_ID:24
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dct:issued ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (24 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:issued is a recommended property for Catalog." AS ?Rule_Description).
@@ -393,13 +393,13 @@ UNION
 
 UNION
 # Rule_ID:25
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:issued ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:issued AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (25 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:issued should be literal." AS ?Rule_Description).
@@ -409,7 +409,7 @@ UNION
 
 UNION
 # Rule_ID:26
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (26 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:issued.") AS ?Message) ?s
+  {SELECT ("Catalog" AS ?Class_Name) (26 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:issued.") AS ?Message) ?s
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:issued ?issued.
@@ -419,13 +419,13 @@ UNION
 
 UNION
 # Rule_ID:27
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dcat:themeTaxonomy ?taxonomy})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (27 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:themeTaxonomy is a recommended property for Catalog." AS ?Rule_Description).
@@ -435,13 +435,13 @@ UNION
 
 UNION
 # Rule_ID:28
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dcat:themeTaxonomy ?o.
      FILTER(!isIRI(?o)).
      BIND (dcat:themeTaxonomy AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (28 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:themeTaxonomy should be a resource." AS ?Rule_Description).
@@ -451,13 +451,13 @@ UNION
 
 UNION
 # Rule_ID:29
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dcat:record ?o.
      FILTER(!isIRI(?o)).
      BIND (dcat:themeTaxonomy AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (29 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:catalogRecord should be a resource." AS ?Rule_Description).
@@ -467,14 +467,14 @@ UNION
 
 UNION
 # Rule_ID:30
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dcat:record ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dcat:CatalogRecord}).
      BIND (dcat:themeTaxonomy AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (30 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:catalogRecord should be a CatalogRecord." AS ?Rule_Description).
@@ -484,13 +484,13 @@ UNION
 
 UNION
 # Rule_ID:31
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      FILTER(!(EXISTS { ?s dct:modified ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Catalog AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (31 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:modified is a recommended property for Catalog." AS ?Rule_Description).
@@ -500,13 +500,13 @@ UNION
 
 UNION
 # Rule_ID:32
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:modified ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:modified AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (32 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:modified should be a literal." AS ?Rule_Description).
@@ -516,7 +516,7 @@ UNION
 
 UNION
 # Rule_ID:33
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (33 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:modified.") AS ?Message) ?s
+  {SELECT ("Catalog" AS ?Class_Name) (33 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:modified.") AS ?Message) ?s
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:modified ?modified.
@@ -526,13 +526,13 @@ UNION
 
 UNION
 # Rule_ID:34
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:rights ?o.
      FILTER(!isURI(?o)).
      BIND (dct:rights AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (34 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:rights should be a resource." AS ?Rule_Description).
@@ -542,7 +542,7 @@ UNION
  
 UNION
 # Rule_ID:35
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (35 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:rights has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:rights.") AS ?Message) ?s
+  {SELECT ("Catalog" AS ?Class_Name) (35 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:rights has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:rights.") AS ?Message) ?s
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:rights ?rights.
@@ -552,13 +552,13 @@ UNION
 
 UNION
 # Rule_ID:36
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:spatial ?o.
      FILTER(!isURI(?o)).
      BIND (dct:spatial AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (36 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:spatial should be a resource." AS ?Rule_Description).
@@ -568,13 +568,13 @@ UNION
 
 UNION
 # Rule_ID:37
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s dct:description ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (37 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:description is a required property for Dataset." AS ?Rule_Description).
@@ -584,13 +584,13 @@ UNION
 
 UNION
 # Rule_ID:38
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:description ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:description AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (38 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:description should be a literal." AS ?Rule_Description).
@@ -600,13 +600,13 @@ UNION
 
 UNION
 # Rule_ID:39
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s dct:title ?title})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (39 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title is a required property for Dataset." AS ?Rule_Description).
@@ -616,13 +616,13 @@ UNION
   
 UNION
 # Rule_ID:40
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:title ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:title AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (40 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title should be a literal." AS ?Rule_Description).
@@ -632,13 +632,13 @@ UNION
 
 UNION
 # Rule_ID:41
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s adms:contactPoint ?cPoint})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (41 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("adms:contactPoint is a recommended property for Dataset." AS ?Rule_Description).
@@ -648,13 +648,13 @@ UNION
 
 UNION
 # Rule_ID:42
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s adms:contactPoint ?o.
      FILTER(!isURI(?o)).
      BIND (adms:contactPoint AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (42 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:contactPoint should be a resource." AS ?Rule_Description).
@@ -664,14 +664,14 @@ UNION
 
 UNION
 # Rule_ID:43
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s adms:contactPoint ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a <http://www.w3.org/2006/vcard/ns#VCard>}).
      BIND (adms:contactPoint AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (43 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:contactPoint should be a vCard." AS ?Rule_Description).
@@ -681,13 +681,13 @@ UNION
 
 UNION
 # Rule_ID:44
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s dcat:distribution ?dist})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (44 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:distribution is a recommended property for Dataset." AS ?Rule_Description).
@@ -697,13 +697,13 @@ UNION
 
 UNION
 # Rule_ID:45
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:distribution ?o.
      FILTER(!isURI(?o)).
      BIND (dcat:distribution AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (45 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:distribution should be a resource." AS ?Rule_Description).
@@ -713,14 +713,14 @@ UNION
 
 UNION
 # Rule_ID:46
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:distribution ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dcat:Distribution}).
      BIND (dcat:distribution AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (46 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:distribution should be a Distribution." AS ?Rule_Description).
@@ -730,13 +730,13 @@ UNION
 
 UNION
 # Rule_ID:47
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s dcat:keyword ?key})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (47 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:keyword is a recommended property for Dataset." AS ?Rule_Description).
@@ -746,13 +746,13 @@ UNION
 
 UNION
 # Rule_ID:48
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:keyword ?o.
      FILTER(!isLiteral(?o)).
      BIND (dcat:keyword AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (48 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:keyword should be a literal." AS ?Rule_Description).
@@ -762,13 +762,13 @@ UNION
 
 UNION
 # Rule_ID:49
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s dct:publisher ?pub})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (49 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:publisher is a recommended property for Dataset." AS ?Rule_Description).
@@ -778,7 +778,7 @@ UNION
 
 UNION
 # Rule_ID:50
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (50 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:publisher property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (50 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:publisher has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:publisher property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:publisher ?pub.
@@ -788,12 +788,12 @@ UNION
 
 UNION
 # Rule_ID:51
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:publisher ?o.
      FILTER(!isURI(?o)).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (51 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:publisher should be a resource." AS ?Rule_Description).
@@ -803,13 +803,13 @@ UNION
   
 UNION
 # Rule_ID:52
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:publisher ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Agent}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (52 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:publisher should be a foaf:Agent." AS ?Rule_Description).
@@ -819,13 +819,13 @@ UNION
 
 UNION
 # Rule_ID:53
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      FILTER(!(EXISTS { ?s dcat:theme ?theme})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (53 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:theme is a recommended property for Dataset." AS ?Rule_Description).
@@ -835,13 +835,13 @@ UNION
 
 UNION
 # Rule_ID:54
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:theme ?o.
      FILTER(!isURI(?o)).
      BIND (dcat:theme AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (54 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:theme should be a resource." AS ?Rule_Description).
@@ -851,13 +851,13 @@ UNION
 
 UNION
 # Rule_ID:55
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:conformsTo ?o.
      FILTER(!isURI(?o)).
      BIND (dct:conformsTo AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (55 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:conformsTo should be a resource." AS ?Rule_Description).
@@ -867,13 +867,13 @@ UNION
 
 UNION
 # Rule_ID:56
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:conformsTo as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:conformsTo as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:conformsTo ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:Standard}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (56 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:conformsTo should be a dct:Standard." AS ?Rule_Description).
@@ -883,13 +883,13 @@ UNION
 
 UNION
 # Rule_ID:57
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:accrualPeriodicity ?o.
      FILTER(!isURI(?o)).
      BIND (dct:accrualPeriodicity AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (57 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:accrualPeriodicity should be a resource." AS ?Rule_Description).
@@ -899,13 +899,13 @@ UNION
 
 UNION
 # Rule_ID:58
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:accrualPeriodicity as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:accrualPeriodicity as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:accrualPeriodicity ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:Frequency}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (58 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:accrualPeriodicity should be a dct:Frequency." AS ?Rule_Description).
@@ -915,7 +915,7 @@ UNION
   
 UNION
 # Rule_ID:59
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (59 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:accrualPeriodicity has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:accrualPeriodicity.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (59 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:accrualPeriodicity has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:accrualPeriodicity.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:accrualPeriodicity ?period.
@@ -925,13 +925,13 @@ UNION
   
 UNION
 # Rule_ID:60
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:identifier ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:identifier AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (60 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:identifier should be a literal." AS ?Rule_Description).
@@ -941,13 +941,13 @@ UNION
 
 UNION
 # Rule_ID:61
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:landingPage ?o.
      FILTER(!isURI(?o)).
      BIND (dcat:landingPage AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (61 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:landingPage should be a resource." AS ?Rule_Description).
@@ -957,7 +957,7 @@ UNION
 
 UNION
 # Rule_ID:62
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (62 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dcat:landingPage has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dcat:landingPage.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (62 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dcat:landingPage has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dcat:landingPage.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:landingPage ?page.
@@ -967,13 +967,13 @@ UNION
 
 UNION
 # Rule_ID:63
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dcat:landingPage as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dcat:landingPage as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:landingPage ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Document}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (63 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:landingPage should be a foaf:Document." AS ?Rule_Description).
@@ -983,13 +983,13 @@ UNION
   
 UNION
 # Rule_ID:64
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:language ?o.
      FILTER(!isURI(?o)).
      BIND (dct:language AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (64 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:language should be a resource." AS ?Rule_Description).
@@ -999,13 +999,13 @@ UNION
 
 UNION
 # Rule_ID:65
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:language as ?p) ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:language as ?p) ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:language ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:LinguisticSystem}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (65 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:language should be a dct:LinguisticSystem." AS ?Rule_Description).
@@ -1015,13 +1015,13 @@ UNION
 
 UNION
 # Rule_ID:66
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a adms:Identifier.
      FILTER(!EXISTS {?s skos:notation ?id}).
      BIND (rdf:type AS ?p).
      BIND (adms:Identifier AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Identifier" AS ?Class_Name).
      BIND (66 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:identifier should have a skos:notation" AS ?Rule_Description).
@@ -1031,13 +1031,13 @@ UNION
 
 UNION
 # Rule_ID:67
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:identifier as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:identifier as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s adms:identifier ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a adms:Identifier}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (67 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:identifier should be a adms:Identifier." AS ?Rule_Description).
@@ -1047,13 +1047,13 @@ UNION
 
 UNION
 # Rule_ID:68
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:issued ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:issued AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (68 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:issued should be literal." AS ?Rule_Description).
@@ -1063,7 +1063,7 @@ UNION
 
 UNION
 # Rule_ID:69
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (69 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:issued.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (69 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:issued.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:issued ?issued.
@@ -1073,13 +1073,13 @@ UNION
 
 UNION
 # Rule_ID:70
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:spatial ?o.
      FILTER(!isURI(?o)).
      BIND (dct:spatial AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (70 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:spatial should be resource." AS ?Rule_Description).
@@ -1089,13 +1089,13 @@ UNION
 
 UNION
 # Rule_ID:71
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:spatial as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:spatial as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:spatial ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:Location}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (71 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:spatial should be a dct:Location." AS ?Rule_Description).
@@ -1105,13 +1105,13 @@ UNION
 
 UNION
 # Rule_ID:72
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:temporal as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:temporal as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:temporal ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:PeriodOfTime}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (72 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:temporal should be a dct:PeriodOfTime." AS ?Rule_Description).
@@ -1121,13 +1121,13 @@ UNION
 
 UNION
 # Rule_ID:73
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:modified ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:modified AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (73 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:modified should be a literal." AS ?Rule_Description).
@@ -1137,7 +1137,7 @@ UNION
 
 UNION
 # Rule_ID:74
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (74 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:modified.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (74 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:modified.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:modified ?modified.
@@ -1147,13 +1147,13 @@ UNION
 
 UNION
 # Rule_ID:75
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s owl:versionInfo ?o.
      FILTER(!isLiteral(?o)).
      BIND (owl:versionInfo AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (75 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("owl:versionInfo should be a literal." AS ?Rule_Description).
@@ -1163,7 +1163,7 @@ UNION
 
 UNION
 # Rule_ID:76
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (76 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("owl:versionInfo has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 owl:versionInfo.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (76 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("owl:versionInfo has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 owl:versionInfo.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s owl:versionInfo ?version.
@@ -1173,13 +1173,13 @@ UNION
 
 UNION
 # Rule_ID:77
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
     WHERE {
      ?s a dcat:Dataset.
      ?s adms:versionNotes ?o.
      FILTER(!isLiteral(?o)).
      BIND (adms:versionNotes AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (77 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:versionNotes should be literal." AS ?Rule_Description).
@@ -1189,13 +1189,13 @@ UNION
 
 UNION
 # Rule_ID:79
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      FILTER(!(EXISTS { ?s dcat:accessURL ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Distribution AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (79 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:accessURL is a required property for Distribution." AS ?Rule_Description).
@@ -1205,13 +1205,13 @@ UNION
 
 UNION
 # Rule_ID:80
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dcat:accessURL ?o.
      FILTER(!isURI(?o)).
      BIND (dcat:accessURL AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (80 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:accessURL should be a resource." AS ?Rule_Description).
@@ -1221,13 +1221,13 @@ UNION
 
 UNION
 # Rule_ID:81
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      FILTER(!(EXISTS { ?s dct:description ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Distribution AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (81 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:description is a recommended property for Distribution." AS ?Rule_Description).
@@ -1237,13 +1237,13 @@ UNION
 
 UNION
 # Rule_ID:82
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:description ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:description AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (82 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:description should be a literal." AS ?Rule_Description).
@@ -1253,13 +1253,13 @@ UNION
 
 UNION
 # Rule_ID:83
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      FILTER(!(EXISTS { ?s dct:format ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Distribution AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (83 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:format is a recommended property for Distribution." AS ?Rule_Description).
@@ -1269,13 +1269,13 @@ UNION
 
 UNION
 # Rule_ID:84
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:format ?o.
      FILTER(!isURI(?o)).
      BIND (dct:format AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (84 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:format should be a resource." AS ?Rule_Description).
@@ -1286,7 +1286,7 @@ UNION
 
 UNION
 # Rule_ID:85
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (85 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:format has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:format.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("Distribution" AS ?Class_Name) (85 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:format has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:format.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:format ?format.
@@ -1296,13 +1296,13 @@ UNION
 
 UNION
 # Rule_ID:86
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      FILTER(!(EXISTS { ?s dct:license ?desc})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Distribution AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (86 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:license is a recommended property for Distribution." AS ?Rule_Description).
@@ -1312,13 +1312,13 @@ UNION
 
 UNION
 # Rule_ID:87
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:license ?o.
      FILTER(!isURI(?o)).
      BIND (dct:license AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (87 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:license should be a resource." AS ?Rule_Description).
@@ -1328,7 +1328,7 @@ UNION
 
 UNION
 # Rule_ID:88
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (88 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:license has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:license.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("Distribution" AS ?Class_Name) (88 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:license has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:license.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:license ?lic.
@@ -1338,13 +1338,13 @@ UNION
 
 UNION
 # Rule_ID:89
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:byteSize ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:byteSize AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (89 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:license should be a resource." AS ?Rule_Description).
@@ -1354,13 +1354,13 @@ UNION
 
 UNION
 # Rule_ID:90
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dcat:downloadURL ?o.
      FILTER(!isURI(?o)).
      BIND (dcat:downloadURL AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (90 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:downloadURL should be a resource." AS ?Rule_Description).
@@ -1370,13 +1370,13 @@ UNION
 
 UNION
 # Rule_ID:91
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dcat:mediaType ?o.
      FILTER(!isURI(?o)).
      BIND (dcat:mediaType AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (91 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:mediaType should be a resource." AS ?Rule_Description).
@@ -1386,13 +1386,13 @@ UNION
 
 UNION
 # Rule_ID:92
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:issued ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:issued AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (92 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:issued should be literal." AS ?Rule_Description).
@@ -1402,13 +1402,13 @@ UNION
 
 UNION
 # Rule_ID:93
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:rights ?o.
      FILTER(!isURI(?o)).
      BIND (dct:rights AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (93 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:rights should be a resource." AS ?Rule_Description).
@@ -1418,13 +1418,13 @@ UNION
 
 UNION
 # Rule_ID:94
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s adms:status ?o.
      FILTER(!isURI(?o)).
      BIND (adms:status AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (94 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:status should be a resource." AS ?Rule_Description).
@@ -1434,13 +1434,13 @@ UNION
 
 UNION
 # Rule_ID:95
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:title ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:title AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (95 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title should be a literal." AS ?Rule_Description).
@@ -1450,13 +1450,13 @@ UNION
 
 UNION
 # Rule_ID:96
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:modified ?o.
      FILTER(!isLiteral(?o)).
      BIND (dct:modified AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (96 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:modified should be a literal." AS ?Rule_Description).
@@ -1466,13 +1466,13 @@ UNION
   
 UNION
 # Rule_ID:97
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:temporal ?o.
      FILTER(!isURI(?o)).
      BIND (dct:temporal AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (97 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:temporal should be resource." AS ?Rule_Description).
@@ -1482,7 +1482,7 @@ UNION
  
 UNION
 # Rule_ID:98
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (98 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has maximum cardinality of 1 for Agent." AS ?Rule_Description) (concat("The dcat:Agent ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s (rdf:type AS ?p) (foaf:Agent AS ?o)
+  {SELECT ("Agent" AS ?Class_Name) (98 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has maximum cardinality of 1 for Agent." AS ?Rule_Description) (concat("The dcat:Agent ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s (rdf:type AS ?p) (foaf:Agent AS ?o)
    WHERE {
      ?s a foaf:Agent.
      ?s dct:type ?type.
@@ -1492,7 +1492,7 @@ UNION
 
 UNION
 # Rule_ID:99
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (99 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:isPartOf has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:isPartOf.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
+  {SELECT ("Catalog" AS ?Class_Name) (99 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:isPartOf has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Catalog ", str(?s)," has more than 1 dct:isPartOf.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Catalog AS ?o)
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:isPartOf ?typ.
@@ -1502,7 +1502,7 @@ UNION
   
 UNION
 # Rule_ID:100
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (100 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:accessRights has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ", str(?s)," has more than 1 dct:accessRights.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (100 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:accessRights has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ", str(?s)," has more than 1 dct:accessRights.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:accessRights ?rights.
@@ -1512,13 +1512,13 @@ UNION
 
 UNION
 # Rule_ID:101
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:creator as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:creator as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:creator ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Agent}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (101 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:creator should be a foaf:Agent." AS ?Rule_Description).
@@ -1528,7 +1528,7 @@ UNION
   
 UNION
 # Rule_ID:102
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (102 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:creator has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:creator property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (102 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:creator has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:creator property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:creator ?pub.
@@ -1538,7 +1538,7 @@ UNION
   
 UNION
 # Rule_ID:103
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (103 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:type has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:type property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
+  {SELECT ("Dataset" AS ?Class_Name) (103 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:type has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dct:type property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:type ?pub.
@@ -1548,13 +1548,13 @@ UNION
   
 UNION
 # Rule_ID:104
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:type as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:type as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:type ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a skos:Concept}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (104 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:type should be a skos:Concept." AS ?Rule_Description).
@@ -1564,7 +1564,7 @@ UNION
 
 UNION
 # Rule_ID:105
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (105 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("spdx:checksum has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 spdx:checksum.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("Distribution" AS ?Class_Name) (105 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("spdx:checksum has maximum cardinality of 1 for Catalog." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 spdx:checksum.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s spdx:checksum ?checksum.
@@ -1574,13 +1574,13 @@ UNION
   
 UNION
 # Rule_ID:106
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s spdx:checksum ?o.
      FILTER(!EXISTS {?o a spdx:Checksum}).
      BIND (spdx:checksum AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (106 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("spdx:checksum should be a spdx:Checksum." AS ?Rule_Description).
@@ -1590,7 +1590,7 @@ UNION
    
 UNION
 # Rule_ID:107
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (107 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:issued.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("Distribution" AS ?Class_Name) (107 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:issued.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:issued ?lic.
@@ -1600,7 +1600,7 @@ UNION
 
 UNION
 # Rule_ID:108
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (108 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:rights has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:rights.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("Distribution" AS ?Class_Name) (108 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:rights has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:rights.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:rights ?rig.
@@ -1610,7 +1610,7 @@ UNION
 
 UNION
 # Rule_ID:109
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (109 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("adms:status has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 adms:status property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("Distribution" AS ?Class_Name) (109 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("adms:status has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 adms:status property.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s adms:status ?stat.
@@ -1620,13 +1620,13 @@ UNION
 
 UNION
 # Rule_ID:110
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:status as ?p) ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:status as ?p) ?o 
    WHERE {
      ?s a dcat:Distribution.
      ?s adms:status ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a skos:Concept}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Distribution" AS ?Class_Name).
      BIND (110 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:status should be a skos:Concept." AS ?Rule_Description).
@@ -1636,7 +1636,7 @@ UNION
 
 UNION
 # Rule_ID:111
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (111 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:modified.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+  {SELECT ("Distribution" AS ?Class_Name) (111 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:modified.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
      ?s dct:modified ?rig.
@@ -1646,10 +1646,10 @@ UNION
   
 UNION
 # Rule_ID:112
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      FILTER(!EXISTS {?s a dcat:Catalog}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Catalog" AS ?Class_Name).
      BIND (112 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:Catalog does not exist." AS ?Rule_Description).
@@ -1659,10 +1659,10 @@ UNION
 
 UNION
 # Rule_ID:113
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      FILTER(!EXISTS {?s a foaf:Agent}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Agent" AS ?Class_Name).
      BIND (113 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("foaf:Agent does not exist." AS ?Rule_Description).
@@ -1672,10 +1672,10 @@ UNION
   
 UNION
 # Rule_ID:114
-   {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
    WHERE {
      FILTER(!EXISTS {?s a dcat:Dataset}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (114 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:Dataset does not exist." AS ?Rule_Description).
@@ -1685,14 +1685,14 @@ UNION
 
 UNION
 # Rule_ID:115
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:theme ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a skos:Concept}).
      BIND (dcat:theme AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (115 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:theme should be a skos:Concept." AS ?Rule_Description).
@@ -1702,14 +1702,14 @@ UNION
   
 UNION
 # Rule_ID:116
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:theme ?p.
      ?p skos:inScheme ?val.
      FILTER(!EXISTS {?val a skos:ConceptScheme}).
      BIND (?val AS ?o)
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (116 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("If a theme exists, it should be linked to a ConceptScheme." AS ?Rule_Description).
@@ -1719,12 +1719,12 @@ UNION
 
 UNION
 # Rule_ID:117
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:theme ?p.
      FILTER(!EXISTS {?p skos:prefLabel ?val}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Dataset" AS ?Class_Name).
      BIND (117 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("If a theme exists, it should have a skos:prefLabel property." AS ?Rule_Description).
@@ -1734,7 +1734,7 @@ UNION
 
 UNION
 # Rule_ID:118
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (118 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has a maximum cardinality of 1 for dct:LicenseDocument" AS ?Rule_Description) (concat("The dct:LicenseDocument ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s
+  {SELECT ("LicenseDocument" AS ?Class_Name) (118 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has a maximum cardinality of 1 for dct:LicenseDocument" AS ?Rule_Description) (concat("The dct:LicenseDocument ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s
    WHERE {
      ?s a dct:LicenseDocument.
      ?s dct:type ?lic.
@@ -1744,13 +1744,13 @@ UNION
 
 UNION
 # Rule_ID:119
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
      FILTER(!EXISTS {?s foaf:primaryTopic ?name}).
      BIND (rdf:type AS ?p).
      BIND (dcat:CatalogRecord AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("CatalogRecord" AS ?Class_Name).
      BIND (119 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("A Catalog Record should have foaf:primaryTopic property." AS ?Rule_Description).
@@ -1760,13 +1760,13 @@ UNION
 
 UNION
 # Rule_ID:120
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
      FILTER(!EXISTS {?s dct:modified ?name}).
      BIND (rdf:type AS ?p).
      BIND (dcat:CatalogRecord AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("CatalogRecord" AS ?Class_Name).
      BIND (120 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("A Catalog Record should have dct:modified property." AS ?Rule_Description).
@@ -1776,7 +1776,7 @@ UNION
   
 UNION
 # Rule_ID:121
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (121 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("foaf:primaryTopic has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 foaf:primaryTopic.") AS ?Message) ?s
+  {SELECT ("CatalogRecord" AS ?Class_Name) (121 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("foaf:primaryTopic has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 foaf:primaryTopic.") AS ?Message) ?s
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s foaf:primaryTopic ?pt.
@@ -1786,7 +1786,7 @@ UNION
   
 UNION
 # Rule_ID:122
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (122 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:modified.") AS ?Message) ?s
+  {SELECT ("CatalogRecord" AS ?Class_Name) (122 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:modified has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:modified.") AS ?Message) ?s
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:modified ?mod.
@@ -1796,7 +1796,7 @@ UNION
   
 UNION
 # Rule_ID:123
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (123 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:conformsTo has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:conformsTo.") AS ?Message) ?s
+  {SELECT ("CatalogRecord" AS ?Class_Name) (123 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:conformsTo has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:conformsTo.") AS ?Message) ?s
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:conformsTo ?mod.
@@ -1806,13 +1806,13 @@ UNION
   
 UNION
 # Rule_ID:124
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:conformsTo ?o.
      FILTER(!isURI(?o)).
      BIND (dct:type AS ?p)
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("CatalogRecord" AS ?Class_Name).
      BIND (124 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:conformsTo should be a resource." AS ?Rule_Description).
@@ -1822,7 +1822,7 @@ UNION
   
 UNION
 # Rule_ID:125
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (125 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("adms:status has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 adms:status.") AS ?Message) ?s
+  {SELECT ("CatalogRecord" AS ?Class_Name) (125 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("adms:status has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 adms:status.") AS ?Message) ?s
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s adms:status ?mod.
@@ -1832,14 +1832,14 @@ UNION
   
 UNION
 # Rule_ID:126
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s adms:status ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a skos:Concept}).
      BIND (adms:status AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("CatalogRecord" AS ?Class_Name).
      BIND (126 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("adms:status should be a skos:Concept." AS ?Rule_Description).
@@ -1849,7 +1849,7 @@ UNION
 
 UNION
 # Rule_ID:127
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (127 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:issued.") AS ?Message) ?s
+  {SELECT ("CatalogRecord" AS ?Class_Name) (127 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:issued has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:issued.") AS ?Message) ?s
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:issued ?mod.
@@ -1859,14 +1859,14 @@ UNION
   
 UNION
 # Rule_ID:128
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:source ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dcat:CatalogRecord}).
      BIND (dct:source AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("CatalogRecord" AS ?Class_Name).
      BIND (128 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:source should be a dcat:CatalogRecord." AS ?Rule_Description).
@@ -1876,7 +1876,7 @@ UNION
   
 UNION
 # Rule_ID:129
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (129 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:source has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:source.") AS ?Message) ?s
+  {SELECT ("CatalogRecord" AS ?Class_Name) (129 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:source has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:source.") AS ?Message) ?s
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:source ?mod.
@@ -1886,13 +1886,13 @@ UNION
   
 UNION
 # Rule_ID:130
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:language ?o.
      FILTER(!isURI(?o)).
      BIND (dct:language AS ?p).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("CatalogRecord" AS ?Class_Name).
      BIND (130 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:language should be a resource." AS ?Rule_Description).
@@ -1902,13 +1902,13 @@ UNION
   
 UNION
 # Rule_ID:131
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:language ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:LinguisticSystem}).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("CatalogRecord" AS ?Class_Name).
      BIND (131 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:language should be a dct:LinguisticSystem." AS ?Rule_Description).
@@ -1918,13 +1918,13 @@ UNION
   
 UNION
 # Rule_ID:132
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a spdx:Checksum.
      FILTER(!EXISTS {?s spdx:algorithm ?name}).
      BIND (rdf:type AS ?p).
      BIND (spdx:Checksum AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Checksum" AS ?Class_Name).
      BIND (132 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("spdx:algorithm is a required property for Checksum." AS ?Rule_Description).
@@ -1934,13 +1934,13 @@ UNION
   
 UNION
 # Rule_ID:133
-  {SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a spdx:Checksum.
      FILTER(!EXISTS {?s spdx:checksumValue ?name}).
      BIND (rdf:type AS ?p).
      BIND (spdx:Checksum AS ?o).
-     BIND ("DCAT-AP" AS ?Rule_Origin).
+     BIND ("Checksum" AS ?Class_Name).
      BIND (133 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("spdx:checksumValue is a required property for Checksum." AS ?Rule_Description).
@@ -1950,7 +1950,7 @@ UNION
   
 UNION
 # Rule_ID:134
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (134 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("spdx:algorithm has a maximum cardinality of 1 for spdx:Checksum." AS ?Rule_Description) (concat("The spdx:Checksum ", str(?s)," has more than 1 spdx:algorithm.") AS ?Message) ?s
+  {SELECT ("Checksum" AS ?Class_Name) (134 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("spdx:algorithm has a maximum cardinality of 1 for spdx:Checksum." AS ?Rule_Description) (concat("The spdx:Checksum ", str(?s)," has more than 1 spdx:algorithm.") AS ?Message) ?s
    WHERE {
      ?s a spdx:Checksum.
      ?s spdx:algorithm ?mod.
@@ -1960,7 +1960,7 @@ UNION
 
 UNION
 # Rule_ID:135
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (135 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("spdx:checksumValue has a maximum cardinality of 1 for spdx:Checksum." AS ?Rule_Description) (concat("The spdx:Checksum ", str(?s)," has more than 1 spdx:checksumValue.") AS ?Message) ?s
+  {SELECT ("Checksum" AS ?Class_Name) (135 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("spdx:checksumValue has a maximum cardinality of 1 for spdx:Checksum." AS ?Rule_Description) (concat("The spdx:Checksum ", str(?s)," has more than 1 spdx:checksumValue.") AS ?Message) ?s
    WHERE {
      ?s a spdx:Checksum.
      ?s spdx:checksumValue ?mod.
@@ -1970,7 +1970,7 @@ UNION
   
 UNION
 # Rule_ID:136
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (136 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("schema:startDate has a maximum cardinality of 1 for dct:PeriodOfTime." AS ?Rule_Description) (concat("The dct:PeriodOfTime ", str(?s)," has more than 1 schema:startDate.") AS ?Message) ?s
+  {SELECT ("PeriodOfTime" AS ?Class_Name) (136 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("schema:startDate has a maximum cardinality of 1 for dct:PeriodOfTime." AS ?Rule_Description) (concat("The dct:PeriodOfTime ", str(?s)," has more than 1 schema:startDate.") AS ?Message) ?s
    WHERE {
      ?s a dct:PeriodOfTime.
      ?s schema:startDate ?mod.
@@ -1980,7 +1980,7 @@ UNION
 
 UNION
 # Rule_ID:137
-  {SELECT ("DCAT-AP" AS ?Rule_Origin) (137 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("schema:endDate has a maximum cardinality of 1 for dct:PeriodOfTime." AS ?Rule_Description) (concat("The dct:PeriodOfTime ", str(?s)," has more than 1 schema:endDate.") AS ?Message) ?s
+  {SELECT ("PeriodOfTime" AS ?Class_Name) (137 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("schema:endDate has a maximum cardinality of 1 for dct:PeriodOfTime." AS ?Rule_Description) (concat("The dct:PeriodOfTime ", str(?s)," has more than 1 schema:endDate.") AS ?Message) ?s
    WHERE {
      ?s a dct:PeriodOfTime.
      ?s schema:endDate ?mod.

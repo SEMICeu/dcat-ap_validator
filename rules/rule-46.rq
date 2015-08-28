@@ -5,14 +5,14 @@
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s dcat:distribution ?o.
   ?o ?pred ?val.
   FILTER(!EXISTS {?o a dcat:Distribution}).
   BIND (dcat:distribution AS ?p).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Dataset" AS ?Class_Name).
   BIND (46 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dcat:distribution should be a Distribution." AS ?Rule_Description).

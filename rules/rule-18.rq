@@ -6,12 +6,12 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   FILTER(!EXISTS {?s dct:language ?o.}).
   BIND (dct:language AS ?p).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Catalog" AS ?Class_Name).
   BIND (18 AS ?Rule_ID).
   BIND ("warning" AS ?Rule_Severity).
   BIND ("dct:language is a recommended property for Catalog." AS ?Rule_Description).

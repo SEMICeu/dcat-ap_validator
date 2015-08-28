@@ -6,14 +6,14 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s dcat:theme ?o.
   ?o ?pred ?val.
   FILTER(!EXISTS {?o a skos:Concept}).
   BIND (dcat:theme AS ?p).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Dataset" AS ?Class_Name).
   BIND (115 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dcat:theme should be a skos:Concept." AS ?Rule_Description).

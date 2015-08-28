@@ -6,7 +6,7 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
 
-SELECT ("DCAT-AP" AS ?Rule_Origin) (123 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:conformsTo has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:conformsTo.") AS ?Message) ?s
+SELECT ("CatalogRecord" AS ?Class_Name) (123 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:conformsTo has a maximum cardinality of 1 for dcat:CatalogRecord" AS ?Rule_Description) (concat("The dcat:CatalogRecord ", str(?s)," has more than 1 dct:conformsTo.") AS ?Message) ?s
 WHERE {
   ?s a dcat:CatalogRecord.
   ?s dct:conformsTo ?mod.

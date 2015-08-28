@@ -6,13 +6,13 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   ?s dct:spatial ?o.
   FILTER(!isURI(?o)).
   BIND (dct:spatial AS ?p).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Catalog" AS ?Class_Name).
   BIND (36 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:spatial should be a resource." AS ?Rule_Description).

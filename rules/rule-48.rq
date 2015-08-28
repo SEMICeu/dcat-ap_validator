@@ -6,13 +6,13 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s dcat:keyword ?o.
   FILTER(!isLiteral(?o)).
   BIND (dcat:keyword AS ?p).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Dataset" AS ?Class_Name).
   BIND (48 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dcat:keyword should be a literal." AS ?Rule_Description).

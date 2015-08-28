@@ -6,13 +6,13 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
-SELECT ?Rule_Origin ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dcat:landingPage as ?p) ?o 
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dcat:landingPage as ?p) ?o 
 WHERE {
   ?s a dcat:Dataset.
   ?s dcat:landingPage ?o.
   ?o ?pred ?val.
   FILTER(!EXISTS {?o a foaf:Document}).
-  BIND ("DCAT-AP" AS ?Rule_Origin).
+  BIND ("Dataset" AS ?Class_Name).
   BIND (63 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dcat:landingPage should be a foaf:Document." AS ?Rule_Description).
