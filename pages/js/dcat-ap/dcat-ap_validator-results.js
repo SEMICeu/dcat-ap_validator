@@ -24,16 +24,18 @@ function setMessage(rows, container_id) {
 
 $(document).ready(function() {
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
+	var start = new Date().getTime();
     $('#results tbody td').each(function () {
         if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
     });
-
+    var end = new Date().getTime();
+	console.log("First time:" + end - start);
     //improve xslt transformation on subject, predicate object
     var table,
         subject_index = $('#results thead th:contains("Subject")').index(),
         predicate_index = $('#results thead th:contains("Predicate")').index(),
         object_index = $('#results thead th:contains("Object")').index();
-
+	var start2 = new Date().getTime();
     $('#results tbody td').each(function () {
         if ($(this).index() === subject_index || $(this).index() === predicate_index || $(this).index() === object_index) {
             var anchor = $(this).find('a'), text, query, query_param, link;
@@ -46,6 +48,8 @@ $(document).ready(function() {
             }
         }
     });
+	var end2 = new Date().getTime();
+	console.log("Second time:" + end - start);
 
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
