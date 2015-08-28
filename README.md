@@ -87,19 +87,15 @@ The development process is based on:
 <h2>TO DO</h2>
 <table>
 <tr><th>Action</th><th>Priority</th><th>Status</th></tr>
-<tr><td>Add missing rules from document</td><td>High</td><td>Not done</td></tr>
-<tr><td>Add format Turtle</td><td>Medium/td><td>Not done</td></tr>
+<tr><td>Verify against document and other validators</td><td>High</td><td>Not Done</td></tr>
 <tr><td>Add automatic tests for file upload and direct input</td><td>High</td><td>Not done</td></tr>
 <tr><td>Replace php proxy with nodejs</td><td>High</td><td>Not done</td></tr>
 <tr><td>Use js cookie to setup a custom graph per session https://github.com/js-cookie/js-cookie</td><td>High</td><td>Not done</td></tr>
 <tr><td>Improve quality of the tests: more asserts (test 11, 30, 43, 46, 52), parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add <a href="https://datatables.net/examples/api/show_hide.html">toggle columns</a> in the results (in case more data are returned->better queries)</td><td>Medium</td><td>Not done</td></tr>
-<tr><td>Replace Rule_Origin in the results with class name</td><td>Medium/td><td>Not done</td></tr>
-
-<tr><td>Add placeholders for file upload and direct input</td><td>Medium/td><td>Not done</td></tr>
-<tr><td>Concatenate jquery/jqueryui/dcat-ap_validator.js</td><td>Low</td><td>Not done</td></tr>
+<tr><td>Replace Rule_Origin in the results with class name</td><td>Medium</td><td>Not done</td></tr>
+<tr><td>Add placeholders for file upload and direct input</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add possible html compressor such as: https://code.google.com/p/htmlcompressor/</td><td>Low</td><td>Not done</td></tr>
-<tr><td>Change font textarea query especially for Firefox</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Add tooltip for class and properties</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Homogenize css between build.css, dcat-ap_validator.css and dcat-ap_validator-results.css</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Improve W3C and WCAG 2.0 validation for the results</td><td>Low</td><td>Not done</td></tr>
