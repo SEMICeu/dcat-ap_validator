@@ -29,7 +29,7 @@ $(document).ready(function() {
         if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
     });
     var end = new Date().getTime();
-	console.log("First time:" + end - start);
+	console.log("First time:" + (end - start));
     //improve xslt transformation on subject, predicate object
     var table,
         subject_index = $('#results thead th:contains("Subject")').index(),
@@ -49,7 +49,7 @@ $(document).ready(function() {
         }
     });
 	var end2 = new Date().getTime();
-	console.log("Second time:" + end - start);
+	console.log("Second time:" + (end - start));
 
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
