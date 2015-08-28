@@ -25,9 +25,10 @@ function setMessage(rows, container_id) {
 $(document).ready(function() {
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
 	var start = new Date().getTime();
-    $('#results tbody td').each(function () {
-        if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
-    });
+	$('#results tbody td:nth-child(1), #results tbody td:nth-child(2), #results tbody td:nth-child(3)').css('text-align', 'center');
+    //$('#results tbody td').each(function () {
+    //    if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
+    //});
     var end = new Date().getTime();
 	console.log("First time:" + (end - start));
     //improve xslt transformation on subject, predicate object
