@@ -33,10 +33,21 @@ $(document).ready(function() {
 	console.log("First time:" + (end - start));
     //improve xslt transformation on subject, predicate object
     var table,
-        subject_index = $('#results thead th:contains("Subject")').index(),
-        predicate_index = $('#results thead th:contains("Predicate")').index(),
-        object_index = $('#results thead th:contains("Object")').index();
+        subject_index = $('#results thead th:contains("Subject")').index() + 1 ,
+        predicate_index = $('#results thead th:contains("Predicate")').index() + 1,
+        object_index = $('#results thead th:contains("Object")').index() + 1;
 	var start2 = new Date().getTime();
+    $('#results tbody td td:nth-child(' + subject_index + ')', '#results tbody td td:nth-child(' + predicate_index + ')', '#results tbody td td:nth-child(' + object_index + ')').each(function () {
+		var anchor = $(this).find('a'), text, query, query_param, link;
+		if (anchor.length) {
+			text = $(this).text().trim();
+			query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
+			query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
+			link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
+			$(this).html(link);
+		}
+    });
+	/*
     $('#results tbody td').each(function () {
         if ($(this).index() === subject_index || $(this).index() === predicate_index || $(this).index() === object_index) {
             var anchor = $(this).find('a'), text, query, query_param, link;
@@ -49,6 +60,7 @@ $(document).ready(function() {
             }
         }
     });
+	*/
 	var end2 = new Date().getTime();
 	console.log("Second time:" + (end2 - start2));
 
