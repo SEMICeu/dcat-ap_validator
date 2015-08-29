@@ -25,19 +25,14 @@ function setMessage(rows, container_id) {
 $(document).ready(function() {
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
 	var start = new Date().getTime();
-	$('#results tbody td:nth-child(1), #results tbody td:nth-child(2), #results tbody td:nth-child(3)').css('text-align', 'center');
-    //$('#results tbody td').each(function () {
-    //    if ($(this).index() < 3) {$(this).css('text-align', 'center'); }
-    //});
-    var end = new Date().getTime();
-	console.log("First time:" + (end - start));
+	$('tbody td:nth-child(1), tbody td:nth-child(2), tbody td:nth-child(3)').css('text-align', 'center');
+
     //improve xslt transformation on subject, predicate object
     var table,
         subject_index = $('#results thead th:contains("Subject")').index() + 1 ,
         predicate_index = $('#results thead th:contains("Predicate")').index() + 1,
         object_index = $('#results thead th:contains("Object")').index() + 1;
-	var start2 = new Date().getTime();
-    $('#results tbody td:nth-child(' + subject_index + '), #results tbody td:nth-child(' + predicate_index + '), #results tbody td:nth-child(' + object_index + ')').each(function () {
+    $('tbody td:nth-child(' + subject_index + '), tbody td:nth-child(' + predicate_index + '), tbody td:nth-child(' + object_index + ')').each(function () {
 		var anchor = $(this).find('a'), text, query, query_param, link;
 		if (anchor.length) {
 			text = $(this).text().trim();
@@ -47,29 +42,13 @@ $(document).ready(function() {
 			$(this).html(link);
 		}
     });
-	/*
-    $('#results tbody td').each(function () {
-        if ($(this).index() === subject_index || $(this).index() === predicate_index || $(this).index() === object_index) {
-            var anchor = $(this).find('a'), text, query, query_param, link;
-            if (anchor.length) {
-                text = $(this).text().trim();
-                query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
-                query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
-                link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
-                $(this).html(link);
-            }
-        }
-    });
-	*/
-	var end2 = new Date().getTime();
-	console.log("Second time:" + (end2 - start2));
 
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
 
-    $('#results tfoot th').each(function () {
+    $('tfoot th').each(function () {
         var title, label, input;
-        title = $('#results thead th').eq($(this).index()).text();
+        title = $('thead th').eq($(this).index()).text();
         label = '<label class="hiddenlabel" for="' + title + '">' + title + '</label>';
         input = '<input type="text" id="' + title + '" placeholder="Search ' + title + '" />';
         $(this).html(label + input);
