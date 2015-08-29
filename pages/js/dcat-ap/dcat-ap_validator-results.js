@@ -37,7 +37,7 @@ $(document).ready(function() {
         predicate_index = $('#results thead th:contains("Predicate")').index() + 1,
         object_index = $('#results thead th:contains("Object")').index() + 1;
 	var start2 = new Date().getTime();
-    $('#results tbody td td:nth-child(' + subject_index + ')', '#results tbody td td:nth-child(' + predicate_index + ')', '#results tbody td td:nth-child(' + object_index + ')').each(function () {
+    $('#results tbody td:nth-child(' + subject_index + ')', '#results tbody td:nth-child(' + predicate_index + ')', '#results tbody td:nth-child(' + object_index + ')').each(function () {
 		var anchor = $(this).find('a'), text, query, query_param, link;
 		if (anchor.length) {
 			text = $(this).text().trim();
