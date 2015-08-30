@@ -331,6 +331,12 @@ $(document).ready(function() {
         lineNumbers: true
     });
 
+    var pending;
+    editor.on("change", function() {
+        clearTimeout(pending);
+        pending = setTimeout(update(), 400);
+    });
+
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
         lineNumbers: true
@@ -343,13 +349,6 @@ $(document).ready(function() {
         mode: "turtle",
         lineNumbers: true
     });
-
-    var pending;
-    editor.on("change", function() {
-        clearTimeout(pending);
-        pending = setTimeout(update(), 400);
-    });
-
 
     $("#tabs").tabs();
 
