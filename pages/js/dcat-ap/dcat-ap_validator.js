@@ -6,7 +6,7 @@
 // Global variables
 var endpoint;
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
-var editor;
+var editor, editor2;
 var pattern_xml = /^\s*<\?xml/;
 var pattern_turtle = /^\s*@/;
 var pattern_json_ld = /^\s*\{/;
@@ -311,7 +311,7 @@ $(document).ready(function() {
         lineNumbers: true
     });
 
-    var editor2 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
+    editor2 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
         lineNumbers: true
     });
