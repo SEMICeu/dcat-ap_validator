@@ -123,7 +123,8 @@ function getQuery(textarea) {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            $(textarea).text(xmlhttp.responseText);
+            //$(textarea).text(xmlhttp.responseText);
+            editor2.setValue(xmlhttp.responseText);
         }
     };
     xmlhttp.open("GET", file, true);
@@ -309,6 +310,12 @@ $(document).ready(function() {
         mode: "turtle",
         lineNumbers: true
     });
+
+    var editor2 = CodeMirror.fromTextArea(document.getElementById("tab3validationquery"), {
+        mode: "turtle",
+        lineNumbers: true
+    });
+    
     var pending;
     editor.on("change", function() {
         clearTimeout(pending);

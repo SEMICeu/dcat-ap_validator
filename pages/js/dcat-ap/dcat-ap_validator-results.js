@@ -25,18 +25,15 @@ function setMessage(rows, container_id) {
 $(document).ready(function() {
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
     $('tbody td:nth-child(1), tbody td:nth-child(2), tbody td:nth-child(3)').css('text-align', 'center');
-
     $('table').css({"border": "0px", "padding-top": "10px", "padding-bottom": "10px"});
     $('thead th:first-child').css({"border-top-left-radius": "10px"});
     $('thead th:last-child').css({"border-top-right-radius": "10px"});
     $('tbody tr:last-child th:first-child').css({"border-top-left-radius": "10px"});
-    $('tbody tr:last-child td:first-child').css({"border-bottom-left-radius": "10px"});
-    $('tbody tr:last-child td:last-child').css({"border-bottom-right-radius": "10px"});
-
-    $('thead th').text(function(i, text) {
-        return text.replace('_', ' ');
+    $('thead').css({"background": "linear-gradient(white, #eaeaea)"});
+    $('thead th').each(function() {
+        return $(this).text($(this).text().replace('_',' '));
     });
-
+	
     //improve xslt transformation on subject, predicate object
     var table,
         subject_index = $('thead th:contains("Subject")').index() + 1,
@@ -55,7 +52,6 @@ $(document).ready(function() {
 
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
-
 
     $('tfoot th').each(function () {
         var title, label, input;
