@@ -125,6 +125,7 @@ function getQuery(textarea) {
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             //$(textarea).text(xmlhttp.responseText);
             editor2.setValue(xmlhttp.responseText);
+            editor2.refresh();
         }
     };
     xmlhttp.open("GET", file, true);
