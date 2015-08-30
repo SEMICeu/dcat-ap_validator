@@ -44,6 +44,7 @@ $(document).ready(function() {
 
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
+    $("thead").css({background: "linear-gradient(#eaeaea,white)"});
 
     $('tfoot th').each(function () {
         var title, label, input;
