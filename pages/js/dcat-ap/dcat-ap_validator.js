@@ -380,8 +380,8 @@ $(document).ready(function() {
             }
         });
     });
-	
-	$("#loadsample1").click(funtion(){
-		loadFile("sample-turtle.ttl"};
-	});
+
+    $("#loadsample1").click(function () {
+        loadFile("sample-turtle.ttl"};
+    });
 });
