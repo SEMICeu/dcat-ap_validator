@@ -45,12 +45,10 @@ $(document).ready(function() {
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
     $('table').css({"border": "0px", "padding-top": "10px"});
-    $('thead').css({"background": "linear-gradient(#eaeaea, white)"});
+    $('thead th').css({"background": "linear-gradient(#eaeaea, white)"});
     $('thead th:first-child').css({"border-top-left-radius": "10px"});
     $('thead th:last-child').css({"border-top-right-radius": "10px"});
     $('div.dataTables_length').css({"margin-top": "10px"});
-    $('tbody tr:last-child td:first-child').css({"border-bottom-left-radius": "10px"});
-    $('tbody tr:last-child td:last-child').css({"border-bottom-right-radius": "10px"});
 
     $('tfoot th').each(function () {
         var title, label, input;
