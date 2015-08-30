@@ -381,7 +381,7 @@ $(document).ready(function() {
         });
     });
 	
-	$("#loadsample1".click(funtion(){
+	$("#loadsample1").click(funtion(){
 		loadFile("sample-turtle.ttl"};
 	});
 });
