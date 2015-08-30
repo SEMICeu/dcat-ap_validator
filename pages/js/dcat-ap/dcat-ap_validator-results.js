@@ -45,7 +45,6 @@ $(document).ready(function() {
     // DataTable, ordering by severity
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
     $('table').css({"border": "0px", "padding-top": "10px", "padding-bottom": "10px"});
-    //$('thead th').css({"background": "linear-gradient(#eaeaea, white)"});
     $('thead th:first-child').css({"border-top-left-radius": "10px"});
     $('thead th:last-child').css({"border-top-right-radius": "10px"});
 
