@@ -6,7 +6,7 @@
 // Global variables
 var endpoint;
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
-var editor, editor2;
+var editor, editortab1, editortab2, editortab3;
 var pattern_xml = /^\s*<\?xml/;
 var pattern_turtle = /^\s*@/;
 var pattern_json_ld = /^\s*\{/;
@@ -124,7 +124,9 @@ function getQuery(textarea) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             //$(textarea).text(xmlhttp.responseText);
-            editor2.setValue(xmlhttp.responseText);
+            editortab1.setValue(xmlhttp.responseText);
+            editortab2.setValue(xmlhttp.responseText);
+            editortab3.setValue(xmlhttp.responseText);
         }
     };
     xmlhttp.open("GET", file, true);
@@ -311,11 +313,19 @@ $(document).ready(function() {
         lineNumbers: true
     });
 
-    editor2 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
+    editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
         lineNumbers: true
     });
-    
+    editortab2 = CodeMirror.fromTextArea(document.getElementById("tab2validationquery"), {
+        mode: "turtle",
+        lineNumbers: true
+    });
+    editortab3 = CodeMirror.fromTextArea(document.getElementById("tab3validationquery"), {
+        mode: "turtle",
+        lineNumbers: true
+    });
+
     var pending;
     editor.on("change", function() {
         clearTimeout(pending);
@@ -330,7 +340,8 @@ $(document).ready(function() {
     $("div.more").click(function () {
         var $header = $(this),
             $icon = $("img.toggleicon"),
-            $content = $header.next();
+            $content = $header.next(),
+            $active_tab = $("#tabs").tabs('option', 'active');
         //getting the next element
         $content = $header.next();
         //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
@@ -339,7 +350,13 @@ $(document).ready(function() {
             //change text of header based on visibility of content div
             if ($content.is(":visible")) {
                 $icon.attr('src', './images/arrow-open.png');
-                editor2.refresh();
+                if ($active_tab === 0) {
+                    editortab1.refresh();
+                } elseif ($active_tab === 1) {
+                    editortab2.refresh();
+                } elseif ($active_tab === 2) {
+                    editortab3.refresh();
+                }
             } else {
                 $icon.attr('src', './images/arrow-closed.png');
             }
