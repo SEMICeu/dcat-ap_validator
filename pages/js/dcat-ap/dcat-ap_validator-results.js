@@ -26,6 +26,10 @@ $(document).ready(function() {
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
     $('tbody td:nth-child(1), tbody td:nth-child(2), tbody td:nth-child(3)').css('text-align', 'center');
 
+    $('thead th').text(function(i, text) {
+        return text.replace('_', ' ');
+    });
+
     //improve xslt transformation on subject, predicate object
     var table,
         subject_index = $('thead th:contains("Subject")').index() + 1,
