@@ -111,8 +111,8 @@ function runQuery(query) {
 /**
  * Gets SPARQL query from file
  */
-function getQuery() {
-    var xmlhttp, file = "dcat-ap.rq";
+function getQuery(file) {
+    var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else {
@@ -353,7 +353,7 @@ $(document).ready(function() {
 
     $("#tabs").tabs();
 
-    getQuery();
+    getQuery("dcat-ap.rq");
 
     $("div.more").click(function () {
         var $header = $(this),
@@ -382,6 +382,18 @@ $(document).ready(function() {
     });
 
     $("#loadsample1").click(function () {
-        loadFile("sample-turtle.ttl");
+        loadFile("samples/sample-turtle.ttl");
+    });
+
+    $("#loadsample2").click(function () {
+        loadFile("samples/sample-xml.rdf");
+    });
+
+    $("#loadsample3").click(function () {
+        loadFile("samples/sample-n-triples.nt");
+    });
+
+    $("#loadsample4").click(function () {
+        loadFile("samples/sample-json-ld.jsonld");
     });
 });
