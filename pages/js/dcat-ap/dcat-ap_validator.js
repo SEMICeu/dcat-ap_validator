@@ -110,9 +110,8 @@ function runQuery(query) {
 
 /**
  * Gets SPARQL query from file
- * @param {string} textarea - The class of the textarea to fill.
  */
-function getQuery(textarea) {
+function getQuery() {
     var xmlhttp, file = "dcat-ap.rq";
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -127,6 +126,25 @@ function getQuery(textarea) {
             editortab1.setValue(xmlhttp.responseText);
             editortab2.setValue(xmlhttp.responseText);
             editortab3.setValue(xmlhttp.responseText);
+        }
+    };
+    xmlhttp.open("GET", file, true);
+    xmlhttp.send();
+    return xmlhttp.responseText;
+}
+
+function loadFile(file) {
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
+            alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
+        } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            editor.setValue(xmlhttp.responseText);
         }
     };
     xmlhttp.open("GET", file, true);
@@ -335,7 +353,7 @@ $(document).ready(function() {
 
     $("#tabs").tabs();
 
-    getQuery("textarea.validationquery");
+    getQuery();
 
     $("div.more").click(function () {
         var $header = $(this),
@@ -362,4 +380,8 @@ $(document).ready(function() {
             }
         });
     });
+	
+	$("#loadsample1".click(funtion(){
+		loadFile("sample-turtle.ttl"};
+	});
 });
