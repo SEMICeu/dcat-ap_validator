@@ -350,7 +350,13 @@ $(document).ready(function() {
             //change text of header based on visibility of content div
             if ($content.is(":visible")) {
                 $icon.attr('src', './images/arrow-open.png');
-
+                if ($active_tab == 0) {
+                    editortab1.refresh();
+                } elseif ($active_tab == 1) {
+                    editortab2.refresh();
+                } elseif ($active_tab == 2) {
+                    editortab3.refresh();
+                }
             } else {
                 $icon.attr('src', './images/arrow-closed.png');
             }
