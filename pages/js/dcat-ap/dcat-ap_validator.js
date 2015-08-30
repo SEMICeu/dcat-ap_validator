@@ -125,7 +125,6 @@ function getQuery(textarea) {
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             //$(textarea).text(xmlhttp.responseText);
             editor2.setValue(xmlhttp.responseText);
-            editor2.refresh();
         }
     };
     xmlhttp.open("GET", file, true);
@@ -340,6 +339,7 @@ $(document).ready(function() {
             //change text of header based on visibility of content div
             if ($content.is(":visible")) {
                 $icon.attr('src', './images/arrow-open.png');
+                editor2.refresh();
             } else {
                 $icon.attr('src', './images/arrow-closed.png');
             }
