@@ -352,9 +352,9 @@ $(document).ready(function() {
                 $icon.attr('src', './images/arrow-open.png');
                 if ($active_tab == 0) {
                     editortab1.refresh();
-                } elseif ($active_tab == 1) {
+                } else if ($active_tab == 1) {
                     editortab2.refresh();
-                } elseif ($active_tab == 2) {
+                } else if ($active_tab == 2) {
                     editortab3.refresh();
                 }
             } else {
