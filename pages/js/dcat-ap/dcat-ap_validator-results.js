@@ -28,9 +28,9 @@ $(document).ready(function() {
 
     //improve xslt transformation on subject, predicate object
     var table,
-        subject_index = $('#results thead th:contains("Subject")').index() + 1 ,
-        predicate_index = $('#results thead th:contains("Predicate")').index() + 1,
-        object_index = $('#results thead th:contains("Object")').index() + 1;
+        subject_index = $('thead th:contains("Subject")').index() + 1,
+        predicate_index = $('thead th:contains("Predicate")').index() + 1,
+        object_index = $('thead th:contains("Object")').index() + 1;
     $('tbody td:nth-child(' + subject_index + '), tbody td:nth-child(' + predicate_index + '), tbody td:nth-child(' + object_index + ')').each(function () {
         var anchor = $(this).find('a'), text, query, query_param, link;
         if (anchor.length) {
