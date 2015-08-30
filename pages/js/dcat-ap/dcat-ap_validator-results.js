@@ -8,7 +8,7 @@
  * @param {String} container_id - ID of the container
  */
 function setMessage(rows, container_id) {
-    var subject_index = $('#results thead th:contains("Subject")').index();
+    var subject_index = $('thead th:contains("Subject")').index();
     if (subject_index !== 0) {
         if (rows === 0) {
             $(container_id).after('<h2 id="congratulations">Congratulations! No Error Found.</h2>');
@@ -24,8 +24,7 @@ function setMessage(rows, container_id) {
 
 $(document).ready(function() {
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
-	var start = new Date().getTime();
-	$('tbody td:nth-child(1), tbody td:nth-child(2), tbody td:nth-child(3)').css('text-align', 'center');
+    $('tbody td:nth-child(1), tbody td:nth-child(2), tbody td:nth-child(3)').css('text-align', 'center');
 
     //improve xslt transformation on subject, predicate object
     var table,
@@ -33,14 +32,14 @@ $(document).ready(function() {
         predicate_index = $('#results thead th:contains("Predicate")').index() + 1,
         object_index = $('#results thead th:contains("Object")').index() + 1;
     $('tbody td:nth-child(' + subject_index + '), tbody td:nth-child(' + predicate_index + '), tbody td:nth-child(' + object_index + ')').each(function () {
-		var anchor = $(this).find('a'), text, query, query_param, link;
-		if (anchor.length) {
-			text = $(this).text().trim();
-			query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
-			query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
-			link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
-			$(this).html(link);
-		}
+        var anchor = $(this).find('a'), text, query, query_param, link;
+        if (anchor.length) {
+            text = $(this).text().trim();
+            query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
+            query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
+            link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
+            $(this).html(link);
+        }
     });
 
     // DataTable, ordering by severity
