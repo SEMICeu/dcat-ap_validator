@@ -30,11 +30,11 @@ $(document).ready(function() {
     $('thead th:last-child').css({"border-top-right-radius": "10px"});
     $('tbody tr:last-child th:first-child').css({"border-top-left-radius": "10px"});
     $('thead').css({"background": "linear-gradient(white, #eaeaea)"});
-	$('tfoot').css({"background": "#eaeaea"});
+    $('tfoot').css({"background": "#eaeaea"});
     $('thead th').each(function() {
-        return $(this).text($(this).text().replace('_',' '));
+        return $(this).text($(this).text().replace('_', ' '));
     });
-	
+
     //improve xslt transformation on subject, predicate object
     var table,
         subject_index = $('thead th:contains("Subject")').index() + 1,

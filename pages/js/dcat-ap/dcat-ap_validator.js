@@ -368,11 +368,11 @@ $(document).ready(function() {
             //change text of header based on visibility of content div
             if ($content.is(":visible")) {
                 $icon.attr('src', './images/arrow-open.png');
-                if ($active_tab == 0) {
+                if ($active_tab === 0) {
                     editortab1.refresh();
-                } else if ($active_tab == 1) {
+                } else if ($active_tab === 1) {
                     editortab2.refresh();
-                } else if ($active_tab == 2) {
+                } else if ($active_tab === 2) {
                     editortab3.refresh();
                 }
             } else {
