@@ -311,7 +311,7 @@ $(document).ready(function() {
         lineNumbers: true
     });
 
-    var editor2 = CodeMirror.fromTextArea(document.getElementById("tab3validationquery"), {
+    var editor2 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
         lineNumbers: true
     });
