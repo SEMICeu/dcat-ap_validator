@@ -354,13 +354,41 @@ $(document).ready(function() {
 
     getQuery("dcat-ap.rq");
 
-    $("div.more").click(function () {
+function toggle(taboption, editortab) {
+    var $icon = $(taboption + "img.toggleicon"),
+        $content = $(taboption).next();
+
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(300, function () {
+    //execute this after slideToggle is done
+    if ($content.is(":visible")) {
+                $icon.attr('src', './images/arrow-open.png');
+                editortab.refresh();
+            } else {
+                $icon.attr('src', './images/arrow-closed.png');
+            }
+    });
+}
+
+    $("#tab1-options div.more").click(function () {
+        toggle("#tab1-options div.more", editortab1);
+    });
+
+    $("#tab2-options div.more").click(function () {
+        toggle("#tab2-options div.more", editortab2);
+    });
+
+    $("#tab3-options div.more").click(function () {
+        toggle("#tab3-options div.more", editortab3);
+    });
+
+/**
+    $("#tab1-options div.more").click(function () {
         var $header = $(this),
             $icon = $("img.toggleicon"),
             $content = $header.next(),
             $active_tab = $("#tabs").tabs('option', 'active');
-        //getting the next element
-        $content = $header.next();
+
         //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
         $content.slideToggle(300, function () {
             //execute this after slideToggle is done
@@ -379,7 +407,7 @@ $(document).ready(function() {
             }
         });
     });
-
+**/
     $("#loadsample1").click(function () {
         loadFile("samples/sample-turtle.ttl");
     });
