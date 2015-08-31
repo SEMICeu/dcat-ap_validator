@@ -866,22 +866,6 @@ UNION
   }
 
 UNION
-# Rule_ID:57
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dct:accrualPeriodicity ?o.
-     FILTER(!isURI(?o)).
-     BIND (dct:accrualPeriodicity AS ?p).
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (57 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:accrualPeriodicity should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:accrualPeriodicity ",str(?o)," is not a resource.") AS ?Message).
-   }
-  }
-
-UNION
 # Rule_ID:58
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:accrualPeriodicity as ?p) ?o 
    WHERE {
