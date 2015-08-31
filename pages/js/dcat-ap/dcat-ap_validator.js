@@ -356,7 +356,7 @@ $(document).ready(function() {
     var pending;
     editor.on("change", function() {
         clearTimeout(pending);
-        pending = setTimeout(updateEditor($(this), 400));
+        pending = setTimeout(updateEditor($(this)), 400);
     });
 
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
