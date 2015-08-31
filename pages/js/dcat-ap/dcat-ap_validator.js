@@ -313,15 +313,15 @@ function onForm3Submit(form) {
    * @param {Object} editor_instance - the editor to be updated.
  */
 function updateEditor() 
-    var editor_instance = editor, editor_value = editor_instance.getValue();
+    var editor_value = editor.getValue();
     if (pattern_xml.test(editor_value)) {
-        editor_instance.setOption("mode", "xml");
+        editor.setOption("mode", "xml");
     } else if (pattern_turtle.test(editor_value)) {
-        editor_instance.setOption("mode", "text/turtle");
+        editor.setOption("mode", "text/turtle");
     } else if (pattern_json_ld.test(editor_value)) {
-        editor_instance.setOption("mode", "application/ld+json");
+        editor.setOption("mode", "application/ld+json");
     } else if (pattern_n3.test(editor_value)) {
-        editor_instance.setOption("mode", "text/n-triples");
+        editor.setOption("mode", "text/n-triples");
     }
 }
 /**
