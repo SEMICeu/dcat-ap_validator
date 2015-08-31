@@ -325,8 +325,8 @@ function update() {
 }
 /**
  * This function is called when a "more option" menu is expanded or contracted.
-  * @param {String} taboption - the tab option selector.
-  * @param {String} editortab - the instance of the codemirror editor to be refreshed
+  * @param {string} taboption - the tab option selector.
+  * @param {string} editortab - the instance of the codemirror editor to be refreshed
  */
 function toggle(taboption, editortab) {
     var $icon = $(taboption + " img.toggleicon"),

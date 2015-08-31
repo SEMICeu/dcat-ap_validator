@@ -22,7 +22,7 @@ footer p{margin-top:30px;color:#7C8395}
 .more{padding-top:20px;padding-left:15px;padding-bottom:10px;cursor:pointer;font-weight:700;color:#365D95;width:120px}
 .more img{padding-bottom:2px}
 .menu{border-bottom-style:dashed;border-bottom-width:thin}
-.options{display:none;padding:5px}
+.options{display:none;}
 .fancy-line{border:0;height:2px;margin-bottom:20px;clear:both}
 .fancy-line,.fancy-line:before{background:radial-gradient(ellipse at center,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 75%)}
 .loadsamples {float: right;margin-right:10px}
