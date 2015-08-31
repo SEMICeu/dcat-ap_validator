@@ -41,7 +41,6 @@ $(document).ready(function() {
         predicate_index = $('thead th:contains("Predicate")').index() + 1,
         object_index = $('thead th:contains("Object")').index() + 1;
     $('tbody td:nth-child(' + subject_index + '), tbody td:nth-child(' + predicate_index + '), tbody td:nth-child(' + object_index + ')').each(function () {
-      
         var $cell = $(this), $anchor = $cell.find('a'), text, query, query_param, link;
         if ($anchor.length) {
             text = $cell.text().trim();

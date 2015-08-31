@@ -36,7 +36,6 @@ function uploadFile(file, graph) {
     xmlhttp.send(formData);
 }
 
-
 /**
  * Retrieves a file from a given URL and loads it into the triple store.
  * WARNING: does only work on Chrome with proper security settings. We need to await HTML5.
@@ -313,8 +312,8 @@ function onForm3Submit(form) {
  * This function is called when updating the syntax highlighting of the codemirror editor.
    * @param {Object} editor_instance - the editor to be updated.
  */
-function updateEditor(editor_instance) {
-    var editor_value = editor_instance.getValue();
+function updateEditor() 
+    var editor_instance = editor, editor_value = editor_instance.getValue();
     if (pattern_xml.test(editor_value)) {
         editor_instance.setOption("mode", "xml");
     } else if (pattern_turtle.test(editor_value)) {
@@ -356,7 +355,7 @@ $(document).ready(function() {
     var pending;
     editor.on("change", function() {
         clearTimeout(pending);
-        pending = setTimeout(updateEditor($(this)), 400);
+        pending = setTimeout(updateEditor(), 400);
     });
 
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
