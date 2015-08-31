@@ -41,9 +41,10 @@ $(document).ready(function() {
         predicate_index = $('thead th:contains("Predicate")').index() + 1,
         object_index = $('thead th:contains("Object")').index() + 1;
     $('tbody td:nth-child(' + subject_index + '), tbody td:nth-child(' + predicate_index + '), tbody td:nth-child(' + object_index + ')').each(function () {
-        var anchor = $(this).find('a'), text, query, query_param, link;
-        if (anchor.length) {
-            text = $(this).text().trim();
+      
+        var $cell = $(this), $anchor = $cell.find('a'), text, query, query_param, link;
+        if ($anchor.length) {
+            text = $cell.text().trim();
             query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
             query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
             link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
@@ -55,11 +56,11 @@ $(document).ready(function() {
     table = $('#results').DataTable({"order": [[ 2, "asc" ]], "dom": 'irptflp'});
 
     $('tfoot th').each(function () {
-        var title, label, input;
-        title = $('thead th').eq($(this).index()).text();
+        var $cell = $(this), title, label, input;
+        title = $('thead th').eq($cell.index()).text();
         label = '<label class="hiddenlabel" for="' + title + '">' + title + '</label>';
         input = '<input type="text" id="' + title + '" placeholder="Search ' + title + '" />';
-        $(this).html(label + input);
+        $cell.html(label + input);
     });
 
     table.columns().every(function () {

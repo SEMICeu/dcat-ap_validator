@@ -93,7 +93,6 @@ The development process is based on:
 <tr><td>Use js cookie to setup a custom graph per session https://github.com/js-cookie/js-cookie</td><td>High</td><td>Not done</td></tr>
 <tr><td>Improve quality of the tests: more asserts (test 11, 30, 43, 46, 52), parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add <a href="https://datatables.net/examples/api/show_hide.html">toggle columns</a> in the results (in case more data are returned->better queries)</td><td>Medium</td><td>Not done</td></tr>
-<tr><td>Add placeholders for file upload and direct input</td><td>Medium</td><td>Not done</td></tr>
 <tr><td>Add possible html compressor such as: https://code.google.com/p/htmlcompressor/</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Add tooltip for class and properties</td><td>Low</td><td>Not done</td></tr>
 <tr><td>Homogenize css between build.css, dcat-ap_validator.css and dcat-ap_validator-results.css</td><td>Low</td><td>Not done</td></tr>

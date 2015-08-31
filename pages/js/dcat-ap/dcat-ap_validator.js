@@ -54,8 +54,8 @@ function getAndLoadFile(fileURL) {
             alert(fileURL + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
             alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
-            //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});    
-            var blob = new Blob([this.responseText], { type: "text\/xml"}); //text\/turtle   text\/xml
+            //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});
+            var blob = new Blob([this.responseText], {type: "text\/xml"}); //text\/turtle   text\/xml
             uploadFile(blob, graph);
         }
     };
@@ -208,15 +208,15 @@ function callWebService(address) {
         if (this.readyState === 4 && this.status !== 200) {
             alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
-            //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);    
+            //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             if (pattern_xml.test(this.responseText)) {
-                blob = new Blob([this.responseText], { type: "text\/xml"});
+                blob = new Blob([this.responseText], {type: "text\/xml"});
             } else if (pattern_turtle.test(this.responseText)) {
-                blob = new Blob([this.responseText], { type: "text\/turtle"});
+                blob = new Blob([this.responseText], {type: "text\/turtle"});
             } else if (pattern_json_ld.test(this.responseText)) {
-                blob = new Blob([this.responseText], { type: "application\/ld+json"});
+                blob = new Blob([this.responseText], {type: "application\/ld+json"});
             } else if (pattern_n3.test(this.responseText)) {
-                blob = new Blob([this.responseText], { type: "application\/n-triples"});
+                blob = new Blob([this.responseText], {type: "application\/n-triples"});
             }
             uploadFile(blob, graph);
         }
@@ -291,13 +291,13 @@ function onForm3Submit(form) {
         //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
         //See https://jena.apache.org/documentation/io/rdf-input.html
         if (pattern_xml.test(directfile)) {
-            blob = new Blob([directfile], { type: "text\/xml"});
+            blob = new Blob([directfile], {type: "text\/xml"});
         } else if (pattern_turtle.test(directfile)) {
-            blob = new Blob([directfile], { type: "text\/turtle"});
+            blob = new Blob([directfile], {type: "text\/turtle"});
         } else if (pattern_json_ld.test(directfile)) {
-            blob = new Blob([directfile], { type: "application\/ld+json"});
+            blob = new Blob([directfile], {type: "application\/ld+json"});
         } else if (pattern_n3.test(directfile)) {
-            blob = new Blob([directfile], { type: "application\/n-triples"});
+            blob = new Blob([directfile], {type: "application\/n-triples"});
         }
         uploadFile(blob, graph);
         form.action = endpoint + '/query'; //The validation query will be called from the form
@@ -311,22 +311,24 @@ function onForm3Submit(form) {
 
 /**
  * This function is called when updating the syntax highlighting of the codemirror editor.
+   * @param {Object} editor_instance - the editor to be updated.
  */
-function update() {
-    if (pattern_xml.test(editor.getValue())) {
-        editor.setOption("mode", "xml");
-    } else if (pattern_turtle.test(editor.getValue())) {
-        editor.setOption("mode", "text/turtle");
-    } else if (pattern_json_ld.test(editor.getValue())) {
-        editor.setOption("mode", "application/ld+json");
-    } else if (pattern_n3.test(editor.getValue())) {
-        editor.setOption("mode", "text/n-triples");
+function updateEditor(editor_instance) {
+    var editor_value = editor_instance.getValue();
+    if (pattern_xml.test(editor_value)) {
+        editor_instance.setOption("mode", "xml");
+    } else if (pattern_turtle.test(editor_value)) {
+        editor_instance.setOption("mode", "text/turtle");
+    } else if (pattern_json_ld.test(editor_value)) {
+        editor_instance.setOption("mode", "application/ld+json");
+    } else if (pattern_n3.test(editor_value)) {
+        editor_instance.setOption("mode", "text/n-triples");
     }
 }
 /**
  * This function is called when a "more option" menu is expanded or contracted.
   * @param {string} taboption - the tab option selector.
-  * @param {string} editortab - the instance of the codemirror editor to be refreshed
+  * @param {Object} editortab - the instance of the codemirror editor to be refreshed
  */
 function toggle(taboption, editortab) {
     var $icon = $(taboption + " img.toggleicon"),
@@ -354,7 +356,7 @@ $(document).ready(function() {
     var pending;
     editor.on("change", function() {
         clearTimeout(pending);
-        pending = setTimeout(update(), 400);
+        pending = setTimeout(updateEditor($(this), 400));
     });
 
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
