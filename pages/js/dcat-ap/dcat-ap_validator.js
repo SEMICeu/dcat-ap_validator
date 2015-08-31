@@ -312,7 +312,7 @@ function onForm3Submit(form) {
  * This function is called when updating the syntax highlighting of the codemirror editor.
    * @param {Object} editor_instance - the editor to be updated.
  */
-function updateEditor() 
+function updateEditor() {
     var editor_value = editor.getValue();
     if (pattern_xml.test(editor_value)) {
         editor.setOption("mode", "xml");
