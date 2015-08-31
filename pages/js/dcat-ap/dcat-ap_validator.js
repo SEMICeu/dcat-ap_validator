@@ -323,6 +323,26 @@ function update() {
         editor.setOption("mode", "text/n-triples");
     }
 }
+/**
+ * This function is called when a "more option" menu is expanded or contracted.
+  * @param {String} taboption - the tab option selector.
+  * @param {String} editortab - the instance of the codemirror editor to be refreshed
+ */
+function toggle(taboption, editortab) {
+    var $icon = $(taboption + " img.toggleicon"),
+        $content = $(taboption).next();
+
+    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+    $content.slideToggle(300, function () {
+        //execute this after slideToggle is done
+        if ($content.is(":visible")) {
+            $icon.attr('src', './images/arrow-open.png');
+            editortab.refresh();
+        } else {
+            $icon.attr('src', './images/arrow-closed.png');
+        }
+    });
+}
 
 $(document).ready(function() {
 
@@ -354,22 +374,6 @@ $(document).ready(function() {
 
     getQuery("dcat-ap.rq");
 
-function toggle(taboption, editortab) {
-    var $icon = $(taboption + " img.toggleicon"),
-        $content = $(taboption).next();
-
-    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-    $content.slideToggle(300, function () {
-    //execute this after slideToggle is done
-    if ($content.is(":visible")) {
-                $icon.attr('src', './images/arrow-open.png');
-                editortab.refresh();
-            } else {
-                $icon.attr('src', './images/arrow-closed.png');
-            }
-    });
-}
-
     $("#tab1-options div.more").click(function () {
         toggle("#tab1-options div.more", editortab1);
     });
@@ -382,32 +386,6 @@ function toggle(taboption, editortab) {
         toggle("#tab3-options div.more", editortab3);
     });
 
-/**
-    $("#tab1-options div.more").click(function () {
-        var $header = $(this),
-            $icon = $("img.toggleicon"),
-            $content = $header.next(),
-            $active_tab = $("#tabs").tabs('option', 'active');
-
-        //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-        $content.slideToggle(300, function () {
-            //execute this after slideToggle is done
-            //change text of header based on visibility of content div
-            if ($content.is(":visible")) {
-                $icon.attr('src', './images/arrow-open.png');
-                if ($active_tab === 0) {
-                    editortab1.refresh();
-                } else if ($active_tab === 1) {
-                    editortab2.refresh();
-                } else if ($active_tab === 2) {
-                    editortab3.refresh();
-                }
-            } else {
-                $icon.attr('src', './images/arrow-closed.png');
-            }
-        });
-    });
-**/
     $("#loadsample1").click(function () {
         loadFile("samples/sample-turtle.ttl");
     });
