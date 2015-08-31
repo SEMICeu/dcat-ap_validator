@@ -355,7 +355,7 @@ $(document).ready(function() {
     getQuery("dcat-ap.rq");
 
 function toggle(taboption, editortab) {
-    var $icon = $(taboption + "img.toggleicon"),
+    var $icon = $(taboption + " img.toggleicon"),
         $content = $(taboption).next();
 
     //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
