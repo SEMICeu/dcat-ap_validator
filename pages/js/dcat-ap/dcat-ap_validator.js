@@ -24,7 +24,7 @@ function uploadFile(file, graph) {
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
@@ -48,7 +48,7 @@ function getAndLoadFile(fileURL) {
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status !== 200) {
             alert(fileURL + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
@@ -74,7 +74,7 @@ function runUpdateQuery(query) {
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
@@ -96,7 +96,7 @@ function runQuery(query) {
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert(xmlhttp.status + ' ' + xmlhttp.statusText);
         }
@@ -117,7 +117,7 @@ function getQuery(file) {
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -139,7 +139,7 @@ function loadFile(file) {
     } else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
@@ -151,7 +151,7 @@ function loadFile(file) {
     return xmlhttp.responseText;
 }
 
-String.prototype.endsWith = function(suffix) {
+String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
@@ -196,14 +196,14 @@ function onForm1Submit(form) {
 
 function callWebService(address) {
 
-    var xmlhttp  = null, blob;
+    var xmlhttp = null, blob;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else if (window.ActiveXObject) {// for Internet Explorer
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status !== 200) {
             alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
@@ -345,16 +345,16 @@ function toggle(taboption, editortab) {
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     editor = CodeMirror.fromTextArea(document.getElementById("directinput"), {
         mode: "turtle",
         lineNumbers: true,
         extraKeys: {
-            "F11": function(cm) {
+            "F11": function (cm) {
                 cm.setOption("fullScreen", !cm.getOption("fullScreen"));
             },
-            "Esc": function(cm) {
+            "Esc": function (cm) {
                 if (cm.getOption("fullScreen")) {
                     cm.setOption("fullScreen", false);
                 }
@@ -363,7 +363,7 @@ $(document).ready(function() {
     });
 
     var pending;
-    editor.on("change", function() {
+    editor.on("change", function () {
         clearTimeout(pending);
         pending = setTimeout(updateEditor(), 400);
     });
