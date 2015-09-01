@@ -1431,23 +1431,7 @@ UNION
      BIND (concat("The dct:modified ",str(?s)," is not a literal.") AS ?Message).
    }
   }
-  
-UNION
-# Rule_ID:97
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dct:temporal ?o.
-     FILTER(!isURI(?o)).
-     BIND (dct:temporal AS ?p).
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (97 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:temporal should be resource." AS ?Rule_Description).
-     BIND (concat("The dct:temporal ",str(?s)," is not a resource.") AS ?Message).
-  }
- }
- 
+
 UNION
 # Rule_ID:98
   {SELECT ("Agent" AS ?Class_Name) (98 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has maximum cardinality of 1 for Agent." AS ?Rule_Description) (concat("The dcat:Agent ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s (rdf:type AS ?p) (foaf:Agent AS ?o)
