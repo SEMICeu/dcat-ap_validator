@@ -340,10 +340,16 @@ span.CodeMirror-selectedtext { background: none; }
 
 .CodeMirror-fullscreen {
   position: fixed;
-  top: 100px; left: 0; right: 0; bottom: 0;
+  top: 100px; left: 8px; right: 0; bottom: 0;
   height: auto;
   z-index: 9;
   width:99%;
   padding:0;
-  border-top:1px solid grey
+  border-top:3px solid grey;
+  border-bottom:3px solid grey;
+  border-bottom:3px solid grey;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
