@@ -78,7 +78,7 @@
     <dct:format rdf:resource="http://data.nobelprize.org/format/f1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://data.nobelprize.org/format/f1">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/MediaTypeOrExtent"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/MediaTypeOrExten"/>
     <rdf:value>text/html</rdf:value>
     <rdfs:label>HTML</rdfs:label>
   </rdf:Description>
