@@ -1,5 +1,5 @@
 # Rule_ID:84
-# @title [Distribution] dct:format should be a resource
+# @title [Distribution] dct:format should be a dct:MediaTypeOrExtent
 # @tag distribution
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 
@@ -10,11 +10,11 @@ SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Distribution.
   ?s dct:format ?o.
-  FILTER(!isURI(?o)).
-  BIND (dct:format AS ?p).
+  ?o ?pred ?val.
+  FILTER(!EXISTS {?o a dct:MediaTypeOrExtent}).
   BIND ("Distribution" AS ?Class_Name).
   BIND (84 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dct:format should be a resource." AS ?Rule_Description).
-  BIND (concat("The dct:format ",str(?s)," is not a resource.") AS ?Message).
+  BIND ("dct:format should be a dct:MediaTypeOrExtent." AS ?Rule_Description).
+  BIND (concat("The dct:format ",str(?s)," is not a dct:MediaTypeOrExtent.") AS ?Message).
 }
