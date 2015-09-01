@@ -22,7 +22,7 @@ function setMessage(rows, container_id) {
     }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
     $('tbody td:nth-child(1), tbody td:nth-child(2), tbody td:nth-child(3)').css('text-align', 'center');
     $('table').css({"border": "0px", "padding-top": "10px", "padding-bottom": "10px"});
@@ -31,7 +31,7 @@ $(document).ready(function() {
     $('tbody tr:last-child th:first-child').css({"border-top-left-radius": "10px"});
     $('thead').css({"background": "linear-gradient(white, #eaeaea)"});
     $('tfoot').css({"background": "#eaeaea"});
-    $('thead th').each(function() {
+    $('thead th').each(function () {
         return $(this).text($(this).text().replace('_', ' '));
     });
 
