@@ -4,7 +4,13 @@
  */
 
 // Global variables
+/**
+ * Endpoint set by the html form.
+ */
 var endpoint;
+/**
+ * Graph name on which execute the query.
+ */
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 var editor, editortab1, editortab2, editortab3;
 var pattern_xml = /^\s*<\?xml/;
