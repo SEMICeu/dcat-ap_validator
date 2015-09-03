@@ -12,10 +12,25 @@ var endpoint;
  * Graph name on which execute the query.
  */
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
+/**
+ * Instances of the Codemirror used in the tabs.
+ */
 var editor, editortab1, editortab2, editortab3;
+/**
+ * Pattern to identify an XML file
+ */
 var pattern_xml = /^\s*<\?xml/;
+/**
+ * Pattern to identify an Turtle file
+ */
 var pattern_turtle = /^\s*@/;
+/**
+ * Pattern to identify an JSON-LD file
+ */
 var pattern_json_ld = /^\s*\{/;
+/**
+ * Pattern to identify an N3 file
+ */
 var pattern_n3 = /^\s*<http/;
 
 /**
