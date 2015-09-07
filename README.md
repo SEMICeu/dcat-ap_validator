@@ -1,7 +1,7 @@
 # dcat-ap_validator
 
 This software performs the validation of <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/description">DCAT-AP</a> rdf files.
-Validation is performed via a web form which loads a rdf/xml file as graph in a triplestore and it queries the triple store with a SPARQL query. The validator is located in the <b>pages</b> folder.
+Validation is performed via a web form which loads a file (Turtle, RDF/XML, N-triples, JSON-LD) as graph in a triplestore and it queries the triple store with a SPARQL query. The validator is located in the <b>pages</b> folder.
 
 The SPARQL query contains several rules which are based on those available here (1st source):
 https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
@@ -54,10 +54,7 @@ This is important because each test uses the rule number to open the related tes
 
 <h2>User guide</h2>
 <ol>
-<li>Launch Fuseki using the command in 'dcat-ap_validator_launchfuseki.cmd':
-
-<code>java -jar fuseki-server.jar --update --port=3030 --mem /dcat-ap_validator</code>
-</li>
+<li>Launch Fuseki using the command in 'start_dcat-ap_validator.bat'</li>
 <li>Direct your browser to <a href="http://localhost:3030/dcat-ap_validator.html">http://localhost:3030/dcat-ap_validator.html</a></li>
 <li>You get this page from Fuseki's internal web server.</li>
 <li>Select one or more RDF files that contain the software metadata to validate. Optionally, also controlled vocabularies can be incldued to verify correct usage of them.</li>
@@ -88,6 +85,8 @@ The development process is based on:
 <h2>TO DO</h2>
 <table>
 <tr><th>Action</th><th>Priority</th><th>Status</th></tr>
+<tr><td>Add automatic tests for file url (require Apache running) and direct input</td><td>High</td><td>Not done</td></tr>
+<tr><td>Replace php proxy with nodejs</td><td>High</td><td>Not done</td></tr>
 <tr><td>Add automatic tests for file url (require Apache running) and direct input</td><td>High</td><td>Not done</td></tr>
 <tr><td>Replace php proxy with nodejs</td><td>High</td><td>Not done</td></tr>
 <tr><td>Use js cookie to setup a custom graph per session https://github.com/js-cookie/js-cookie</td><td>High</td><td>Not done</td></tr>
