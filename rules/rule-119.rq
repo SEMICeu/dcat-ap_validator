@@ -1,5 +1,5 @@
 # Rule_ID:119
-# @title [Catalog Record] A Catalog Record should have foaf:primaryTopic property
+# @title [Catalog Record] foaf:primaryTopic is a required property for Catalog Record
 # @tag Catalog Record
 # @endpoint http://localhost:3030/dcat-ap_validator/query
 
@@ -16,6 +16,6 @@ WHERE {
   BIND ("CatalogRecord" AS ?Class_Name).
   BIND (119 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("A Catalog Record should have foaf:primaryTopic property." AS ?Rule_Description).
+  BIND ("foaf:primaryTopic is a required property for Catalog Record." AS ?Rule_Description).
   BIND (concat("The dcat:CatalogRecord ",str(?s)," does not have a foaf:primaryTopic property.") AS ?Message).
 }

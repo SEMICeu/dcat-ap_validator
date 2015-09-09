@@ -1652,22 +1652,6 @@ UNION
    }
   }
   
-UNION
-# Rule_ID:116
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dcat:theme ?p.
-     ?p skos:inScheme ?val.
-     FILTER(!EXISTS {?val a skos:ConceptScheme}).
-     BIND (?val AS ?o)
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (116 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("If a theme exists, it should be linked to a ConceptScheme." AS ?Rule_Description).
-     BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?p)," which does not belong to a ConceptScheme.") AS ?Message).
-   }
-  }
 
 UNION
 # Rule_ID:118
@@ -1690,7 +1674,7 @@ UNION
      BIND ("CatalogRecord" AS ?Class_Name).
      BIND (119 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("A Catalog Record should have foaf:primaryTopic property." AS ?Rule_Description).
+     BIND ("foaf:primaryTopic is a required property for Catalog Record. AS ?Rule_Description).
      BIND (concat("The dcat:CatalogRecord ",str(?s)," does not have a foaf:primaryTopic property.") AS ?Message).
    }
   }
@@ -1706,7 +1690,7 @@ UNION
      BIND ("CatalogRecord" AS ?Class_Name).
      BIND (120 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("A Catalog Record should have dct:modified property." AS ?Rule_Description).
+     BIND ("dct:modified is a required property for Catalog Record." AS ?Rule_Description).
      BIND (concat("The dcat:CatalogRecord ",str(?s)," does not have a dct:modified property.") AS ?Message).
    }
   }
