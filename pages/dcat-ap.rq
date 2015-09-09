@@ -992,7 +992,7 @@ UNION
      BIND ("Identifier" AS ?Class_Name).
      BIND (66 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("adms:identifier should have a skos:notation" AS ?Rule_Description).
+     BIND ("skos:notation is a required property for adms:Identifier." AS ?Rule_Description).
      BIND (concat("The adms:Identifier ",str(?s)," does not have a skos:notation.") AS ?Message).
    }
   }
