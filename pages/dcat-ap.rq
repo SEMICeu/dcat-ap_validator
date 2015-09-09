@@ -1651,7 +1651,6 @@ UNION
      BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?o)," which is not a skos:Concept") AS ?Message).
    }
   }
-  
 
 UNION
 # Rule_ID:118
@@ -1674,7 +1673,7 @@ UNION
      BIND ("CatalogRecord" AS ?Class_Name).
      BIND (119 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("foaf:primaryTopic is a required property for Catalog Record. AS ?Rule_Description).
+     BIND ("foaf:primaryTopic is a required property for Catalog Record." AS ?Rule_Description).
      BIND (concat("The dcat:CatalogRecord ",str(?s)," does not have a foaf:primaryTopic property.") AS ?Message).
    }
   }
