@@ -184,8 +184,8 @@ function validateEndpoint(endpoint) {
     }
     return false;
 }
-function validateForm1("tab1endpoint"){
-    if(validateEndpoint()) {
+function validateForm1(){
+    if(validateEndpoint("tab1endpoint")) {
         return true;
     else {
         return false;
