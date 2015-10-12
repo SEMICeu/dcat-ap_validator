@@ -177,8 +177,7 @@ String.prototype.endsWith = function (suffix) {
 };
 
 function validateEndpoint(endpoint) {
-    var value = $(endpoint).val();
-    var urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
+    var value = $(endpoint).val(), urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
     if (value.length > 0 && urlRegex.test(value)) {
         return true;
     }
@@ -186,7 +185,7 @@ function validateEndpoint(endpoint) {
 }
 
 function validateForm1() {
-    if (validateEndpoint("tab1endpoint")) {
+    if (validateEndpoint("#tab1endpoint")) {
         return true;
     }
     return false;
