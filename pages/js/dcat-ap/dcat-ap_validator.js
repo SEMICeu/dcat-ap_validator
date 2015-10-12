@@ -190,7 +190,7 @@ function validateMetadata(metadatafile, metadatafileerror) {
 }
 
 $("#metadatafile").change(function() {
-    validateMetadata("metadatafile", "#metadatafileerror")
+    validateMetadata("metadatafile", "#metadatafileerror");
 });
 
 function validateEndpoint(endpoint, endpointerror) {
