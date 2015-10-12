@@ -5,9 +5,9 @@ casper.test.begin(testname, 3, function suite(test) {
         this.page.uploadFile('input[type="file"]', file);
         this.click('div.more');
         this.wait(300, function() {
-            this.sendKeys('input#tab1-endpoint', casper.cli.get("url") + '/' + casper.cli.get("endpoint"), {reset: true});
+            this.sendKeys('input#tab1endpoint', casper.cli.get("url") + '/' + casper.cli.get("endpoint"), {reset: true});
             if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-0.png'); }
-            this.click('button[id="tab1-validate"]');
+            this.click('button[id="tab1validate"]');
         });
     });
 
