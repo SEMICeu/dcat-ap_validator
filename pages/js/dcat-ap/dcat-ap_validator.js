@@ -182,27 +182,46 @@ function validateEndpoint(endpoint, endpointerror) {
         isFilled = value.length > 0,
         isUrl = urlRegex.test(value);
     if (isFilled && isUrl) {
-        $(endpoint).removeClass("error");
         $(endpointerror).text("");
         return true;
     }
-    $(endpoint).addClass("error");
     if (!isFilled) {
-        $(endpointerror).text("Endpoint is a required field.");
+        $(endpointerror).text("The SPARQL endpoint is a required field.");
         return false;
     }
     if (!isUrl) {
-        $(endpointerror).text("Endpoint is not a valid url.");
+        $(endpointerror).text("The SPARQL endpoint is not a valid url.");
         return false;
     }
 }
 
+function validateMetadata(metadatafile, metadatafileerror) {
+    var fileInput = document.getElementById('metadatafile'),
+        isFilled = fileInput.files.length === 0;
+    if (isFilled) {
+        $(metadatafileerror).text("");
+        return true;
+    }
+    if (!isFilled) {
+        $(metadatafileerror).text("The RDF file is a required field.");
+        return false;
+    }
+}
 $("#tab1endpoint").focusout(function() {
     validateEndpoint("#tab1endpoint", "#tab1endpointerror")
 });
 
+$("#tab2endpoint").focusout(function() {
+    validateEndpoint("#tab2endpoint", "#tab2endpointerror")
+});
+
+$("#tab3endpoint").focusout(function() {
+    validateEndpoint("#tab3endpoint", "#tab3endpointerror")
+});
 function validateForm1() {
-    if (validateEndpoint("#tab1endpoint", "#tab1endpointerror")) {
+    var cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
+        cond_metadata = validateMetadata("metadatafile", "#metadatafileerror");
+    if (cond_endpoint && cond_metatadata) {
         return true;
     }
     return false;

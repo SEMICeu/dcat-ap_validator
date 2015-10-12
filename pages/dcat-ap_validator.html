@@ -27,6 +27,7 @@
 						<form id="tab1form" class="form" action="/dcat-ap_validator/query" method="POST" accept-charset="UTF-8" onsubmit="return onForm1Submit(this)">
 							<label for="metadatafile">RDF file(s):<span class="small">Select your RDF file (Turtle/XML/N-triples/JSON-LD) with metadata and taxonomies</span></label>
 							<input id="metadatafile" class="metadatafile" type="file" name="metadatafile" multiple="multiple">
+                            <span id="metadatafileerror" class="errormessage"></span>
 							<div id="tab1options">
 								<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>
 								<div class="options">
