@@ -176,6 +176,22 @@ String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
+function validateEndpoint(endpoint) {
+    var value = $(endpoint).val();
+    var urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
+    if (value.length > 0 && urlRegex.test(value)) {
+        return true;
+    }
+    return false;
+}
+function validateForm1("tab1endpoint"){
+    if(validateEndpoint()) {
+        return true;
+    else {
+        return false;
+    }
+}
+
 /**
  * This function is called before submitting the form1. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
  * @param {Object} form - HTML form used for the validation.
@@ -183,35 +199,37 @@ String.prototype.endsWith = function (suffix) {
  */
 function onForm1Submit(form) {
     var fileInput, i, file, blob;
-    try {
-        endpoint = document.getElementById('tab1endpoint').value;
-        fileInput = document.getElementById('metadatafile');
-        if (fileInput.files.length === 0) {
-            window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
-            return false;
-        }// else {
-        if (graph === 'default') {
-            runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
-        } else {
-            runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
-        }
-        //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
-        //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        for (i = 0; i < fileInput.files.length; i = i + 1) {
-            file = fileInput.files[i];
-            if (file.name.endsWith("json") || file.name.endsWith("jsonld")) {
-                blob = new Blob([file], {type: "application/ld+json"});
-                uploadFile(blob, graph);
+    if(validateForm1(){
+        try {
+            endpoint = document.getElementById('tab1endpoint').value;
+            fileInput = document.getElementById('metadatafile');
+            if (fileInput.files.length === 0) {
+                window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
+                return false;
+            }// else {
+            if (graph === 'default') {
+                runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
             } else {
-                uploadFile(file, graph); //uploads the metadata file
+                runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
             }
+            //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
+            //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
+            for (i = 0; i < fileInput.files.length; i = i + 1) {
+                file = fileInput.files[i];
+                if (file.name.endsWith("json") || file.name.endsWith("jsonld")) {
+                    blob = new Blob([file], {type: "application/ld+json"});
+                    uploadFile(blob, graph);
+                } else {
+                    uploadFile(file, graph); //uploads the metadata file
+                }
+            }
+            form.action = endpoint + '/query'; //The validation query will be called from the form
+            return true;
+            //}
+        } catch (e) {
+            alert('Error: ' + e.message);
+            return false;
         }
-        form.action = endpoint + '/query'; //The validation query will be called from the form
-        return true;
-        //}
-    } catch (e) {
-        alert('Error: ' + e.message);
-        return false;
     }
 }
 
@@ -432,24 +450,5 @@ $(document).ready(function () {
 
     $("#loadsample4").click(function () {
         loadFile("samples/sample-json-ld.jsonld");
-    });
-
-    $("#tab1form").validate({
-        debug: true,
-        submitHandler: function(form) {
-            onForm1Submit(form);
-        },
-        rules: {
-            tab1endpoint: {
-                required: true,
-                url: true
-            }
-        },
-        messages: {
-            tab1endpoint: {
-                required: "Please enter an existing endpoint",
-                url: "The endpoint inserted is not a valid url"
-            }
-        }
     });
 });
