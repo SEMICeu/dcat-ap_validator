@@ -242,7 +242,7 @@ $("#tab3endpoint").focusout(function() {
 
 function validateForm1() {
     var cond_metadata = validateMetadata("metadatafile", "#metadatafileerror"),
-        cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
+        cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror", "SPAQL endpoint"),
         cond_query = validateQuery(editortab1, "#editortab1error");
     if (cond_metadata && cond_endpoint && cond_query) {
         return true;
@@ -251,8 +251,8 @@ function validateForm1() {
 }
 
 function validateForm2() {
-    var cond_address = validateEndpoint("#address", "#addresserror"),
-        cond_endpoint = validateEndpoint("#tab2endpoint", "#tab2endpointerror"),
+    var cond_address = validateEndpoint("#address", "#addresserror", "address of the RDF file"),
+        cond_endpoint = validateEndpoint("#tab2endpoint", "#tab2endpointerror", "SPAQL endpoint"),
         cond_query = validateQuery(editortab2, "#editortab2error");
     if (cond_address && cond_endpoint && cond_query) {
         return true;
