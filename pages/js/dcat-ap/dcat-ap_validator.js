@@ -208,14 +208,14 @@ function validateEndpoint(endpoint, endpointerror, subject) {
     }
 }
 
-function validateQuery(query, queryerror) {
+function validateQuery(query, queryerror, subject) {
     var isFilled = query.getValue().trim() !== "";
     if (isFilled) {
         $(queryerror).text("");
         return true;
     }
     if (!isFilled) {
-        $(queryerror).text("The SPARQL query is a required field.");
+        $(queryerror).text("The " + subject + " is a required field.");
         return false;
     }
 }
@@ -243,7 +243,7 @@ $("#tab3endpoint").focusout(function() {
 function validateForm1() {
     var cond_metadata = validateMetadata("metadatafile", "#metadatafileerror"),
         cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror", "SPAQL endpoint"),
-        cond_query = validateQuery(editortab1, "#editortab1error");
+        cond_query = validateQuery(editortab1, "#editortab1error", "SPARQL query");
     if (cond_metadata && cond_endpoint && cond_query) {
         return true;
     }
@@ -253,7 +253,7 @@ function validateForm1() {
 function validateForm2() {
     var cond_address = validateEndpoint("#address", "#addresserror", "address of the RDF file"),
         cond_endpoint = validateEndpoint("#tab2endpoint", "#tab2endpointerror", "SPAQL endpoint"),
-        cond_query = validateQuery(editortab2, "#editortab2error");
+        cond_query = validateQuery(editortab2, "#editortab2error", "SPARQL query");
     if (cond_address && cond_endpoint && cond_query) {
         return true;
     }
@@ -261,7 +261,10 @@ function validateForm2() {
 }
 
 function validateForm3() {
-    if (validateEndpoint("#tab3endpoint", "#tab3endpointerror")) {
+    var cond_address = validateQuery(editor, "#editorerror", "direct RDF input"),
+        cond_endpoint = validateEndpoint("#tab3endpoint", "#tab3endpointerror", "SPAQL endpoint"),
+        cond_query = validateQuery(editortab3, "#editortab3error", "SPARQL query");
+    if (cond_address && cond_endpoint && cond_query) {
         return true;
     }
     return false;
@@ -382,18 +385,10 @@ function onForm2Submit(form) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm3Submit(form) {
-    var directfile, blob;
+    var directfile, endpoint, blob;
     try {
+        directfile = editor.getValue();
         endpoint = document.getElementById('tab3endpoint').value;
-        if (editor === "undefined") {
-            directfile = document.getElementById('directinput').value;
-        } else {
-            directfile = editor.getValue();
-        }
-        if (directfile === "") {
-            window.alert('No RDF input has been provided');
-            return false;
-        }// else {
         if (graph === 'default') {
             runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
         } else {
@@ -460,6 +455,18 @@ function toggle(taboption, editortab) {
 
 $(document).ready(function () {
 
+    $("#tabs").tabs();
+
+    editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
+        mode: "turtle",
+        lineNumbers: true
+    });
+
+    editortab2 = CodeMirror.fromTextArea(document.getElementById("tab2validationquery"), {
+        mode: "turtle",
+        lineNumbers: true
+    });
+
     editor = CodeMirror.fromTextArea(document.getElementById("directinput"), {
         mode: "turtle",
         lineNumbers: true,
@@ -475,36 +482,10 @@ $(document).ready(function () {
         }
     });
 
-    var pending;
-    editor.on("change", function () {
-        clearTimeout(pending);
-        pending = setTimeout(updateEditor(), 400);
-    });
-
-    editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
-        mode: "turtle",
-        lineNumbers: true
-    });
-
-    editortab1.on("change", function () {
-        validateQuery(editortab1, "#editortab1error");
-    });
-
-    editortab2 = CodeMirror.fromTextArea(document.getElementById("tab2validationquery"), {
-        mode: "turtle",
-        lineNumbers: true
-    });
-
-    editortab2.on("change", function () {
-        validateQuery(editortab2, "#editortab2error");
-    });
-
     editortab3 = CodeMirror.fromTextArea(document.getElementById("tab3validationquery"), {
         mode: "turtle",
         lineNumbers: true
     });
-
-    $("#tabs").tabs();
 
     getQuery("dcat-ap.rq");
 
@@ -530,6 +511,25 @@ $(document).ready(function () {
 
     $("#loadsample3").click(function () {
         loadFile("samples/sample-n-triples.nt");
+    });
+
+    editortab1.on("change", function () {
+        validateQuery(editortab1, "#editortab1error", "SPARQL query");
+    });
+
+    editortab2.on("change", function () {
+        validateQuery(editortab2, "#editortab2error", "SPARQL query");
+    });
+
+    var pending;
+    editor.on("change", function () {
+        validateQuery(editor, "#editorerror", "direct RDF input");
+        clearTimeout(pending);
+        pending = setTimeout(updateEditor(), 400);
+    });
+
+    editortab3.on("change", function () {
+        validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
 
     $("#loadsample4").click(function () {
