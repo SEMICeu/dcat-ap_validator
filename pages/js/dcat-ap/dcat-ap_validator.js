@@ -208,15 +208,15 @@ function validateMetadata(metadatafile, metadatafileerror) {
     }
 }
 $("#tab1endpoint").focusout(function() {
-    validateEndpoint("#tab1endpoint", "#tab1endpointerror")
+    validateEndpoint("#tab1endpoint", "#tab1endpointerror");
 });
 
 $("#tab2endpoint").focusout(function() {
-    validateEndpoint("#tab2endpoint", "#tab2endpointerror")
+    validateEndpoint("#tab2endpoint", "#tab2endpointerror");
 });
 
 $("#tab3endpoint").focusout(function() {
-    validateEndpoint("#tab3endpoint", "#tab3endpointerror")
+    validateEndpoint("#tab3endpoint", "#tab3endpointerror");
 });
 function validateForm1() {
     var cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
