@@ -246,7 +246,10 @@ function validateForm1() {
 }
 
 function validateForm2() {
-    if (validateEndpoint("#tab2endpoint", "#tab2endpointerror")) {
+    var cond_address = validateEndpoint("#address", "#addresserror"),
+        cond_endpoint = validateEndpoint("#tab2endpoint", "#tab2endpointerror"),
+        cond_query = validateQuery(editortab2, "#editortab2error");
+    if (cond_address && cond_endpoint && cond_query) {
         return true;
     }
     return false;

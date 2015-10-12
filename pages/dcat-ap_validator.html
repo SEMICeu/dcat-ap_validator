@@ -52,6 +52,7 @@
 						<form id="tab2form" class="form" action="/dcat-ap_validator/query" method="POST" accept-charset="UTF-8" onsubmit="return onForm2Submit(this)">
 							<label for="address">Address:<span class="small">Enter the address of your RDF file (Turtle/XML/N-triples/JSON-LD)</span></label>
 							<input id="address" class="address" type="text" name="address" size="45">
+                            <span id="addresserror" class="errormessage"></span>
 							<div id="tab2options">
 								<div class="more"><img class="toggleicon" src="./images/arrow-closed.png" alt="Hide Options"/> <span class="menu">More Options</span></div>
 								<div class="options">
@@ -64,6 +65,7 @@
 									<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />
 									<label for="tab2validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>
 									<textarea class="validationquery" id="tab2validationquery" name="query" cols="80" rows="16"></textarea>
+                                    <span id="editortab2error" class="errormessage"></span>
 								</div>
 								<div class="fancy-line"></div>
 								<label class="hiddenlabel" for="tab2validate">validate button</label>
@@ -76,6 +78,7 @@
 							<label for="directinput">Direct input:<span class="small">Enter your RDF markup (Turtle/XML/N-triples/JSON-LD))</span><p class="small">When editing, press <u>F11</u> to enter in full screen mode, press <u>ESC</u> to go back in normal mode.</p></label> 
 							<div class="editorfloatleft">
 								<textarea id="directinput" name="directinput" cols="80" rows="16"></textarea>
+                                <span id="directinputerror" class="errormessage"></span>
 							</div>
 							<div class="loadsamples">
 								<div class="buttonsample" id="loadsample1">&lt;- Load <span>Turtle</span> sample</div>
@@ -95,6 +98,7 @@
 									<br/><!--<label>XSLT style sheet:<span class="small">Stylesheet used to display results</span></label> --><input type="hidden" name="stylesheet" value="/xml-to-html-dcat-ap.xsl" />
 									<label for="tab3validationquery">SPARQL query:<span class="small">SPARQL query that encodes the validation rules.</span></label>
 									<textarea class="validationquery" id="tab3validationquery" name="query" cols="80" rows="16"></textarea>
+                                    <span id="editortab3error" class="errormessage"></span>
 								</div>
 								<div class="fancy-line"></div>
 								<label class="hiddenlabel" for="tab3validate">validate button</label>
