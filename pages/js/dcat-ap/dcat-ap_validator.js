@@ -386,34 +386,38 @@ function onForm2Submit(form) {
  */
 function onForm3Submit(form) {
     var directfile, endpoint, blob;
-    try {
-        directfile = editor.getValue();
-        endpoint = document.getElementById('tab3endpoint').value;
-        if (graph === 'default') {
-            runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
-        } else {
-            runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+    if (validateForm3()) {
+        try {
+            directfile = editor.getValue();
+            endpoint = document.getElementById('tab3endpoint').value;
+            if (graph === 'default') {
+                runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
+            } else {
+                runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+            }
+            //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
+            //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
+            //See https://jena.apache.org/documentation/io/rdf-input.html
+            if (pattern_xml.test(directfile)) {
+                blob = new Blob([directfile], {type: "text\/xml"});
+            } else if (pattern_turtle.test(directfile)) {
+                blob = new Blob([directfile], {type: "text\/turtle"});
+            } else if (pattern_json_ld.test(directfile)) {
+                blob = new Blob([directfile], {type: "application\/ld+json"});
+            } else if (pattern_n3.test(directfile)) {
+                blob = new Blob([directfile], {type: "application\/n-triples"});
+            }
+            uploadFile(blob, graph);
+            form.action = endpoint + '/query'; //The validation query will be called from the form
+            return true;
+            //}
+        } catch (e) {
+            alert('Error: ' + e.message);
+            return false;
         }
-        //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
-        //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        //See https://jena.apache.org/documentation/io/rdf-input.html
-        if (pattern_xml.test(directfile)) {
-            blob = new Blob([directfile], {type: "text\/xml"});
-        } else if (pattern_turtle.test(directfile)) {
-            blob = new Blob([directfile], {type: "text\/turtle"});
-        } else if (pattern_json_ld.test(directfile)) {
-            blob = new Blob([directfile], {type: "application\/ld+json"});
-        } else if (pattern_n3.test(directfile)) {
-            blob = new Blob([directfile], {type: "application\/n-triples"});
-        }
-        uploadFile(blob, graph);
-        form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
-        //}
-    } catch (e) {
-        alert('Error: ' + e.message);
-        return false;
     }
+    return false;
 }
 
 /**
