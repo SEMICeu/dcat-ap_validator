@@ -184,7 +184,7 @@ String.prototype.endsWith = function (suffix) {
 function onForm1Submit(form) {
     var fileInput, i, file, blob;
     try {
-        endpoint = document.getElementById('tab1-endpoint').value;
+        endpoint = document.getElementById('tab1endpoint').value;
         fileInput = document.getElementById('metadatafile');
         if (fileInput.files.length === 0) {
             window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
@@ -256,7 +256,7 @@ function callWebService(address) {
 function onForm2Submit(form) {
     var fileURL, url, list, address;
     try {
-        endpoint = document.getElementById('tab2-endpoint').value;
+        endpoint = document.getElementById('tab2endpoint').value;
         fileURL = document.getElementById('address').value;
         if (fileURL === "") {
             window.alert('No link has been provided');
@@ -292,7 +292,7 @@ function onForm2Submit(form) {
 function onForm3Submit(form) {
     var directfile, blob;
     try {
-        endpoint = document.getElementById('tab3-endpoint').value;
+        endpoint = document.getElementById('tab3endpoint').value;
         if (editor === "undefined") {
             directfile = document.getElementById('directinput').value;
         } else {
@@ -406,16 +406,16 @@ $(document).ready(function () {
 
     getQuery("dcat-ap.rq");
 
-    $("#tab1-options div.more").click(function () {
-        toggle("#tab1-options div.more", editortab1);
+    $("#tab1options div.more").click(function () {
+        toggle("#tab1options div.more", editortab1);
     });
 
-    $("#tab2-options div.more").click(function () {
-        toggle("#tab2-options div.more", editortab2);
+    $("#tab2options div.more").click(function () {
+        toggle("#tab2options div.more", editortab2);
     });
 
-    $("#tab3-options div.more").click(function () {
-        toggle("#tab3-options div.more", editortab3);
+    $("#tab3options div.more").click(function () {
+        toggle("#tab3options div.more", editortab3);
     });
 
     $("#loadsample1").click(function () {
@@ -439,13 +439,13 @@ $(document).ready(function () {
             onForm1Submit(form);
         },
         rules: {
-            "tab1-endpoint": {
+            tab1endpoint: {
                 required: true,
                 url: true
             }
         },
         messages: {
-            "tab1-endpoint": {
+            tab1endpoint: {
                 required: "Please enter an existing endpoint",
                 url: "The endpoint inserted is not a valid url"
             }
