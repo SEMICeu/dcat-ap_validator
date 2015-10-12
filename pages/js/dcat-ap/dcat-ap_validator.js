@@ -240,7 +240,9 @@ function onForm1Submit(form) {
             alert('Error: ' + e.message);
             return false;
         }
+        return true;
     }
+    return false;
 }
 
 function callWebService(address) {

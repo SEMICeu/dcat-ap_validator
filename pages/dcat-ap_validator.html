@@ -24,7 +24,7 @@
 						<li><a href="#tab-3">Validate by <span>Direct Input</span></a></li>
 					</ul>
 					<div id="tab-1">
-						<form id="tab1form" class="form" action="/dcat-ap_validator/query" method="POST" accept-charset="UTF-8" onsubmit="onForm1Submit(this)">
+						<form id="tab1form" class="form" action="/dcat-ap_validator/query" method="POST" accept-charset="UTF-8" onsubmit="return onForm1Submit(this)">
 							<label for="metadatafile">RDF file(s):<span class="small">Select your RDF file (Turtle/XML/N-triples/JSON-LD) with metadata and taxonomies</span></label>
 							<input id="metadatafile" class="metadatafile" type="file" name="metadatafile" multiple="multiple">
 							<div id="tab1options">
