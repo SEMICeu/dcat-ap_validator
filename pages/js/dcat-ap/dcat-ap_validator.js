@@ -176,6 +176,19 @@ String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
+function validateMetadata(metadatafile, metadatafileerror) {
+    var fileInput = document.getElementById(metadatafile),
+        isFilled = fileInput.files.length > 0;
+    if (isFilled) {
+        $(metadatafileerror).text("");
+        return true;
+    }
+    if (!isFilled) {
+        $(metadatafileerror).text("The RDF file is a required field.");
+        return false;
+    }
+}
+
 function validateEndpoint(endpoint, endpointerror) {
     var value = $(endpoint).val(),
         urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
@@ -190,23 +203,23 @@ function validateEndpoint(endpoint, endpointerror) {
         return false;
     }
     if (!isUrl) {
-        $(endpointerror).text("The SPARQL endpoint is not a valid url.");
+        $(endpointerror).text("The SPARQL endpoint is not a valid URL.");
         return false;
     }
 }
 
-function validateMetadata(metadatafile, metadatafileerror) {
-    var fileInput = document.getElementById(metadatafile),
-        isFilled = fileInput.files.length > 0;
+function validateQuery(query, queryerror) {
+    isFilled = query.getValue() !== 0;
     if (isFilled) {
-        $(metadatafileerror).text("");
+        $(queryerror).text("");
         return true;
     }
     if (!isFilled) {
-        $(metadatafileerror).text("The RDF file is a required field.");
+        $(queryerror).text("The SPARQL query is a required field.");
         return false;
     }
 }
+
 $("#tab1endpoint").focusout(function() {
     validateEndpoint("#tab1endpoint", "#tab1endpointerror");
 });
@@ -219,9 +232,10 @@ $("#tab3endpoint").focusout(function() {
     validateEndpoint("#tab3endpoint", "#tab3endpointerror");
 });
 function validateForm1() {
-    var cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
-        cond_metadata = validateMetadata("metadatafile", "#metadatafileerror");
-    if (cond_endpoint && cond_metadata) {
+    var cond_metadata = validateMetadata("metadatafile", "#metadatafileerror"),
+        cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
+        cond_query = validateQuery(editortab1, "#editortab1error");
+    if (cond_metadata && cond_endpoint) {
         return true;
     }
     return false;
@@ -253,10 +267,6 @@ function onForm1Submit(form) {
         try {
             endpoint = document.getElementById('tab1endpoint').value;
             fileInput = document.getElementById('metadatafile');
-            if (fileInput.files.length === 0) {
-                window.alert('No RDF files are provided. Please provide at least one RDF file with software description metadata to validate. ');
-                return false;
-            }// else {
             if (graph === 'default') {
                 runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
             } else {
