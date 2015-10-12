@@ -189,11 +189,7 @@ function validateMetadata(metadatafile, metadatafileerror) {
     }
 }
 
-$("#metadatafile").change(function() {
-    validateMetadata("metadatafile", "#metadatafileerror");
-});
-
-function validateEndpoint(endpoint, endpointerror) {
+function validateEndpoint(endpoint, endpointerror, subject) {
     var value = $(endpoint).val(),
         urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
         isFilled = value.length > 0,
@@ -203,11 +199,11 @@ function validateEndpoint(endpoint, endpointerror) {
         return true;
     }
     if (!isFilled) {
-        $(endpointerror).text("The SPARQL endpoint is a required field.");
+        $(endpointerror).text("The " + subject + " is a required field.");
         return false;
     }
     if (!isUrl) {
-        $(endpointerror).text("The SPARQL endpoint is not a valid URL.");
+        $(endpointerror).text("The " + subject + " is not a valid URL.");
         return false;
     }
 }
@@ -224,17 +220,30 @@ function validateQuery(query, queryerror) {
     }
 }
 
+$("#metadatafile").change(function() {
+    validateMetadata("metadatafile", "#metadatafileerror");
+});
+
 $("#tab1endpoint").focusout(function() {
-    validateEndpoint("#tab1endpoint", "#tab1endpointerror");
+    validateEndpoint("#tab1endpoint", "#tab1endpointerror", "SPAQL endpoint");
+});
+
+editortab1.on("change", function () {
+    validateQuery(editortab1, "#editortab1error");
+});
+
+$("#address").focusout(function() {
+    validateEndpoint("#address", "#addresserror", "address of the RDF file");
 });
 
 $("#tab2endpoint").focusout(function() {
-    validateEndpoint("#tab2endpoint", "#tab2endpointerror");
+    validateEndpoint("#tab2endpoint", "#tab2endpointerror", "SPAQL endpoint");
 });
 
 $("#tab3endpoint").focusout(function() {
-    validateEndpoint("#tab3endpoint", "#tab3endpointerror");
+    validateEndpoint("#tab3endpoint", "#tab3endpointerror", "SPAQL endpoint");
 });
+
 function validateForm1() {
     var cond_metadata = validateMetadata("metadatafile", "#metadatafileerror"),
         cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
