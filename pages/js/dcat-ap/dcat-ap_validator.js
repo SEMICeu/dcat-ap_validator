@@ -459,8 +459,6 @@ function toggle(taboption, editortab) {
 
 $(document).ready(function () {
 
-    $("#tabs").tabs();
-
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
         lineNumbers: true
@@ -490,6 +488,8 @@ $(document).ready(function () {
         mode: "turtle",
         lineNumbers: true
     });
+
+    $("#tabs").tabs();
 
     getQuery("dcat-ap.rq");
 
