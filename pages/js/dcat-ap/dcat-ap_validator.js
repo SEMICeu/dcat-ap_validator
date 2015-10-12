@@ -182,6 +182,7 @@ function validateEndpoint(endpoint,endpointerror) {
     var isUrl = urlRegex.test(value);
     if (isFilled && isUrl) {
         $(endpoint).removeClass("error");
+        $(endpointerror).text("");
         return true;
     }
     $(endpoint).addClass("error");
