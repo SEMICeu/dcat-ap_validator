@@ -489,6 +489,7 @@ $(document).ready(function () {
         lineNumbers: true
     });
 
+    // tabs creation needs to be after codemirror otherwise the gutter (rulers) is flat
     $("#tabs").tabs();
 
     getQuery("dcat-ap.rq");
