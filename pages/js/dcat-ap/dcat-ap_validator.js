@@ -433,8 +433,8 @@ $(document).ready(function () {
     $("#loadsample4").click(function () {
         loadFile("samples/sample-json-ld.jsonld");
     });
-    
-    $("#tab1-form").validate({
+
+    $("#tab1form").validate({
         submitHandler: function(form) {
             onForm1Submit(form);
         },
