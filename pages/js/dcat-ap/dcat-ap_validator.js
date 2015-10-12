@@ -189,6 +189,10 @@ function validateMetadata(metadatafile, metadatafileerror) {
     }
 }
 
+$("#metadatafile").change(function() {
+    validateMetadata("metadatafile", "#metadatafileerror")
+});
+
 function validateEndpoint(endpoint, endpointerror) {
     var value = $(endpoint).val(),
         urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
@@ -209,7 +213,7 @@ function validateEndpoint(endpoint, endpointerror) {
 }
 
 function validateQuery(query, queryerror) {
-    isFilled = query.getValue() !== "";
+    var isFilled = query.getValue() !== "";
     if (isFilled) {
         $(queryerror).text("");
         return true;
