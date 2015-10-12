@@ -176,32 +176,50 @@ String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
-function validateEndpoint(endpoint,endpointerror) {
-    var value = $(endpoint).val(), urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
-    var isFilled = value.length > 0;
-    var isUrl = urlRegex.test(value);
+$("#tab1endpoint").blur(validateEndpoint("#tab1endpoint","#tab1endpointerror"));
+
+function validateEndpoint(endpoint, endpointerror) {
+    var value = $(endpoint).val(),
+        urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
+        isFilled = value.length > 0,
+        isUrl = urlRegex.test(value);
     if (isFilled && isUrl) {
         $(endpoint).removeClass("error");
         $(endpointerror).text("");
         return true;
     }
     $(endpoint).addClass("error");
-    if (!isFilled){
+    if (!isFilled) {
         $(endpointerror).text("Endpoint is a required field.");
         return false;
     }
-    if (!isUrl){
+    if (!isUrl) {
         $(endpointerror).text("Endpoint is not a valid url.");
         return false;
     }
 }
 
 function validateForm1() {
-    if (validateEndpoint("#tab1endpoint","#tab1endpointerror")) {
+    if (validateEndpoint("#tab1endpoint", "#tab1endpointerror")) {
         return true;
     }
     return false;
 }
+
+function validateForm2() {
+    if (validateEndpoint("#tab2endpoint", "#tab2endpointerror")) {
+        return true;
+    }
+    return false;
+}
+
+function validateForm3() {
+    if (validateEndpoint("#tab3endpoint", "#tab3endpointerror")) {
+        return true;
+    }
+    return false;
+}
+
 
 /**
  * This function is called before submitting the form1. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
