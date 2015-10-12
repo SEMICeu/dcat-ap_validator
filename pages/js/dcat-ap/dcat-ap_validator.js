@@ -176,7 +176,7 @@ String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
-function validateEndpoint(endpoint) {
+function validateEndpoint(endpoint,endpointerror) {
     var value = $(endpoint).val(), urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
     var isFilled = value.length > 0;
     var isUrl = urlRegex.test(value);
@@ -186,17 +186,17 @@ function validateEndpoint(endpoint) {
     }
     $(endpoint).addClass("error");
     if (!isFilled){
-        $(endpoint).after("<span class='errormessage'>Endpoint is required</span>");
+        $(endpointerror).text("Endpoint is a required field.");
         return false;
     }
     if (!isUrl){
-        $(endpoint).after("<span class='errormessage'>Endpoint is not a valid url</span>");
+        $(endpointerror).text("Endpoint is not a valid url.");
         return false;
     }
 }
 
 function validateForm1() {
-    if (validateEndpoint("#tab1endpoint")) {
+    if (validateEndpoint("#tab1endpoint","#tab1endpointerror")) {
         return true;
     }
     return false;
