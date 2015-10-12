@@ -176,7 +176,7 @@ String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
-$("#tab1endpoint").blur(validateEndpoint("#tab1endpoint","#tab1endpointerror"));
+$("#tab1endpoint").focusout(validateEndpoint("#tab1endpoint","#tab1endpointerror"));
 
 function validateEndpoint(endpoint, endpointerror) {
     var value = $(endpoint).val(),
