@@ -184,8 +184,9 @@ function validateEndpoint(endpoint) {
     }
     return false;
 }
-function validateForm1(){
-    if(validateEndpoint("tab1endpoint")) {
+
+function validateForm1() {
+    if (validateEndpoint("tab1endpoint")) {
         return true;
     }
     return false;
@@ -198,7 +199,7 @@ function validateForm1(){
  */
 function onForm1Submit(form) {
     var fileInput, i, file, blob;
-    if(validateForm1()){
+    if (validateForm1()) {
         try {
             endpoint = document.getElementById('tab1endpoint').value;
             fileInput = document.getElementById('metadatafile');
