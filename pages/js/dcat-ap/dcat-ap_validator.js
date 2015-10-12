@@ -228,10 +228,6 @@ $("#tab1endpoint").focusout(function() {
     validateEndpoint("#tab1endpoint", "#tab1endpointerror", "SPAQL endpoint");
 });
 
-editortab1.on("change", function () {
-    validateQuery(editortab1, "#editortab1error");
-});
-
 $("#address").focusout(function() {
     validateEndpoint("#address", "#addresserror", "address of the RDF file");
 });
@@ -489,6 +485,11 @@ $(document).ready(function () {
         mode: "turtle",
         lineNumbers: true
     });
+    
+    editortab1.on("change", function () {
+        validateQuery(editortab1, "#editortab1error");
+    });
+    
     editortab2 = CodeMirror.fromTextArea(document.getElementById("tab2validationquery"), {
         mode: "turtle",
         lineNumbers: true
