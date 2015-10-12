@@ -209,7 +209,7 @@ function validateEndpoint(endpoint, endpointerror, subject) {
 }
 
 function validateQuery(query, queryerror) {
-    var isFilled = query.getValue() !== "";
+    var isFilled = query.getValue().trim() !== "";
     if (isFilled) {
         $(queryerror).text("");
         return true;
@@ -485,15 +485,20 @@ $(document).ready(function () {
         mode: "turtle",
         lineNumbers: true
     });
-    
+
     editortab1.on("change", function () {
         validateQuery(editortab1, "#editortab1error");
     });
-    
+
     editortab2 = CodeMirror.fromTextArea(document.getElementById("tab2validationquery"), {
         mode: "turtle",
         lineNumbers: true
     });
+
+    editortab2.on("change", function () {
+        validateQuery(editortab2, "#editortab2error");
+    });
+
     editortab3 = CodeMirror.fromTextArea(document.getElementById("tab3validationquery"), {
         mode: "turtle",
         lineNumbers: true
