@@ -187,9 +187,8 @@ function validateEndpoint(endpoint) {
 function validateForm1(){
     if(validateEndpoint("tab1endpoint")) {
         return true;
-    else {
-        return false;
     }
+    return false;
 }
 
 /**
