@@ -435,6 +435,7 @@ $(document).ready(function () {
     });
 
     $("#tab1form").validate({
+        debug: true,
         submitHandler: function(form) {
             onForm1Submit(form);
         },
