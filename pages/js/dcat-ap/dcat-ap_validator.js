@@ -439,13 +439,13 @@ $(document).ready(function () {
             onForm1Submit(form);
         },
         rules: {
-            tab1-endpoint: {
+            "tab1-endpoint": {
                 required: true,
                 url: true
             }
         },
         messages: {
-            tab1-endpoint: {
+            "tab1-endpoint": {
                 required: "Please enter an existing endpoint",
                 url: "The endpoint inserted is not a valid url"
             }
