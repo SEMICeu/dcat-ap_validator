@@ -342,33 +342,33 @@ function callWebService(address) {
  */
 function onForm2Submit(form) {
     var fileURL, url, list, address;
-    try {
-        endpoint = document.getElementById('tab2endpoint').value;
-        fileURL = document.getElementById('address').value;
-        if (fileURL === "") {
-            window.alert('No link has been provided');
+    if (validateForm2()) {
+        try {
+            endpoint = document.getElementById('tab2endpoint').value;
+            fileURL = document.getElementById('address').value;
+            if (graph === 'default') {
+                runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
+            } else {
+                runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+            }
+            //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
+            //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
+            //file = getFileFromURL(fileURL);
+            //getAndLoadFile(fileURL,form); //uploads the metadata file
+            url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
+            list = "url=" + encodeURIComponent(fileURL);
+            address = url + list;
+            callWebService(address);
+            form.action = endpoint + '/query'; //The validation query will be called from the form
+            return true;
+            //}
+        } catch (e) {
+            alert('Error: ' + e.message);
             return false;
-        }// else {
-        if (graph === 'default') {
-            runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
-        } else {
-            runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
         }
-        //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
-        //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
-        //file = getFileFromURL(fileURL);
-        //getAndLoadFile(fileURL,form); //uploads the metadata file
-        url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
-        list = "url=" + encodeURIComponent(fileURL);
-        address = url + list;
-        callWebService(address);
-        form.action = endpoint + '/query'; //The validation query will be called from the form
         return true;
-        //}
-    } catch (e) {
-        alert('Error: ' + e.message);
-        return false;
     }
+    return false;
 }
 
 /**
