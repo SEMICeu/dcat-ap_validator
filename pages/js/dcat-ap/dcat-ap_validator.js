@@ -178,10 +178,21 @@ String.prototype.endsWith = function (suffix) {
 
 function validateEndpoint(endpoint) {
     var value = $(endpoint).val(), urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
-    if (value.length > 0 && urlRegex.test(value)) {
+    var isFilled = value.length > 0;
+    var isUrl = urlRegex.test(value);
+    if (isFilled && isUrl) {
+        $(endpoint).removeClass("error");
         return true;
     }
-    return false;
+    $(endpoint).addClass("error");
+    if (!isFilled){
+        $(endpoint).after("<span class='errormessage'>Endpoint is required</span>");
+        return false;
+    }
+    if (!isUrl){
+        $(endpoint).after("<span class='errormessage'>Endpoint is not a valid url</span>");
+        return false;
+    }
 }
 
 function validateForm1() {
