@@ -176,8 +176,6 @@ String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
-$("#tab1endpoint").focusout(validateEndpoint("#tab1endpoint","#tab1endpointerror"));
-
 function validateEndpoint(endpoint, endpointerror) {
     var value = $(endpoint).val(),
         urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
@@ -198,6 +196,10 @@ function validateEndpoint(endpoint, endpointerror) {
         return false;
     }
 }
+
+$("#tab1endpoint").focusout(function() {
+    validateEndpoint("#tab1endpoint", "#tab1endpointerror")
+});
 
 function validateForm1() {
     if (validateEndpoint("#tab1endpoint", "#tab1endpointerror")) {
