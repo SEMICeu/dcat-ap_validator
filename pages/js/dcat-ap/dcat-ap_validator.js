@@ -209,7 +209,7 @@ function validateEndpoint(endpoint, endpointerror) {
 }
 
 function validateQuery(query, queryerror) {
-    isFilled = query.getValue() !== 0;
+    isFilled = query.getValue() !== "";
     if (isFilled) {
         $(queryerror).text("");
         return true;
@@ -235,7 +235,7 @@ function validateForm1() {
     var cond_metadata = validateMetadata("metadatafile", "#metadatafileerror"),
         cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
         cond_query = validateQuery(editortab1, "#editortab1error");
-    if (cond_metadata && cond_endpoint) {
+    if (cond_metadata && cond_endpoint && cond_query) {
         return true;
     }
     return false;
