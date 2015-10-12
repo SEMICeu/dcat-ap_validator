@@ -196,7 +196,7 @@ function validateEndpoint(endpoint, endpointerror) {
 }
 
 function validateMetadata(metadatafile, metadatafileerror) {
-    var fileInput = document.getElementById('metadatafile'),
+    var fileInput = document.getElementById(metadatafile),
         isFilled = fileInput.files.length > 0;
     if (isFilled) {
         $(metadatafileerror).text("");
@@ -221,7 +221,7 @@ $("#tab3endpoint").focusout(function() {
 function validateForm1() {
     var cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror"),
         cond_metadata = validateMetadata("metadatafile", "#metadatafileerror");
-    if (cond_endpoint && cond_metatadata) {
+    if (cond_endpoint && cond_metadata) {
         return true;
     }
     return false;
