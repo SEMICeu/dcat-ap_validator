@@ -197,7 +197,7 @@ function validateEndpoint(endpoint, endpointerror) {
 
 function validateMetadata(metadatafile, metadatafileerror) {
     var fileInput = document.getElementById('metadatafile'),
-        isFilled = fileInput.files.length === 0;
+        isFilled = fileInput.files.length > 0;
     if (isFilled) {
         $(metadatafileerror).text("");
         return true;
