@@ -433,4 +433,22 @@ $(document).ready(function () {
     $("#loadsample4").click(function () {
         loadFile("samples/sample-json-ld.jsonld");
     });
+    
+    $("#tab1-form").validate({
+        submitHandler: function(form) {
+            onForm1Submit(form);
+        },
+        rules: {
+            tab1-endpoint: {
+                required: true,
+                url: true
+            }
+        },
+        messages: {
+            tab1-endpoint: {
+                required: "Please enter an existing endpoint",
+                url: "The endpoint inserted is not a valid url"
+            }
+        }
+    });
 });
