@@ -13,6 +13,10 @@ var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph'
  */
 var sparqlEndpoint = "@@@TOKEN-ENDPOINT@@@";
 /**
+ * Homepage
+ */
+var homepage = "@@@TOKEN-HOMEPAGE@@@";
+/**
  * Instances of the Codemirror used in the tabs.
  */
 var editor, editortab1, editortab2, editortab3;
@@ -465,6 +469,13 @@ function toggle(taboption, editortab) {
 
 $(document).ready(function () {
 
+    var defaultEnpoint = getBaseURL() + "/" + sparqlEndpoint;
+    $("#tab1endpoint").val(defaultEnpoint);
+    $("#tab2endpoint").val(defaultEnpoint);
+    $("#tab3endpoint").val(defaultEnpoint);
+
+    $('logobanner').attr("href","/" + homepage);
+    
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
         lineNumbers: true
@@ -499,10 +510,6 @@ $(document).ready(function () {
     $("#tabs").tabs();
 
     getQuery("dcat-ap.rq");
-    
-    $("#tab1endpoint").val(getBaseURL() + "/" + sparqlEndpoint);
-    $("#tab2endpoint").val(getBaseURL() + "/" + sparqlEndpoint);
-    $("#tab3endpoint").val(getBaseURL() + "/" + sparqlEndpoint);
 
     $("#tab1options div.more").click(function () {
         toggle("#tab1options div.more", editortab1);
