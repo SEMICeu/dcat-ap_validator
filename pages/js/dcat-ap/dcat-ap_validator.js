@@ -294,8 +294,9 @@ function filterInput(inputString) {
 }
 
 function getBaseURL() {
-    if (typeof location.origin === 'undefined')
+    if (typeof location.origin === 'undefined') {
         location.origin = location.protocol + '//' + location.host;
+    }
     return location.origin;
 }
 
@@ -469,12 +470,12 @@ function toggle(taboption, editortab) {
 
 $(document).ready(function () {
 
-    var defaultEnpoint = getBaseURL() + "/" + sparqlEndpoint;
-    $("#tab1endpoint").val(defaultEnpoint);
-    $("#tab2endpoint").val(defaultEnpoint);
-    $("#tab3endpoint").val(defaultEnpoint);
+    var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint;
+    $("#tab1endpoint").val(defaultEndpoint);
+    $("#tab2endpoint").val(defaultEndpoint);
+    $("#tab3endpoint").val(defaultEndpoint);
 
-    $('logobanner').attr("href","/" + homepage);
+    $("logobanner").attr("href","/" + homepage);
     
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
