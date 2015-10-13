@@ -294,7 +294,7 @@ function filterInput(inputString) {
 }
 
 function getBaseURL() {
-    if (typeof location.origin === 'undefined') {
+    if (location.origin === 'undefined') {
         location.origin = location.protocol + '//' + location.host;
     }
     return location.origin;
