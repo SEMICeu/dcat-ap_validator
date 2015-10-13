@@ -21,7 +21,7 @@
 	<property name="tests.name" value="test-rule-"/>
 	<property name="jslint.dir" value="${lib.dir}/jslint"/>
 	<property name="csslint.dir" value="${lib.dir}/csslint"/>
-	<property name="fuseki.dir" value="C:/Development/jena-fuseki1-1.1.2/"/>   
+	<property name="fuseki.dir" value="C:/Development/jena-fuseki1-1.3.0/"/>   
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
 	<property name="fuseki.host" value="localhost"/>
 	<property name="fuseki.port" value="3030"/>

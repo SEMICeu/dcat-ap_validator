@@ -281,7 +281,7 @@ function validateForm3() {
 }
 
 function filterInput(inputString) {
-    var outputString = inputString.replace(/[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g,'')
+    var outputString = inputString.replace(/[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g, '');
     return outputString;
 }
 
