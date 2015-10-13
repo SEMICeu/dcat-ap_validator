@@ -4,6 +4,11 @@
  */
 
 /**
+ * Homepage
+ */
+var homepage = "@@@TOKEN-HOMEPAGE@@@";
+
+/**
  * Set the result message
  * @param {String} container_id - ID of the container
  */
@@ -23,6 +28,7 @@ function setMessage(rows, container_id) {
 }
 
 $(document).ready(function () {
+    $("#logobanner").attr('href', "/" + homepage);
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
     $('tbody td:nth-child(1), tbody td:nth-child(2), tbody td:nth-child(3)').css('text-align', 'center');
     $('table').css({"border": "0px", "padding-top": "10px", "padding-bottom": "10px"});

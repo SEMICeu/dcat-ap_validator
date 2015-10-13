@@ -33,6 +33,7 @@
     <target name="replacetokens" description="Replace tokens in files">
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-ENDPOINT@@@" value="${fuseki.endpoint}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
     </target>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
