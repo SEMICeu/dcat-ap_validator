@@ -39,7 +39,7 @@
 
 	<target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap js files and tests.">
 		<jslint haltOnFailure="false" options="sloppy">
-			<predef>window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$,CodeMirror,clearTimeout,setTimeout</predef>
+			<predef>location,window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$,CodeMirror,clearTimeout,setTimeout</predef>
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
 			<fileset dir="${js-dcat.dir}" includes="*.js" />
 			<fileset dir="${tests.dir}" includes="*.js"/>
