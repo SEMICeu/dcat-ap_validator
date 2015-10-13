@@ -470,12 +470,14 @@ function toggle(taboption, editortab) {
 
 $(document).ready(function () {
 
-    var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint;
+    var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
+        pending;
+
     $("#tab1endpoint").val(defaultEndpoint);
     $("#tab2endpoint").val(defaultEndpoint);
     $("#tab3endpoint").val(defaultEndpoint);
 
-    $("logobanner").attr('href', "/" + homepage);
+    $("#logobanner").attr('href', "/" + homepage);
 
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
@@ -548,7 +550,6 @@ $(document).ready(function () {
         validateQuery(editortab2, "#editortab2error", "SPARQL query");
     });
 
-    var pending;
     editor.on("change", function () {
         validateQuery(editor, "#editorerror", "direct RDF input");
         clearTimeout(pending);
