@@ -106,6 +106,18 @@ function runUpdateQuery(query) {
 }
 
 /**
+ * Deletes a graph
+ * @param {string} graph - Graph to be deleted
+ */
+function deleteGraph(graph) {
+    if (graph === 'default') {
+        runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
+    } else {
+        runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+    }
+}
+
+/**
  * Runs a query (not used here)
  * @param {string} query - Query to be executed on the datastore.
  * @returns {string} The response of the query
@@ -261,15 +273,28 @@ function validateForm2() {
 }
 
 function validateForm3() {
-    var cond_address = validateQuery(editor, "#editorerror", "direct RDF input"),
+    var cond_input = validateQuery(editor, "#editorerror", "direct RDF input"),
         cond_endpoint = validateEndpoint("#tab3endpoint", "#tab3endpointerror", "SPAQL endpoint"),
         cond_query = validateQuery(editortab3, "#editortab3error", "SPARQL query");
-    if (cond_address && cond_endpoint && cond_query) {
+    if (cond_input && cond_endpoint && cond_query) {
         return true;
     }
     return false;
 }
 
+function stringToBlob(inputString) {
+    var blob;
+    if (pattern_xml.test(inputString)) {
+        blob = new Blob([inputString], {type: "text\/xml"});
+    } else if (pattern_turtle.test(inputString)) {
+        blob = new Blob([inputString], {type: "text\/turtle"});
+    } else if (pattern_json_ld.test(inputString)) {
+        blob = new Blob([inputString], {type: "application\/ld+json"});
+    } else if (pattern_n3.test(inputString)) {
+        blob = new Blob([inputString], {type: "application\/n-triples"});
+    }
+    return blob;
+}
 
 /**
  * This function is called before submitting the form1. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
@@ -280,13 +305,9 @@ function onForm1Submit(form) {
     var fileInput, i, file, blob;
     if (validateForm1()) {
         try {
-            endpoint = document.getElementById('tab1endpoint').value;
+            window.endpoint = document.getElementById('tab1endpoint').value;
             fileInput = document.getElementById('metadatafile');
-            if (graph === 'default') {
-                runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
-            } else {
-                runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
-            }
+            deleteGraph(graph);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             for (i = 0; i < fileInput.files.length; i = i + 1) {
@@ -298,7 +319,7 @@ function onForm1Submit(form) {
                     uploadFile(file, graph); //uploads the metadata file
                 }
             }
-            form.action = endpoint + '/query'; //The validation query will be called from the form
+            form.action = window.endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
         } catch (e) {
@@ -324,15 +345,7 @@ function callWebService(address) {
             alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
             //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
-            if (pattern_xml.test(this.responseText)) {
-                blob = new Blob([this.responseText], {type: "text\/xml"});
-            } else if (pattern_turtle.test(this.responseText)) {
-                blob = new Blob([this.responseText], {type: "text\/turtle"});
-            } else if (pattern_json_ld.test(this.responseText)) {
-                blob = new Blob([this.responseText], {type: "application\/ld+json"});
-            } else if (pattern_n3.test(this.responseText)) {
-                blob = new Blob([this.responseText], {type: "application\/n-triples"});
-            }
+            blob = stringToBlob(this.responseText);
             uploadFile(blob, graph);
         }
     };
@@ -352,13 +365,9 @@ function onForm2Submit(form) {
     var fileURL, url, list, address;
     if (validateForm2()) {
         try {
-            endpoint = document.getElementById('tab2endpoint').value;
+            window.endpoint = document.getElementById('tab2endpoint').value;
             fileURL = document.getElementById('address').value;
-            if (graph === 'default') {
-                runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
-            } else {
-                runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
-            }
+            deleteGraph(graph);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             //file = getFileFromURL(fileURL);
@@ -367,7 +376,7 @@ function onForm2Submit(form) {
             list = "url=" + encodeURIComponent(fileURL);
             address = url + list;
             callWebService(address);
-            form.action = endpoint + '/query'; //The validation query will be called from the form
+            form.action = window.endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
         } catch (e) {
@@ -385,30 +394,18 @@ function onForm2Submit(form) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm3Submit(form) {
-    var directfile, endpoint, blob;
+    var directfile, blob;
     if (validateForm3()) {
         try {
             directfile = editor.getValue();
-            endpoint = document.getElementById('tab3endpoint').value;
-            if (graph === 'default') {
-                runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
-            } else {
-                runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
-            }
+            window.endpoint = document.getElementById('tab3endpoint').value;
+            deleteGraph(graph);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             //See https://jena.apache.org/documentation/io/rdf-input.html
-            if (pattern_xml.test(directfile)) {
-                blob = new Blob([directfile], {type: "text\/xml"});
-            } else if (pattern_turtle.test(directfile)) {
-                blob = new Blob([directfile], {type: "text\/turtle"});
-            } else if (pattern_json_ld.test(directfile)) {
-                blob = new Blob([directfile], {type: "application\/ld+json"});
-            } else if (pattern_n3.test(directfile)) {
-                blob = new Blob([directfile], {type: "application\/n-triples"});
-            }
+            blob = stringToBlob(directfile);
             uploadFile(blob, graph);
-            form.action = endpoint + '/query'; //The validation query will be called from the form
+            form.action = window.endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
         } catch (e) {
