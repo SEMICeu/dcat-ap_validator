@@ -121,7 +121,7 @@ function deleteGraph(graph, endpoint) {
  * @param {string} query - Query to be executed on the datastore.
  * @returns {string} The response of the query
  */
-function runQuery(query) {
+function runQuery(endpoint, query) {
     var xmlhttp, url;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -188,8 +188,7 @@ String.prototype.endsWith = function (suffix) {
 };
 
 function validateMetadata(metadatafile, metadatafileerror) {
-    var fileInput = document.getElementById(metadatafile),
-        isFilled = fileInput.files.length > 0;
+    var isFilled = $(metadatafile).get(0).files.length > 0;
     if (isFilled) {
         $(metadatafileerror).text("");
         return true;
@@ -232,7 +231,7 @@ function validateQuery(query, queryerror, subject) {
 }
 
 $("#metadatafile").change(function() {
-    validateMetadata("metadatafile", "#metadatafileerror");
+    validateMetadata("#metadatafile", "#metadatafileerror");
 });
 
 $("#tab1endpoint").focusout(function() {
@@ -252,7 +251,7 @@ $("#tab3endpoint").focusout(function() {
 });
 
 function validateForm1() {
-    var cond_metadata = validateMetadata("metadatafile", "#metadatafileerror"),
+    var cond_metadata = validateMetadata("#metadatafile", "#metadatafileerror"),
         cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror", "SPAQL endpoint"),
         cond_query = validateQuery(editortab1, "#editortab1error", "SPARQL query");
     if (cond_metadata && cond_endpoint && cond_query) {
@@ -330,9 +329,11 @@ function onForm1Submit(form) {
     return false;
 }
 
-function callWebService(address, endpoint) {
-
-    var xmlhttp = null, blob;
+function callWebService(fileURL, endpoint) {
+    var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
+        list = "url=" + encodeURIComponent(fileURL),
+        address = url + list,
+        xmlhttp = null, blob;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else if (window.ActiveXObject) {// for Internet Explorer
@@ -363,7 +364,7 @@ function callWebService(address, endpoint) {
 function onForm2Submit(form) {
     var fileURL, endpoint, url, list, address;
     if (validateForm2()) {
-        try {        
+        try {
             fileURL = document.getElementById('address').value;
             endpoint = document.getElementById('tab2endpoint').value;
             deleteGraph(graph, endpoint);
@@ -371,10 +372,7 @@ function onForm2Submit(form) {
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             //file = getFileFromURL(fileURL);
             //getAndLoadFile(fileURL,form); //uploads the metadata file
-            url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
-            list = "url=" + encodeURIComponent(fileURL);
-            address = url + list;
-            callWebService(address, endpoint);
+            callWebService(fileURL, endpoint);
             form.action = endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
@@ -406,7 +404,6 @@ function onForm3Submit(form) {
             uploadFile(blob, graph, endpoint);
             form.action = endpoint + '/query'; //The validation query will be called from the form
             return true;
-            //}
         } catch (e) {
             alert('Error: ' + e.message);
             return false;
