@@ -5,10 +5,6 @@
 
 // Global variables
 /**
- * Endpoint set by the html form.
- */
-var endpoint;
-/**
  * Graph name on which execute the query.
  */
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
@@ -37,8 +33,9 @@ var pattern_n3 = /^\s*<http/;
  * Uploads a file
  * @param {string} file - File to be added.
  * @param {string} graph - The graph of the RDF.
+  *@param {string} endpoint -  SPARQL endpoint to be contacted.
  */
-function uploadFile(file, graph) {
+function uploadFile(file, graph, endpoint) {
     var xmlhttp, formData;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -62,7 +59,7 @@ function uploadFile(file, graph) {
  * WARNING: does only work on Chrome with proper security settings. We need to await HTML5.
  * @param {string} fileURL - URL of the file to be loaded.
  */
-function getAndLoadFile(fileURL) {
+function getAndLoadFile(fileURL, graph, endpoint) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -76,7 +73,7 @@ function getAndLoadFile(fileURL) {
             alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             //var blob = new Blob(["<http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL> <http:\/\/www.spdx.org\/licenses\/CDDL>."], { type: "text\/turtle"});
             var blob = new Blob([this.responseText], {type: "text\/xml"}); //text\/turtle   text\/xml
-            uploadFile(blob, graph);
+            uploadFile(blob, graph, endpoint);
         }
     };
     xmlhttp.responseType = "text/xml"; //text,document,arraybuffer
@@ -87,8 +84,9 @@ function getAndLoadFile(fileURL) {
 /**
  * Runs an update query
  * @param {string} query - Query to be executed on the datastore.
+ * @param {string} endpoint - SPARQL endpoint to be contacted.
  */
-function runUpdateQuery(query) {
+function runUpdateQuery(query, endpoint) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -107,13 +105,14 @@ function runUpdateQuery(query) {
 
 /**
  * Deletes a graph
- * @param {string} graph - Graph to be deleted
+ * @param {string} graph - Graph to be deleted.
+  *@param {string} endpoint - SPARQL endpoint to be contacted.
  */
-function deleteGraph(graph) {
+function deleteGraph(graph, endpoint) {
     if (graph === 'default') {
-        runUpdateQuery('CLEAR DEFAULT'); //wipes the default graph in the triple store
+        runUpdateQuery('CLEAR DEFAULT', endpoint); //wipes the default graph in the triple store
     } else {
-        runUpdateQuery('DROP GRAPH <' + graph + '>'); //wipes the named graph in the triple store
+        runUpdateQuery('DROP GRAPH <' + graph + '>', endpoint); //wipes the named graph in the triple store
     }
 }
 
@@ -302,24 +301,24 @@ function stringToBlob(inputString) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm1Submit(form) {
-    var fileInput, i, file, blob;
+    var fileInput, endpoint, i, file, blob;
     if (validateForm1()) {
         try {
-            window.endpoint = document.getElementById('tab1endpoint').value;
             fileInput = document.getElementById('metadatafile');
-            deleteGraph(graph);
+            endpoint = document.getElementById('tab1endpoint').value;
+            deleteGraph(graph, endpoint);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             for (i = 0; i < fileInput.files.length; i = i + 1) {
                 file = fileInput.files[i];
                 if (file.name.endsWith("json") || file.name.endsWith("jsonld")) {
                     blob = new Blob([file], {type: "application/ld+json"});
-                    uploadFile(blob, graph);
+                    uploadFile(blob, graph, endpoint);
                 } else {
-                    uploadFile(file, graph); //uploads the metadata file
+                    uploadFile(file, graph, endpoint); //uploads the metadata file
                 }
             }
-            form.action = window.endpoint + '/query'; //The validation query will be called from the form
+            form.action = endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
         } catch (e) {
@@ -331,7 +330,7 @@ function onForm1Submit(form) {
     return false;
 }
 
-function callWebService(address) {
+function callWebService(address, endpoint) {
 
     var xmlhttp = null, blob;
     if (window.XMLHttpRequest) {
@@ -346,7 +345,7 @@ function callWebService(address) {
         } else if (this.readyState === 4 && this.status === 200) {
             //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             blob = stringToBlob(this.responseText);
-            uploadFile(blob, graph);
+            uploadFile(blob, graph, endpoint);
         }
     };
 
@@ -362,12 +361,12 @@ function callWebService(address) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm2Submit(form) {
-    var fileURL, url, list, address;
+    var fileURL, endpoint, url, list, address;
     if (validateForm2()) {
-        try {
-            window.endpoint = document.getElementById('tab2endpoint').value;
+        try {        
             fileURL = document.getElementById('address').value;
-            deleteGraph(graph);
+            endpoint = document.getElementById('tab2endpoint').value;
+            deleteGraph(graph, endpoint);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             //file = getFileFromURL(fileURL);
@@ -375,8 +374,8 @@ function onForm2Submit(form) {
             url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?";
             list = "url=" + encodeURIComponent(fileURL);
             address = url + list;
-            callWebService(address);
-            form.action = window.endpoint + '/query'; //The validation query will be called from the form
+            callWebService(address, endpoint);
+            form.action = endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
         } catch (e) {
@@ -394,18 +393,18 @@ function onForm2Submit(form) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm3Submit(form) {
-    var directfile, blob;
+    var directfile, endpoint, blob;
     if (validateForm3()) {
         try {
             directfile = editor.getValue();
-            window.endpoint = document.getElementById('tab3endpoint').value;
-            deleteGraph(graph);
+            endpoint = document.getElementById('tab3endpoint').value;
+            deleteGraph(graph, endpoint);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             //See https://jena.apache.org/documentation/io/rdf-input.html
             blob = stringToBlob(directfile);
-            uploadFile(blob, graph);
-            form.action = window.endpoint + '/query'; //The validation query will be called from the form
+            uploadFile(blob, graph, endpoint);
+            form.action = endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
         } catch (e) {
