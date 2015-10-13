@@ -9,6 +9,10 @@
  */
 var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
 /**
+ * SPARQL Endpoint url
+ */
+var sparqlEndpoint = "@@@TOKEN-ENDPOINT@@@";
+/**
  * Instances of the Codemirror used in the tabs.
  */
 var editor, editortab1, editortab2, editortab3;
@@ -285,6 +289,12 @@ function filterInput(inputString) {
     return outputString;
 }
 
+function getBaseURL() {
+    if (typeof location.origin === 'undefined')
+        location.origin = location.protocol + '//' + location.host;
+    return location.origin;
+}
+
 function stringToBlob(inputString) {
     var blob;
     if (pattern_xml.test(inputString)) {
@@ -489,6 +499,10 @@ $(document).ready(function () {
     $("#tabs").tabs();
 
     getQuery("dcat-ap.rq");
+    
+    $("#tab1endpoint").val(getBaseURL() + "/" + sparqlEndpoint);
+    $("#tab2endpoint").val(getBaseURL() + "/" + sparqlEndpoint);
+    $("#tab3endpoint").val(getBaseURL() + "/" + sparqlEndpoint);
 
     $("#tab1options div.more").click(function () {
         toggle("#tab1options div.more", editortab1);
@@ -536,6 +550,5 @@ $(document).ready(function () {
     editortab3.on("change", function () {
         validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
-
 
 });

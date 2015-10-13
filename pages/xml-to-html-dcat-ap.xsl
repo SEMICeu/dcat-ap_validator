@@ -172,7 +172,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
       </head>
       <body>
 	  <header class="banner">
-	  <a href="http://localhost:3030/dcat-ap_validator.html"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="Asset Description Metadata Schema for Software (ADMS.SW) logo" /><h1>DCAT-AP Validator: SPARQL Query Result</h1></a>
+	  <a href="/dcat-ap_validator.html"><img src="/images/DCAT_application_profile_for_European_data_portals_logo_0.png" width="70" height="70" alt="Asset Description Metadata Schema for Software (ADMS.SW) logo" /><h1>DCAT-AP Validator: SPARQL Query Result</h1></a>
 	  </header>
 	  <p id="description">The table below displays all detected anomalies (if any).</p>
 
