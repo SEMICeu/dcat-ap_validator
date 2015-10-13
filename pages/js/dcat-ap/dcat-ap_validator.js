@@ -280,6 +280,11 @@ function validateForm3() {
     return false;
 }
 
+function filterInput(inputString) {
+    var outputString = inputString.replace(/[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g,'')
+    return outputString;
+}
+
 function stringToBlob(inputString) {
     var blob;
     if (pattern_xml.test(inputString)) {
@@ -292,6 +297,31 @@ function stringToBlob(inputString) {
         blob = new Blob([inputString], {type: "application\/n-triples"});
     }
     return blob;
+}
+
+function callWebService(fileURL, endpoint) {
+    var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
+        list = "url=" + encodeURIComponent(fileURL),
+        address = url + list,
+        xmlhttp = null,
+        blob;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {// for Internet Explorer
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status !== 200) {
+            alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
+        } else if (this.readyState === 4 && this.status === 200) {
+            //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
+            blob = stringToBlob(this.responseText);
+            uploadFile(blob, graph, endpoint);
+        }
+    };
+    //xmlhttp.responseType = "text"; //text,document,arraybuffer, IE11 doesn't like it
+    xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
+    xmlhttp.send();
 }
 
 /**
@@ -329,40 +359,13 @@ function onForm1Submit(form) {
     return false;
 }
 
-function callWebService(fileURL, endpoint) {
-    var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
-        list = "url=" + encodeURIComponent(fileURL),
-        address = url + list,
-        xmlhttp = null, blob;
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    } else if (window.ActiveXObject) {// for Internet Explorer
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status !== 200) {
-            alert(address + ' was not loaded in the triple store: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
-        } else if (this.readyState === 4 && this.status === 200) {
-            //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
-            blob = stringToBlob(this.responseText);
-            uploadFile(blob, graph, endpoint);
-        }
-    };
-
-    //xmlhttp.responseType = "text"; //text,document,arraybuffer, IE11 doesn't like it
-    xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
-    xmlhttp.send();
-
-}
-
 /**
  * This function is called before submitting the form2. It validates the input data, wipes the triple store, and uploads the metadata validation file, the DCAT-AP schema, and the taxonomies.
  * @param {Object} form - HTML form used for the validation.
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm2Submit(form) {
-    var fileURL, endpoint, url, list, address;
+    var fileURL, endpoint;
     if (validateForm2()) {
         try {
             fileURL = document.getElementById('address').value;
@@ -394,7 +397,7 @@ function onForm3Submit(form) {
     var directfile, endpoint, blob;
     if (validateForm3()) {
         try {
-            directfile = editor.getValue();
+            directfile = filterInput(editor.getValue());
             endpoint = document.getElementById('tab3endpoint').value;
             deleteGraph(graph, endpoint);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
@@ -511,6 +514,10 @@ $(document).ready(function () {
         loadFile("samples/sample-n-triples.nt");
     });
 
+    $("#loadsample4").click(function () {
+        loadFile("samples/sample-json-ld.jsonld");
+    });
+
     editortab1.on("change", function () {
         validateQuery(editortab1, "#editortab1error", "SPARQL query");
     });
@@ -530,7 +537,5 @@ $(document).ready(function () {
         validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
 
-    $("#loadsample4").click(function () {
-        loadFile("samples/sample-json-ld.jsonld");
-    });
+
 });
