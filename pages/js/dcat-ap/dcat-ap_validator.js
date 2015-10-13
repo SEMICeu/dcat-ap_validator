@@ -475,7 +475,7 @@ $(document).ready(function () {
     $("#tab2endpoint").val(defaultEndpoint);
     $("#tab3endpoint").val(defaultEndpoint);
 
-    $("logobanner").attr("href","/" + homepage);
+    $("logobanner").attr('href',"/" + homepage);
     
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
