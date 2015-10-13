@@ -150,7 +150,7 @@ function runQuery(endpoint, query) {
 /**
  * Gets SPARQL query from file
  */
-function getStringFromFile(file) {
+function getQuery(file) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -162,6 +162,9 @@ function getStringFromFile(file) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             //$(textarea).text(xmlhttp.responseText);
+            editortab1.setValue(xmlhttp.responseText);
+            editortab2.setValue(xmlhttp.responseText);
+            editortab3.setValue(xmlhttp.responseText);
         }
     };
     xmlhttp.open("GET", file, true);
@@ -180,7 +183,7 @@ function loadFile(file) {
         if (xmlhttp.readyState === 4 && xmlhttp.status !== 200) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-
+            editor.setValue(xmlhttp.responseText);
         }
     };
     xmlhttp.open("GET", file, true);
@@ -468,8 +471,7 @@ function toggle(taboption, editortab) {
 $(document).ready(function () {
 
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
-        pending,
-        query;
+        pending;
 
     $("#tab1endpoint").val(defaultEndpoint);
     $("#tab2endpoint").val(defaultEndpoint);
@@ -510,11 +512,7 @@ $(document).ready(function () {
     // tabs creation needs to be after codemirror otherwise the gutter (rulers) is flat
     $("#tabs").tabs();
 
-    var query = getStringFromFile("dcat-ap.rq");
-    editortab1.setValue(query);
-    editortab2.setValue(query);
-    editortab3.setValue(query);
-    
+    getQuery("dcat-ap.rq");
 
     $("#tab1options div.more").click(function () {
         toggle("#tab1options div.more", editortab1);
@@ -529,19 +527,19 @@ $(document).ready(function () {
     });
 
     $("#loadsample1").click(function () {
-        editor.setValue(getStringFromFile("samples/sample-turtle.ttl"));
+        loadFile("samples/sample-turtle.ttl");
     });
 
     $("#loadsample2").click(function () {
-        editor.setValue(getStringFromFile("samples/sample-xml.rdf"));
+        loadFile("samples/sample-xml.rdf");
     });
 
     $("#loadsample3").click(function () {
-        editor.setValue(getStringFromFile("samples/sample-n-triples.nt"));
+        loadFile("samples/sample-n-triples.nt");
     });
 
     $("#loadsample4").click(function () {
-        editor.setValue(getStringFromFile("samples/sample-json-ld.jsonld"));
+        loadFile("samples/sample-json-ld.jsonld");
     });
 
     editortab1.on("change", function () {
