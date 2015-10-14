@@ -468,11 +468,24 @@ function toggle(taboption, editortab) {
     });
 }
 
+function SetCookie() {
+    var textContent = new Date().getTime();
+    var expireDays = 10;
+    var now = new Date().getTime();
+    var expireDate = now + (1000 * 60 * 60 * 24 * expireDays);
+    alert("textContent: " + textContent);
+    alert("expireDate: "+ expireDays);
+    $.cookie("dcat-ap", '{data: "' + textContent + '", expires: ' + expireDate + '}', {
+        expires: expireDays
+    });
+}
+
 $(document).ready(function () {
 
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
         pending;
 
+    
     $("#tab1endpoint").val(defaultEndpoint);
     $("#tab2endpoint").val(defaultEndpoint);
     $("#tab3endpoint").val(defaultEndpoint);
