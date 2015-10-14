@@ -55,7 +55,7 @@ $(document).ready(function () {
         var $cell = $(this), $anchor = $cell.find('a'), text, query, query_param, link;
         if ($anchor.length) {
             text = $cell.text().trim();
-            query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object WHERE { GRAPH <' + graph +'> {<' + text + '> ?Predicate ?Object }}';
+            query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object WHERE { GRAPH <' + graph + '> {<' + text + '> ?Predicate ?Object }}';
             query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
             link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
             $(this).html(link);

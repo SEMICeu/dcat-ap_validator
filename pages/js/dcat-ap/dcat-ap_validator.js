@@ -38,7 +38,7 @@ var pattern_json_ld = /^\s*\{/;
 var pattern_n3 = /^\s*<http/;
 
 function setCookie(graph) {
-    Cookies.set("dcat-ap", ""+ graph + "");
+    Cookies.set("dcat-ap", graph);
 }
 
 function getGraphFromCookie() {
@@ -486,19 +486,18 @@ $(document).ready(function () {
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
         graph = encodeURI("http://dcat-ap/" + new Date().getTime()), //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
         pending;
-       
-    
+
     $("#tab1endpoint").val(defaultEndpoint);
     $("#tab2endpoint").val(defaultEndpoint);
     $("#tab3endpoint").val(defaultEndpoint);
 
     $("#logobanner").attr('href', "/" + homepage);
 
-    if(getGraphFromCookie()  === undefined) {
+    if (getGraphFromCookie()  === undefined) {
         setCookie(graph);
     }
 
-    getQuery("dcat-ap.rq",getGraphFromCookie());
+    getQuery("dcat-ap.rq", getGraphFromCookie());
 
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
