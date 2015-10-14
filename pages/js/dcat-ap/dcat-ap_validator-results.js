@@ -27,6 +27,10 @@ function setMessage(rows, container_id) {
     }
 }
 
+function getGraphFromCookie() {
+    return Cookies.get("dcat-ap");
+}
+
 $(document).ready(function () {
     $("#logobanner").attr('href', "/" + homepage);
     //align the first 3 columns to the center (better before datatables otherwise the 2nd page is not aligned)
@@ -45,12 +49,13 @@ $(document).ready(function () {
     var table,
         subject_index = $('thead th:contains("Subject")').index() + 1,
         predicate_index = $('thead th:contains("Predicate")').index() + 1,
-        object_index = $('thead th:contains("Object")').index() + 1;
+        object_index = $('thead th:contains("Object")').index() + 1,
+        graph = getGraphFromCookie();
     $('tbody td:nth-child(' + subject_index + '), tbody td:nth-child(' + predicate_index + '), tbody td:nth-child(' + object_index + ')').each(function () {
         var $cell = $(this), $anchor = $cell.find('a'), text, query, query_param, link;
         if ($anchor.length) {
             text = $cell.text().trim();
-            query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object {<' + text + '> ?Predicate ?Object }';
+            query = 'SELECT (<' + text + '> AS ?Subject) ?Predicate ?Object WHERE { GRAPH <' + graph +'> {<' + text + '> ?Predicate ?Object }}';
             query_param = '&output=xml&stylesheet=/xml-to-html-dcat-ap.xsl';
             link = '<a href="?query=' + encodeURIComponent(query) + query_param + '">' + text + '</a>';
             $(this).html(link);

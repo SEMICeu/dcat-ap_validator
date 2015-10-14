@@ -193,6 +193,7 @@ URIs as hrefs in results : Bob DuCharme & Andy Seaborne
 	</xsl:choose>
 
 		<script type="text/javascript" charset="utf8" src="/js/DataTables-1.10.7/media/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/js-cookie/js-cookie.js"></script>
 		<script type="text/javascript" charset="utf8" src="/js/concat/dcat-results.js"></script>
       </body>
     </html>
