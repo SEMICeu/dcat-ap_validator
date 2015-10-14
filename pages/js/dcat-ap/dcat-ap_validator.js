@@ -56,9 +56,9 @@ function uploadFile(file, graph, endpoint) {
         }
     };
     formData = new FormData();
-    //formData.append('graph', graph);
+    formData.append('graph', graph);
     formData.append('file', file);
-    xmlhttp.open('POST', endpoint + "/upload" + " " + graph, false);
+    xmlhttp.open('POST', endpoint + "/upload", false);
     xmlhttp.send(formData);
 }
 
@@ -483,7 +483,7 @@ function getGraphFromCookie() {
 $(document).ready(function () {
 
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
-        graph = "http://dcat-ap-" + new Date().getTime(), //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
+        graph = encodeURI("http://dcat-ap-" + new Date().getTime()), //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
         pending;
        
     
