@@ -574,7 +574,7 @@ $(document).ready(function () {
         validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
 
-    if(getGraphFromCookie()  === 'undefined') {
+    if(getGraphFromCookie()  === undefined) {
         alert("undefined");
         setCookie(graph);
     } else {
