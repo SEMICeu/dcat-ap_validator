@@ -37,6 +37,14 @@ var pattern_json_ld = /^\s*\{/;
  */
 var pattern_n3 = /^\s*<http/;
 
+function setCookie(graph) {
+    Cookies.set("dcat-ap", ""+ graph + "");
+}
+
+function getGraphFromCookie() {
+    return Cookies.get("dcat-ap");
+}
+
 /**
  * Uploads a file
  * @param {string} file - File to be added.
@@ -163,7 +171,7 @@ function getQuery(file, graph) {
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             //$(textarea).text(xmlhttp.responseText);
             var query = xmlhttp.responseText;
-            query = query.replace("@@@TOKEN-GRAPH@@@",graph);
+            query = query.replace("@@@TOKEN-GRAPH@@@", graph);
             editortab1.setValue(query);
             editortab2.setValue(query);
             editortab3.setValue(query);
@@ -473,15 +481,6 @@ function toggle(taboption, editortab) {
     });
 }
 
-function setCookie(graph) {
-    alert("graph "+ graph);
-    Cookies.set("dcat-ap", '' + graph + '');
-}
-
-function getGraphFromCookie() {
-    return Cookies.get("dcat-ap");
-}
-
 $(document).ready(function () {
 
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
@@ -494,6 +493,12 @@ $(document).ready(function () {
     $("#tab3endpoint").val(defaultEndpoint);
 
     $("#logobanner").attr('href', "/" + homepage);
+
+    if(getGraphFromCookie()  === undefined) {
+        setCookie(graph);
+    }
+
+    getQuery("dcat-ap.rq",getGraphFromCookie());
 
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
@@ -527,16 +532,6 @@ $(document).ready(function () {
 
     // tabs creation needs to be after codemirror otherwise the gutter (rulers) is flat
     $("#tabs").tabs();
-
-
-    if(getGraphFromCookie()  === undefined) {
-        alert("undefined");
-        setCookie(graph);
-    } else {
-        alert(getGraphFromCookie());
-    }
-    
-    getQuery("dcat-ap.rq",getGraphFromCookie());
 
     $("#tab1options div.more").click(function () {
         toggle("#tab1options div.more", editortab1);
