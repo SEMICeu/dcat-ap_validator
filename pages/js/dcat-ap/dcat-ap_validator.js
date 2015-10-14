@@ -475,7 +475,7 @@ function setCookie() {
     var expireDate = now + (1000 * 60 * 60 * 24 * expireDays);
     alert("textContent: " + textContent);
     alert("expireDate: "+ expireDays);
-    $.cookie("dcat-ap", '{data: "' + textContent + '", expires: ' + expireDate + '}', {
+    Cookies.set("dcat-ap", '{data: "' + textContent + '", expires: ' + expireDate + '}', {
         expires: expireDays
     });
 }
