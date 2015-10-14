@@ -56,9 +56,9 @@ function uploadFile(file, graph, endpoint) {
         }
     };
     formData = new FormData();
+    //formData.append('graph', graph);
     formData.append('file', file);
-    formData.append('graph', graph);
-    xmlhttp.open('POST', endpoint + "/upload", false);
+    xmlhttp.open('POST', endpoint + "/upload" + " " + graph, false);
     xmlhttp.send(formData);
 }
 
