@@ -483,7 +483,7 @@ function getGraphFromCookie() {
 $(document).ready(function () {
 
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
-        graph = "dcat-ap-" + new Date().getTime(), //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
+        graph = "http://dcat-ap-" + new Date().getTime(), //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
         pending;
        
     
