@@ -150,7 +150,7 @@ function runQuery(endpoint, query) {
 /**
  * Gets SPARQL query from file
  */
-function getQuery(file) {
+function getQuery(file, graph) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -162,9 +162,11 @@ function getQuery(file) {
             alert('Error when opening the file: ' + file + ' - ' + xmlhttp.status + ' ' + xmlhttp.statusText);
         } else if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             //$(textarea).text(xmlhttp.responseText);
-            editortab1.setValue(xmlhttp.responseText);
-            editortab2.setValue(xmlhttp.responseText);
-            editortab3.setValue(xmlhttp.responseText);
+            var query = xmlhttp.responseText;
+            query = query.replace("@@@TOKEN-GRAPH@@@",graph);
+            editortab1.setValue(query);
+            editortab2.setValue(query);
+            editortab3.setValue(query);
         }
     };
     xmlhttp.open("GET", file, true);
@@ -526,7 +528,15 @@ $(document).ready(function () {
     // tabs creation needs to be after codemirror otherwise the gutter (rulers) is flat
     $("#tabs").tabs();
 
-    getQuery("dcat-ap.rq");
+
+    if(getGraphFromCookie()  === undefined) {
+        alert("undefined");
+        setCookie(graph);
+    } else {
+        alert(getGraphFromCookie());
+    }
+    
+    getQuery("dcat-ap.rq",getGraphFromCookie());
 
     $("#tab1options div.more").click(function () {
         toggle("#tab1options div.more", editortab1);
@@ -574,10 +584,4 @@ $(document).ready(function () {
         validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
 
-    if(getGraphFromCookie()  === undefined) {
-        alert("undefined");
-        setCookie(graph);
-    } else {
-        alert(getGraphFromCookie());
-    }
 });
