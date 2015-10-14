@@ -168,7 +168,7 @@
 	<target name="start-fuseki" description="It executes the Fuseki server.">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
-			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
+			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --loc=DB /${fuseki.endpoint}"/>
 		</exec>
 	</target>
 
