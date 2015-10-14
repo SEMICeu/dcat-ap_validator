@@ -575,6 +575,9 @@ $(document).ready(function () {
     });
 
     if(getGraphFromCookie()  === 'undefined') {
+        alert("undefined");
         setCookie(graph);
+    } else {
+        alert(getGraphFromCookie());
     }
 });
