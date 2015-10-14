@@ -573,5 +573,5 @@ $(document).ready(function () {
         validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
 
-    setCookies();
+    setCookie();
 });
