@@ -468,7 +468,7 @@ function toggle(taboption, editortab) {
     });
 }
 
-function SetCookie() {
+function setCookie() {
     var textContent = new Date().getTime();
     var expireDays = 10;
     var now = new Date().getTime();
@@ -484,7 +484,7 @@ $(document).ready(function () {
 
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
         pending;
-
+       
     
     $("#tab1endpoint").val(defaultEndpoint);
     $("#tab2endpoint").val(defaultEndpoint);
@@ -573,4 +573,5 @@ $(document).ready(function () {
         validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
 
+    setCookies();
 });
