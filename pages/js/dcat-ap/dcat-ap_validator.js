@@ -120,7 +120,7 @@ function deleteGraph(graph, endpoint) {
     if (graph === 'default') {
         runUpdateQuery('CLEAR DEFAULT', endpoint); //wipes the default graph in the triple store
     } else {
-        runUpdateQuery('DROP GRAPH <' + graph + '>', endpoint); //wipes the named graph in the triple store
+        runUpdateQuery('CLEAR GRAPH <' + graph + '>', endpoint); //wipes the named graph in the triple store
     }
 }
 
