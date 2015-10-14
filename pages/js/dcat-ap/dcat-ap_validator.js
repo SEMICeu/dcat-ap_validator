@@ -7,7 +7,7 @@
 /**
  * Graph name on which execute the query.
  */
-var graph = 'default'; //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
+
 /**
  * SPARQL Endpoint url
  */
@@ -314,7 +314,7 @@ function stringToBlob(inputString) {
     return blob;
 }
 
-function callWebService(fileURL, endpoint) {
+function callWebService(fileURL, graph, endpoint) {
     var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
         list = "url=" + encodeURIComponent(fileURL),
         address = url + list,
@@ -345,21 +345,22 @@ function callWebService(fileURL, endpoint) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm1Submit(form) {
-    var fileInput, endpoint, i, file, blob;
+    var fileInput, endpoint, localgraph, i, file, blob;
     if (validateForm1()) {
         try {
             fileInput = document.getElementById('metadatafile');
             endpoint = document.getElementById('tab1endpoint').value;
-            deleteGraph(graph, endpoint);
+            localgraph = getGraphFromCookie();
+            deleteGraph(localgraph, endpoint);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             for (i = 0; i < fileInput.files.length; i = i + 1) {
                 file = fileInput.files[i];
                 if (file.name.endsWith("json") || file.name.endsWith("jsonld")) {
                     blob = new Blob([file], {type: "application/ld+json"});
-                    uploadFile(blob, graph, endpoint);
+                    uploadFile(blob, localgraph, endpoint);
                 } else {
-                    uploadFile(file, graph, endpoint); //uploads the metadata file
+                    uploadFile(file, localgraph, endpoint); //uploads the metadata file
                 }
             }
             form.action = endpoint + '/query'; //The validation query will be called from the form
@@ -380,17 +381,18 @@ function onForm1Submit(form) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm2Submit(form) {
-    var fileURL, endpoint;
+    var fileURL, endpoint, localgraph;
     if (validateForm2()) {
         try {
             fileURL = document.getElementById('address').value;
             endpoint = document.getElementById('tab2endpoint').value;
-            deleteGraph(graph, endpoint);
+            localgraph = getGraphFromCookie();
+            deleteGraph(localgraph, endpoint);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             //file = getFileFromURL(fileURL);
             //getAndLoadFile(fileURL,form); //uploads the metadata file
-            callWebService(fileURL, endpoint);
+            callWebService(fileURL, localgraph, endpoint);
             form.action = endpoint + '/query'; //The validation query will be called from the form
             return true;
             //}
@@ -409,17 +411,18 @@ function onForm2Submit(form) {
  * @returns {boolean} True if the operation succeeded, false otherwise
  */
 function onForm3Submit(form) {
-    var directfile, endpoint, blob;
+    var directfile, endpoint, localgraph, blob;
     if (validateForm3()) {
         try {
             directfile = filterInput(editor.getValue());
             endpoint = document.getElementById('tab3endpoint').value;
-            deleteGraph(graph, endpoint);
+            localgraph = getGraphFromCookie();
+            deleteGraph(localgraph, endpoint);
             //getAndLoadFile(admssw_taxonomies); //gets the taxonomies from the webserver and loads it into the triple store
             //getAndLoadFile(admssw_schema); //gets the schema file from the webserver and loads it into the triple store
             //See https://jena.apache.org/documentation/io/rdf-input.html
             blob = stringToBlob(directfile);
-            uploadFile(blob, graph, endpoint);
+            uploadFile(blob, localgraph, endpoint);
             form.action = endpoint + '/query'; //The validation query will be called from the form
             return true;
         } catch (e) {
@@ -468,21 +471,19 @@ function toggle(taboption, editortab) {
     });
 }
 
-function setCookie() {
-    var textContent = new Date().getTime();
-    var expireDays = 10;
-    var now = new Date().getTime();
-    var expireDate = now + (1000 * 60 * 60 * 24 * expireDays);
-    alert("textContent: " + textContent);
-    alert("expireDate: "+ expireDays);
-    Cookies.set("dcat-ap", '{data: "' + textContent + '", expires: ' + expireDate + '}', {
-        expires: expireDays
-    });
+function setCookie(graph) {
+    alert("graph "+ graph);
+    Cookies.set("dcat-ap", '' + graph + '');
+}
+
+function getGraphFromCookie() {
+    return Cookies.get("dcat-ap");
 }
 
 $(document).ready(function () {
 
     var defaultEndpoint = getBaseURL() + "/" + sparqlEndpoint,
+        graph = "dcat-ap-" + new Date().getTime(); //encodeURI('http://joinup.ec.europa.eu/cesar/adms#graph');
         pending;
        
     
@@ -573,5 +574,7 @@ $(document).ready(function () {
         validateQuery(editortab3, "#editortab3error", "SPARQL query");
     });
 
-    setCookie();
+    if(getGraphFromCookie()  === 'undefined') {
+        setCookie(graph);
+    }
 });
