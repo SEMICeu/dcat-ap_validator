@@ -326,7 +326,7 @@ function stringToBlob(inputString) {
 
 function callWebService(fileURL, graph, endpoint) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
-    var url = "http://localhost:3000/?",
+    var url = "http://localhost:3000/getfile?",
         list = "url=" + encodeURIComponent(fileURL),
         address = url + list,
         xmlhttp = null,
@@ -343,6 +343,32 @@ function callWebService(fileURL, graph, endpoint) {
             //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
             blob = stringToBlob(this.responseText);
             uploadFile(blob, graph, endpoint);
+        }
+    };
+    //xmlhttp.responseType = "text"; //text,document,arraybuffer, IE11 doesn't like it
+    xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
+    xmlhttp.send();
+}
+
+function registerGraph(graph) {
+    //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
+    var url = "http://localhost:3000/registergraph?",
+        graph = "graphid=" + encodeURIComponent(graph),
+        creationdate = "creationdate=" + new Date().toJSON().slice(0,10),
+        address = url + graph + creationdate,
+        xmlhttp = null,
+        response;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {// for Internet Explorer
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status !== 200) {
+            alert(address + ' was not reachable: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
+        } else if (this.readyState === 4 && this.status === 200) {
+            //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
+            response = this.responseText);
         }
     };
     //xmlhttp.responseType = "text"; //text,document,arraybuffer, IE11 doesn't like it
@@ -496,6 +522,7 @@ $(document).ready(function () {
 
     if (getGraphFromCookie()  === undefined) {
         setCookie(graph);
+        registerGraph(graph);
     }
 
     getQuery("dcat-ap.rq", getGraphFromCookie());
