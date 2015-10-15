@@ -326,7 +326,7 @@ function stringToBlob(inputString) {
 
 function callWebService(fileURL, graph, endpoint) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
-    var url ="http://localhost:3030/?",
+    var url ="http://localhost:3000/?",
         list = "url=" + encodeURIComponent(fileURL),
         address = url + list,
         xmlhttp = null,
