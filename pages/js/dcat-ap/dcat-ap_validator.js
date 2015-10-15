@@ -355,7 +355,7 @@ function registerGraph(graph) {
     var url = "http://localhost:3000/registergraph?",
         graph = "graphid=" + encodeURIComponent(graph),
         creationdate = "creationdate=" + new Date().toJSON().slice(0,10),
-        address = url + graph + creationdate,
+        address = url + graph + "&" + creationdate,
         xmlhttp = null,
         response;
     if (window.XMLHttpRequest) {
