@@ -353,9 +353,9 @@ function callWebService(fileURL, graph, endpoint) {
 function registerGraph(graph) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
     var url = "http://localhost:3000/registergraph?",
-        graph = "graphid=" + encodeURIComponent(graph),
-        creationdate = "creationdate=" + new Date().toJSON().slice(0,10),
-        address = url + graph + "&" + creationdate,
+        localgraph = "graphid=" + encodeURIComponent(graph),
+        creationdate = "creationdate=" + new Date().toJSON().slice(0, 10),
+        address = url + localgraph + "&" + creationdate,
         xmlhttp = null,
         response;
     if (window.XMLHttpRequest) {
