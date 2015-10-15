@@ -368,7 +368,7 @@ function registerGraph(graph) {
             alert(address + ' was not reachable: ' + this.readyState + ' HTTP' + this.status + ' ' + this.statusText);
         } else if (this.readyState === 4 && this.status === 200) {
             //alert(this.readyState + ' HTTP' + this.status + ' ' + this.statusText + this.responseText);
-            response = this.responseText);
+            response = this.responseText;
         }
     };
     //xmlhttp.responseType = "text"; //text,document,arraybuffer, IE11 doesn't like it
