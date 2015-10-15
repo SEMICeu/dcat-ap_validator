@@ -354,8 +354,7 @@ function registerGraph(graph) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
     var url = "http://localhost:3000/registergraph?",
         localgraph = "graphid=" + encodeURIComponent(graph),
-        creationdate = "creationdate=" + new Date().toJSON().slice(0, 10),
-        address = url + localgraph + "&" + creationdate,
+        address = url + localgraph,
         xmlhttp = null,
         response;
     if (window.XMLHttpRequest) {
