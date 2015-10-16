@@ -14,16 +14,9 @@ var baseURL = "http://" + fusekihost + ":" + fusekiport;
 var defaultEndpoint = baseURL + "/" + sparqlEndpoint;
 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
-http.createServer(onRequest).listen(serverport);
-
-console.log("[LOG] Ready to accept requests...");
-
 function postCode(query, endpoint) {
-    // Build the post string from an object
-    var post_data = 'update=' + encodeURIComponent(query);
-
-    // An object of options to indicate where to post to
-    var post_options = {
+    var post_data = 'update=' + encodeURIComponent(query),
+        post_options = {
             host: fusekihost,
             port: fusekiport,
             path: endpoint + '/update',
@@ -42,9 +35,9 @@ function postCode(query, endpoint) {
             });
         });
 
-  // post the data
-  post_req.write(post_data);
-  post_req.end();
+    // post the data
+    post_req.write(post_data);
+    post_req.end();
 
 }
 function removeOldGraphs(jsonContent){
@@ -114,3 +107,7 @@ function onRequest(req, res) {
         res.end("Request not accepted");
     }
 }
+
+http.createServer(onRequest).listen(serverport);
+
+console.log("[LOG] Ready to accept requests...");
