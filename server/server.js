@@ -1,14 +1,42 @@
+/**
+ * DCAT-AP validator server.
+ * @license EUPL v1.1
+ */
+ 
 var http = require('http');
 var url = require('url');
 var request = require('request');
 var fs = require('fs');
 
-var serverport = process.argv[2];      //3000
-var outputFilename = process.argv[3];  // json file containing the graphs created
-var daystodiscard = process.argv[4];   // 1 (1 day) or 0.00348 (5 min)
-var fusekihost = process.argv[5];      // localhost
-var fusekiport = process.argv[6];      // 3030
-var sparqlEndpoint = process.argv[7];  // dcat-ap_validator
+/**
+ * Server port (for example 3000)
+ */
+var serverport = process.argv[2];
+
+/**
+ * JSON file keeping the graphs created
+ */
+var outputFilename = process.argv[3];
+
+/**
+ * Days (or fraction 0.00348 (5 min)) after dropping a graph
+ */
+var daystodiscard = process.argv[4];
+
+/**
+ * Fuseki host (for example localhost)
+ */
+var fusekihost = process.argv[5];
+
+/**
+ * Fuseki port(for example 3030)
+ */
+var fusekiport = process.argv[6];
+
+/**
+ * Fuseki endpoint (for example dcat-ap_validator)
+ */
+var sparqlEndpoint = process.argv[7];
 
 var baseURL = "http://" + fusekihost + ":" + fusekiport;
 var defaultEndpoint = baseURL + "/" + sparqlEndpoint;

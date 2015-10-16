@@ -5,10 +5,6 @@
 
 // Global variables
 /**
- * Graph name on which execute the query.
- */
-
-/**
  * SPARQL Endpoint url
  */
 var sparqlEndpoint = "@@@TOKEN-ENDPOINT@@@";
