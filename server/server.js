@@ -39,11 +39,11 @@ function postCode(query, endpoint) {
 
 }
 function removeOldGraphs(jsonContent) {
-    var graph;
+    var graph, value, now, diffDays;
     for (graph in jsonContent) {
-        var value = jsonContent[graph];
-        var now = new Date().getTime();
-        var diffDays = (Math.abs((now - value)/(oneDay)));
+        value = jsonContent[graph];
+        now = new Date().getTime();
+        diffDays = (Math.abs((now - value) / (oneDay)));
         if (diffDays > daystodiscard) {
             delete jsonContent[graph];
             postCode('DROP GRAPH <' + graph + '>', defaultEndpoint); //wipes the named graph in the triple store
@@ -52,10 +52,9 @@ function removeOldGraphs(jsonContent) {
     }
 }
 function onRequest(req, res) {
-
-    var url_parts = url.parse(req.url);
-    if (url_parts.pathname == "/getfile") {
-        var queryData = url.parse(req.url, true).query;
+    var url_parts = url.parse(req.url), queryData;
+    if (url_parts.pathname === "/getfile") {
+        queryData = url.parse(req.url, true).query;
         if (queryData.url) {
             console.log("[LOG] Serving: " + queryData.url);
             request({
@@ -69,7 +68,7 @@ function onRequest(req, res) {
         else {
             res.end("No url found");
         }
-    } else if (url_parts.pathname == "/registergraph") {
+    } else if (url_parts.pathname === "/registergraph") {
         var queryData = url.parse(req.url, true).query;
         var graphid = queryData.graphid;
         var creationdate = graphid.substring(graphid.lastIndexOf("/")+1);
