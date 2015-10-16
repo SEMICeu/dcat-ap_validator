@@ -31,7 +31,7 @@
 	<property name="server.host" value="localhost"/>
 	<property name="server.port" value="3000"/>
  	<property name="server.file" value="sessions.json"/>
- 	<property name="server.days" value="0.00348"/>
+ 	<property name="server.days" value="1"/>
  	<property name="server.log" value="server.log"/>
 	
 	<target name="main" depends="replacetokens,jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-server,kill-fuseki,deploy,start-fuseki,start-server,test"/>
@@ -41,6 +41,7 @@
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERHOST@@@" value="${server.host}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERPORT@@@" value="${server.port}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIEDAYS@@@" value="${server.days}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
     </target>
 

@@ -21,6 +21,10 @@ var serverhost = "@@@TOKEN-SERVERHOST@@@";
  */
 var serverport = "@@@TOKEN-SERVERPORT@@@";
 /**
+ * DCAT-AP server cookie days
+ */
+var servercookiedays = "@@@TOKEN-SERVERCOOKIEDAYS@@@";
+/**
  * Instances of the Codemirror used in the tabs.
  */
 var editor, editortab1, editortab2, editortab3;
@@ -41,8 +45,8 @@ var pattern_json_ld = /^\s*\{/;
  */
 var pattern_n3 = /^\s*<http/;
 
-function setCookie(graph) {
-    Cookies.set("dcat-ap", graph);
+function setCookie(graph, days) {
+    Cookies.set("dcat-ap", graph, { expires: days });
 }
 
 function getGraphFromCookie() {
@@ -584,7 +588,7 @@ $(document).ready(function () {
     $("#logobanner").attr('href', "/" + homepage);
 
     if (getGraphFromCookie()  === undefined) {
-        setCookie(graph);
+        setCookie(graph, servercookiedays);
         registerGraph(graph);
     }
 
