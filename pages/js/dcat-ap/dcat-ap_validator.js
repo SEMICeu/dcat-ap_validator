@@ -13,6 +13,14 @@ var sparqlEndpoint = "@@@TOKEN-ENDPOINT@@@";
  */
 var homepage = "@@@TOKEN-HOMEPAGE@@@";
 /**
+ * DCAT-AP server host
+ */
+var serverhost = "@@@TOKEN-SERVERHOST@@@";
+/**
+ * DCAT-AP server port
+ */
+var serverport = "@@@TOKEN-SERVERPORT@@@";
+/**
  * Instances of the Codemirror used in the tabs.
  */
 var editor, editortab1, editortab2, editortab3;
@@ -378,7 +386,7 @@ function stringToBlob(inputString) {
  */
 function callWebService(fileURL, graph, endpoint) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
-    var url = "http://localhost:3000/getfile?",
+    var url = "http://" + serverhost + ":" + serverport + "/getfile?",
         list = "url=" + encodeURIComponent(fileURL),
         address = url + list,
         xmlhttp = null,
@@ -408,7 +416,7 @@ function callWebService(fileURL, graph, endpoint) {
  */
 function registerGraph(graph) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
-    var url = "http://localhost:3000/registergraph?",
+    var url = "http://" + serverhost + ":" + serverport + "/registergraph?",
         localgraph = "graphid=" + encodeURIComponent(graph),
         address = url + localgraph,
         xmlhttp = null,

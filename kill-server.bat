@@ -1,0 +1,1 @@
+for /f "tokens=5 delims= " %%F in ('netstat -a -o -n^| findstr "0.0.0.0:%1"') do taskkill /F /PID %%F

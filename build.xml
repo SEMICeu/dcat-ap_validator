@@ -27,13 +27,20 @@
 	<property name="fuseki.port" value="3030"/>
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
-	<property name="node.dir" value="server"/>   
+	<property name="server.dir" value="server"/>
+	<property name="server.host" value="localhost"/>
+	<property name="server.port" value="3000"/>
+ 	<property name="server.file" value="sessions.json"/>
+ 	<property name="server.days" value="0.00348"/>
+ 	<property name="server.log" value="server.log"/>
 	
-	<target name="main" depends="replacetokens,jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
+	<target name="main" depends="replacetokens,jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-server,kill-fuseki,deploy,start-fuseki,start-server,test"/>
 
     <target name="replacetokens" description="Replace tokens in files">
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-ENDPOINT@@@" value="${fuseki.endpoint}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERHOST@@@" value="${server.host}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERPORT@@@" value="${server.port}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
     </target>
 
@@ -45,7 +52,7 @@
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
 			<fileset dir="${js-dcat.dir}" includes="*.js" />
 			<fileset dir="${tests.dir}" includes="*.js"/>
-            <fileset dir="${node.dir}" includes="*.js"/>
+            <fileset dir="${server.dir}" includes="*.js"/>
 		</jslint>
 	</target>
 
@@ -64,7 +71,7 @@
 	
 	<target name="jsdoc">
 		<jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/client" dir="${js-dcat.dir}" />
-        <jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/server" dir="${node.dir}" />
+        <jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/server" dir="${server.dir}" />
 	</target>
 
 	<property name="yui-compressor" location="${yui.dir}/yuicompressor-2.4.2.jar" />
@@ -150,6 +157,13 @@
 		</exec>
 	</target>
 
+	<target name="kill-server" description="It kills the DCAT-AP server.">
+		<exec executable="cmd.exe">
+			<arg value="/c"/>
+			<arg value="kill-server.bat ${server.port}"/>
+		</exec>
+	</target>
+    
 	<target name="kill-fuseki" description="It kills the Fuseki server.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
@@ -166,6 +180,9 @@
 				<include name="${sparql-doc.dir}/**"/>
 			</fileset>
 		</copy>
+		<copy todir="${fuseki-pages.dir}">
+			<fileset dir="${server.dir}"/>
+		</copy>
 	</target>
 
 	<target name="start-fuseki" description="It executes the Fuseki server.">
@@ -175,6 +192,13 @@
 		</exec>
 	</target>
 
+	<target name="start-server" description="It executes the DCAT-AP server.">
+		<exec executable="cmd.exe" spawn="true">
+			<arg value="/c"/>
+			<arg line="node ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
+		</exec>
+	</target>
+    
 	<target name="test" description="It tests with casperjs all the rules.">
 		<exec executable="cmd.exe">
 			<arg value="/c"/>
