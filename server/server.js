@@ -26,18 +26,17 @@ function postCode(query, endpoint) {
                 'Content-Length': post_data.length
             }
         },
-        post_req = http.request(post_options, function(res) {
+        post_req = http.request(post_options, function (res) {
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
                 console.log("[LOG] Data received, chunk:" + chunk);
             });
         });
-
     // post the data
     post_req.write(post_data);
     post_req.end();
-
 }
+
 function removeOldGraphs(jsonContent) {
     var graph, value, now, diffDays;
     for (graph in jsonContent) {
@@ -53,6 +52,7 @@ function removeOldGraphs(jsonContent) {
         }
     }
 }
+
 function onRequest(req, res) {
     var url_parts = url.parse(req.url), queryData, graphid, creationdate, data, jsonContent;
     if (url_parts.pathname === "/getfile") {
@@ -61,7 +61,7 @@ function onRequest(req, res) {
             console.log("[LOG] Serving: " + queryData.url);
             request({
                 url: queryData.url
-            }).on('error', function(err) {
+            }).on('error', function (err) {
                 res.end(err);
                 console.log("[LOG] There was a problem with the request " + queryData.url + "see: " + err);
             }).pipe(res);
@@ -91,7 +91,7 @@ function onRequest(req, res) {
         jsonContent[graphid] = creationdate;
         console.log("[LOG] Adding graph: " + graphid);
         removeOldGraphs(jsonContent);
-        fs.writeFile(outputFilename, JSON.stringify(jsonContent, null, 4), function(err) {
+        fs.writeFile(outputFilename, JSON.stringify(jsonContent, null, 4), function (err) {
             if (err) {
                 console.log("[LOG] There was a problem in writing the file " + outputFilename + "see: " + err);
             } else {
@@ -107,5 +107,4 @@ function onRequest(req, res) {
 }
 
 http.createServer(onRequest).listen(serverport);
-
 console.log("[LOG] Ready to accept requests...");
