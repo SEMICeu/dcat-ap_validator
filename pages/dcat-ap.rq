@@ -1944,11 +1944,10 @@ UNION
 
 UNION
 # Rule_ID:140
-  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:hasPart ?o.
-     ?o ?pred ?val.
      FILTER(!EXISTS {?o a dcat:Catalog}).
      BIND (dct:hasPart AS ?p).
      BIND ("Catalog" AS ?Class_Name).
