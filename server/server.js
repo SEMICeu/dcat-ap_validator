@@ -40,11 +40,11 @@ function postCode(query, endpoint) {
 }
 function removeOldGraphs(jsonContent) {
     var graph, value, now, diffDays;
-    if(Object.keys(myObject).length > 0) {
-        for (graph in jsonContent) {
+    for (graph in jsonContent) {
+        if (jsonContent[graph] !== "") {
             value = jsonContent[graph];
             now = new Date().getTime();
-            diffDays = Math.abs((now - value) / (oneDay));
+            diffDays = Math.abs((now - value) / oneDay);
             if (diffDays > daystodiscard) {
                 delete jsonContent[graph];
                 postCode('DROP GRAPH <' + graph + '>', defaultEndpoint); //wipes the named graph in the triple store
@@ -54,7 +54,7 @@ function removeOldGraphs(jsonContent) {
     }
 }
 function onRequest(req, res) {
-    var url_parts = url.parse(req.url), queryData;
+    var url_parts = url.parse(req.url), queryData, graphid, creationdate, data, jsonContent;
     if (url_parts.pathname === "/getfile") {
         queryData = url.parse(req.url, true).query;
         if (queryData.url) {
@@ -67,14 +67,13 @@ function onRequest(req, res) {
             }).pipe(res);
             res.setHeader('Access-Control-Allow-Origin', baseURL);
         } else {
-                res.end("No url found");
+            res.end("No url found");
         }
     } else if (url_parts.pathname === "/registergraph") {
-        var queryData = url.parse(req.url, true).query;
-        var graphid = queryData.graphid;
-        var creationdate = graphid.substring(graphid.lastIndexOf("/") + 1);
+        queryData = url.parse(req.url, true).query;
+        graphid = queryData.graphid;
+        creationdate = graphid.substring(graphid.lastIndexOf("/") + 1);
        // var creationdate = queryData.creationdate;
-        var data;
         try {
             data = fs.readFileSync(outputFilename);
         } catch (err) {
@@ -88,7 +87,7 @@ function onRequest(req, res) {
                 throw err;
             }
         }
-        var jsonContent = JSON.parse(data);
+        jsonContent = JSON.parse(data);
         jsonContent[graphid] = creationdate;
         console.log("[LOG] Adding graph: " + graphid);
         removeOldGraphs(jsonContent);
