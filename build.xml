@@ -180,7 +180,7 @@
 				<include name="${sparql-doc.dir}/**"/>
 			</fileset>
 		</copy>
-		<copy todir="${fuseki-pages.dir}">
+		<copy todir="${fuseki.dir}">
 			<fileset dir="${server.dir}"/>
 		</copy>
 	</target>
