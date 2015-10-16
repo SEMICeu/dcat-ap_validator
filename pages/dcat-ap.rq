@@ -187,7 +187,6 @@ UNION
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:publisher ?o.
-     ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Agent}).
      BIND ("Catalog" AS ?Class_Name).
      BIND (11 AS ?Rule_ID).
@@ -276,7 +275,6 @@ UNION
    WHERE {
      ?s a dcat:Catalog.
      ?s foaf:homepage ?o.
-     ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Document}).
      BIND (foaf:homepage AS ?p).
      BIND ("Catalog" AS ?Class_Name).
@@ -324,7 +322,6 @@ UNION
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:language ?o.
-     ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:LinguisticSystem}).
      BIND ("Catalog" AS ?Class_Name).
      BIND (20 AS ?Rule_ID).
@@ -1915,7 +1912,6 @@ UNION
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:license ?o.
-     ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:LicenseDocument}).
      BIND ("Catalog" AS ?Class_Name).
      BIND (138 AS ?Rule_ID).
@@ -1931,7 +1927,6 @@ UNION
    WHERE {
      ?s a dcat:Catalog.
      ?s dcat:themeTaxonomy ?o.
-     ?o ?pred ?val.
      FILTER(!EXISTS {?o a skos:ConceptScheme}).
      BIND (dcat:themeTaxonomy AS ?p).
      BIND ("Catalog" AS ?Class_Name).
