@@ -153,6 +153,8 @@ function runQuery(endpoint, query) {
 
 /**
  * Gets SPARQL query from file
+ * @param {string} file - file containing the query
+ * @param {string} endpoint - endpoint of the triplestore
  */
 function getQuery(file, graph) {
     var xmlhttp;
@@ -178,6 +180,10 @@ function getQuery(file, graph) {
     return xmlhttp.responseText;
 }
 
+/**
+ * Fills in the direct input area with some samples
+ * @param {string} file - file containing the sample
+ */
 function loadFile(file) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
@@ -197,10 +203,19 @@ function loadFile(file) {
     return xmlhttp.responseText;
 }
 
+/**
+ * Checks if a file ends with a particular suffix
+ * @param {string} suffix - suffix searched in the string
+ */
 String.prototype.endsWith = function (suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
 };
 
+/**
+ * Checks if a file has been uploaded
+ * @param {string} metadatafile - JQuery selector for the field of the file uploaded
+ * @param {string} metadatafileerror -  JQuery selector for the error field of the file uploaded
+ */
 function validateMetadata(metadatafile, metadatafileerror) {
     var isFilled = $(metadatafile).get(0).files.length > 0;
     if (isFilled) {
@@ -213,6 +228,12 @@ function validateMetadata(metadatafile, metadatafileerror) {
     }
 }
 
+/**
+ * Checks if the endpoint is empty and it is a valid URL
+ * @param {string} endpoint - JQuery selector for the field of the endpoint
+ * @param {string} endpointerror -  JQuery selector for the error field of the endpoint
+ * @param {string} subject -  string to name the endpoint field
+ */
 function validateEndpoint(endpoint, endpointerror, subject) {
     var value = $(endpoint).val(),
         urlRegex = /^((http|https):\/\/(\w+:{0,1}\w*@)?(\S+)|)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,
@@ -232,6 +253,12 @@ function validateEndpoint(endpoint, endpointerror, subject) {
     }
 }
 
+/**
+ * Checks if the sparql query is not empty
+ * @param {string} query - JQuery selector for the field of the query
+ * @param {string} queryerror -  JQuery selector for the error field of the query
+ * @param {string} subject -  string to name the query field
+ */
 function validateQuery(query, queryerror, subject) {
     var isFilled = query.getValue().trim() !== "";
     if (isFilled) {
@@ -264,6 +291,9 @@ $("#tab3endpoint").focusout(function () {
     validateEndpoint("#tab3endpoint", "#tab3endpointerror", "SPAQL endpoint");
 });
 
+/**
+ * Validates the Form1
+ */
 function validateForm1() {
     var cond_metadata = validateMetadata("#metadatafile", "#metadatafileerror"),
         cond_endpoint = validateEndpoint("#tab1endpoint", "#tab1endpointerror", "SPAQL endpoint"),
@@ -274,6 +304,9 @@ function validateForm1() {
     return false;
 }
 
+/**
+ * Validates the Form2
+ */
 function validateForm2() {
     var cond_address = validateEndpoint("#address", "#addresserror", "address of the RDF file"),
         cond_endpoint = validateEndpoint("#tab2endpoint", "#tab2endpointerror", "SPAQL endpoint"),
@@ -284,6 +317,9 @@ function validateForm2() {
     return false;
 }
 
+/**
+ * Validates the Form3
+ */
 function validateForm3() {
     var cond_input = validateQuery(editor, "#editorerror", "direct RDF input"),
         cond_endpoint = validateEndpoint("#tab3endpoint", "#tab3endpointerror", "SPAQL endpoint"),
@@ -294,11 +330,20 @@ function validateForm3() {
     return false;
 }
 
+/**
+ * Removes eventual spaces from the direct input
+ * @param {string} inputString - string containing possible spaces
+ * @returns {string} string without the spaces
+ */
 function filterInput(inputString) {
     var outputString = inputString.replace(/[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g, '');
     return outputString;
 }
 
+/**
+ * Gets the baseURL from the current page
+ * @returns {string} string containing the baseURL
+ */
 function getBaseURL() {
     if (location.origin === 'undefined') {
         location.origin = location.protocol + '//' + location.host;
@@ -306,6 +351,11 @@ function getBaseURL() {
     return location.origin;
 }
 
+/**
+ * Convert a string to blob depending on the type
+ * @param {string} inputString - string to be converted
+ * @returns {Object} blob of a certain type
+ */
 function stringToBlob(inputString) {
     var blob;
     if (pattern_xml.test(inputString)) {
@@ -320,6 +370,12 @@ function stringToBlob(inputString) {
     return blob;
 }
 
+/**
+ * Contact the DCAT-AP server to act as proxy to download a file
+ * @param {string} fileURL - URL of the file to be downloaded
+ * @param {string} graph - graph on which upload the file
+ * @param {string} endpoint - endpoint of the triplestore
+ */
 function callWebService(fileURL, graph, endpoint) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
     var url = "http://localhost:3000/getfile?",
@@ -346,6 +402,10 @@ function callWebService(fileURL, graph, endpoint) {
     xmlhttp.send();
 }
 
+/**
+ * Register a graph in the DCAT-AP server
+ * @param {string} graph - graph to be registered
+ */
 function registerGraph(graph) {
     //var url = "http://localhost/dcat-ap_validator/dcat-ap_validator.php?",
     var url = "http://localhost:3000/registergraph?",
