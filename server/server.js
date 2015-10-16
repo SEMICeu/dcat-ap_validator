@@ -2,7 +2,7 @@
  * DCAT-AP validator server.
  * @license EUPL v1.1
  */
- 
+
 var http = require('http');
 var url = require('url');
 var request = require('request');
