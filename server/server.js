@@ -12,35 +12,35 @@ var sparqlEndpoint = process.argv[7];  // dcat-ap_validator
 
 var baseURL = "http://" + fusekihost + ":" + fusekiport;
 var defaultEndpoint = baseURL + "/" + sparqlEndpoint;
-var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
 http.createServer(onRequest).listen(serverport);
 
 console.log("[LOG] Ready to accept requests...");
 
 function postCode(query, endpoint) {
-  // Build the post string from an object
-  var post_data = 'update=' + encodeURIComponent(query);
+    // Build the post string from an object
+    var post_data = 'update=' + encodeURIComponent(query);
 
-  // An object of options to indicate where to post to
-  var post_options = {
-      host: fusekihost,
-      port: fusekiport,
-      path: endpoint + '/update',
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': post_data.length
-      }
-  };
+    // An object of options to indicate where to post to
+    var post_options = {
+            host: fusekihost,
+            port: fusekiport,
+            path: endpoint + '/update',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': post_data.length
+            }
+        };
 
-  // Set up the request
-  var post_req = http.request(post_options, function(res) {
-      res.setEncoding('utf8');
-      res.on('data', function (chunk) {
-          console.log("[LOG] Data sent");
-      });
-  });
+    // Set up the request
+    var post_req = http.request(post_options, function(res) {
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                console.log("[LOG] Data received");
+            });
+        });
 
   // post the data
   post_req.write(post_data);
