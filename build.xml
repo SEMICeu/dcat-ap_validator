@@ -195,7 +195,7 @@
 	<target name="start-server" description="It executes the DCAT-AP server.">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
-			<arg line="node ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
+			<arg line="node.exe ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
 		</exec>
 	</target>
     
