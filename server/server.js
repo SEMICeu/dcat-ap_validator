@@ -25,13 +25,11 @@ function postCode(query, endpoint) {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Content-Length': post_data.length
             }
-        };
-
-    // Set up the request
-    var post_req = http.request(post_options, function(res) {
+        },
+        post_req = http.request(post_options, function(res) {
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
-                console.log("[LOG] Data received");
+                console.log("[LOG] Data received, chunk:" + chunk);
             });
         });
 
@@ -40,8 +38,9 @@ function postCode(query, endpoint) {
     post_req.end();
 
 }
-function removeOldGraphs(jsonContent){
-    for(var graph in jsonContent) {
+function removeOldGraphs(jsonContent) {
+    var graph;
+    for (graph in jsonContent) {
         var value = jsonContent[graph];
         var now = new Date().getTime();
         var diffDays = (Math.abs((now - value)/(oneDay)));
