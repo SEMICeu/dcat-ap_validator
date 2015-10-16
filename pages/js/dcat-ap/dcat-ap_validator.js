@@ -412,7 +412,7 @@ function registerGraph(graph) {
         localgraph = "graphid=" + encodeURIComponent(graph),
         address = url + localgraph,
         xmlhttp = null,
-        response;
+        response = "";
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     } else if (window.ActiveXObject) {// for Internet Explorer
