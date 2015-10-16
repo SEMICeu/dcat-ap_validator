@@ -40,14 +40,16 @@ function postCode(query, endpoint) {
 }
 function removeOldGraphs(jsonContent) {
     var graph, value, now, diffDays;
-    for (graph in jsonContent) {
-        value = jsonContent[graph];
-        now = new Date().getTime();
-        diffDays = (Math.abs((now - value) / (oneDay)));
-        if (diffDays > daystodiscard) {
-            delete jsonContent[graph];
-            postCode('DROP GRAPH <' + graph + '>', defaultEndpoint); //wipes the named graph in the triple store
-            console.log("[LOG] Dropping graph: " + graph);
+    if(Object.keys(myObject).length > 0) {
+        for (graph in jsonContent) {
+            value = jsonContent[graph];
+            now = new Date().getTime();
+            diffDays = Math.abs((now - value) / (oneDay));
+            if (diffDays > daystodiscard) {
+                delete jsonContent[graph];
+                postCode('DROP GRAPH <' + graph + '>', defaultEndpoint); //wipes the named graph in the triple store
+                console.log("[LOG] Dropping graph: " + graph);
+            }
         }
     }
 }
@@ -64,22 +66,21 @@ function onRequest(req, res) {
                 console.log("[LOG] There was a problem with the request " + queryData.url + "see: " + err);
             }).pipe(res);
             res.setHeader('Access-Control-Allow-Origin', baseURL);
-        }
-        else {
-            res.end("No url found");
+        } else {
+                res.end("No url found");
         }
     } else if (url_parts.pathname === "/registergraph") {
         var queryData = url.parse(req.url, true).query;
         var graphid = queryData.graphid;
-        var creationdate = graphid.substring(graphid.lastIndexOf("/")+1);
+        var creationdate = graphid.substring(graphid.lastIndexOf("/") + 1);
        // var creationdate = queryData.creationdate;
         var data;
         try {
             data = fs.readFileSync(outputFilename);
-        } catch(err) {
+        } catch (err) {
             if (err.code === 'ENOENT') {
                 console.log("[LOG] File " + outputFilename + " not found!");
-                fs.writeFileSync(outputFilename,"{}");
+                fs.writeFileSync(outputFilename, "{}");
                 console.log("[LOG] File " + outputFilename + " created");
                 data = fs.readFileSync(outputFilename);
             } else {
@@ -92,10 +93,10 @@ function onRequest(req, res) {
         console.log("[LOG] Adding graph: " + graphid);
         removeOldGraphs(jsonContent);
         fs.writeFile(outputFilename, JSON.stringify(jsonContent, null, 4), function(err) {
-            if(err) {
-              console.log("[LOG] There was a problem in writing the file " + outputFilename + "see: " + err);
+            if (err) {
+                console.log("[LOG] There was a problem in writing the file " + outputFilename + "see: " + err);
             } else {
-              console.log("[LOG] JSON saved to " + outputFilename);
+                console.log("[LOG] JSON saved to " + outputFilename);
             }
         });
         res.setHeader('Access-Control-Allow-Origin', baseURL);
