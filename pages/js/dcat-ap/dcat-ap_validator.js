@@ -23,7 +23,7 @@ var serverport = "@@@TOKEN-SERVERPORT@@@";
 /**
  * DCAT-AP server cookie days
  */
-var servercookiedays = "@@@TOKEN-SERVERCOOKIEDAYS@@@";
+var servercookiedays = @@@TOKEN-SERVERCOOKIEDAYS@@@;
 /**
  * Instances of the Codemirror used in the tabs.
  */
