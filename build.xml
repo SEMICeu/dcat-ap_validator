@@ -27,6 +27,7 @@
 	<property name="fuseki.port" value="3030"/>
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
+	<property name="node.dir" value="server"/>   
 	
 	<target name="main" depends="replacetokens,jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-fuseki,deploy,start-fuseki,test"/>
 
@@ -44,6 +45,7 @@
 			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
 			<fileset dir="${js-dcat.dir}" includes="*.js" />
 			<fileset dir="${tests.dir}" includes="*.js"/>
+            <fileset dir="${node.dir}" includes="*.js"/>
 		</jslint>
 	</target>
 
@@ -61,7 +63,8 @@
 	<taskdef name="jsdoc" classname="net.jannon.ant.tasks.JsDoc3" classpath="${jsdoc.dir}/jsdoc3-ant-task-1.0.jar:${jsdoc.home}/lib/js.jar"/>
 	
 	<target name="jsdoc">
-		<jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/output" dir="${js-dcat.dir}" />
+		<jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/client" dir="${js-dcat.dir}" />
+        <jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/server" dir="${node.dir}" />
 	</target>
 
 	<property name="yui-compressor" location="${yui.dir}/yuicompressor-2.4.2.jar" />
