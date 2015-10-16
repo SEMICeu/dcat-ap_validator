@@ -7,6 +7,10 @@
  * Homepage
  */
 var homepage = "@@@TOKEN-HOMEPAGE@@@";
+/**
+ * CAT-AP server cookie name
+ */
+var servercookiename = "@@@TOKEN-SERVERCOOKIENAME@@@";
 
 /**
  * Set the result message
@@ -28,7 +32,7 @@ function setMessage(rows, container_id) {
 }
 
 function getGraphFromCookie() {
-    return Cookies.get("dcat-ap");
+    return Cookies.get(servercookiename);
 }
 
 $(document).ready(function () {

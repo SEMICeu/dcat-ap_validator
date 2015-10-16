@@ -25,6 +25,11 @@ var serverport = "@@@TOKEN-SERVERPORT@@@";
  */
 var servercookiedays = @@@TOKEN-SERVERCOOKIEDAYS@@@;
 /**
+ * DCAT-AP server cookie name
+ */
+var servercookiename = "@@@TOKEN-SERVERCOOKIENAME@@@";
+
+/**
  * Instances of the Codemirror used in the tabs.
  */
 var editor, editortab1, editortab2, editortab3;
@@ -46,11 +51,11 @@ var pattern_json_ld = /^\s*\{/;
 var pattern_n3 = /^\s*<http/;
 
 function setCookie(graph, days) {
-    Cookies.set("dcat-ap", graph, { expires: days });
+    Cookies.set(servercookiename, graph, { expires: days });
 }
 
 function getGraphFromCookie() {
-    return Cookies.get("dcat-ap");
+    return Cookies.get(servercookiename);
 }
 
 /**

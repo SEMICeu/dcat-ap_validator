@@ -31,6 +31,7 @@
 	<property name="server.host" value="localhost"/>
 	<property name="server.port" value="3000"/>
  	<property name="server.file" value="sessions.json"/>
+ 	<property name="server.cookie" value="dcat-ap"/>
  	<property name="server.days" value="1"/>
  	<property name="server.log" value="server.log"/>
 	
@@ -42,7 +43,9 @@
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERHOST@@@" value="${server.host}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERPORT@@@" value="${server.port}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIEDAYS@@@" value="${server.days}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIENAME@@@" value="${server.cookie}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-SERVERCOOKIENAME@@@" value="${server.cookie}"/>
     </target>
 
 	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
