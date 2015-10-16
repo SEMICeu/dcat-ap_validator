@@ -1,10 +1,8 @@
 # Rule_ID:1
 # @title [Agent] foaf:name should be a literal
 # @tag agent
-# @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a foaf:Agent.

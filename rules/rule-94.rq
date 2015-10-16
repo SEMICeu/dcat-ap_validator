@@ -1,7 +1,7 @@
 # Rule_ID:94
 # @title [Distribution] adms:status should be a resource
 # @tag distribution
-# @endpoint http://localhost:3030/dcat-ap_validator/query
+
 
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>

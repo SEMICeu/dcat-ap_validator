@@ -1,11 +1,9 @@
 # Rule_ID:139
 # @title [Catalog] dcat:themeTaxonomy should be a skos:ConceptScheme
 # @tag catalog
-# @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
@@ -17,5 +15,5 @@ WHERE {
   BIND (139 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dcat:themeTaxonomy should be a skos:ConceptScheme." AS ?Rule_Description).
-  BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a skos:ConceptScheme") AS ?Message).
+  BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a skos:ConceptScheme.") AS ?Message).
 }

@@ -1,11 +1,9 @@
 # Rule_ID:77
 # @title [Dataset] adms:versionNotes should be literal
 # @tag dataset
-# @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
-
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
 WHERE {
   ?s a dcat:Dataset.

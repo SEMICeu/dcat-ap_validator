@@ -1,11 +1,9 @@
 # Rule_ID:43
 # @title [Dataset] adms:contactPoint should be a vCard
 # @tag dataset
-# @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
-
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.

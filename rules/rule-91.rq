@@ -1,7 +1,7 @@
 # Rule_ID:91
 # @title [Distribution] dcat:mediaType should be a resource
 # @tag distribution
-# @endpoint http://localhost:3030/dcat-ap_validator/query
+
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 

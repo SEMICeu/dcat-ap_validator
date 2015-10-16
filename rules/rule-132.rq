@@ -1,11 +1,9 @@
 # Rule_ID:132
 # @title [Checksum] spdx:algorithm is a required property for Checksum
 # @tag checksum
-# @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX spdx: <http://spdx.org/rdf/terms#>
-
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a spdx:Checksum.

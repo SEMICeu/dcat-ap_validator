@@ -1,12 +1,10 @@
 # Rule_ID:119
 # @title [Catalog Record] foaf:primaryTopic is a required property for Catalog Record
 # @tag Catalog Record
-# @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:CatalogRecord.

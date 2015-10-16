@@ -1,10 +1,8 @@
 # Rule_ID:30
 # @title [Catalog] dcat:catalogRecord should be a CatalogRecord
 # @tag catalog
-# @endpoint http://localhost:3030/dcat-ap_validator/query
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
-
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.

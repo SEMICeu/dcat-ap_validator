@@ -1938,9 +1938,25 @@ UNION
      BIND (139 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dcat:themeTaxonomy should be a skos:ConceptScheme." AS ?Rule_Description).
-     BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a skos:ConceptScheme") AS ?Message).
+     BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a skos:ConceptScheme.") AS ?Message).
    }
   }
-  
+
+UNION
+# Rule_ID:140
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dcat:hasPart ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dcat:Catalog}).
+     BIND (dct:hasPart AS ?p).
+     BIND ("Catalog" AS ?Class_Name).
+     BIND (140 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:hasPart should be a dcat:Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a dcat:Catalog.") AS ?Message).
+   }
+  }
 }
 }
