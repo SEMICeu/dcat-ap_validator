@@ -38,10 +38,26 @@ var fusekiport = process.argv[6];
  */
 var sparqlEndpoint = process.argv[7];
 
+/**
+ * BaseURL (for example http://localhost:3030) used to allow connections only from Fuseki
+ */
 var baseURL = "http://" + fusekihost + ":" + fusekiport;
+
+/**
+ * defaultEndpoint (for example http://localhost:3030/dcat-ap_validator) used to drop graph
+ */
 var defaultEndpoint = baseURL + "/" + sparqlEndpoint;
+
+/**
+ * oneDay in milliseconds (used to calculate the difference between 2 dates)
+ */
 var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
+/**
+ * Used to drop a graph in the triplestore
+ * @param {string} query - Query used to drop the graph
+  *@param {string} endpoint -  SPARQL endpoint to be contacted.
+ */
 function postCode(query, endpoint) {
     var post_data = 'update=' + encodeURIComponent(query),
         post_options = {
@@ -65,6 +81,10 @@ function postCode(query, endpoint) {
     post_req.end();
 }
 
+/**
+ * Used to remove a graph from the json file and from the triplestore
+ * @param {Object} jsonContent - JSON object representing the file
+ */
 function removeOldGraphs(jsonContent) {
     var graph, value, now, diffDays;
     for (graph in jsonContent) {
@@ -81,6 +101,11 @@ function removeOldGraphs(jsonContent) {
     }
 }
 
+/**
+ * Function which accepts requests from the DCAT-AP validator
+ * @param {Object} req - http request
+ * @param {Object} res - http response
+ */
 function onRequest(req, res) {
     var url_parts = url.parse(req.url), queryData, graphid, creationdate, data, jsonContent;
     if (url_parts.pathname === "/getfile") {
