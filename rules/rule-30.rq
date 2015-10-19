@@ -1,9 +1,9 @@
 # Rule_ID:30
-# @title [Catalog] dcat:catalogRecord should be a CatalogRecord
+# @title [Catalog] dcat:record should be a CatalogRecord
 # @tag catalog
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   ?s dcat:record ?o.
@@ -13,6 +13,6 @@ WHERE {
   BIND ("Catalog" AS ?Class_Name).
   BIND (30 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dcat:catalogRecord should be a CatalogRecord." AS ?Rule_Description).
-  BIND (concat("The dcat:catalogRecord ",str(?o)," is not a CatalogRecord.") AS ?Message).
+  BIND ("dcat:record should be a CatalogRecord." AS ?Rule_Description).
+  BIND (concat("The dcat:record ",str(?o)," is not a CatalogRecord.") AS ?Message).
 }

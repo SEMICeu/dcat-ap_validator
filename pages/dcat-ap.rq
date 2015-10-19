@@ -371,24 +371,8 @@ UNION
   }
 
 UNION
-# Rule_ID:29
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Catalog.
-     ?s dcat:record ?o.
-     FILTER(!isIRI(?o)).
-     BIND (dcat:themeTaxonomy AS ?p).
-     BIND ("Catalog" AS ?Class_Name).
-     BIND (29 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:catalogRecord should be a resource." AS ?Rule_Description).
-     BIND (concat("The dcat:catalogRecordy ",str(?o)," is not a resource.") AS ?Message).
-   }
-  }
-
-UNION
 # Rule_ID:30
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dcat:record ?o.
