@@ -431,17 +431,18 @@ UNION
 
 UNION
 # Rule_ID:34
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:rights ?o.
-     FILTER(!isURI(?o)).
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dct:RightsStatement}).
      BIND (dct:rights AS ?p).
      BIND ("Catalog" AS ?Class_Name).
      BIND (34 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:rights should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:rights ",str(?o)," is not a resource.") AS ?Message).
+     BIND ("dct:rights should be a dct:RightsStatement." AS ?Rule_Description).
+     BIND (concat("The dct:rights ",str(?o)," is not a dct:RightsStatement.") AS ?Message).
    }
   }
  

@@ -4,6 +4,7 @@
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+
 WHERE {
   ?s a dcat:Catalog.
   ?s dcat:record ?o.
