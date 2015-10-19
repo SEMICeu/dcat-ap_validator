@@ -4,10 +4,12 @@
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+
+SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   ?s dcat:themeTaxonomy ?o.
+  ?o ?pred ?val.
   FILTER(!EXISTS {?o a skos:ConceptScheme}).
   BIND (dcat:themeTaxonomy AS ?p).
   BIND ("Catalog" AS ?Class_Name).

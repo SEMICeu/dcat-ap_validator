@@ -14,7 +14,7 @@
     <dct:description>A range of datasets maintained by Nobel Media AB </dct:description>
     <dcat:themeTaxonomy rdf:resource="http://eurovoc.europa.eu/"/>
     <dcat:dataset rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
-	<dct:publisher>European Commission</dct:publisher>
+	<dct:publisher rdf:resource="publisher/n2"/>
     <dct:issued>2014-09-25</dct:issued>
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
     <dct:modified>2014-09-25</dct:modified>
@@ -36,8 +36,7 @@
     <adms:contactPoint rdf:resource="http://nobelprize.org/contacts/n1"/>
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
-    <dcat:keyword>science</dcat:keyword>
-    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dcat:keyword>science</dcat:keyword>    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
@@ -90,7 +89,7 @@
     <foaf:name>Nobel Media AB</foaf:name>
 	<dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="_n2">
+  <rdf:Description rdf:nodeID="publisher/n2">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
 	<foaf:name>Nobel Media AB</foaf:name>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>

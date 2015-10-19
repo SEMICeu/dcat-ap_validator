@@ -1910,10 +1910,11 @@ UNION
 
 UNION
 # Rule_ID:138
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:license ?o.
+     ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:LicenseDocument}).
      BIND ("Catalog" AS ?Class_Name).
      BIND (138 AS ?Rule_ID).
@@ -1925,10 +1926,11 @@ UNION
 
 UNION
 # Rule_ID:139
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dcat:themeTaxonomy ?o.
+     ?o ?pred ?val.
      FILTER(!EXISTS {?o a skos:ConceptScheme}).
      BIND (dcat:themeTaxonomy AS ?p).
      BIND ("Catalog" AS ?Class_Name).
