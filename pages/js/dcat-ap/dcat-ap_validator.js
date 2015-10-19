@@ -444,7 +444,7 @@ function registerGraph(graph) {
         }
     };
     //xmlhttp.responseType = "text"; //text,document,arraybuffer, IE11 doesn't like it
-    xmlhttp.open("GET", address, false);  //must be asynchronous - third parameter true
+    xmlhttp.open("GET", address, true);  //must be asynchronous - third parameter true
     xmlhttp.send();
 }
 
