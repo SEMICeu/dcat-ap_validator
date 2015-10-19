@@ -1877,5 +1877,22 @@ UNION
      BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a dcat:Catalog.") AS ?Message).
    }
   }
+
+UNION
+# Rule_ID:141
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s dct:isPartOf ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dcat:Catalog}).
+     BIND (dct:isPartOf AS ?p).
+     BIND ("Catalog" AS ?Class_Name).
+     BIND (141 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:isPartOf should be a dcat:Catalog." AS ?Rule_Description).
+     BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a dcat:Catalog.") AS ?Message).
+   }
+  }
 }
 }

@@ -1,4 +1,4 @@
-var testid = "5", testname = casper.cli.get("testname") + testid;
+var testid = "141", testname = casper.cli.get("testname") + testid;
 casper.test.begin(testname, 2, function suite(test) {
     casper.start(casper.cli.get("url") + '/' + casper.cli.get("page"), function() {
         var file = '.\\' + casper.cli.get("testdata") + '\\' + testname + '.rdf';
@@ -14,14 +14,15 @@ casper.test.begin(testname, 2, function suite(test) {
     casper.then(function() {
         this.waitForResource(this.getCurrentUrl(), function() {
             if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-1.png'); }
-            var xml = this.page.content, parser, xmlDoc, results, binding0;
+            var xml = this.page.content, parser, xmlDoc, results, binding;
             //this.echo(xml);
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(xml, 'text/xml');
             results = xmlDoc.getElementsByTagName("results")[0].childNodes;
             test.assertEquals(results.length, 3);
-            binding0 = xmlDoc.getElementsByTagName("result")[0].getElementsByTagName("binding")[1].textContent.trim();
-            test.assertEquals(binding0, testid);
+            binding = xmlDoc.getElementsByTagName("binding")[1].textContent.trim();
+            //this.echo(binding);
+            test.assertEquals(binding, testid);
         }, 3000);
     });
 
