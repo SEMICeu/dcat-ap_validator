@@ -14,7 +14,7 @@ casper.test.begin(testname, 4, function suite(test) {
     casper.then(function() {
         this.waitForResource(this.getCurrentUrl(), function() {
             if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-1.png'); }
-            var xml = this.page.content, parser, xmlDoc, results, binding0, binding1;
+            var xml = this.page.content, parser, xmlDoc, results, binding0, binding1, binding2;
             //this.echo(xml);
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(xml, 'text/xml');
