@@ -465,7 +465,7 @@ UNION
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:Location}).
      BIND ("Catalog" AS ?Class_Name).
-     BIND (71 AS ?Rule_ID).
+     BIND (36 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:spatial should be a dct:Location." AS ?Rule_Description).
      BIND (concat("The dct:spatial ",str(?o)," is not a dct:Location.") AS ?Message).
