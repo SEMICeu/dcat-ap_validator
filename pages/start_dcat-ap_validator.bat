@@ -1,1 +1,0 @@
-java -jar ../fuseki-server.jar --update --port=3030 --pages . --mem /dcat-ap_validator
