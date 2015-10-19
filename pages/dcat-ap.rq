@@ -271,10 +271,11 @@ UNION
  
 UNION
 # Rule_ID:17
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s foaf:homepage ?o.
+     ?o ?pred ?val.
      FILTER(!EXISTS {?o a foaf:Document}).
      BIND (foaf:homepage AS ?p).
      BIND ("Catalog" AS ?Class_Name).
@@ -318,10 +319,11 @@ UNION
 
 UNION
 # Rule_ID:20
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:language ?o.
+     ?o ?pred ?val.
      FILTER(!EXISTS {?o a dct:LinguisticSystem}).
      BIND ("Catalog" AS ?Class_Name).
      BIND (20 AS ?Rule_ID).
