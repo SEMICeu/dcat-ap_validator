@@ -1879,5 +1879,20 @@ UNION
      BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a dcat:Catalog.") AS ?Message).
    }
   }
+
+UNION
+# Rule_ID:142
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s foaf:primaryTopic ?o.
+     FILTER(!EXISTS {?o a dcat:Dataset}).
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (142 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dcat:dataset should be a Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:CatalogRecord",str(?s)," has a ",str(?o)," which is not a dcat:Dataset") AS ?Message).
+   }
+  }
 }
 }
