@@ -239,21 +239,6 @@ UNION
   }
 
 UNION
-# Rule_ID:16
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Catalog.
-     ?s foaf:homepage ?o.
-     FILTER(!isURI(?o)).
-     BIND ("Catalog" AS ?Class_Name).
-     BIND (16 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("foaf:homepage should be a resource." AS ?Rule_Description).
-     BIND (concat("The foaf:homepage ",str(?o)," is not a resource.") AS ?Message).
-   }
-  }
- 
-UNION
 # Rule_ID:17
   {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
@@ -314,22 +299,6 @@ UNION
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:license is a recommended property for Catalog." AS ?Rule_Description).
      BIND (concat("The dcat:Catalog ",str(?o)," does not have dct:license.") AS ?Message).  
-   }
-  }
-
-UNION
-# Rule_ID:22
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Catalog.
-     ?s dct:license ?o.
-     FILTER(!isURI(?o)).
-     BIND (dcat:accessURL AS ?p).
-     BIND ("Catalog" AS ?Class_Name).
-     BIND (22 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:license should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:license ",str(?o)," is not a resource.") AS ?Message).
    }
   }
 

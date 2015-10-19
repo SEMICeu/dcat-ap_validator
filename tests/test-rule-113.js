@@ -20,7 +20,7 @@ casper.test.begin(testname, 2, function suite(test) {
             xmlDoc = parser.parseFromString(xml, 'text/xml');
             results = xmlDoc.getElementsByTagName("results")[0].childNodes;
             test.assertEquals(results.length, 5);
-            binding = xmlDoc.getElementsByTagName("results")[1].getElementsByTagName("binding")[1].textContent.trim();
+            binding = xmlDoc.getElementsByTagName("results")[0].getElementsByTagName("binding")[1].textContent.trim();
             //this.echo(binding);
             test.assertEquals(binding, testid);
         }, 3000);
