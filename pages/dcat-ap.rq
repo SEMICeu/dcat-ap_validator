@@ -286,22 +286,6 @@ UNION
   }
 
 UNION
-# Rule_ID:19
- {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Catalog.
-     ?s dct:language ?o.
-     FILTER(!isURI(?o)).
-     BIND (dct:language AS ?p).
-     BIND ("Catalog" AS ?Class_Name).
-     BIND (19 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:language should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:language ",str(?o)," is not a resource.") AS ?Message).
-   }
-  }
-
-UNION
 # Rule_ID:20
   {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
