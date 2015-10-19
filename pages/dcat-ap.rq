@@ -458,17 +458,17 @@ UNION
 
 UNION
 # Rule_ID:36
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:spatial as ?p) ?o 
    WHERE {
      ?s a dcat:Catalog.
      ?s dct:spatial ?o.
-     FILTER(!isURI(?o)).
-     BIND (dct:spatial AS ?p).
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dct:Location}).
      BIND ("Catalog" AS ?Class_Name).
-     BIND (36 AS ?Rule_ID).
+     BIND (71 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:spatial should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:spatial ",str(?o)," is not a resource.") AS ?Message).
+     BIND ("dct:spatial should be a dct:Location." AS ?Rule_Description).
+     BIND (concat("The dct:spatial ",str(?o)," is not a dct:Location.") AS ?Message).
    }
   }
 

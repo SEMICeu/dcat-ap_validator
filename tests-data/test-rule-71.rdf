@@ -37,8 +37,7 @@
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
-    <dcat:keyword>science</dcat:keyword>
-    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dcat:keyword>science</dcat:keyword>    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
     <dct:modified>2014-08-27</dct:modified>
@@ -82,6 +81,7 @@
     <schema:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2013-01-05</schema:endDate>
   </rdf:Description>
   <rdf:Description rdf:about="http://sws.geonames.org/2673730">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Locatio"/>
     <rdfs:label>Stockholm</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/publisher/n0">
