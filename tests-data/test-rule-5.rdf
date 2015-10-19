@@ -36,8 +36,7 @@
     <adms:contactPoint rdf:resource="http://nobelprize.org/contacts/n1"/>
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
-    <dcat:keyword>science</dcat:keyword>
-    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dcat:keyword>science</dcat:keyword>    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
@@ -48,6 +47,18 @@
     <dct:temporal rdf:resource="http://data.nobelprize.org/period"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds2">
+    <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
+    <dct:title xml:lang="en">Linked Nobel prizes</dct:title>
+    <dct:description>This dataset contains Nobel prizes, Nobel laureates and information about related media resources. </dct:description>
+    <adms:contactPoint rdf:resource="http://nobelprize.org/contacts/n1"/>
+    <dcat:keyword>Nobel prize</dcat:keyword>
+    <dcat:keyword>prize</dcat:keyword>
+    <dcat:keyword>science</dcat:keyword>
+    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
+    <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#VCard"/>
