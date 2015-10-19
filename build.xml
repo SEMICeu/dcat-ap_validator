@@ -23,12 +23,12 @@
 	<property name="csslint.dir" value="${lib.dir}/csslint"/>
 	<property name="fuseki.dir" value="C:/Development/jena-fuseki1-1.1.2/"/>   
 	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
-	<property name="fuseki.host" value="localhost"/>
+	<property name="fuseki.host" value="10.54.183.6"/>
 	<property name="fuseki.port" value="3030"/>
 	<property name="fuseki.page" value="dcat-ap_validator.html"/>
 	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
 	<property name="server.dir" value="server"/>
-	<property name="server.host" value="localhost"/>
+	<property name="server.host" value="10.54.183.6"/>
 	<property name="server.port" value="3000"/>
  	<property name="server.file" value="sessions.json"/>
  	<property name="server.cookie" value="dcat-ap"/>
@@ -199,7 +199,7 @@
 	<target name="start-server" description="It executes the DCAT-AP server.">
 		<exec executable="cmd.exe" spawn="true">
 			<arg value="/c"/>
-			<arg line="node.exe ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
+			<arg line="node.exe ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} * > ${fuseki.dir}/${server.log}"/>
 		</exec>
 	</target>
     

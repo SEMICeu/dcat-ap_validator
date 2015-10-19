@@ -37,6 +37,10 @@ var fusekiport = process.argv[6];
  * Fuseki endpoint (for example dcat-ap_validator)
  */
 var sparqlEndpoint = process.argv[7];
+/**
+ * Accept http connections from (for example localhost)
+ */
+var acceptConnectionsFrom = process.argv[8];
 
 /**
  * BaseURL (for example http://localhost:3030) used to allow connections only from Fuseki

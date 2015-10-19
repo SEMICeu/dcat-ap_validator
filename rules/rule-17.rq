@@ -4,10 +4,11 @@
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Catalog.
   ?s foaf:homepage ?o.
+  ?o ?pred ?val.
   FILTER(!EXISTS {?o a foaf:Document}).
   BIND (foaf:homepage AS ?p).
   BIND ("Catalog" AS ?Class_Name).
