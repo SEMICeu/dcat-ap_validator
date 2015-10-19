@@ -19,7 +19,7 @@ casper.test.begin(testname, 4, function suite(test) {
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(xml, 'text/xml');
             results = xmlDoc.getElementsByTagName("results")[0].childNodes;
-            test.assertEquals(results.length, 5);
+            test.assertEquals(results.length, 7);
             binding0 = xmlDoc.getElementsByTagName("result")[0].getElementsByTagName("binding")[1].textContent.trim();
             test.assertEquals(binding0, "5");
             binding1 = xmlDoc.getElementsByTagName("result")[1].getElementsByTagName("binding")[1].textContent.trim();
