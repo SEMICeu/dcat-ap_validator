@@ -66,7 +66,7 @@
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#VCard"/>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Kind"/>
     <vcard:fn>Nobel Media AB</vcard:fn>
     <vcard:hasTelephone rdf:nodeID="_n4"/>
     <vcard:hasAddress rdf:nodeID="_n5"/>
