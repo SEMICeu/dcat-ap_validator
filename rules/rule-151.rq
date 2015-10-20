@@ -7,7 +7,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
-  ?s a dcat:Catalog.
+  ?s a dcat:Dataset.
   ?s foaf:page ?o.
   ?o ?pred ?val.
   FILTER(!EXISTS {?o a foaf:Document}).

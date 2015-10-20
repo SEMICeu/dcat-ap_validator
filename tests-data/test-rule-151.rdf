@@ -28,7 +28,7 @@
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
 	<dct:title>Nobelprize page</dct:title>
   </rdf:Description>
-    <rdf:Description rdf:about="http://nobelprize.org/homepage/h1">
+   <rdf:Description rdf:about="http://nobelprize.org/homepage/h1">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Documen"/>
 	<dct:title>Nobelprize page</dct:title>
   </rdf:Description>
