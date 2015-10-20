@@ -559,7 +559,7 @@ UNION
    WHERE {
      ?s a dcat:Dataset.
      ?s adms:contactPoint ?o.
-     FILTER(!isURI(?o)).
+     FILTER(!isURI(?o) && !isBlank(?o)).
      BIND (adms:contactPoint AS ?p).
      BIND ("Dataset" AS ?Class_Name).
      BIND (42 AS ?Rule_ID).

@@ -6,11 +6,11 @@
 /**
  * Homepage
  */
-var homepage = "@@@TOKEN-HOMEPAGE@@@";
+var homepage = "dcat-ap_validator.html";
 /**
  * CAT-AP server cookie name
  */
-var servercookiename = "@@@TOKEN-SERVERCOOKIENAME@@@";
+var servercookiename = "dcat-ap";
 
 /**
  * Set the result message

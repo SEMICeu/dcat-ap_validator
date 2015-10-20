@@ -1,0 +1,13 @@
+.idea/
+build.properties
+lib/csslint/csslint.xml
+lib/jsdoc/client/
+lib/jsdoc/server/
+lib/jslint/jslint.xml
+pages/css/codemirror/min/
+pages/css/concat/
+pages/css/dcat-ap/min/
+pages/js/concat/
+pages/js/dcat-ap/min/
+sparql-doc/
+tests-execution/
