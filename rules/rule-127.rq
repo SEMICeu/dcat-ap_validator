@@ -1,5 +1,5 @@
 # Rule_ID:127
-# @title [Catalog Record] dct:issued has a maximum cardinality of 1 for dcat:CatalogRecord
+# @title [Catalog Record] dct:issued has a maximum cardinality of 1 for Catalog Record
 # @tag Catalog Record
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>

@@ -1,5 +1,5 @@
 # Rule_ID:125
-# @title [Catalog Record] adms:status has a maximum cardinality of 1 for dcat:CatalogRecord
+# @title [Catalog Record] adms:status has a maximum cardinality of 1 for Catalog Record
 # @tag Catalog Record
 
 PREFIX adms: <http://www.w3.org/ns/adms#>

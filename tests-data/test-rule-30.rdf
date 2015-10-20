@@ -27,6 +27,7 @@
   <rdf:Description rdf:about="http://nobelprize.org/datarecords/dcat#dr1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#CatalogRecor"/>
 	<foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
+	<dct:conformsTo rdf:resource="http://nobelprize.org/law/12345"/>
 	<dct:modified>2014-09-25</dct:modified>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
