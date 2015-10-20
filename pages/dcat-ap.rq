@@ -1887,13 +1887,14 @@ UNION
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:modified ?o.
-     FILTER(!isLiteral(?o)).
      BIND (dct:modified AS ?p).
+     BIND (datatype(?o) AS ?datatype)
+     FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
      BIND ("CatalogRecord" AS ?Class_Name).
      BIND (143 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:modified should be a literal." AS ?Rule_Description).
-     BIND (concat("The dct:modified ",str(?o)," is not a literal.") AS ?Message).
+     BIND ("dct:modified should be a literal typed as date or dateTime." AS ?Rule_Description).
+     BIND (concat("The dct:modified ",str(?o)," is not a literal typed as date or dateTime.") AS ?Message).
    }
   }
 
@@ -1951,13 +1952,14 @@ UNION
    WHERE {
      ?s a dcat:CatalogRecord.
      ?s dct:issued ?o.
-     FILTER(!isLiteral(?o)).
      BIND (dct:issued AS ?p).
+     BIND (datatype(?o) AS ?datatype)
+     FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
      BIND ("CatalogRecord" AS ?Class_Name).
      BIND (147 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:issued should be a literal." AS ?Rule_Description).
-     BIND (concat("The dct:issued ",str(?o)," is not a literal.") AS ?Message).
+     BIND ("dct:issued should be a literal typed as date or dateTime." AS ?Rule_Description).
+     BIND (concat("The dct:issued ",str(?o)," is not a literal typed as date or dateTime.") AS ?Message).
    }
   }
 

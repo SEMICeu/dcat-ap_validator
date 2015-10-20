@@ -17,7 +17,7 @@
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n0"/>
 	<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-09-25</dct:issued>
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
-    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string">25-09-2014</dct:modified>
+    <dct:modified>25-09-2014</dct:modified>
 	<foaf:homepage rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
 	<dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
