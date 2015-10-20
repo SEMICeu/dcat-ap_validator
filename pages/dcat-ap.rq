@@ -683,7 +683,7 @@ UNION
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:publisher ?o.
-     FILTER(!isURI(?o)).
+     FILTER(!isURI(?o) && !isBlank(?o)).
      BIND ("Dataset" AS ?Class_Name).
      BIND (51 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).

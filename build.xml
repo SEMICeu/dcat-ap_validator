@@ -3,210 +3,212 @@
 
 <project name="DCAT-AP validator" default="main" basedir=".">
 
-	<property name="pages.dir" value="pages"/>
-	<property name="js.dir" value="${pages.dir}/js/"/>
-	<property name="js-dcat.dir" value="${pages.dir}/js/dcat-ap"/>
-	<property name="css.dir" value="${pages.dir}/css/"/>
-	<property name="css-dcat.dir" value="${pages.dir}/css/dcat-ap/"/>
-	<property name="cm.dir" value="${css.dir}/codemirror/"/>
-	<property name="lib.dir" value="lib"/>
-	<property name="jsdoc.dir" value="${lib.dir}/jsdoc"/>
-	<property name="jsdoc.home" value="${jsdoc.dir}/jsdoc3"/>
-	<property name="yui.dir" value="${lib.dir}/yui"/>
-	<property name="rules.dir" value="rules"/>
-	<property name="sparql-doc.dir" value="sparql-doc"/>
-	<property name="tests.dir" value="tests"/>
-	<property name="tests-execution.dir" value="tests-execution"/>
-	<property name="tests-data.dir" value="tests-data"/>
-	<property name="tests.name" value="test-rule-"/>
-	<property name="jslint.dir" value="${lib.dir}/jslint"/>
-	<property name="csslint.dir" value="${lib.dir}/csslint"/>
-	<property name="fuseki.dir" value="C:/Development/jena-fuseki1-1.1.2/"/>   
-	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
-	<property name="fuseki.host" value="localhost"/>
-	<property name="fuseki.port" value="3030"/>
-	<property name="fuseki.page" value="dcat-ap_validator.html"/>
-	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
-	<property name="server.dir" value="server"/>
-	<property name="server.host" value="localhost"/>
-	<property name="server.port" value="3000"/>
- 	<property name="server.file" value="sessions.json"/>
- 	<property name="server.cookie" value="dcat-ap"/>
- 	<property name="server.days" value="1"/>
- 	<property name="server.log" value="server.log"/>
-	
-	<target name="main" depends="replacetokens,jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-server,kill-fuseki,deploy,start-fuseki,start-server,test"/>
+    <property file="build.properties"/>
+    <property file="default.properties"/>
+
+    <target name="main"
+            depends="replacetokens,jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-server,kill-fuseki,deploy,start-fuseki,start-server,test"/>
 
     <target name="replacetokens" description="Replace tokens in files">
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-ENDPOINT@@@" value="${fuseki.endpoint}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERHOST@@@" value="${server.host}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERPORT@@@" value="${server.port}"/>
-        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIEDAYS@@@" value="${server.days}"/>
-        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIENAME@@@" value="${server.cookie}"/>
-        <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
-        <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-SERVERCOOKIENAME@@@" value="${server.cookie}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIEDAYS@@@"
+                 value="${server.days}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIENAME@@@"
+                 value="${server.cookie}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-HOMEPAGE@@@"
+                 value="${fuseki.page}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-SERVERCOOKIENAME@@@"
+                 value="${server.cookie}"/>
     </target>
 
-	<taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask" classpath="${jslint.dir}/jslint4java-2.0.5.jar" />
+    <taskdef name="jslint" classname="com.googlecode.jslint4java.ant.JSLintTask"
+             classpath="${jslint.dir}/jslint4java-2.0.5.jar"/>
 
-	<target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap js files and tests.">
-		<jslint haltOnFailure="false" options="sloppy">
-			<predef>Cookies,location,window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$,CodeMirror,clearTimeout,setTimeout,require,process,console</predef>
-			<formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
-			<fileset dir="${js-dcat.dir}" includes="*.js" />
-			<fileset dir="${tests.dir}" includes="*.js"/>
+    <target name="jslint" description="It invokes jslint4java to evaluate the dcat-ap js files and tests.">
+        <jslint haltOnFailure="false" options="sloppy">
+            <predef>
+                Cookies,location,window,ActiveXObject,XMLHttpRequest,FormData,Blob,alert,document,casper,DOMParser,$,CodeMirror,clearTimeout,setTimeout,require,process,console
+            </predef>
+            <formatter type="xml" destfile="${jslint.dir}/jslint.xml"/>
+            <fileset dir="${js-dcat.dir}" includes="*.js"/>
+            <fileset dir="${tests.dir}" includes="*.js"/>
             <fileset dir="${server.dir}" includes="*.js"/>
-		</jslint>
-	</target>
+        </jslint>
+    </target>
 
-	<target name="csslint">
-		<apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/csslint.xml">
-			<fileset dir="${css-dcat.dir}" includes="*.css" />
-			<arg line="-jar"/>
-			<arg path="${csslint.dir}/js-1.7.6.jar"/>
-			<arg path="${csslint.dir}/csslint-rhino.js" />      
-			<arg line="--format=lint-xml"/>
-			<srcfile/>
-		</apply>
-	</target>
+    <target name="csslint">
+        <apply executable="java" failonerror="true" parallel="true" output="${csslint.dir}/csslint.xml">
+            <fileset dir="${css-dcat.dir}" includes="*.css"/>
+            <arg line="-jar"/>
+            <arg path="${csslint.dir}/js-1.7.6.jar"/>
+            <arg path="${csslint.dir}/csslint-rhino.js"/>
+            <arg line="--format=lint-xml"/>
+            <srcfile/>
+        </apply>
+    </target>
 
-	<taskdef name="jsdoc" classname="net.jannon.ant.tasks.JsDoc3" classpath="${jsdoc.dir}/jsdoc3-ant-task-1.0.jar:${jsdoc.home}/lib/js.jar"/>
-	
-	<target name="jsdoc">
-		<jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/client" dir="${js-dcat.dir}" />
-        <jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/server" dir="${server.dir}" />
-	</target>
+    <taskdef name="jsdoc" classname="net.jannon.ant.tasks.JsDoc3"
+             classpath="${jsdoc.dir}/jsdoc3-ant-task-1.0.jar:${jsdoc.home}/lib/js.jar"/>
 
-	<property name="yui-compressor" location="${yui.dir}/yuicompressor-2.4.2.jar" />
-	<property name="yui-compressor-ant-task" location="${yui.dir}/yui-compressor-ant-task-0.5.jar" />
-	<!-- adds libraries to the classpath -->
-	<path id="yui.classpath">
-	  <pathelement location="${yui-compressor}" />
-	  <pathelement location="${yui-compressor-ant-task}" />
-	</path>
-	<!-- define tasks -->
-	<taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
-	  <classpath refid="yui.classpath" />
-	</taskdef>
+    <target name="jsdoc">
+        <jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/client" dir="${js-dcat.dir}"/>
+        <jsdoc jsdochome="${jsdoc.home}" to="${jsdoc.dir}/server" dir="${server.dir}"/>
+    </target>
+
+    <property name="yui-compressor" location="${yui.dir}/yuicompressor-2.4.2.jar"/>
+    <property name="yui-compressor-ant-task" location="${yui.dir}/yui-compressor-ant-task-0.5.jar"/>
+    <!-- adds libraries to the classpath -->
+    <path id="yui.classpath">
+        <pathelement location="${yui-compressor}"/>
+        <pathelement location="${yui-compressor-ant-task}"/>
+    </path>
+    <!-- define tasks -->
+    <taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+        <classpath refid="yui.classpath"/>
+    </taskdef>
 
     <target name="compress">
-		<delete dir="${js-dcat.dir}/min"/>
-		<mkdir dir="${js-dcat.dir}/min"/>
-		<yui-compressor
-			warn="false"
-			munge="true"
-			preserveallsemicolons="false"
-			fromdir="${js-dcat.dir}"
-			todir="${js-dcat.dir}/min"
-		/>
-		
-		<delete dir="${css-dcat.dir}/min"/>
-		<mkdir dir="${css-dcat.dir}/min"/>
-		<yui-compressor
-			warn="false"
-			munge="true"
-			preserveallsemicolons="false"
-			fromdir="${css-dcat.dir}"
-			todir="${css-dcat.dir}/min"
-		/>
-		
-		<delete dir="${cm.dir}/min"/>
-		<mkdir dir="${cm.dir}/min"/>
-		<yui-compressor
-			warn="false"
-			munge="true"
-			preserveallsemicolons="false"
-			fromdir="${cm.dir}"
-			todir="${cm.dir}/min"
-		/>
+        <delete dir="${js-dcat.dir}/min"/>
+        <mkdir dir="${js-dcat.dir}/min"/>
+        <yui-compressor
+                warn="false"
+                munge="true"
+                preserveallsemicolons="false"
+                fromdir="${js-dcat.dir}"
+                todir="${js-dcat.dir}/min"
+                />
+
+        <delete dir="${css-dcat.dir}/min"/>
+        <mkdir dir="${css-dcat.dir}/min"/>
+        <yui-compressor
+                warn="false"
+                munge="true"
+                preserveallsemicolons="false"
+                fromdir="${css-dcat.dir}"
+                todir="${css-dcat.dir}/min"
+                />
+
+        <delete dir="${cm.dir}/min"/>
+        <mkdir dir="${cm.dir}/min"/>
+        <yui-compressor
+                warn="false"
+                munge="true"
+                preserveallsemicolons="false"
+                fromdir="${cm.dir}"
+                todir="${cm.dir}/min"
+                />
     </target>
 
-	<target name="concat">
-		<!-- concatenates all compressed request CSS files into one -->
-		<delete dir="${css.dir}/concat/"/>
-		<mkdir dir="${css.dir}/concat/"/>
-		<concat destfile="${css.dir}/concat/dcat.css" force="true" fixlastline="true">
-			<fileset dir="${css-dcat.dir}/min/" includes="dcat-ap_validator-min.css" />
-			<fileset dir="${cm.dir}/min/" includes="codemirror-min.css" />
-		</concat>
-		<!-- concatenates all compressed request/response JS files into one -->
-		<delete dir="${js.dir}/concat/"/>
-		<mkdir dir="${js.dir}/concat/"/>
-		<concat destfile="${js.dir}/concat/dcat.js" force="true" fixlastline="true">
-			<fileset dir="${js.dir}/jquery-ui/" includes="jquery-ui.min.js" />
-			<fileset dir="${js.dir}/codemirror/" includes="codemirror-compressed.js" />
-			<fileset dir="${js-dcat.dir}/min/" includes="dcat-ap_validator-min.js" />
-		</concat>
-		<concat destfile="${js.dir}/concat/dcat-results.js" force="true" fixlastline="true">
-			<fileset dir="${js.dir}" includes="DataTables-1.10.7/media/js/jquery.dataTables.min.js" />
-			<fileset dir="${js-dcat.dir}/min/" includes="dcat-ap_validator-results-min.js" />
-		</concat>
-	</target>
+    <target name="concat">
+        <!-- concatenates all compressed request CSS files into one -->
+        <delete dir="${css.dir}/concat/"/>
+        <mkdir dir="${css.dir}/concat/"/>
+        <concat destfile="${css.dir}/concat/dcat.css" force="true" fixlastline="true">
+            <fileset dir="${css-dcat.dir}/min/" includes="dcat-ap_validator-min.css"/>
+            <fileset dir="${cm.dir}/min/" includes="codemirror-min.css"/>
+        </concat>
+        <!-- concatenates all compressed request/response JS files into one -->
+        <delete dir="${js.dir}/concat/"/>
+        <mkdir dir="${js.dir}/concat/"/>
+        <concat destfile="${js.dir}/concat/dcat.js" force="true" fixlastline="true">
+            <fileset dir="${js.dir}/jquery-ui/" includes="jquery-ui.min.js"/>
+            <fileset dir="${js.dir}/codemirror/" includes="codemirror-compressed.js"/>
+            <fileset dir="${js-dcat.dir}/min/" includes="dcat-ap_validator-min.js"/>
+        </concat>
+        <concat destfile="${js.dir}/concat/dcat-results.js" force="true" fixlastline="true">
+            <fileset dir="${js.dir}" includes="DataTables-1.10.7/media/js/jquery.dataTables.min.js"/>
+            <fileset dir="${js-dcat.dir}/min/" includes="dcat-ap_validator-results-min.js"/>
+        </concat>
+    </target>
 
-	<target name="clean" description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
-		<delete dir="${sparql-doc.dir}"/>
-		<delete dir="${tests-execution.dir}"/>
-	</target>
+    <target name="clean"
+            description="It deletes the sparql-doc and tests-execution directories in order to be updated with a new version.">
+        <delete dir="${sparql-doc.dir}"/>
+        <delete dir="${tests-execution.dir}"/>
+    </target>
 
-	<target name="create" depends="clean" description="It creates the sparq-doc and tests-execution directories.">
-		<mkdir dir="${sparql-doc.dir}"/>
-		<mkdir dir="${tests-execution.dir}"/>
-	</target>
+    <target name="create" depends="clean" description="It creates the sparq-doc and tests-execution directories.">
+        <mkdir dir="${sparql-doc.dir}"/>
+        <mkdir dir="${tests-execution.dir}"/>
+    </target>
 
-	<target name="sparql-doc" depends="create" description="It executes the sparq-doc command.">
-		<exec executable="cmd.exe" failonerror="true">
-			<arg value="/c"/>
-			<arg line="sparql-doc ${rules.dir} ${sparql-doc.dir}"/>
-		</exec>
-	</target>
+    <target name="sparql-doc" depends="create" description="It executes the sparq-doc command.">
+        <exec executable="cmd.exe" failonerror="true" os="Windows">
+            <arg value="/c"/>
+            <arg line="sparql-doc ${rules.dir} ${sparql-doc.dir}"/>
+        </exec>
+        <exec executable="sparql-doc" failonerror="true" os="Mac OS X">
+            <arg line="${rules.dir} ${sparql-doc.dir}"/>
+        </exec>
+    </target>
 
-	<target name="kill-server" description="It kills the DCAT-AP server.">
-		<exec executable="cmd.exe">
-			<arg value="/c"/>
-			<arg value="kill-server.bat ${server.port}"/>
-		</exec>
-	</target>
-    
-	<target name="kill-fuseki" description="It kills the Fuseki server.">
-		<exec executable="cmd.exe">
-			<arg value="/c"/>
-			<arg value="kill-fuseki.bat ${fuseki.port}"/>
-		</exec>
-	</target>
+    <target name="kill-server" description="It kills the DCAT-AP server.">
+        <exec executable="cmd.exe" os="Windows">
+            <arg value="/c"/>
+            <arg value="kill-server.bat ${server.port}"/>
+        </exec>
+        <exec executable="/bin/sh" os="Mac OS X">
+            <arg value="-c"/>
+            <arg value="./kill-server.sh ${server.port}"/>
+        </exec>
+    </target>
 
-	<target name="deploy" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
-		<copy todir="${fuseki-pages.dir}">
-			<fileset dir="${pages.dir}"/>
-		</copy>
-		<copy todir="${fuseki-pages.dir}">
-			<fileset dir=".">
-				<include name="${sparql-doc.dir}/**"/>
-			</fileset>
-		</copy>
-		<copy todir="${fuseki.dir}">
-			<fileset dir="${server.dir}"/>
-		</copy>
-	</target>
+    <target name="kill-fuseki" description="It kills the Fuseki server.">
+        <exec executable="cmd.exe" os="Windows">
+            <arg value="/c"/>
+            <arg value="kill-fuseki.bat ${fuseki.port}"/>
+        </exec>
+        <exec executable="/bin/sh" os="Mac OS X">
+            <arg value="-c"/>
+            <arg value="./kill-server.sh ${fuseki.port}"/>
+        </exec>
+    </target>
 
-	<target name="start-fuseki" description="It executes the Fuseki server.">
-		<exec executable="cmd.exe" spawn="true">
-			<arg value="/c"/>
-			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
-		</exec>
-	</target>
+    <target name="deploy"
+            description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
+        <copy todir="${fuseki-pages.dir}">
+            <fileset dir="${pages.dir}"/>
+        </copy>
+        <copy todir="${fuseki-pages.dir}">
+            <fileset dir=".">
+                <include name="${sparql-doc.dir}/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${fuseki.dir}">
+            <fileset dir="${server.dir}"/>
+        </copy>
+    </target>
 
-	<target name="start-server" description="It executes the DCAT-AP server.">
-		<exec executable="cmd.exe" spawn="true">
-			<arg value="/c"/>
-			<arg line="node.exe ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
-		</exec>
-	</target>
-    
-	<target name="test" description="It tests with casperjs all the rules.">
-		<exec executable="cmd.exe">
-			<arg value="/c"/>
-			<arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
-		</exec>
-	</target>
+    <target name="start-fuseki" description="It executes the Fuseki server.">
+        <exec executable="cmd.exe" spawn="true" os="Windows">
+            <arg value="/c"/>
+            <arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
+        </exec>
+        <exec executable="java" spawn="true" os="Mac OS X">
+            <arg line="-jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
+        </exec>
+    </target>
+
+    <target name="start-server" description="It executes the DCAT-AP server.">
+        <exec executable="cmd.exe" spawn="true" os="Windows">
+            <arg value="/c"/>
+            <arg line="node.exe ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
+        </exec>
+        <exec executable="node" spawn="true" os="Mac OS X">
+            <arg line="${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
+        </exec>
+    </target>
+
+    <target name="test" description="It tests with casperjs all the rules.">
+        <exec executable="cmd.exe" os="Windows">
+            <arg value="/c"/>
+            <arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+        </exec>
+        <exec executable="casperjs" os="Mac OS X">
+            <arg line="test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+        </exec>
+    </target>
 </project>
