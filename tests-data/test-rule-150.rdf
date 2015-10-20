@@ -53,7 +53,7 @@
 	<dct:accessRights rdf:resource="http://nobelprize.org/rights/dcat#right1"/>
   </rdf:Description>
      <rdf:Description rdf:about="http://nobelprize.org/rights/dcat#right1">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/RightsStatement"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/RightsStatemen"/>
     <rdfs:label>Nobel rights</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
