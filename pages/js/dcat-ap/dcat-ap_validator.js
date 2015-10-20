@@ -7,27 +7,27 @@
 /**
  * SPARQL Endpoint url
  */
-var sparqlEndpoint = "@@@TOKEN-ENDPOINT@@@";
+var sparqlEndpoint = "dcat-ap_validator";
 /**
  * Homepage
  */
-var homepage = "@@@TOKEN-HOMEPAGE@@@";
+var homepage = "dcat-ap_validator.html";
 /**
  * DCAT-AP server host
  */
-var serverhost = "@@@TOKEN-SERVERHOST@@@";
+var serverhost = "localhost";
 /**
  * DCAT-AP server port
  */
-var serverport = "@@@TOKEN-SERVERPORT@@@";
+var serverport = "3000";
 /**
  * DCAT-AP server cookie days
  */
-var servercookiedays = @@@TOKEN-SERVERCOOKIEDAYS@@@;
+var servercookiedays = 1;
 /**
  * DCAT-AP server cookie name
  */
-var servercookiename = "@@@TOKEN-SERVERCOOKIENAME@@@";
+var servercookiename = "dcat-ap";
 
 /**
  * Instances of the Codemirror used in the tabs.
