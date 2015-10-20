@@ -410,7 +410,8 @@ UNION
      ?s a dcat:Catalog.
      ?s dct:modified ?o.
      BIND (dct:modified AS ?p).
-     FILTER (?o != xsd:dateTime && ?o != xsd:date)
+     BIND(datatype(?o) AS ?datatype)
+     FILTER (?datatype != xsd:dateTime && ?datatype != xsd:date)
      BIND ("Catalog" AS ?Class_Name).
      BIND (32 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
