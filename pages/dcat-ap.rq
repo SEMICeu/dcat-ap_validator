@@ -1894,5 +1894,38 @@ UNION
      BIND (concat("The dcat:CatalogRecord",str(?s)," has a ",str(?o)," which is not a dcat:Dataset") AS ?Message).
    }
   }
+
+UNION
+# Rule_ID:143
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s dct:modified ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:modified AS ?p).
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (143 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:modified should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:modified ",str(?o)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:144
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     FILTER(!(EXISTS { ?s dct:conformsTo ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dcat:CatalogRecord AS ?o).
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (144 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dct:conformsTo is a recommended property for Catalog Record." AS ?Rule_Description).
+     BIND (concat("The dcat:CatalogRecord ",str(?o)," does not have a dct:conformsTo property.") AS ?Message).
+   }
+  }
+
 }
 }
