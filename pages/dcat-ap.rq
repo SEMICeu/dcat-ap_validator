@@ -543,30 +543,14 @@ UNION
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
-     FILTER(!(EXISTS { ?s adms:contactPoint ?cPoint})).
+     FILTER(!(EXISTS { ?s dcat:contactPoint ?cPoint})).
      BIND (rdf:type AS ?p).
      BIND (dcat:Dataset AS ?o).
      BIND ("Dataset" AS ?Class_Name).
      BIND (41 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
-     BIND ("adms:contactPoint is a recommended property for Dataset." AS ?Rule_Description).
-     BIND (concat("The dcat:Dataset ",str(?s)," does not have a adms:contactPoint property.") AS ?Message).
-   }
-  }
-
-UNION
-# Rule_ID:42
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s adms:contactPoint ?o.
-     FILTER(!isURI(?o)).
-     BIND (adms:contactPoint AS ?p).
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (42 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("adms:contactPoint should be a resource." AS ?Rule_Description).
-     BIND (concat("The adms:contactPoint ",str(?o)," is not a resource.") AS ?Message).
+     BIND ("dcat:contactPoint is a recommended property for Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?s)," does not have a dcat:contactPoint property.") AS ?Message).
    }
   }
 
@@ -575,15 +559,15 @@ UNION
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
-     ?s adms:contactPoint ?o.
+     ?s dcat:contactPoint ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a <http://www.w3.org/2006/vcard/ns#VCard>}).
-     BIND (adms:contactPoint AS ?p).
+     BIND (dcat:contactPoint AS ?p).
      BIND ("Dataset" AS ?Class_Name).
      BIND (43 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("adms:contactPoint should be a vCard." AS ?Rule_Description).
-     BIND (concat("The adms:contactPoint ",str(?p)," is not a vCard.") AS ?Message).
+     BIND ("dcat:contactPoint should be a vCard." AS ?Rule_Description).
+     BIND (concat("The dcat:contactPoint ",str(?p)," is not a vCard.") AS ?Message).
    }
   }
 

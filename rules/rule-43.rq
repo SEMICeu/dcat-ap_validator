@@ -2,18 +2,18 @@
 # @title [Dataset] adms:contactPoint should be a vCard
 # @tag dataset
 
-PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
+
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
-  ?s adms:contactPoint ?o.
+  ?s dcat:contactPoint ?o.
   ?o ?pred ?val.
-  FILTER(!EXISTS {?o a <http://www.w3.org/2006/vcard/ns#VCard>}).
-  BIND (adms:contactPoint AS ?p).
+  FILTER(!EXISTS {?o a <http://www.w3.org/2006/vcard/ns#Kind>}).
+  BIND (dcat:contactPoint AS ?p).
   BIND ("Dataset" AS ?Class_Name).
   BIND (43 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("adms:contactPoint should be a vCard." AS ?Rule_Description).
-  BIND (concat("The adms:contactPoint ",str(?p)," is not a vCard.") AS ?Message).
+  BIND ("dcat:contactPoint should be a vCard." AS ?Rule_Description).
+  BIND (concat("The dcat:contactPoint ",str(?p)," is not a vCard.") AS ?Message).
 }
