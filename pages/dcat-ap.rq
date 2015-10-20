@@ -1709,23 +1709,7 @@ UNION
    } GROUP BY ?s 
      HAVING (COUNT( ?s) > 1)
   }
-  
-UNION
-# Rule_ID:130
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:CatalogRecord.
-     ?s dct:language ?o.
-     FILTER(!isURI(?o)).
-     BIND (dct:language AS ?p).
-     BIND ("CatalogRecord" AS ?Class_Name).
-     BIND (130 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:language should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:language ",str(?o)," is not a resource.") AS ?Message).
-   }
-  }
-  
+
 UNION
 # Rule_ID:131
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
@@ -1741,7 +1725,7 @@ UNION
      BIND (concat("The dct:language ",str(?o)," is not a dct:LinguisticSystem.") AS ?Message).
    }
   }
-  
+
 UNION
 # Rule_ID:132
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
@@ -1956,6 +1940,54 @@ UNION
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:issued is a recommended property for Catalog Record." AS ?Rule_Description).
      BIND (concat("The dcat:CatalogRecord ",str(?o)," does not have a dct:issued property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:147
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s dct:issued ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:issued AS ?p).
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (147 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:issued should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:issued ",str(?o)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:148
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s dct:description ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:description AS ?p).
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (148 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:description should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:description ",str(?o)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:149
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     ?s dct:title ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:title AS ?p).
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (149 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:title ",str(?o)," is not a literal.") AS ?Message).
    }
   }
 
