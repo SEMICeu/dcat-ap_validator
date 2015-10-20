@@ -589,7 +589,7 @@ UNION
 
 UNION
 # Rule_ID:46
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:distribution ?o.
@@ -663,23 +663,8 @@ UNION
   }
 
 UNION
-# Rule_ID:51
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dct:publisher ?o.
-     FILTER(!isURI(?o)).
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (51 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:publisher should be a resource." AS ?Rule_Description).
-     BIND (concat("The dct:publisher ",str(?o)," is not a resource.") AS ?Message).
-   }
-  }
-  
-UNION
 # Rule_ID:52
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:publisher as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:publisher ?o.
@@ -706,22 +691,6 @@ UNION
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:theme is a recommended property for Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?o)," does not have a dcat:theme property.") AS ?Message).
-   }
-  }
-
-UNION
-# Rule_ID:54
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dcat:theme ?o.
-     FILTER(!isURI(?o)).
-     BIND (dcat:theme AS ?p).
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (54 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:theme should be a resource." AS ?Rule_Description).
-     BIND (concat("The dcat:theme ",str(?o)," is not a resource.") AS ?Message).
    }
   }
 
@@ -1529,7 +1498,7 @@ UNION
 
 UNION
 # Rule_ID:115
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:theme ?o.
@@ -1976,6 +1945,23 @@ UNION
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:title should be a literal." AS ?Rule_Description).
      BIND (concat("The dct:title ",str(?o)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:150
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:accessRights ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dct:RightsStatement}).
+     BIND (dct:accessRights AS ?p).
+     BIND ("Dataset" AS ?Class_Name).
+     BIND (150 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:accessRights should be a dct:RightsStatement." AS ?Rule_Description).
+     BIND (concat("The dct:accessRights ",str(?o)," is not a dct:RightsStatement.") AS ?Message).
    }
   }
 

@@ -37,10 +37,10 @@
     <dct:title xml:lang="en">Linked Nobel prizes</dct:title>
     <dct:description>This dataset contains Nobel prizes, Nobel laureates and information about related media resources. </dct:description>
     <dcat:contactPoint rdf:resource="http://nobelprize.org/contacts/n1"/>
-    <dct:publisher>European Commission</dct:publisher>
     <dcat:keyword>Nobel prize</dcat:keyword>
     <dcat:keyword>prize</dcat:keyword>
     <dcat:keyword>science</dcat:keyword>    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-01-15</dct:issued>
     <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-08-27</dct:modified>
@@ -50,6 +50,11 @@
     <dct:temporal rdf:resource="http://data.nobelprize.org/period"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
+	<dct:accessRights rdf:resource="http://nobelprize.org/rights/dcat#right1"/>
+  </rdf:Description>
+     <rdf:Description rdf:about="http://nobelprize.org/rights/dcat#right1">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/RightsStatement"/>
+    <rdfs:label>Nobel rights</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Kind"/>
@@ -92,7 +97,7 @@
     <foaf:name>Nobel Media AB</foaf:name>
 	<dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://nobelprize.org/publisher/n2">
+  <rdf:Description rdf:nodeID="http://nobelprize.org/publisher/n2">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
 	<foaf:name>Nobel Media AB</foaf:name>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>

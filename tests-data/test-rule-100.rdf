@@ -50,8 +50,16 @@
     <dct:temporal rdf:resource="http://data.nobelprize.org/period"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
-	<dct:accessRights rdf:resource="http://nobelprize.org/rights/n0"/>
-	<dct:accessRights rdf:resource="http://nobelprize.org/rights/n1"/>
+	<dct:accessRights rdf:resource="http://nobelprize.org/rights/dcat#right1"/>
+	<dct:accessRights rdf:resource="http://nobelprize.org/rights/dcat#right2"/>
+  </rdf:Description>
+     <rdf:Description rdf:about="http://nobelprize.org/rights/dcat#right1">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/RightsStatement"/>
+    <rdfs:label>Nobel rights</rdfs:label>
+  </rdf:Description>
+     <rdf:Description rdf:about="http://nobelprize.org/rights/dcat#right2">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/RightsStatement"/>
+    <rdfs:label>Nobel rights</rdfs:label>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Kind"/>
