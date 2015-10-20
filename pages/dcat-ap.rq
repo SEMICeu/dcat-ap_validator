@@ -411,7 +411,7 @@ UNION
      ?s dct:modified ?o.
      BIND (dct:modified AS ?p).
      BIND(datatype(?o) AS ?datatype)
-     FILTER (?datatype != xsd:date)
+     FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
      BIND ("Catalog" AS ?Class_Name).
      BIND (32 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).

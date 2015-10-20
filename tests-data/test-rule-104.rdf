@@ -15,9 +15,9 @@
     <dcat:themeTaxonomy rdf:resource="http://eurovoc.europa.eu/"/>
     <dcat:dataset rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n0"/>
-	<dct:issued>2014-09-25</dct:issued>
+	<dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-09-25</dct:issued>
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
-    <dct:modified>2014-09-25</dct:modified>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-09-25</dct:modified>
 	<foaf:homepage rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
 	<dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
@@ -32,8 +32,8 @@
     <foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
 	<dct:conformsTo rdf:resource="http://nobelprize.org/law/12345"/>
     <adms:status rdf:resource="http://eurovoc.europa.eu/100142"/>
-    <dct:issued>2014-01-15</dct:issued>
-	<dct:modified>2014-09-25</dct:modified>
+    <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-01-15</dct:issued>
+	<dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-09-25</dct:modified>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
@@ -45,8 +45,8 @@
     <dcat:keyword>prize</dcat:keyword>
     <dcat:keyword>science</dcat:keyword>    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
-    <dct:issued>2014-01-15</dct:issued>
-    <dct:modified>2014-08-27</dct:modified>
+    <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-01-15</dct:issued>
+    <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-08-27</dct:modified>
     <dct:language rdf:resource="http://publications.europa.eu/resource/authority/language/ENG"/>
     <dcat:landingPage rdf:resource="http://data.nobelprize.org/"/>
     <dct:conformsTo rdf:resource="http://www.nobelprize.org/nobel_organizations/nobelmedia/nobelprize_org/developer/manual-linkeddata/terms.html"/>
