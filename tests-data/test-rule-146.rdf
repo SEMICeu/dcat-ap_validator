@@ -8,32 +8,27 @@
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 	xmlns:schema="http://schema.org/"
 	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-  <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#Catalog">
+  <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#catalog">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Catalog"/>
-	<dct:title xml:lang="en">Nobel Media Dataset catalog</dct:title>
+    <dct:title xml:lang="en">Nobel Media Dataset catalog</dct:title>
     <dct:description>A range of datasets maintained by Nobel Media AB </dct:description>
     <dcat:themeTaxonomy rdf:resource="http://eurovoc.europa.eu/"/>
     <dcat:dataset rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
-	<dct:publisher rdf:resource="http://nobelprize.org/publisher/n0"/>
+    <dct:publisher rdf:resource="http://nobelprize.org/publisher/n0"/>
     <dct:issued>2014-09-25</dct:issued>
     <dct:language rdf:resource="http://id.loc.gov/vocabulary/iso639-1/en"/>
     <dct:modified>2014-09-25</dct:modified>
-	<foaf:homepage rdf:resource="http://nobelprize.org/homepage/h0"/>
+	<foaf:homepage rdf:resource="http://data.nobelprize.org/"/>
     <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
 	<dcat:record rdf:resource="http://nobelprize.org/datarecords/dcat#dr1"/>
 	<dct:rights rdf:resource="http://nobelprize.org/rights/n0"/>
 	<dct:spatial rdf:resource="http://nobelprize.org/spatial/n0"/>
   </rdf:Description>
-   <rdf:Description rdf:about="http://nobelprize.org/homepage/h0">
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Documen"/>
-	<dct:title>Nobelprize page</dct:title>
-  </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datarecords/dcat#dr1">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#CatalogRecord"/>
-	<foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
+	<foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds2"/>
 	<dct:conformsTo rdf:resource="http://nobelprize.org/law/12345"/>
     <adms:status rdf:resource="http://eurovoc.europa.eu/100142"/>
-    <dct:issued>2014-01-15</dct:issued>
 	<dct:modified>2014-09-25</dct:modified>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds1">
@@ -46,6 +41,7 @@
     <dcat:keyword>science</dcat:keyword>
     <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
+    <dcat:theme rdf:resource="http://nobelprize.org/category/c1"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued>2014-01-15</dct:issued>
     <dct:modified>2014-08-27</dct:modified>
@@ -55,6 +51,19 @@
     <dct:temporal rdf:resource="http://data.nobelprize.org/period"/>
     <dct:spatial rdf:resource="http://sws.geonames.org/2673730"/>
     <dct:accrualPeriodicity rdf:resource="http://purl.org/cld/freq/daily"/>
+  </rdf:Description>
+ <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds2">
+    <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
+    <dct:title xml:lang="en">Linked Nobel prizes</dct:title>
+    <dct:description>This dataset contains Nobel prizes, Nobel laureates and information about related media resources. </dct:description>
+    <adms:contactPoint rdf:resource="http://nobelprize.org/contacts/n1"/>
+    <dcat:keyword>Nobel prize</dcat:keyword>
+    <dcat:keyword>prize</dcat:keyword>
+    <dcat:keyword>science</dcat:keyword>
+    <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
+    <dcat:theme rdf:resource="http://nobelprize.org/category/c1"/>
+    <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#VCard"/>
@@ -92,15 +101,32 @@
     <rdfs:label>Stockholm</rdfs:label>
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://nobelprize.org/publisher/n0">
+    <rdf:Description rdf:about="http://nobelprize.org/publisher/n0">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
     <foaf:name>Nobel Media AB</foaf:name>
 	<dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="http://nobelprize.org/publisher/n2">
+  <rdf:Description rdf:about="http://nobelprize.org/publisher/n2">
     <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
 	<foaf:name>Nobel Media AB</foaf:name>
     <dct:type rdf:resource="http://purl.org/adms/publishertype/Company"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://nobelprize.org/category/c1">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>Private</skos:prefLabel>
+	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="http://nobelprize.org/categoryScheme/cs1">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+	<dct:description xml:lang="en">Private scheme</dct:description>
+  </rdf:Description>
+   <rdf:Description rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>
+	<dct:type rdf:resource="http://nobelprize.org/license/c1"/>
+  </rdf:Description>
+     <rdf:Description rdf:about="http://creativecommons.org/licenses/by-nc/3.0/">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>
+	<dct:type rdf:resource="http://nobelprize.org/license/c3"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://eurovoc.europa.eu/100142">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>

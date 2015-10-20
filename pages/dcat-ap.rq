@@ -1928,7 +1928,7 @@ UNION
   }
 
 UNION
-# Rule_ID:144
+# Rule_ID:145
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      ?s a dcat:CatalogRecord.
@@ -1940,6 +1940,22 @@ UNION
      BIND ("warning" AS ?Rule_Severity).
      BIND ("adms:status is a recommended property for Catalog Record." AS ?Rule_Description).
      BIND (concat("The dcat:CatalogRecord ",str(?o)," does not have a adms:status property.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:146
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:CatalogRecord.
+     FILTER(!(EXISTS { ?s dct:issued ?desc})).
+     BIND (rdf:type AS ?p).
+     BIND (dct:issued AS ?o).
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (146 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dct:issued is a recommended property for Catalog Record." AS ?Rule_Description).
+     BIND (concat("The dcat:CatalogRecord ",str(?o)," does not have a dct:issued property.") AS ?Message).
    }
   }
 

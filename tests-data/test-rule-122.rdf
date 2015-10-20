@@ -29,6 +29,7 @@
 	<foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
 	<dct:conformsTo rdf:resource="http://nobelprize.org/law/12345"/>
     <adms:status rdf:resource="http://eurovoc.europa.eu/100142"/>
+    <dct:issued>2014-01-15</dct:issued>
 	<dct:modified>2014-09-25</dct:modified>
 	<dct:modified>2014-09-26</dct:modified>
   </rdf:Description>

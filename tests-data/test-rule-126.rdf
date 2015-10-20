@@ -28,6 +28,7 @@
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#CatalogRecord"/>
 	<foaf:primaryTopic rdf:resource="http://nobelprize.org/datasets/dcat#ds1"/>
 	<dct:conformsTo rdf:resource="http://nobelprize.org/law/12345"/>
+    <dct:issued>2014-01-15</dct:issued>
 	<dct:modified>2014-09-25</dct:modified>
 	<adms:status rdf:resource="http://nobelprize.org/status/s1"/>
   </rdf:Description>
