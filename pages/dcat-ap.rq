@@ -695,24 +695,8 @@ UNION
   }
 
 UNION
-# Rule_ID:55
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dct:conformsTo ?o.
-     FILTER(!isURI(?o)).
-     BIND (dct:conformsTo AS ?p).
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (55 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:conformsTo should be a resource." AS ?Rule_Description).
-     BIND (concat("The dcat:conformsTo ",str(?o)," is not a resource.") AS ?Message).
-   }
-  }
-
-UNION
 # Rule_ID:56
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:conformsTo as ?p) ?o 
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:conformsTo as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:conformsTo ?o.
@@ -1962,6 +1946,23 @@ UNION
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:accessRights should be a dct:RightsStatement." AS ?Rule_Description).
      BIND (concat("The dct:accessRights ",str(?o)," is not a dct:RightsStatement.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:151
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Catalog.
+     ?s foaf:page ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a foaf:Document}).
+     BIND (foaf:page AS ?p).
+     BIND ("Dataset" AS ?Class_Name).
+     BIND (151 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("foaf:page should be a foaf:Document." AS ?Rule_Description).
+     BIND (concat("The foaf:page ",str(?o)," is not a foaf:Document.") AS ?Message).
    }
   }
 
