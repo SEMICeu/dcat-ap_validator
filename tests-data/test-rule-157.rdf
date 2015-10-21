@@ -44,7 +44,7 @@
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
     <dcat:theme rdf:resource="http://nobelprize.org/category/c1"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
-    <dct:source rdf:about="http://nobelprize.org/datasets/dcat#ds2"/>
+    <dct:source rdf:resource="http://nobelprize.org/datasets/dcat#ds2"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#ds2">
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Datase"/>

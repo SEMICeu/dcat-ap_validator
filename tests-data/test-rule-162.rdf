@@ -81,12 +81,12 @@
     <dcat:mediaType rdf:resource="http://data.nobelprize.org/format/f2"/>
   </rdf:Description>
     <rdf:Description rdf:about="http://data.nobelprize.org/format/f1">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/MediaTypeOrExtend"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/MediaTypeOrExtent"/>
     <rdf:value>text/html</rdf:value>
     <rdfs:label>HTML</rdfs:label>
   </rdf:Description>
      <rdf:Description rdf:about="http://data.nobelprize.org/format/f2">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/MediaTypeOrExtend"/>
+    <rdf:type rdf:resource="http://purl.org/dc/terms/MediaTypeOrExtent"/>
     <rdf:value>text/html</rdf:value>
     <rdfs:label>HTML</rdfs:label>
   </rdf:Description>

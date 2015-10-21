@@ -78,6 +78,14 @@
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
     <dct:format rdf:resource="http://nobelprize.org/format/rdf+xml"/>
   </rdf:Description>
+   <rdf:Description rdf:about="http://nobelprize.org/datasets/dcat#dist2">
+    <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
+    <dct:title xml:lang="en">Linked Data endpoint</dct:title>
+    <dct:description xml:lang="en">Provides browsable linked data and a SPARQL endpoint.</dct:description>
+    <dcat:accessURL rdf:resource="http://data.nobelprize.org/"/>
+    <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
+    <dct:format rdf:resource="http://nobelprize.org/format/rdf+xml"/>
+  </rdf:Description>
     <rdf:Description rdf:about="http://data.nobelprize.org/period">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1905-03-01</schema:startDate>
