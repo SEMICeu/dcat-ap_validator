@@ -77,10 +77,14 @@
     <dct:title xml:lang="en">Linked Data endpoint</dct:title>
     <dct:description xml:lang="en">Provides browsable linked data and a SPARQL endpoint.</dct:description>
     <dcat:accessURL rdf:resource="http://data.nobelprize.org/"/>
-    <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/"/>
+    <dct:license rdf:resource="http://creativecommons.org/publicdomain/zero/1.1/"/>
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
   </rdf:Description>
    <rdf:Description rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>
+	<dct:type rdf:resource="http://nobelprize.org/license/c1"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="http://creativecommons.org/publicdomain/zero/1.1/">
     <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocumen"/>
 	<dct:type rdf:resource="http://nobelprize.org/license/c1"/>
   </rdf:Description>

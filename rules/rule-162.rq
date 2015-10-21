@@ -3,12 +3,11 @@
 # @tag distribution
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
-PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ("Distribution" AS ?Class_Name) (162 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dct:mediaType has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dct:mediaType.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
+SELECT ("Distribution" AS ?Class_Name) (162 AS ?Rule_ID) ("warning" AS ?Rule_Severity) ("dcat:mediaType has maximum cardinality of 1 for Distribution." AS ?Rule_Description) (concat("The dcat:Distribution ",str(?s)," has more than 1 dcat:mediaType.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Distribution AS ?o)
    WHERE {
      ?s a dcat:Distribution.
-     ?s dct:mediaType ?format.
+     ?s dcat:mediaType ?format.
    } GROUP BY ?s 
-     HAVING (COUNT( ?format) > 1)
+     HAVING (COUNT( ?s) > 1)
