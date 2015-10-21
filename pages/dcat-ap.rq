@@ -754,32 +754,6 @@ UNION
   }
 
 UNION
-# Rule_ID:61
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dcat:landingPage ?o.
-     FILTER(!isURI(?o)).
-     BIND (dcat:landingPage AS ?p).
-     BIND ("Dataset" AS ?Class_Name).
-     BIND (61 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:landingPage should be a resource." AS ?Rule_Description).
-     BIND (concat("The dcat:landingPage ",str(?p)," is not a resource.") AS ?Message).
-   }
-  }
-
-UNION
-# Rule_ID:62
-  {SELECT ("Dataset" AS ?Class_Name) (62 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dcat:landingPage has maximum cardinality of 1 for Dataset." AS ?Rule_Description) (concat("The dcat:Dataset ",str(?s)," has more than 1 dcat:landingPage.") AS ?Message) ?s (rdf:type AS ?p) (dcat:Dataset AS ?o)
-   WHERE {
-     ?s a dcat:Dataset.
-     ?s dcat:landingPage ?page.
-   } GROUP BY ?s 
-     HAVING (COUNT( ?page) > 1)
-  }
-
-UNION
 # Rule_ID:63
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dcat:landingPage as ?p) ?o 
    WHERE {
@@ -845,7 +819,7 @@ UNION
 
 UNION
 # Rule_ID:67
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:identifier as ?p) ?o 
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:identifier as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s adms:identifier ?o.
@@ -1998,6 +1972,23 @@ UNION
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:isVersionOf should be a dcat:Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:154
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:provenance ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dct:ProvenanceStatement}).
+     BIND (dct:provenance AS ?p).
+     BIND ("Dataset" AS ?Class_Name).
+     BIND (154 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:provenance should be a dct:ProvenanceStatementt." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?o)," which is not a dct:ProvenanceStatement.") AS ?Message).
    }
   }
 

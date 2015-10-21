@@ -4,7 +4,8 @@
 
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:identifier as ?p) ?o 
+
+SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:identifier as ?p) ?o 
 WHERE {
   ?s a dcat:Dataset.
   ?s adms:identifier ?o.
