@@ -10,6 +10,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX spdx: <http://spdx.org/rdf/terms#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message (?s AS ?Subject) (?p AS ?Predicate) (?o AS ?Object)
 WHERE{
 GRAPH <@@@TOKEN-GRAPH@@@> {
@@ -712,7 +713,7 @@ UNION
 
 UNION
 # Rule_ID:58
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:accrualPeriodicity as ?p) ?o 
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:accrualPeriodicity as ?p) ?o 
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:accrualPeriodicity ?o.
@@ -1963,6 +1964,23 @@ UNION
      BIND ("error" AS ?Rule_Severity).
      BIND ("foaf:page should be a foaf:Document." AS ?Rule_Description).
      BIND (concat("The foaf:page ",str(?o)," is not a foaf:Document.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:152
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+    ?s a dcat:Dataset.
+    ?s dct:hasVersion ?o.
+    ?o ?pred ?val.
+    FILTER(!EXISTS {?o a dcat:Dataset}).
+    BIND (dct:hasVersion AS ?p).
+    BIND ("Dataset" AS ?Class_Name).
+    BIND (152 AS ?Rule_ID).
+    BIND ("error" AS ?Rule_Severity).
+    BIND ("dct:hasVersion should be a dcat:Dataset." AS ?Rule_Description).
+    BIND (concat("The dcat:Datatset ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset.") AS ?Message).
    }
   }
 
