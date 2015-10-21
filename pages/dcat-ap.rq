@@ -1980,9 +1980,28 @@ UNION
     BIND (152 AS ?Rule_ID).
     BIND ("error" AS ?Rule_Severity).
     BIND ("dct:hasVersion should be a dcat:Dataset." AS ?Rule_Description).
-    BIND (concat("The dcat:Datatset ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset.") AS ?Message).
+    BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset.") AS ?Message).
    }
   }
+
+UNION
+# Rule_ID:153
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dct:isVersionOf ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a dcat:Dataset}).
+     BIND (dct:isVersionOf AS ?p).
+     BIND ("Dataset" AS ?Class_Name).
+     BIND (153 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:isVersionOf should be a dcat:Dataset." AS ?Rule_Description).
+     BIND (concat("The dcat:Dataset ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset.") AS ?Message).
+   }
+  }
+
+}
 
 }
 }
