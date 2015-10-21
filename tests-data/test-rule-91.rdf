@@ -80,7 +80,12 @@
     <dct:license rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/"/>
     <dct:format rdf:resource="http://data.nobelprize.org/format/rdf+xml"/>
     <dcat:downloadURL rdf:resource="http://data.nobelprize.org/download/ds1"/>
-    <dcat:mediaType>http://www.iana.org/assignments/media-types/media-types.xhtml#application</dcat:mediaType>
+    <dcat:mediaType rdf:resource="http://data.nobelprize.org/format/f1"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="http://data.nobelprize.org/format/f1">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/MediaTypeOrExten"/>
+    <rdf:value>text/html</rdf:value>
+    <rdfs:label>HTML</rdfs:label>
   </rdf:Description>
     <rdf:Description rdf:about="http://data.nobelprize.org/period">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>

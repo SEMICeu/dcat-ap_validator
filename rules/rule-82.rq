@@ -2,7 +2,6 @@
 # @title [Distribution] dct:description should be a literal
 # @tag distribution
 
-
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
 

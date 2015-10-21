@@ -83,6 +83,14 @@
     <dct:rights rdf:resource="http://nobelprize.org/rights/n1"/>
     <dct:rights rdf:resource="http://nobelprize.org/rights/n2"/>
   </rdf:Description>
+      <rdf:Description rdf:about="http://nobelprize.org/rights/n1">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/RightsStatement"/>
+    <rdfs:label>Nobel rights</rdfs:label>
+  </rdf:Description>
+       <rdf:Description rdf:about="http://nobelprize.org/rights/n2">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/RightsStatement"/>
+    <rdfs:label>Nobel rights</rdfs:label>
+  </rdf:Description>
     <rdf:Description rdf:about="http://data.nobelprize.org/period">
     <rdf:type rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
     <schema:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1905-03-01</schema:startDate>

@@ -3,13 +3,14 @@
 # @tag dataset
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
 
 SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a dcat:Dataset.
   ?s dcat:contactPoint ?o.
   ?o ?pred ?val.
-  FILTER(!EXISTS {?o a <http://www.w3.org/2006/vcard/ns#Kind>}).
+  FILTER(!EXISTS {?o a vcard:Kind}).
   BIND (dcat:contactPoint AS ?p).
   BIND ("Dataset" AS ?Class_Name).
   BIND (43 AS ?Rule_ID).

@@ -5,6 +5,7 @@
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a adms:Identifier.

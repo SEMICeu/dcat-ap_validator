@@ -1,18 +1,19 @@
 # Rule_ID:3
-# @title [Agent] type should be a resource
+# @title [Agent] dct:type should be a skos:Concept
 # @tag agent
 
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+
+SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:type as ?p) ?o 
 WHERE {
-  ?s a foaf:Agent.
+  ?s a dcat:Agent.
   ?s dct:type ?o.
-  FILTER(!isURI(?o)).
-  BIND (dct:type AS ?p)
+  ?o ?pred ?val.
+  FILTER(!EXISTS {?o a skos:Concept}).
   BIND ("Agent" AS ?Class_Name).
   BIND (3 AS ?Rule_ID).
-  BIND ("warning" AS ?Rule_Severity).
-  BIND ("Type should be a resource." AS ?Rule_Description).
-  BIND (concat("The foaf:Agent ",str(?s)," should have a dct:type as rdf:resource.") AS ?Message).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("dct:type should be a skos:Concept." AS ?Rule_Description).
+  BIND (concat("dcat:Agent ",str(?s)," does not have a dct:type property of type skos:Concept.") AS ?Message).
 }

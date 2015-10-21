@@ -3,7 +3,8 @@
 # @tag agent
 
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   FILTER(!EXISTS {?s a foaf:Agent}).
   BIND ("Agent" AS ?Class_Name).

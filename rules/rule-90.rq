@@ -2,7 +2,6 @@
 # @title [Distribution] dcat:downloadURL should be a resource
 # @tag distribution
 
-
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
 

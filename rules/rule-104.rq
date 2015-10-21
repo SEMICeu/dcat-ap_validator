@@ -5,7 +5,8 @@
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:type as ?p) ?o 
+
+SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:type as ?p) ?o 
 WHERE {
   ?s a dcat:Dataset.
   ?s dct:type ?o.

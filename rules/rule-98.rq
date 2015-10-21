@@ -2,7 +2,6 @@
 # @title [Agent] dct:type has maximum cardinality of 1 for Agent
 # @tag agent
 
-
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>

@@ -5,7 +5,8 @@
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:status as ?p) ?o 
+
+SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (adms:status as ?p) ?o 
 WHERE {
   ?s a dcat:Distribution.
   ?s adms:status ?o.

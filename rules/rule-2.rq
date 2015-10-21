@@ -1,10 +1,11 @@
 # Rule_ID:2
-# @title [Agent] type is a recommended property for Agent
+# @title [Agent] dct:type is a recommended property for Agent
 # @tag agent
 
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
 SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
 WHERE {
   ?s a foaf:Agent.
@@ -14,6 +15,6 @@ WHERE {
   BIND ("Agent" AS ?Class_Name).
   BIND (2 AS ?Rule_ID).
   BIND ("warning" AS ?Rule_Severity).
-  BIND ("Type is a recommended property for Agent." AS ?Rule_Description).
-  BIND (concat("The foaf:Agent ",str(?o)," does not have a type property.") AS ?Message).
+  BIND ("dct:type is a recommended property for Agent." AS ?Rule_Description).
+  BIND (concat("The foaf:Agent ",str(?o)," does not have a dct:type property.") AS ?Message).
 }
