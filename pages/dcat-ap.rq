@@ -829,7 +829,7 @@ UNION
      BIND ("Dataset" AS ?Class_Name).
      BIND (68 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dct:issued should be literal  typed as date or dateTime." AS ?Rule_Description).
+     BIND ("dct:issued should be literal typed as date or dateTime." AS ?Rule_Description).
      BIND (concat("The dct:issued ",str(?p)," is not a literal typed as date or dateTime.") AS ?Message).
    }
   }
@@ -2055,6 +2055,52 @@ UNION
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dcat:Distribution does not exist." AS ?Rule_Description).
      BIND (concat("The recommended class dcat:Distribution does not exist.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:164
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o 
+   WHERE {
+     ?s a spdx:Checksum.
+     ?s spdx:checksumValue ?o.
+     BIND (spdx:checksumValue AS ?p).
+     BIND (datatype(?o) AS ?datatype)
+     FILTER (?datatype != xsd:hexBinary)
+     BIND ("spdx:Checksum" AS ?Class_Name).
+     BIND (164 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("spdx:checksumValue should be literal typed as hexBinary." AS ?Rule_Description).
+     BIND (concat("The spdx:checksumValue ",str(?p)," is not a literal typed as hexBinary.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:165
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:type as ?p) ?o 
+   WHERE {
+     ?s a dct:LicenseDocument.
+     ?s dct:type ?o.
+     ?o ?pred ?val.
+     FILTER(!EXISTS {?o a skos:Concept}).
+     BIND ("LicenseDocument" AS ?Class_Name).
+     BIND (165 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:type should be a skos:Concept." AS ?Rule_Description).
+     BIND (concat("dct:LicenseDocument ",str(?s)," does not have a dct:type property of type skos:Concept.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:166
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     FILTER(!EXISTS {?s a dct:LicenseDocument}).
+     BIND ("LicenseDocument" AS ?Class_Name).
+     BIND (166 AS ?Rule_ID).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("dct:LicenseDocument does not exist." AS ?Rule_Description).
+     BIND (concat("The recommended class dct:LicenseDocument does not exist.") AS ?Message).
    }
   }
 

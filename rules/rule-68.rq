@@ -16,6 +16,6 @@ WHERE {
   BIND ("Dataset" AS ?Class_Name).
   BIND (68 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dct:issued should be literal  typed as date or dateTime." AS ?Rule_Description).
+  BIND ("dct:issued should be literal typed as date or dateTime." AS ?Rule_Description).
   BIND (concat("The dct:issued ",str(?p)," is not a literal typed as date or dateTime.") AS ?Message).
 }

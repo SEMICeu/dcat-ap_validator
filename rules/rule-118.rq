@@ -1,8 +1,9 @@
 # Rule_ID:118
 # @title [Licence Document] dct:type has a maximum cardinality of 1 for dct:LicenseDocument
-# @tag catalog
+# @tag licensedocument
 
 PREFIX dct: <http://purl.org/dc/terms/>
+
 SELECT ("LicenseDocument" AS ?Class_Name) (118 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has a maximum cardinality of 1 for dct:LicenseDocument" AS ?Rule_Description) (concat("dct:LicenseDocument ", str(?s)," has more than 1 dct:type") AS ?Message) ?s
 WHERE {
    ?s a dct:LicenseDocument.

@@ -117,6 +117,21 @@
     <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>
 	<dct:type rdf:resource="http://nobelprize.org/license/c3"/>
   </rdf:Description>
+   <rdf:Description rdf:about="http://nobelprize.org/license/c1">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>Private</skos:prefLabel>
+	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
+  </rdf:Description>
+   <rdf:Description rdf:about="http://nobelprize.org/license/c2">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>Private</skos:prefLabel>
+	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
+  </rdf:Description>
+    <rdf:Description rdf:about="http://nobelprize.org/license/c3">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>Private</skos:prefLabel>
+	<skos:inScheme rdf:resource="http://nobelprize.org/categoryScheme/cs1"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://eurovoc.europa.eu/100142">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:prefLabel>Private</skos:prefLabel>
