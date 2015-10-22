@@ -1,0 +1,22 @@
+# Rule_ID:171
+# @title [Category scheme] dct:title is a required property for Category scheme
+# @tag category scheme
+
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+WHERE {
+  ?s a dcat:Dataset.
+  ?s dcat:theme ?o.
+  ?o a skos:Concept.
+  ?o skos:inScheme ?val.
+  FILTER(!EXISTS {?val dct:title ?label}).
+  BIND (dct:title  AS ?p).
+  BIND ("Category scheme" AS ?Class_Name).
+  BIND (171 AS ?Rule_ID).
+  BIND ("error" AS ?Rule_Severity).
+  BIND ("dct:title is a required property for Category scheme." AS ?Rule_Description).
+  BIND (concat("The Category scheme",str(?o)," does not have a dct:title property.") AS ?Message).
+}
