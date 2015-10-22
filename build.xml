@@ -2,39 +2,9 @@
 <?xml-stylesheet type="text/xsl" href="./build.xsl"?>
 
 <project name="DCAT-AP validator" default="main" basedir=".">
+    <property file="build.properties"/>
+    <property file="default.properties"/>
 
-	<property name="pages.dir" value="pages"/>
-	<property name="js.dir" value="${pages.dir}/js/"/>
-	<property name="js-dcat.dir" value="${pages.dir}/js/dcat-ap"/>
-	<property name="css.dir" value="${pages.dir}/css/"/>
-	<property name="css-dcat.dir" value="${pages.dir}/css/dcat-ap/"/>
-	<property name="cm.dir" value="${css.dir}/codemirror/"/>
-	<property name="lib.dir" value="lib"/>
-	<property name="jsdoc.dir" value="${lib.dir}/jsdoc"/>
-	<property name="jsdoc.home" value="${jsdoc.dir}/jsdoc3"/>
-	<property name="yui.dir" value="${lib.dir}/yui"/>
-	<property name="rules.dir" value="rules"/>
-	<property name="sparql-doc.dir" value="sparql-doc"/>
-	<property name="tests.dir" value="tests"/>
-	<property name="tests-execution.dir" value="tests-execution"/>
-	<property name="tests-data.dir" value="tests-data"/>
-	<property name="tests.name" value="test-rule-"/>
-	<property name="jslint.dir" value="${lib.dir}/jslint"/>
-	<property name="csslint.dir" value="${lib.dir}/csslint"/>
-	<property name="fuseki.dir" value="C:/Development/jena-fuseki1-1.1.2/"/>   
-	<property name="fuseki-pages.dir" value="${fuseki.dir}/pages/"/>
-	<property name="fuseki.host" value="localhost"/>
-	<property name="fuseki.port" value="3030"/>
-	<property name="fuseki.page" value="dcat-ap_validator.html"/>
-	<property name="fuseki.endpoint" value="dcat-ap_validator"/>
-	<property name="server.dir" value="server"/>
-	<property name="server.host" value="localhost"/>
-	<property name="server.port" value="3000"/>
- 	<property name="server.file" value="sessions.json"/>
- 	<property name="server.cookie" value="dcat-ap"/>
- 	<property name="server.days" value="1"/>
- 	<property name="server.log" value="server.log"/>
-	
 	<target name="main" depends="replacetokens,jslint,csslint,jsdoc,compress,concat,sparql-doc,kill-server,kill-fuseki,deploy,start-fuseki,start-server,test"/>
 
     <target name="replacetokens" description="Replace tokens in files">
