@@ -125,24 +125,35 @@
 	</target>
 
 	<target name="sparql-doc" depends="create" description="It executes the sparq-doc command.">
-		<exec executable="cmd.exe" failonerror="true">
+		<exec executable="cmd.exe" failonerror="true" os="Windows">
 			<arg value="/c"/>
 			<arg line="sparql-doc ${rules.dir} ${sparql-doc.dir}"/>
 		</exec>
+        <exec executable="sparql-doc" failonerror="true" os="Mac OS X">
+            <arg line="${rules.dir} ${sparql-doc.dir}"/>
+        </exec>
 	</target>
 
 	<target name="kill-server" description="It kills the DCAT-AP server.">
-		<exec executable="cmd.exe">
+		<exec executable="cmd.exe" os="Windows">
 			<arg value="/c"/>
 			<arg value="kill-server.bat ${server.port}"/>
 		</exec>
+       <exec executable="/bin/sh" os="Mac OS X">
+            <arg value="-c"/>
+            <arg value="./kill-server.sh ${server.port}"/>
+      </exec>
 	</target>
     
 	<target name="kill-fuseki" description="It kills the Fuseki server.">
-		<exec executable="cmd.exe">
+		<exec executable="cmd.exe" os="Windows">
 			<arg value="/c"/>
 			<arg value="kill-fuseki.bat ${fuseki.port}"/>
 		</exec>
+        <exec executable="/bin/sh" os="Mac OS X">
+            <arg value="-c"/>
+            <arg value="./kill-server.sh ${fuseki.port}"/>
+       </exec>
 	</target>
 
 	<target name="deploy" description="It deploys (copy) the DCAT-AP validator with documentation on the Fuseki server.">
@@ -160,23 +171,32 @@
 	</target>
 
 	<target name="start-fuseki" description="It executes the Fuseki server.">
-		<exec executable="cmd.exe" spawn="true">
+		<exec executable="cmd.exe" spawn="true" os="Windows">
 			<arg value="/c"/>
 			<arg line="java -jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
 		</exec>
+        <exec executable="java" spawn="true" os="Mac OS X">
+            <arg line="-jar ${fuseki.dir}/fuseki-server.jar --update --port=${fuseki.port} --pages ${fuseki-pages.dir} --mem /${fuseki.endpoint}"/>
+       </exec>
 	</target>
 
 	<target name="start-server" description="It executes the DCAT-AP server.">
-		<exec executable="cmd.exe" spawn="true">
+		<exec executable="cmd.exe" spawn="true" os="Windows">
 			<arg value="/c"/>
 			<arg line="node.exe ${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
 		</exec>
+        <exec executable="node" spawn="true" os="Mac OS X">
+            <arg line="${fuseki.dir}/server.js ${server.port} ${server.file} ${server.days} ${fuseki.host} ${fuseki.port} ${fuseki.endpoint} > ${fuseki.dir}/${server.log}"/>
+        </exec>
 	</target>
     
 	<target name="test" description="It tests with casperjs all the rules.">
-		<exec executable="cmd.exe">
+		<exec executable="cmd.exe" os="Windows">
 			<arg value="/c"/>
 			<arg line="casperjs test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
 		</exec>
+        <exec executable="casperjs" os="Mac OS X">
+            <arg line="test ${tests.dir}/ --testname=${tests.name} --url=http://${fuseki.host}:${fuseki.port} --page=${fuseki.page} --endpoint=${fuseki.endpoint} --output=${tests-execution.dir} --testdata=${tests-data.dir} --xunit=${tests-execution.dir}/xunit.xml"/>
+        </exec>
 	</target>
 </project>
