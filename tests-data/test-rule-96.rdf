@@ -115,4 +115,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
 	<dct:description xml:lang="en">Private scheme</dct:description>
   </rdf:Description>
+     <rdf:Description rdf:about="http://creativecommons.org/licenses/by-nc/3.0/">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>
+	<dct:type rdf:resource="http://nobelprize.org/license/c3"/>
+  </rdf:Description>
 </rdf:RDF>

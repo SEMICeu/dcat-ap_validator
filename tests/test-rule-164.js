@@ -14,18 +14,15 @@ casper.test.begin(testname, 3, function suite(test) {
     casper.then(function() {
         this.waitForResource(this.getCurrentUrl(), function() {
             if (casper.cli.has("output")) {this.capture(casper.cli.get("output") + '/' + testname + '-1.png'); }
-            var xml = this.page.content, parser, xmlDoc, results, binding, binding1;
+            var xml = this.page.content, parser, xmlDoc, results, binding;
             //this.echo(xml);
             parser = new DOMParser();
             xmlDoc = parser.parseFromString(xml, 'text/xml');
             results = xmlDoc.getElementsByTagName("results")[0].childNodes;
-            test.assertEquals(results.length, 5);
+            test.assertEquals(results.length, 3);
             binding = xmlDoc.getElementsByTagName("result")[0].getElementsByTagName("binding")[1].textContent.trim();
             //this.echo(binding);
-            test.assertEquals(binding, "46");
-            binding1 = xmlDoc.getElementsByTagName("result")[1].getElementsByTagName("binding")[1].textContent.trim();
-            //this.echo(binding);
-            test.assertEquals(binding1, testid);
+            test.assertEquals(binding, testid);
         }, 3000);
     });
 
