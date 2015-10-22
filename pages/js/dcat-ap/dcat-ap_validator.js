@@ -29,9 +29,25 @@ var servercookiedays = @@@TOKEN-SERVERCOOKIEDAYS@@@;
  */
 var servercookiename = "@@@TOKEN-SERVERCOOKIENAME@@@";
 /**
- * DCAT-AP server cookie name
+ * DCAT-AP query file
  */
 var queryfile = "@@@TOKEN-QUERYFILE@@@";
+/**
+ * DCAT-AP sample ttl file
+ */
+var samplettlfile = "@@@TOKEN-SAMPLETTLFILE@@@";
+/**
+ * DCAT-AP sample rdf file
+ */
+var samplerdffile = "@@@TOKEN-SAMPLERDFFILE@@@";
+/**
+ * DCAT-AP sample nt file
+ */
+var samplentfile = "@@@TOKEN-SAMPLENTFILE@@@";
+/**
+ * DCAT-AP sample rdf file
+ */
+var samplejsonldfile = "@@@TOKEN-SAMPLEJSONLDFILE@@@";
 
 /**
  * Instances of the Codemirror used in the tabs.
@@ -649,19 +665,19 @@ $(document).ready(function () {
     });
 
     $("#loadsample1").click(function () {
-        loadFile("samples/sample-turtle.ttl");
+        loadFile(samplettlfile);
     });
 
     $("#loadsample2").click(function () {
-        loadFile("samples/sample-xml.rdf");
+        loadFile(samplerdffile);
     });
 
     $("#loadsample3").click(function () {
-        loadFile("samples/sample-n-triples.nt");
+        loadFile(samplentfile);
     });
 
     $("#loadsample4").click(function () {
-        loadFile("samples/sample-json-ld.jsonld");
+        loadFile(samplejsonldfile);
     });
 
     editortab1.on("change", function () {

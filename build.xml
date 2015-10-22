@@ -15,6 +15,10 @@
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIEDAYS@@@" value="${server.days}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SERVERCOOKIENAME@@@" value="${server.cookie}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-QUERYFILE@@@" value="${query.file}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SAMPLETTLFILE@@@" value="${sample-ttl.file}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SAMPLERDFFILE@@@" value="${sample-rdf.file}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SAMPLENTFILE@@@" value="${sample-nt.file}"/>
+        <replace file="${js-dcat.dir}/dcat-ap_validator.js" token="@@@TOKEN-SAMPLEJSONLDFILE@@@" value="${sample-jsonld.file}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-HOMEPAGE@@@" value="${fuseki.page}"/>
         <replace file="${js-dcat.dir}/dcat-ap_validator-results.js" token="@@@TOKEN-SERVERCOOKIENAME@@@" value="${server.cookie}"/>
     </target>
