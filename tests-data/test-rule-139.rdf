@@ -107,6 +107,7 @@
    <rdf:Description rdf:about="http://nobelprize.org/categoryScheme/cs1">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
 	<dct:description xml:lang="en">Private scheme</dct:description>
+    <dct:title>My scheme</dct:title>
   </rdf:Description>
    <rdf:Description rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
     <rdf:type rdf:resource="http://purl.org/dc/terms/LicenseDocument"/>
@@ -124,9 +125,11 @@
    <rdf:Description rdf:about="http://nobelprize.org/categoryScheme/cs1">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
 	<dct:description xml:lang="en">Private scheme</dct:description>
+    <dct:title>My scheme</dct:title>
   </rdf:Description>
   <rdf:Description rdf:about="http://eurovoc.europa.eu/">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptSchem"/>
 	<dct:description xml:lang="en">Private scheme</dct:description>
+    <dct:title>My scheme</dct:title>
   </rdf:Description>
 </rdf:RDF>
