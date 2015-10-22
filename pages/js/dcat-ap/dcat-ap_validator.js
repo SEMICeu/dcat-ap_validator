@@ -28,6 +28,10 @@ var servercookiedays = @@@TOKEN-SERVERCOOKIEDAYS@@@;
  * DCAT-AP server cookie name
  */
 var servercookiename = "@@@TOKEN-SERVERCOOKIENAME@@@";
+/**
+ * DCAT-AP server cookie name
+ */
+var queryfile = "@@@TOKEN-QUERYFILE@@@";
 
 /**
  * Instances of the Codemirror used in the tabs.
@@ -597,7 +601,7 @@ $(document).ready(function () {
         registerGraph(graph);
     }
 
-    getQuery("dcat-ap.rq", getGraphFromCookie());
+    getQuery(queryfile, getGraphFromCookie());
 
     editortab1 = CodeMirror.fromTextArea(document.getElementById("tab1validationquery"), {
         mode: "turtle",
