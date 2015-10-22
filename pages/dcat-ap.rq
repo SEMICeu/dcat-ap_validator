@@ -2170,6 +2170,7 @@ UNION
      ?data dcat:theme ?theme.
      ?theme a skos:Concept.
      ?theme skos:inScheme ?s.
+     ?s a skos:ConceptScheme.
      FILTER(!EXISTS {?s dct:title ?o}).
      BIND (dct:title AS ?p).
      BIND ("Category scheme" AS ?Class_Name).
