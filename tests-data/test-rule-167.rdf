@@ -42,7 +42,6 @@
     <dcat:keyword>science</dcat:keyword>
     <dcat:theme rdf:resource="http://eurovoc.europa.eu/100142"/>
     <dct:publisher rdf:resource="http://nobelprize.org/publisher/n2"/>
-    <dcat:theme rdf:resource="http://nobelprize.org/category/c1"/>
     <dcat:distribution rdf:resource="http://nobelprize.org/datasets/dcat#dist1"/>
     <dct:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-01-15</dct:issued>
     <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2014-08-27</dct:modified>

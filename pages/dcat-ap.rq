@@ -2136,6 +2136,7 @@ UNION
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:theme ?o.
+     ?o a skos:Concept.
      FILTER(!EXISTS {?o skos:prefLabel ?label}).
      BIND (dcat:theme AS ?p).
      BIND ("Category" AS ?Class_Name).
