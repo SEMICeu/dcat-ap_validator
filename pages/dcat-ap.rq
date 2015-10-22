@@ -2130,5 +2130,20 @@ UNION
    }
   }
 
+UNION
+# Rule_ID:169
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dcat:Dataset.
+     ?s dcat:theme ?o.
+     FILTER(!EXISTS {?o skos:prefLabel ?label}).
+     BIND (dcat:theme AS ?p).
+     BIND ("Category" AS ?Class_Name).
+     BIND (169 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("skos:prefLabel is a required property for Category." AS ?Rule_Description).
+     BIND (concat("The Category ",str(?o)," does not have a skos:prefLabel property.") AS ?Message).
+   }
+  }
 }
 }

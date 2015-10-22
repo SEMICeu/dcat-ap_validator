@@ -1,5 +1,5 @@
 # Rule_ID:168
-# @title [Agent] skos:ConceptScheme does not exist
+# @title [Category scheme] skos:ConceptScheme does not exist
 # @tag Categoryscheme
 
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
