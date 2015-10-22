@@ -1,5 +1,5 @@
 var testid = "166", testname = casper.cli.get("testname") + testid;
-casper.test.begin(testname, 3, function suite(test) {
+casper.test.begin(testname, 2, function suite(test) {
     casper.start(casper.cli.get("url") + '/' + casper.cli.get("page"), function() {
         var file = '.\\' + casper.cli.get("testdata") + '\\' + testname + '.rdf';
         this.page.uploadFile('input[type="file"]', file);
