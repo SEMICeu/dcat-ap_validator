@@ -2111,9 +2111,9 @@ UNION
      FILTER(!EXISTS {?s a skos:Concept}).
      BIND ("Category" AS ?Class_Name).
      BIND (167 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
+     BIND ("warning" AS ?Rule_Severity).
      BIND ("skos:Concept does not exist." AS ?Rule_Description).
-     BIND (concat("The mandatory class skos:Concept does not exist.") AS ?Message).
+     BIND (concat("The recommended class skos:Concept does not exist.") AS ?Message).
    }
   }
 
@@ -2124,9 +2124,9 @@ UNION
      FILTER(!EXISTS {?s a skos:ConceptScheme}).
      BIND ("Category scheme" AS ?Class_Name).
      BIND (168 AS ?Rule_ID).
-     BIND ("error" AS ?Rule_Severity).
-     BIND ("skos:ConceptScheme  does not exist." AS ?Rule_Description).
-     BIND (concat("The mandatory class skos:ConceptScheme  does not exist.") AS ?Message).
+     BIND ("warning" AS ?Rule_Severity).
+     BIND ("skos:ConceptScheme does not exist." AS ?Rule_Description).
+     BIND (concat("The recommended class skos:ConceptScheme  does not exist.") AS ?Message).
    }
   }
 

@@ -16,3 +16,4 @@ WHERE {
   BIND ("warning" AS ?Rule_Severity).
   BIND ("dct:conformsTo should be a resource." AS ?Rule_Description).
   BIND (concat("The foaf:Agent ",str(?s)," should have a dct:conformsTo as a resource.") AS ?Message).
+}
