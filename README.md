@@ -13,10 +13,7 @@ If the result of the query is in XML format there is an XSLT stylesheet applied 
 <h2>Rules</h2>
 
 The SPARQL query contains several rules which are based on those available here:
-https://github.com/nvdk/OpenDataSupport/tree/master/odip.opendatasupport.eu/validation_queries
-https://github.com/tenforce/ods-lodms-plugins/blob/master/lodms-ods-transformers/ods-validator/src/main/resources/com/tenforce/lodms/transformers/default_rules.xml
-
-Then they have been updated with those expressed in <a href="https://github.com/EmidioStani/dcat-ap_validator/blob/master/doc/DCAT-AP_Revision_Draft_5_v0.05.docx">DCAT-AP_Revision_Draft_5_v0.05</a>
+<a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/asset_release/dcat-application-profile-data-portals-europe-final">DCAT-AP Final 1.1</a>
 
 All the rules are stored in the <b>rules</b> folder. For almost each rule a test and a test data have been created.
 
@@ -94,19 +91,20 @@ The development process is based on:
 	<li><a href="https://codemirror.net/mode/index.html">Codemirror</a> for syntax highlight in direct input tab and in the SPARQL query text area</li>
 	<li><a href="https://www.datatables.net/">DataTables</a> 1.10 to display results with ordering, pagination and search.</li>
 	<li><a href="https://casperjs.org">casperjs</a> 1.1 beta to execute all the tests.</li>
+	<li><a href="https://github.com/js-cookie/js-cookie">JavaScript Cookie</a> v2.0.3 for cookie management.</li>
 </ol>
 
 <h2>TO DO</h2>
 <table>
 	<tr><th>Action</th><th>Priority</th><th>Status</th></tr>
-	<tr><td>Use js cookie to setup a random custom graph per session https://github.com/js-cookie/js-cookie</td><td>High</td><td>Not done</td></tr>
 	<tr><td>Add compatibility with virtuoso, see api at: http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VirtGraphProtocolCURLExamples</td><td>High</td><td>Not done</td></tr>
-	<tr><td>Replace php proxy with nodejs</td><td>Medium</td><td>Not done</td></tr>
 	<tr><td>Add automatic tests for file url (require Apache running) and direct input</td><td>Medium</td><td>Not done</td></tr>
-	<tr><td>Improve quality of the tests: more asserts (test 11, 30, 43, 46, 52), parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
+	<tr><td>Improve quality of the tests: parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 	<tr><td>Add <a href="https://datatables.net/examples/api/show_hide.html">toggle columns</a> in the results (in case more data are returned->better queries)</td><td>Medium</td><td>Not done</td></tr>
 	<tr><td>Add possible html compressor such as: https://code.google.com/p/htmlcompressor/</td><td>Low</td><td>Not done</td></tr>
-	<tr><td>Add tooltip for class and properties</td><td>Low</td><td>Not done</td></tr>
 	<tr><td>Homogenize css between build.css, dcat-ap_validator.css and dcat-ap_validator-results.css</td><td>Low</td><td>Not done</td></tr>
 	<tr><td>Improve W3C and WCAG 2.0 validation for the results</td><td>Low</td><td>Not done</td></tr>
 </table>
+
+<h2>Licence</h2>
+This software is released with EUPL licence: https://joinup.ec.europa.eu/community/eupl/home
