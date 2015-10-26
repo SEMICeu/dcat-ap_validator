@@ -1,5 +1,5 @@
 # Rule_ID:46
-# @title [Dataset] dcat:distribution should be a Distribution
+# @title [Dataset] dcat:distribution should be a dcat:Distribution
 # @tag dataset
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
@@ -14,6 +14,6 @@ WHERE {
   BIND ("Dataset" AS ?Class_Name).
   BIND (46 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dcat:distribution should be a Distribution." AS ?Rule_Description).
+  BIND ("dcat:distribution should be a dcat:Distribution." AS ?Rule_Description).
   BIND (concat("The dcat:distribution ",str(?o)," is not a distribution.") AS ?Message).
 }

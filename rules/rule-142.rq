@@ -1,5 +1,5 @@
 # Rule_ID:142
-# @title [Catalog Record] foaf:primaryTopic should be a Dataset
+# @title [Catalog Record] foaf:primaryTopic should be a dcat:Dataset
 # @tag Catalog Record
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
@@ -12,6 +12,6 @@ WHERE {
   BIND ("CatalogRecord" AS ?Class_Name).
   BIND (142 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("dcat:dataset should be a Dataset." AS ?Rule_Description).
+  BIND ("foaf:primaryTopic should be a dcat:Dataset." AS ?Rule_Description).
   BIND (concat("The dcat:CatalogRecord",str(?s)," has a ",str(?o)," which is not a dcat:Dataset") AS ?Message).
 }

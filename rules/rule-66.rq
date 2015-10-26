@@ -1,6 +1,6 @@
 # Rule_ID:66
-# @title [Dataset] skos:notation is a required property for adms:Identifier
-# @tag dataset
+# @title [Identifier] skos:notation is a required property for adms:Identifier
+# @tag identifier
 
 PREFIX adms: <http://www.w3.org/ns/adms#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>

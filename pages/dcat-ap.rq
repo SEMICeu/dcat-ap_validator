@@ -103,7 +103,7 @@ UNION
      BIND ("Catalog" AS ?Class_Name).
      BIND (5 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:dataset should be a Dataset" AS ?Rule_Description).
+     BIND ("dcat:dataset should be a dcat:Dataset" AS ?Rule_Description).
      BIND (concat("The dcat:Catalog ",str(?s)," has a ",str(?o)," which is not a dcat:Dataset") AS ?Message).
    }
   }
@@ -384,7 +384,7 @@ UNION
      BIND ("Catalog" AS ?Class_Name).
      BIND (30 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:catalogRecord should be a CatalogRecord." AS ?Rule_Description).
+     BIND ("dcat:catalogRecord should be a dcat:CatalogRecord." AS ?Rule_Description).
      BIND (concat("The dcat:catalogRecord ",str(?o)," is not a CatalogRecord.") AS ?Message).
    }
   }
@@ -600,7 +600,7 @@ UNION
      BIND ("Dataset" AS ?Class_Name).
      BIND (46 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:distribution should be a Distribution." AS ?Rule_Description).
+     BIND ("dcat:distribution should be a dcat:Distribution." AS ?Rule_Description).
      BIND (concat("The dcat:distribution ",str(?o)," is not a distribution.") AS ?Message).
    }
   }
@@ -1722,7 +1722,7 @@ UNION
      BIND ("CatalogRecord" AS ?Class_Name).
      BIND (142 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
-     BIND ("dcat:dataset should be a Dataset." AS ?Rule_Description).
+     BIND ("foaf:primaryTopic should be a dcat:Dataset." AS ?Rule_Description).
      BIND (concat("The dcat:CatalogRecord",str(?s)," has a ",str(?o)," which is not a dcat:Dataset") AS ?Message).
    }
   }
@@ -2134,11 +2134,11 @@ UNION
 # Rule_ID:169
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
-     ?s a dcat:Dataset.
-     ?s dcat:theme ?o.
-     ?o a skos:Concept.
-     FILTER(!EXISTS {?o skos:prefLabel ?label}).
-     BIND (dcat:theme AS ?p).
+     ?dat a dcat:Dataset.
+     ?dat dcat:theme ?s.
+     ?s a skos:Concept.
+     FILTER(!EXISTS {?s skos:prefLabel ?o}).
+     BIND (skos:prefLabel AS ?p).
      BIND ("Category" AS ?Class_Name).
      BIND (169 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
@@ -2179,6 +2179,88 @@ UNION
      BIND ("dct:title is a required property for Category scheme." AS ?Rule_Description).
      BIND (concat("The Category scheme ",str(?s)," does not have a dct:title property.") AS ?Message).
    }
+  }
+
+UNION
+# Rule_ID:172
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?data a dcat:Dataset.
+     ?data dcat:theme ?theme.
+     ?theme a skos:Concept.
+     ?theme skos:inScheme ?s.
+     ?s a skos:ConceptScheme.
+     ?s dct:title ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (dct:title AS ?p).
+     BIND ("Category scheme" AS ?Class_Name).
+     BIND (172 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("dct:title should be a literal." AS ?Rule_Description).
+     BIND (concat("The dct:title ",str(?o)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:173
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?dat a dcat:Dataset.
+     ?dat dcat:theme ?s.
+     ?s a skos:Concept.
+     ?s skos:prefLabel ?o.
+     FILTER(!isLiteral(?o)).
+     BIND (skos:prefLabel AS ?p).
+     BIND ("Category" AS ?Class_Name).
+     BIND (173 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("skos:prefLabel should be a literal." AS ?Rule_Description).
+     BIND (concat("The skos:prefLabel ",str(?o)," is not a literal.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:174
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dct:PeriodOfTime.
+     ?s schema:startDate ?o.
+     BIND (schema:startDate AS ?p).
+     BIND (datatype(?o) AS ?datatype)
+     FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (175 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("schema:startDate should be a literal typed as date or dateTime." AS ?Rule_Description).
+     BIND (concat("The schema:startDate ",str(?o)," is not a literal typed as date or dateTime.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:175
+  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
+   WHERE {
+     ?s a dct:PeriodOfTime.
+     ?s schema:endDate ?o.
+     BIND (schema:endDate AS ?p).
+     BIND (datatype(?o) AS ?datatype)
+     FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
+     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND (175 AS ?Rule_ID).
+     BIND ("error" AS ?Rule_Severity).
+     BIND ("schema:endDate should be a literal typed as date or dateTime." AS ?Rule_Description).
+     BIND (concat("The schema:endDate ",str(?o)," is not a literal typed as date or dateTime.") AS ?Message).
+   }
+  }
+
+UNION
+# Rule_ID:176
+  {SELECT ("Identifier" AS ?Class_Name) (176 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("skos:notation has maximum cardinality of 1 for adms:Identifier." AS ?Rule_Description) (concat("The adms:Identifier ", str(?s)," has more than 1 skos:notation.") AS ?Message) ?s (rdf:type AS ?p) (adms:Identifier AS ?o)
+   WHERE {
+     ?s a adms:Identifier.
+     ?s skos:notation ?type.
+   } GROUP BY ?s 
+     HAVING (COUNT( ?type) > 1)
   }
 
 }

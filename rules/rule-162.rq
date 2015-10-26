@@ -1,5 +1,5 @@
 # Rule_ID:162
-# @title [Distribution] dct:mediaType has a maximum cardinality of 1 for Distribution
+# @title [Distribution] dcat:mediaType has a maximum cardinality of 1 for Distribution
 # @tag distribution
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>

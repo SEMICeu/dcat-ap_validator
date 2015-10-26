@@ -1,6 +1,6 @@
 # Rule_ID:136
-# @title [Checksum] schema:startDate has a maximum cardinality of 1 for dct:PeriodOfTime
-# @tag Checksum
+# @title [Period of time] schema:startDate has a maximum cardinality of 1 for dct:PeriodOfTime
+# @tag periodoftime
 
 PREFIX dct: <http://purl.org/dc/terms/>
 PREFIX schema: <http://schema.org/>

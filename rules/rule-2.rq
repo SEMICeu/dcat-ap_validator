@@ -16,5 +16,5 @@ WHERE {
   BIND (2 AS ?Rule_ID).
   BIND ("warning" AS ?Rule_Severity).
   BIND ("dct:type is a recommended property for Agent." AS ?Rule_Description).
-  BIND (concat("The foaf:Agent ",str(?o)," does not have a dct:type property.") AS ?Message).
+  BIND (concat("The foaf:Agent ",str(?s)," does not have a dct:type property.") AS ?Message).
 }

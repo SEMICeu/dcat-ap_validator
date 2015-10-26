@@ -77,8 +77,9 @@
 	<adms:identifier rdf:resource="http://nobelprize.org/identifier/n1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/identifier/n1">
-    <rdf:type rdf:resource="http://www.w3.org/ns/adms#Identifie"/>
-	<skos:notation>http://purl.org/spar/datacite/ark</skos:notation>
+    <rdf:type rdf:resource="http://www.w3.org/ns/adms#Identifier"/>
+    <skos:notation>http://purl.org/spar/datacite/ark</skos:notation>
+    <skos:notation>http://purl.org/spar/datacite/arxiv</skos:notation>
   </rdf:Description>
   <rdf:Description rdf:about="http://nobelprize.org/contacts/n1">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Kind"/>

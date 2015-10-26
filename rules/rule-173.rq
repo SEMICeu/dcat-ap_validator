@@ -1,5 +1,5 @@
-# Rule_ID:169
-# @title [Category] skos:prefLabel is a required property for Category
+# Rule_ID:173
+# @title [Category] skos:prefLabel should be a literal
 # @tag category
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
@@ -10,11 +10,12 @@ WHERE {
   ?dat a dcat:Dataset.
   ?dat dcat:theme ?s.
   ?s a skos:Concept.
-  FILTER(!EXISTS {?s skos:prefLabel ?o}).
+  ?s skos:prefLabel ?o.
+  FILTER(!isLiteral(?o)).
   BIND (skos:prefLabel AS ?p).
   BIND ("Category" AS ?Class_Name).
-  BIND (169 AS ?Rule_ID).
+  BIND (173 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
-  BIND ("skos:prefLabel is a required property for Category." AS ?Rule_Description).
-  BIND (concat("The Category ",str(?o)," does not have a skos:prefLabel property.") AS ?Message).
+  BIND ("skos:prefLabel should be a literal." AS ?Rule_Description).
+  BIND (concat("The skos:prefLabel ",str(?o)," is not a literal.") AS ?Message).
 }
