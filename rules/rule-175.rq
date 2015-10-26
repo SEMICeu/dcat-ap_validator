@@ -12,7 +12,7 @@ WHERE {
   BIND (schema:endDate AS ?p).
   BIND (datatype(?o) AS ?datatype)
   FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
-  BIND ("CatalogRecord" AS ?Class_Name).
+  BIND ("PeriodOfTime" AS ?Class_Name).
   BIND (175 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("schema:endDate should be a literal typed as date or dateTime." AS ?Rule_Description).

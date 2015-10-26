@@ -2228,8 +2228,8 @@ UNION
      BIND (schema:startDate AS ?p).
      BIND (datatype(?o) AS ?datatype)
      FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
-     BIND ("CatalogRecord" AS ?Class_Name).
-     BIND (175 AS ?Rule_ID).
+     BIND ("PeriodOfTime" AS ?Class_Name).
+     BIND (174 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("schema:startDate should be a literal typed as date or dateTime." AS ?Rule_Description).
      BIND (concat("The schema:startDate ",str(?o)," is not a literal typed as date or dateTime.") AS ?Message).
@@ -2245,7 +2245,7 @@ UNION
      BIND (schema:endDate AS ?p).
      BIND (datatype(?o) AS ?datatype)
      FILTER (?datatype != xsd:date && ?datatype != xsd:dateTime)
-     BIND ("CatalogRecord" AS ?Class_Name).
+     BIND ("PeriodOfTime AS ?Class_Name).
      BIND (175 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("schema:endDate should be a literal typed as date or dateTime." AS ?Rule_Description).
