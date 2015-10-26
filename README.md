@@ -90,7 +90,8 @@ The development process is based on:
 	<li><a href="https://jqueryui.com/">Jquery UI</a> to display tabs</li>
 	<li><a href="https://codemirror.net/mode/index.html">Codemirror</a> for syntax highlight in direct input tab and in the SPARQL query text area</li>
 	<li><a href="https://www.datatables.net/">DataTables</a> 1.10 to display results with ordering, pagination and search.</li>
-	<li><a href="https://casperjs.org">casperjs</a> 1.1 beta to execute all the tests.</li>
+	<li><a href="https://casperjs.org">casperjs</a> 1.1 beta (based on phantomjs 1.9.2) to execute all the tests.</li>
+	<li><a href="https://nodejs.org/en/">Node</a> v4.2.1 for server requests with module request.</li>
 	<li><a href="https://github.com/js-cookie/js-cookie">JavaScript Cookie</a> v2.0.3 for cookie management.</li>
 </ol>
 
