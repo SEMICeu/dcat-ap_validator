@@ -64,6 +64,7 @@ Each tests performs 2 checks:
 <h2>User guide</h2>
 <ol>
 	<li>Launch Fuseki using the command in 'start_dcat-ap_validator.bat'</li>
+    <li>As of version 1.1.0 launch the node server using the command in 'start_dcat-ap_validator-server.bat'</li>
 	<li>Direct your browser to <a href="http://localhost:3030/dcat-ap_validator.html">http://localhost:3030/dcat-ap_validator.html</a></li>
 	<li>You get this page from Fuseki's internal web server.</li>
 	<li>Select one or more RDF files that contain the software metadata to validate. Optionally, also controlled vocabularies can be incldued to verify correct usage of them.</li>
@@ -99,7 +100,7 @@ The development process is based on:
 <table>
 	<tr><th>Action</th><th>Priority</th><th>Status</th></tr>
 	<tr><td>Add compatibility with virtuoso, see api at: http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VirtGraphProtocolCURLExamples</td><td>High</td><td>Not done</td></tr>
-	<tr><td>Add automatic tests for file url (require Apache running) and direct input</td><td>Medium</td><td>Not done</td></tr>
+	<tr><td>Add automatic tests for file url and direct input</td><td>Medium</td><td>Not done</td></tr>
 	<tr><td>Improve quality of the tests: parametrize comments, categorization by node (dataset, agent, etc.)</td><td>Medium</td><td>Not done</td></tr>
 	<tr><td>Add <a href="https://datatables.net/examples/api/show_hide.html">toggle columns</a> in the results (in case more data are returned->better queries)</td><td>Medium</td><td>Not done</td></tr>
 	<tr><td>Add possible html compressor such as: https://code.google.com/p/htmlcompressor/</td><td>Low</td><td>Not done</td></tr>
