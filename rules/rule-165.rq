@@ -11,7 +11,7 @@ WHERE {
   ?s dct:type ?o.
   ?o ?pred ?val.
   FILTER(!EXISTS {?o a skos:Concept}).
-  BIND ("LicenseDocument" AS ?Class_Name).
+  BIND ("License Document" AS ?Class_Name).
   BIND (165 AS ?Rule_ID).
   BIND ("error" AS ?Rule_Severity).
   BIND ("dct:type should be a skos:Concept." AS ?Rule_Description).
