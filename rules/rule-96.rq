@@ -1,5 +1,5 @@
 # Rule_ID:96
-# @title [Distribution] dct:modified should be a literal
+# @title [Distribution] dct:modified should be a literal literal typed as date or dateTime
 # @tag distribution
 
 PREFIX dcat: <http://www.w3.org/ns/dcat#>

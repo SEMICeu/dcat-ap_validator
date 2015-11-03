@@ -755,7 +755,7 @@ UNION
 
 UNION
 # Rule_ID:63
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dcat:landingPage as ?p) ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dcat:landingPage as ?p) ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dcat:landingPage ?o.
@@ -771,7 +771,7 @@ UNION
 
 UNION
 # Rule_ID:65
-  {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:language as ?p) ?o
+  {SELECT DISTINCT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s (dct:language as ?p) ?o
    WHERE {
      ?s a dcat:Dataset.
      ?s dct:language ?o.
