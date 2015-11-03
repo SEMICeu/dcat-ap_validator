@@ -1408,7 +1408,7 @@ UNION
 
 UNION
 # Rule_ID:118
-  {SELECT ("LicenseDocument" AS ?Class_Name) (118 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has a maximum cardinality of 1 for dct:LicenseDocument" AS ?Rule_Description) (concat("The dct:LicenseDocument ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s
+  {SELECT ("License Document" AS ?Class_Name) (118 AS ?Rule_ID) ("error" AS ?Rule_Severity) ("dct:type has a maximum cardinality of 1 for dct:LicenseDocument" AS ?Rule_Description) (concat("The dct:LicenseDocument ", str(?s)," has more than 1 dct:type.") AS ?Message) ?s
    WHERE {
      ?s a dct:LicenseDocument.
      ?s dct:type ?lic.
@@ -2083,7 +2083,7 @@ UNION
      ?s dct:type ?o.
      ?o ?pred ?val.
      FILTER(!EXISTS {?o a skos:Concept}).
-     BIND ("LicenseDocument" AS ?Class_Name).
+     BIND ("License Document" AS ?Class_Name).
      BIND (165 AS ?Rule_ID).
      BIND ("error" AS ?Rule_Severity).
      BIND ("dct:type should be a skos:Concept." AS ?Rule_Description).
@@ -2096,7 +2096,7 @@ UNION
   {SELECT ?Class_Name ?Rule_ID ?Rule_Severity ?Rule_Description ?Message ?s ?p ?o
    WHERE {
      FILTER(!EXISTS {?s a dct:LicenseDocument}).
-     BIND ("LicenseDocument" AS ?Class_Name).
+     BIND ("License Document" AS ?Class_Name).
      BIND (166 AS ?Rule_ID).
      BIND ("warning" AS ?Rule_Severity).
      BIND ("dct:LicenseDocument does not exist." AS ?Rule_Description).
