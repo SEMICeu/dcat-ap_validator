@@ -1,4 +1,6 @@
 # dcat-ap_validator
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSEMICeu%2Fdcat-ap_validator.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSEMICeu%2Fdcat-ap_validator?ref=badge_shield)
+
 
 This software performs the validation of <a href="https://joinup.ec.europa.eu/asset/dcat_application_profile/description">DCAT-AP</a> rdf files.
 Validation is performed via a web form which loads a file (Turtle, RDF/XML, N-triples, JSON-LD) as graph in a triplestore and it queries the triple store with a SPARQL query.
@@ -110,3 +112,6 @@ The development process is based on:
 
 <h2>Licence</h2>
 This software is released with EUPL licence: https://joinup.ec.europa.eu/community/eupl/home
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSEMICeu%2Fdcat-ap_validator.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2FSEMICeu%2Fdcat-ap_validator?ref=badge_large)
